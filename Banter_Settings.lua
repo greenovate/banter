@@ -221,6 +221,12 @@ local function CreateSettingsFrame()
     MakeCheckbox(frame, "BanterCB_Debug", LEFT, -446,
                  "Debug Mode (verbose logging)", "debug")
 
+    -- Credits
+    local credit = frame:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+    credit:SetPoint("BOTTOM", 0, 28)
+    credit:SetTextColor(0.6, 0.6, 0.6)
+    credit:SetText("Made by evild \"Iowke\" on Dreamweaver  |  github.com/greenovate/banter")
+
     -- Footer
     local footer = frame:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
     footer:SetPoint("BOTTOM", 0, 14)
