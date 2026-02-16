@@ -1,0 +1,18 @@
+## Interface: 11507
+## Title: Banter
+## Notes: Automated RP banter for parties and raids — Anniversary Classic
+## Author: Derrick
+## Version: 1.0.0
+## SavedVariables: BanterDB
+
+Banter_Namespace.lua
+Banter_Settings.lua
+Banter_Scenes.lua
+Banter_Persona_Pirate.lua
+Banter_Persona_Warrior.lua
+Banter_Persona_Ninja.lua
+Banter_Persona_Neutral.lua
+Banter_Triggers.lua
+Banter_Comm.lua
+Banter_Core.lua
+Banter_ChatFilter.lua

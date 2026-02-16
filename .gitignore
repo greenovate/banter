@@ -1,0 +1,12 @@
+# WoW SavedVariables
+*.bak
+
+# Editor
+.vscode/
+*.swp
+*~
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
