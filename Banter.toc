@@ -5,6 +5,7 @@
 ## Version: 1.1.0
 ## SavedVariables: BanterDB
 ## SavedVariablesPerCharacter: BanterCharDB
+## X-Curse-Project-ID: 1466191
 
 Banter_Namespace.lua
 Banter_Settings.lua
