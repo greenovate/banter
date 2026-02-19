@@ -320,6 +320,9 @@ function comm.HandleEngageStart(sender, threadKey, targetName)
     if comm.activeScene and (GetTime() - (comm.activeScene.startTime or 0)) < 20 then return end
     if comm.activeEngagement and (GetTime() - (comm.activeEngagement.startTime or 0)) < 20 then return end
 
+    -- Snapshot the response NOW (for topics, GetThread picks random each call)
+    local responseLine = thread.response
+
     comm.activeEngagement = {
         threadKey = threadKey,
         initiator = sender,
@@ -330,8 +333,7 @@ function comm.HandleEngageStart(sender, threadKey, targetName)
     local delay = ns.RandBetween(3, 6)
     C_Timer.After(delay, function()
         if not comm.activeEngagement then return end
-        local line = thread.response
-        line = line:gsub("{name}", sender)
+        local line = responseLine:gsub("{name}", sender)
         local channel = ns.core.GetOutputChannel()
         ns.core.SafeSend(line, channel)
         ns.Debug("ENGAGE REPLY: " .. line)
@@ -344,16 +346,19 @@ function comm.HandleEngageReply(sender, threadKey)
     if not comm.activeEngagement or comm.activeEngagement.threadKey ~= threadKey then return end
     if comm.activeEngagement.initiator ~= UnitName("player") then return end
 
+    -- Get a fresh random followUp (for topics, this picks from the array)
     local thread = ns.engagements.GetThread(threadKey)
     if not thread or not thread.followUp then
         comm.activeEngagement = nil
         return
     end
 
+    -- Snapshot the followUp
+    local followUpLine = thread.followUp
+
     local delay = ns.RandBetween(3, 6)
     C_Timer.After(delay, function()
-        local line = thread.followUp
-        line = line:gsub("{name}", sender)
+        local line = followUpLine:gsub("{name}", sender)
         local channel = ns.core.GetOutputChannel()
         ns.core.SafeSend(line, channel)
         ns.Debug("ENGAGE FOLLOWUP: " .. line)

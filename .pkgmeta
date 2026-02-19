@@ -1,0 +1,10 @@
+package-as: Banter
+enable-nolib-creation: no
+
+ignore:
+  - Planning
+  - Copilot-Prompt-Pack.md
+  - banter-logo.png
+  - "*.zip"
+  - .gitignore
+  - README.md

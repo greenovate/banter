@@ -282,14 +282,15 @@ function core.TryEngagement()
         return
     end
 
+    -- Snapshot the thread NOW (for topics, GetThread picks random from arrays)
     local thread = ns.engagements.GetThread(threadKey)
-    if not thread then return end
+    if not thread or not thread.opener then return end
 
     -- Send the opener line
     local opener = thread.opener:gsub("{name}", targetName)
     local channel = core.GetOutputChannel()
     core.SafeSend(opener, channel)
-    ns.Debug("ENGAGE OPENER [" .. threadKey .. " → " .. targetName .. "]: " .. opener)
+    ns.Debug("ENGAGE OPENER [" .. threadKey .. " -> " .. targetName .. "]: " .. opener)
 
     -- Track the engagement
     ns.comm.activeEngagement = {

@@ -15,13 +15,52 @@ ns.engagements = {}
 ---------------------------------------------------------------------------
 -- Internal storage & index
 ---------------------------------------------------------------------------
-local threads = {}   -- all threads, keyed by unique string
+local threads = {}   -- all threads, keyed by unique string (E/M keys)
 local byPair  = {}   -- byPair[source][target] = { threadKey1, threadKey2, ... }
 local mismatchThreads = {}  -- byMismatch[source][targetPersona] = { threadKey, ... }
 
-local threadCount = 0
+-- NEW: Topic-based pools with multi-choice arrays
+local topics       = {}   -- topics[key] = { target, openers={}, responses={}, followUps={} }
+local byTarget     = {}   -- byTarget[targetPersona] = { topicKey1, topicKey2, ... }
+local universals   = {}   -- universal topic keys (any persona → any persona)
 
---- Register a general engagement thread
+-- Recently-used tracking — prevents repeats with cross-session persistence
+local usedKeys     = {}   -- usedKeys[key] = timestamp (Unix epoch)
+local EXPIRY_SECONDS = 6 * 3600   -- 6 hours: keys older than this are treated as fresh
+
+local threadCount  = 0
+local topicCount   = 0
+
+--- Check if a key was recently used (within expiry window)
+local function IsRecentlyUsed(key)
+    local t = usedKeys[key]
+    if not t then return false end
+    if (time() - t) > EXPIRY_SECONDS then
+        usedKeys[key] = nil   -- expired, clean up
+        return false
+    end
+    return true
+end
+
+--- Mark a key as used and persist to SavedVariables
+local function MarkUsed(key)
+    usedKeys[key] = time()
+    -- Persist to per-character SavedVariables
+    if BanterCharDB then
+        BanterCharDB.usedEngagements = BanterCharDB.usedEngagements or {}
+        BanterCharDB.usedEngagements[key] = usedKeys[key]
+    end
+end
+
+--- Wipe used keys (both local and persisted)
+local function WipeUsedKeys()
+    wipe(usedKeys)
+    if BanterCharDB and BanterCharDB.usedEngagements then
+        wipe(BanterCharDB.usedEngagements)
+    end
+end
+
+--- Register a general engagement thread (legacy pair-specific)
 local function E(source, target, opener, response, followUp)
     threadCount = threadCount + 1
     local key = "E" .. threadCount
@@ -57,43 +96,160 @@ local function M(source, targetPersona, opener, response, followUp)
 end
 
 ---------------------------------------------------------------------------
+-- NEW: Topic registration — target-specific and universal pools
+---------------------------------------------------------------------------
+
+--- Register a target-specific topic (anyone → TARGET persona)
+--- openers, responses, followUps are arrays of strings for multi-choice
+function ns.engagements.T(target, openers, responses, followUps)
+    topicCount = topicCount + 1
+    local key = "T" .. topicCount
+    topics[key] = {
+        target    = target,
+        openers   = openers,
+        responses = responses,
+        followUps = followUps or {},
+    }
+    if not byTarget[target] then byTarget[target] = {} end
+    table.insert(byTarget[target], key)
+end
+
+--- Register a universal topic (any persona → any persona)
+--- openers, responses, followUps are arrays of strings for multi-choice
+function ns.engagements.U(openers, responses, followUps)
+    topicCount = topicCount + 1
+    local key = "U" .. topicCount
+    topics[key] = {
+        target    = "ANY",
+        openers   = openers,
+        responses = responses,
+        followUps = followUps or {},
+    }
+    table.insert(universals, key)
+end
+
+-- Shortcuts for the content file
+local T = ns.engagements.T
+local U = ns.engagements.U
+
+---------------------------------------------------------------------------
 -- Public API
 ---------------------------------------------------------------------------
 
---- Retrieve a thread by key
+--- Retrieve a thread/topic by key.
+--- For topics (T/U), randomly picks from the arrays each call.
+--- Returns a normalized { opener, response, followUp } shape.
 function ns.engagements.GetThread(key)
-    return threads[key]
+    -- Legacy E/M threads — return as-is (fixed strings)
+    if threads[key] then return threads[key] end
+
+    -- Topic-based T/U threads — pick random from arrays
+    local topic = topics[key]
+    if not topic then return nil end
+
+    local opener   = topic.openers[math.random(#topic.openers)]
+    local response = topic.responses[math.random(#topic.responses)]
+    local followUp = nil
+    if topic.followUps and #topic.followUps > 0 then
+        followUp = topic.followUps[math.random(#topic.followUps)]
+    end
+
+    return {
+        opener   = opener,
+        response = response,
+        followUp = followUp,
+        source   = "ANY",
+        target   = topic.target,
+        mismatch = false,
+    }
 end
 
 --- Pick a random engagement for this player to initiate.
 --- Returns: threadKey, targetPlayerName  (or nil if nothing qualifies)
+--- Uses recently-used tracking to avoid repeats.
 function ns.engagements.PickEngagement()
     local myPersona = ns.ResolvePersona()
     local peers = ns.comm.peers
     if not peers then return nil, nil end
 
-    -- Build candidate list: { threadKey, targetName }
+    -- Build candidate list: { key, targetName }
     local candidates = {}
+    local allKeys    = {}   -- track all valid keys for dedup reset logic
 
     for peerName, peerData in pairs(peers) do
-        local theirPersona   = peerData.persona    or "UNKNOWN"
-        local theirClass     = peerData.actualClass or "UNKNOWN"
+        local theirPersona = peerData.persona    or "UNKNOWN"
+        local theirClass   = peerData.actualClass or "UNKNOWN"
 
-        -- Mismatch threads: their persona != their actual class
+        -- 1) Mismatch threads (legacy M)
         if theirPersona ~= theirClass and theirPersona ~= "UNKNOWN" then
             local pool = mismatchThreads[myPersona] and mismatchThreads[myPersona][theirPersona]
             if pool then
                 for _, key in ipairs(pool) do
+                    table.insert(allKeys, key)
+                    if not IsRecentlyUsed(key) then
+                        table.insert(candidates, { key = key, target = peerName })
+                    end
+                end
+            end
+        end
+
+        -- 2) Legacy pair-specific threads (E)
+        local pool = byPair[myPersona] and byPair[myPersona][theirPersona]
+        if pool then
+            for _, key in ipairs(pool) do
+                table.insert(allKeys, key)
+                if not IsRecentlyUsed(key) then
                     table.insert(candidates, { key = key, target = peerName })
                 end
             end
         end
 
-        -- General persona→persona threads
-        local pool = byPair[myPersona] and byPair[myPersona][theirPersona]
-        if pool then
-            for _, key in ipairs(pool) do
+        -- 3) Target-specific topics (T) — anyone → their persona
+        if theirPersona ~= "UNKNOWN" then
+            local tPool = byTarget[theirPersona]
+            if tPool then
+                for _, key in ipairs(tPool) do
+                    table.insert(allKeys, key)
+                    if not IsRecentlyUsed(key) then
+                        table.insert(candidates, { key = key, target = peerName })
+                    end
+                end
+            end
+        end
+
+        -- 4) Universal topics (U) — anyone → anyone
+        for _, key in ipairs(universals) do
+            table.insert(allKeys, key)
+            if not IsRecentlyUsed(key) then
                 table.insert(candidates, { key = key, target = peerName })
+            end
+        end
+    end
+
+    -- If all keys used, reset the cycle and rebuild candidates
+    if #candidates == 0 and #allKeys > 0 then
+        ns.Debug("Engagements: full cycle complete — resetting used pool")
+        WipeUsedKeys()
+        -- Rebuild candidates from allKeys (all are now available)
+        local seen = {}
+        for _, key in ipairs(allKeys) do
+            if not seen[key] then
+                seen[key] = true
+                -- Re-match to a peer
+                for peerName, peerData in pairs(peers) do
+                    local theirPersona = peerData.persona or "UNKNOWN"
+                    local topic = topics[key]
+                    local thread = threads[key]
+                    if topic then
+                        if topic.target == "ANY" or topic.target == theirPersona then
+                            table.insert(candidates, { key = key, target = peerName })
+                            break
+                        end
+                    elseif thread then
+                        table.insert(candidates, { key = key, target = peerName })
+                        break
+                    end
+                end
             end
         end
     end
@@ -101,7 +257,43 @@ function ns.engagements.PickEngagement()
     if #candidates == 0 then return nil, nil end
 
     local pick = candidates[math.random(#candidates)]
+    MarkUsed(pick.key)
     return pick.key, pick.target
+end
+
+--- Get total topic/thread counts for debug
+function ns.engagements.GetCounts()
+    local tCount, uCount = 0, 0
+    for _ in pairs(byTarget) do end
+    for k in pairs(topics) do
+        if k:sub(1,1) == "T" then tCount = tCount + 1
+        elseif k:sub(1,1) == "U" then uCount = uCount + 1 end
+    end
+    return threadCount, tCount, uCount
+end
+
+---------------------------------------------------------------------------
+-- Init: load persisted used-keys from SavedVariables
+---------------------------------------------------------------------------
+function ns.engagements.Init()
+    BanterCharDB = BanterCharDB or {}
+    local saved = BanterCharDB.usedEngagements
+    if saved then
+        local now = time()
+        local loaded, expired = 0, 0
+        for key, t in pairs(saved) do
+            if (now - t) <= EXPIRY_SECONDS then
+                usedKeys[key] = t
+                loaded = loaded + 1
+            else
+                saved[key] = nil   -- clean up expired entries
+                expired = expired + 1
+            end
+        end
+        ns.Debug(string.format("Engagements: loaded %d recently-used keys (%d expired)", loaded, expired))
+    end
+    local eCount, tCount, uCount = ns.engagements.GetCounts()
+    ns.Debug(string.format("Engagements ready: %d E/M threads, %d T topics, %d U universals", eCount, tCount, uCount))
 end
 
 --=========================================================================
