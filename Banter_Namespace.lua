@@ -3,7 +3,7 @@
 local ADDON_NAME, ns = ...
 
 ns.name    = ADDON_NAME
-ns.version = "1.1.0-beta2"
+ns.version = "1.0.0"
 
 -- Module tables (populated by their respective files)
 ns.settings   = {}

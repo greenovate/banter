@@ -10,7 +10,7 @@ local _, ns = ...
 local CHANGELOG_VERSION = ns.version   -- ties to ns.version in Namespace
 
 local CHANGELOG_LINES = {
-    "|cffffcc00Banter v" .. ns.version .. " — Beta 2|r",
+    "|cffffcc00Banter v" .. ns.version .. " — Official Release|r",
     "|cffffffffThe Comedy RP Engine for WoW Classic|r",
     "",
     "|cff00ccffCurseForge upload is pending.|r",
