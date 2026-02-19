@@ -266,7 +266,7 @@ local function CreateSettingsFrame()
     local credit = frame:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
     credit:SetPoint("BOTTOM", 0, 28)
     credit:SetTextColor(0.6, 0.6, 0.6)
-    credit:SetText("Made by evild \"Iowke\" on Dreamweaver  |  github.com/greenovate/banter")
+    credit:SetText("Made by evild \"Iowke\" on Dreamweaver  |  curseforge.com/wow/addons/banter")
 
     -- Footer
     local footer = frame:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
