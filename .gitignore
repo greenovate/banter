@@ -1,6 +1,9 @@
 # WoW SavedVariables
 *.bak
 
+# Build artifacts
+*.zip
+
 # Editor
 .vscode/
 *.swp
