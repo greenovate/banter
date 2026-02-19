@@ -1,4 +1,4 @@
-## Interface: 11507
+## Interface: 20505
 ## Title: Banter
 ## Notes: Automated RP banter for parties and raids — Anniversary Classic
 ## Author: Derrick
