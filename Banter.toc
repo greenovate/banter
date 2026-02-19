@@ -2,17 +2,29 @@
 ## Title: Banter
 ## Notes: Automated RP banter for parties and raids — Anniversary Classic
 ## Author: Derrick
-## Version: 1.0.0
+## Version: 1.1.0-beta2
 ## SavedVariables: BanterDB
 
 Banter_Namespace.lua
 Banter_Settings.lua
 Banter_Scenes.lua
-Banter_Persona_Pirate.lua
+Banter_State.lua
+Banter_Stats.lua
 Banter_Persona_Warrior.lua
-Banter_Persona_Ninja.lua
-Banter_Persona_Neutral.lua
+Banter_Persona_Mage.lua
+Banter_Persona_Warlock.lua
+Banter_Persona_Priest.lua
+Banter_Persona_Rogue.lua
+Banter_Persona_Hunter.lua
+Banter_Persona_Druid.lua
+Banter_Persona_Paladin.lua
+Banter_Persona_Shaman.lua
+Banter_Persona_Pirate.lua
+Banter_CrossClass.lua
+Banter_Engagements.lua
 Banter_Triggers.lua
 Banter_Comm.lua
 Banter_Core.lua
 Banter_ChatFilter.lua
+Banter_Changelog.lua
+Banter_Promo.lua

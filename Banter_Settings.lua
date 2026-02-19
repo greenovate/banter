@@ -4,19 +4,27 @@ local _, ns = ...
 
 local DEFAULTS = {
     enabled          = true,
-    persona          = "PIRATE",   -- PIRATE | WARRIOR | NINJA | NEUTRAL
+    persona          = "AUTO",     -- AUTO (current class) | class key | PIRATE
     outputChannel    = "AUTO",     -- AUTO | SAY | PARTY | RAID
     frequencyMin     = 25,         -- min seconds between scene starts
     frequencyMax     = 90,         -- max seconds between scene starts
     responseMin      = 20,         -- min seconds between responding
     responseMax      = 60,         -- max seconds between responding
+    chattiness       = 5,          -- 1-10 scale (modifies freq + trigger chances)
+    disableInRaids   = false,      -- suppress all banter when in a raid
+    roastMode        = false,      -- enable stat-based player callouts
+    selfPromo        = true,       -- respond to "what addon?" questions
     enableChatFilter = false,      -- persona chat filter on outgoing messages
     chatFilterChannels = { SAY = true, PARTY = true, RAID = true },
     debug            = false,
     minimapPos       = 195,        -- degrees around minimap
 }
 
-local PERSONA_LIST = { "PIRATE", "WARRIOR", "NINJA", "NEUTRAL" }
+-- Build persona list: "AUTO" + 9 class personas + novelty
+local PERSONA_LIST = { "AUTO" }
+for _, cls in ipairs(ns.CLASS_PERSONAS)   do table.insert(PERSONA_LIST, cls) end
+for _, nov in ipairs(ns.NOVELTY_PERSONAS) do table.insert(PERSONA_LIST, nov) end
+
 local CHANNEL_LIST = { "AUTO", "SAY", "PARTY", "RAID" }
 
 ---------------------------------------------------------------------------
@@ -147,7 +155,7 @@ local function CreateSettingsFrame()
     if frame then return frame end
 
     frame = CreateFrame("Frame", "BanterSettingsFrame", UIParent, "BackdropTemplate")
-    frame:SetSize(420, 520)
+    frame:SetSize(420, 640)
     frame:SetPoint("CENTER")
     frame:SetMovable(true)
     frame:EnableMouse(true)
@@ -187,38 +195,71 @@ local function CreateSettingsFrame()
     -- Enable checkbox
     MakeCheckbox(frame, "BanterCB_Enable", LEFT, -40, "Enable Banter", "enabled")
 
-    -- Persona dropdown
+    -- Persona dropdown  (AUTO = current class)
     MakeDropdown(frame, "BanterDD_Persona", LEFT, -80, "Persona", PERSONA_LIST, "persona")
 
     -- Output channel dropdown
     MakeDropdown(frame, "BanterDD_Channel", LEFT, -140, "Output Channel", CHANNEL_LIST, "outputChannel")
 
-    -- Frequency sliders
-    MakeLabel(frame, LEFT, -204, "Scene Frequency", "GameFontNormalLarge")
+    -- Chattiness slider  (1-10)
+    MakeLabel(frame, LEFT, -204, "Chattiness", "GameFontNormalLarge")
+    do
+        local chatSlider = CreateFrame("Slider", "BanterSlider_Chattiness", frame, "OptionsSliderTemplate")
+        chatSlider:SetPoint("TOPLEFT", LEFT, -222)
+        chatSlider:SetWidth(200)
+        chatSlider:SetMinMaxValues(1, 10)
+        chatSlider:SetValueStep(1)
+        chatSlider:SetObeyStepOnDrag(true)
+        chatSlider:SetValue(ns.db.chattiness)
+        chatSlider.Low:SetText("1 (Shy)")
+        chatSlider.High:SetText("10 (Loud)")
+        local valTxt = chatSlider:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+        valTxt:SetPoint("TOP", chatSlider, "BOTTOM", 0, -2)
+        valTxt:SetText(ns.db.chattiness)
+        chatSlider:SetScript("OnValueChanged", function(self, val)
+            val = math.floor(val + 0.5)
+            ns.db.chattiness = val
+            valTxt:SetText(val)
+        end)
+    end
 
-    MakeSlider(frame, "BanterSlider_FreqMin", LEFT, -228, "Min Delay",
+    -- Frequency sliders
+    MakeLabel(frame, LEFT, -268, "Scene Frequency", "GameFontNormalLarge")
+
+    MakeSlider(frame, "BanterSlider_FreqMin", LEFT, -292, "Min Delay",
                10, 120, 5, "frequencyMin")
 
-    MakeSlider(frame, "BanterSlider_FreqMax", LEFT + 220, -228, "Max Delay",
+    MakeSlider(frame, "BanterSlider_FreqMax", LEFT + 220, -292, "Max Delay",
                20, 300, 5, "frequencyMax")
 
     -- Response sliders
-    MakeLabel(frame, LEFT, -296, "Response Timing", "GameFontNormalLarge")
+    MakeLabel(frame, LEFT, -360, "Response Timing", "GameFontNormalLarge")
 
-    MakeSlider(frame, "BanterSlider_RespMin", LEFT, -320, "Min Delay",
+    MakeSlider(frame, "BanterSlider_RespMin", LEFT, -384, "Min Delay",
                5, 60, 5, "responseMin")
 
-    MakeSlider(frame, "BanterSlider_RespMax", LEFT + 220, -320, "Max Delay",
+    MakeSlider(frame, "BanterSlider_RespMax", LEFT + 220, -384, "Max Delay",
                10, 120, 5, "responseMax")
 
-    -- Chat filter section
-    MakeLabel(frame, LEFT, -388, "Chat Filter", "GameFontNormalLarge")
+    -- ═══════════════════════════════════════════════════════════════
+    -- Toggles section
+    -- ═══════════════════════════════════════════════════════════════
+    MakeLabel(frame, LEFT, -452, "Options", "GameFontNormalLarge")
 
-    MakeCheckbox(frame, "BanterCB_Filter", LEFT, -406,
+    MakeCheckbox(frame, "BanterCB_Filter", LEFT, -470,
                  "Transform outgoing chat in persona voice", "enableChatFilter")
 
+    MakeCheckbox(frame, "BanterCB_RaidDisable", LEFT, -496,
+                 "Disable all banter in raids", "disableInRaids")
+
+    MakeCheckbox(frame, "BanterCB_Roast", LEFT, -522,
+                 "Roast Mode — stat-based player callouts", "roastMode")
+
+    MakeCheckbox(frame, "BanterCB_Promo", LEFT, -548,
+                 "Self-promo — respond to \"what addon?\" questions", "selfPromo")
+
     -- Debug
-    MakeCheckbox(frame, "BanterCB_Debug", LEFT, -446,
+    MakeCheckbox(frame, "BanterCB_Debug", LEFT, -574,
                  "Debug Mode (verbose logging)", "debug")
 
     -- Credits
@@ -324,9 +365,14 @@ SlashCmdList["BANTER"] = function(input)
         ns.Print("Commands:")
         ns.Print("  /banter  — open settings window")
         ns.Print("  /banter on|off  — enable / disable")
-        ns.Print("  /banter persona pirate|warrior|ninja|neutral")
+        ns.Print("  /banter persona auto|warrior|mage|warlock|priest|rogue|hunter|druid|paladin|shaman|pirate")
         ns.Print("  /banter filter on|off  — persona chat filter")
         ns.Print("  /banter freq <min> <max>  — scene frequency (seconds)")
+        ns.Print("  /banter chattiness <1-10>  — how talkative (1=shy, 10=loud)")
+        ns.Print("  /banter roast on|off  — stat-based player callouts")
+        ns.Print("  /banter promo on|off  — self-promotion responses")
+        ns.Print("  /banter reset  — reset session stats")
+        ns.Print("  /banter changelog  — show version changelog")
         ns.Print("  /banter status  — show current settings")
         ns.Print("  /banter debug  — toggle debug mode")
         return
@@ -342,15 +388,56 @@ SlashCmdList["BANTER"] = function(input)
         local p = cmd:match("^persona%s+(%a+)")
         if p then
             p = p:upper()
-            if ns.personas[p] then
+            if p == "AUTO" or ns.personas[p] then
                 ns.db.persona = p
-                ns.Print("Persona set to " .. p .. ".")
+                local display = p
+                if p == "AUTO" then display = "AUTO (" .. (ns.playerClassKey or "?") .. ")" end
+                ns.Print("Persona set to " .. display .. ".")
             else
-                ns.Print("Unknown persona. Options: pirate, warrior, ninja, neutral")
+                ns.Print("Unknown persona. Options: auto, warrior, mage, warlock, priest, rogue, hunter, druid, paladin, shaman, pirate")
             end
         else
-            ns.Print("Current persona: " .. (ns.db.persona or "?"))
+            local active = ns.ResolvePersona()
+            ns.Print("Current persona: " .. ns.db.persona .. " (active: " .. active .. ")")
         end
+    elseif cmd:match("^chattiness") then
+        local val = cmd:match("^chattiness%s+(%d+)")
+        if val then
+            val = tonumber(val)
+            if val >= 1 and val <= 10 then
+                ns.db.chattiness = val
+                ns.Print("Chattiness set to " .. val .. ".")
+            else
+                ns.Print("Chattiness must be 1–10.")
+            end
+        else
+            ns.Print("Chattiness: " .. (ns.db.chattiness or 5))
+        end
+    elseif cmd:match("^roast") then
+        local toggle = cmd:match("^roast%s+(%a+)")
+        if toggle == "on" then
+            ns.db.roastMode = true
+            ns.Print("Roast Mode enabled. Gloves off.")
+        elseif toggle == "off" then
+            ns.db.roastMode = false
+            ns.Print("Roast Mode disabled. Safe space restored.")
+        else
+            ns.Print("Roast Mode: " .. (ns.db.roastMode and "ON" or "OFF"))
+        end
+    elseif cmd:match("^promo") then
+        local toggle = cmd:match("^promo%s+(%a+)")
+        if toggle == "on" then
+            ns.db.selfPromo = true
+            ns.Print("Self-promo enabled.")
+        elseif toggle == "off" then
+            ns.db.selfPromo = false
+            ns.Print("Self-promo disabled.")
+        else
+            ns.Print("Self-promo: " .. (ns.db.selfPromo and "ON" or "OFF"))
+        end
+    elseif cmd == "reset" then
+        ns.stats.Reset()
+        ns.Print("Session stats reset.")
     elseif cmd:match("^filter") then
         local toggle = cmd:match("^filter%s+(%a+)")
         if toggle == "on" then
@@ -377,13 +464,23 @@ SlashCmdList["BANTER"] = function(input)
             ns.Print("Frequency: " .. ns.db.frequencyMin .. "–" .. ns.db.frequencyMax .. "s")
         end
     elseif cmd == "status" then
-        ns.Print("Enabled: "   .. (ns.db.enabled and "YES" or "NO"))
-        ns.Print("Persona: "   .. ns.db.persona)
-        ns.Print("Frequency: " .. ns.db.frequencyMin .. "–" .. ns.db.frequencyMax .. "s")
-        ns.Print("Response: "  .. ns.db.responseMin  .. "–" .. ns.db.responseMax  .. "s")
-        ns.Print("Chat filter: " .. (ns.db.enableChatFilter and "ON" or "OFF"))
-        ns.Print("Debug: "     .. (ns.db.debug and "ON" or "OFF"))
+        local active = ns.ResolvePersona()
+        ns.Print("Enabled: "      .. (ns.db.enabled and "YES" or "NO"))
+        ns.Print("Persona: "      .. ns.db.persona .. " (active: " .. active .. ")")
+        ns.Print("Class: "        .. (ns.playerClassKey or "?"))
+        ns.Print("Chattiness: "   .. (ns.db.chattiness or 5))
+        ns.Print("Frequency: "    .. ns.db.frequencyMin .. "–" .. ns.db.frequencyMax .. "s")
+        ns.Print("Response: "     .. ns.db.responseMin  .. "–" .. ns.db.responseMax  .. "s")
+        ns.Print("Chat filter: "  .. (ns.db.enableChatFilter and "ON" or "OFF"))
+        ns.Print("Raid disable: " .. (ns.db.disableInRaids and "ON" or "OFF"))
+        ns.Print("Roast Mode: "   .. (ns.db.roastMode and "ON" or "OFF"))
+        ns.Print("Self-promo: "   .. (ns.db.selfPromo and "ON" or "OFF"))
+        ns.Print("Debug: "        .. (ns.db.debug and "ON" or "OFF"))
         ns.Print("Banter peers: " .. ns.comm.GetPeerCount())
+        ns.Print("State: "        .. (ns.state.Current and ns.state.Current() or "?"))
+        ns.Print("Deaths: "       .. ns.stats.GetDeathCount())
+    elseif cmd == "changelog" then
+        ns.ShowChangelog(true)  -- force show
     elseif cmd == "debug" then
         ns.db.debug = not ns.db.debug
         ns.Print("Debug " .. (ns.db.debug and "ON" or "OFF"))

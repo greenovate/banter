@@ -379,6 +379,58 @@ statements = {
             { id="pir_amb_m02", weight=1, line="Never learned to read. The crew don't know. I just nod when people 'and me maps. Been wingin' it fer years." },
         },
     },
+
+    PLAYER_DISCONNECT = {
+        COMMON = {
+            { id="pir_dc_c01", weight=1, line="{target} went overboard. ...figuratively. Their connection drowned." },
+            { id="pir_dc_c02", weight=1, line="{target}'s gone. Man overboard! Or woman. Or elf. Whatever." },
+            { id="pir_dc_c03", weight=1, line="{target} vanished. Either they DC'd or they found better treasure elsewhere. Traitor." },
+        },
+        UNCOMMON = {
+            { id="pir_dc_u01", weight=1, line="Lost more crew to disconnects than to actual combat. Modern piracy is brutal." },
+            { id="pir_dc_u02", weight=1, line="{target}'s gone. I'd pour one out but this rum cost me 3 silver." },
+        },
+        RARE = {
+            { id="pir_dc_r01", weight=1, line="Crew keeps disappearin'. Either it's bad internet or me reputation precedes me." },
+        },
+        MYTHIC = {
+            { id="pir_dc_m01", weight=1, line="{target} disconnected. In the old days we'd call that mutiny. These days we call it Comcast." },
+        },
+    },
+
+    CONSUMABLE_USED = {
+        COMMON = {
+            { id="pir_cons_c01", weight=1, line="{source} used a potion. I used rum. Same thing. Basically." },
+            { id="pir_cons_c02", weight=1, line="Potions! The landlubber's answer to problems. A pirate's answer is also potions. But with rum." },
+            { id="pir_cons_c03", weight=1, line="Nice consumable. I consumed three flagons before this pull. Feelin' great." },
+        },
+        UNCOMMON = {
+            { id="pir_cons_u01", weight=1, line="I don't trust potions I didn't brew meself. An' ye shouldn't trust the ones I DID brew." },
+        },
+        RARE = {
+            { id="pir_cons_r01", weight=1, line="Me personal health potion is rum with a health potion IN it. Double effective. Triple dangerous." },
+        },
+        MYTHIC = {
+            { id="pir_cons_m01", weight=1, line="A real pirate don't need potions. A real pirate drinks rum an' BELIEVES they're healed. Mind over matter." },
+        },
+    },
+
+    MAJOR_COOLDOWN = {
+        COMMON = {
+            { id="pir_cd_c01", weight=1, line="{source} popped the big guns! Arrr, now THAT's how ye fight!" },
+            { id="pir_cd_c02", weight=1, line="Major cooldown! Reminds me of the time I fired all cannons at once. Sank me own ship. But WHAT a moment." },
+            { id="pir_cd_c03", weight=1, line="Big CDs burnin'. This is the part where we either win gloriously or die memorably." },
+        },
+        UNCOMMON = {
+            { id="pir_cd_u01", weight=1, line="That's the good stuff. Save it fer when things go sideways. Which is always." },
+        },
+        RARE = {
+            { id="pir_cd_r01", weight=1, line="Every great pirate has one ace up their sleeve. Some of us have it up BOTH sleeves. An' in our boots." },
+        },
+        MYTHIC = {
+            { id="pir_cd_m01", weight=1, line="Popped everything. No holdin' back. If this don't work, we're swimmin' home. An' I can't swim." },
+        },
+    },
 },
 
 ---------------------------------------------------------------------------
@@ -713,6 +765,57 @@ responses = {
         },
         MYTHIC = {
             "This crew's the fastest I ever got attached. That usually means somethin' terrible's about to happen. Always does.",
+        },
+    },
+
+    PLAYER_DISCONNECT = {
+        COMMON = {
+            "Man overboard! Or... man off-line. Same energy.",
+            "Gone. Probably got caught by the authorities. Or Comcast.",
+            "Abandoned ship! ...or just DC'd. Hard to tell.",
+        },
+        UNCOMMON = {
+            "A good pirate never leaves crew behind. A realistic pirate knows they'll reconnect. Eventually.",
+        },
+        RARE = {
+            "Crew vanishes more than treasure maps. At least treasure maps had the decency to be LOST.",
+        },
+        MYTHIC = {
+            "In the old days, disappearin' from the crew meant one of two things: mutiny or kraken. Now it's Wi-Fi.",
+        },
+    },
+
+    CONSUMABLE_USED = {
+        COMMON = {
+            "Potions? Try rum. Fixes everything.",
+            "Nice swig. I prefer mine with more alcohol content.",
+            "Consumed. The pirate way. Aggressively.",
+        },
+        UNCOMMON = {
+            "Never trust a potion ye didn't steal. That's the first rule.",
+        },
+        RARE = {
+            "Me secret recipe: rum, a health potion, an' a prayer to no one in particular.",
+        },
+        MYTHIC = {
+            "Rum IS me potion. Me buff food. Me flask. It does everything. Side effects are yer own problem.",
+        },
+    },
+
+    MAJOR_COOLDOWN = {
+        COMMON = {
+            "Fire all cannons! Or buttons. Whatever ye've got!",
+            "Big one! That's the kind of firepower I respect!",
+            "Aye, pop everything! No sense dyin' with cooldowns up!",
+        },
+        UNCOMMON = {
+            "That's how a pirate fights! All in! No retreat!",
+        },
+        RARE = {
+            "The best treasures are cooldowns ye actually USE. Not the ones ye hoard.",
+        },
+        MYTHIC = {
+            "A pirate who saves cooldowns is a pirate who dies with 'em. USE 'EM.",
         },
     },
 },

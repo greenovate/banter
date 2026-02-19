@@ -20,36 +20,42 @@ scenes.RARITY_ORDER = { "COMMON", "UNCOMMON", "RARE", "MYTHIC" }
 -- Per-trigger responder caps  { partyMin, partyMax, raidMin, raidMax }
 ---------------------------------------------------------------------------
 scenes.CAPS = {
-    PLAYER_DEAD     = { partyMin = 1, partyMax = 3, raidMin = 1, raidMax = 3 },
-    WIPE            = { partyMin = 2, partyMax = 4, raidMin = 2, raidMax = 4 },
-    HEALTH_LOW      = { partyMin = 0, partyMax = 2, raidMin = 0, raidMax = 2 },
-    MANA_ZERO       = { partyMin = 0, partyMax = 1, raidMin = 0, raidMax = 1 },
-    LOOT            = { partyMin = 1, partyMax = 2, raidMin = 1, raidMax = 2 },
-    ENTER_INSTANCE  = { partyMin = 1, partyMax = 3, raidMin = 1, raidMax = 3 },
-    INTERRUPT       = { partyMin = 0, partyMax = 1, raidMin = 0, raidMax = 1 },
-    PERIODIC_DAMAGE = { partyMin = 0, partyMax = 2, raidMin = 0, raidMax = 2 },
-    COMBAT_START    = { partyMin = 0, partyMax = 1, raidMin = 0, raidMax = 1 },
-    MOB_KILL        = { partyMin = 0, partyMax = 1, raidMin = 0, raidMax = 1 },
-    CROWD_CONTROL   = { partyMin = 0, partyMax = 1, raidMin = 0, raidMax = 1 },
-    AMBIENT         = { partyMin = 0, partyMax = 2, raidMin = 0, raidMax = 2 },
+    PLAYER_DEAD        = { partyMin = 1, partyMax = 3, raidMin = 1, raidMax = 3 },
+    WIPE               = { partyMin = 2, partyMax = 4, raidMin = 2, raidMax = 4 },
+    HEALTH_LOW         = { partyMin = 0, partyMax = 2, raidMin = 0, raidMax = 2 },
+    MANA_ZERO          = { partyMin = 0, partyMax = 1, raidMin = 0, raidMax = 1 },
+    LOOT               = { partyMin = 1, partyMax = 2, raidMin = 1, raidMax = 2 },
+    ENTER_INSTANCE     = { partyMin = 1, partyMax = 3, raidMin = 1, raidMax = 3 },
+    INTERRUPT          = { partyMin = 0, partyMax = 1, raidMin = 0, raidMax = 1 },
+    PERIODIC_DAMAGE    = { partyMin = 0, partyMax = 2, raidMin = 0, raidMax = 2 },
+    COMBAT_START       = { partyMin = 0, partyMax = 1, raidMin = 0, raidMax = 1 },
+    MOB_KILL           = { partyMin = 0, partyMax = 1, raidMin = 0, raidMax = 1 },
+    CROWD_CONTROL      = { partyMin = 0, partyMax = 1, raidMin = 0, raidMax = 1 },
+    AMBIENT            = { partyMin = 0, partyMax = 2, raidMin = 0, raidMax = 2 },
+    PLAYER_DISCONNECT  = { partyMin = 1, partyMax = 2, raidMin = 1, raidMax = 2 },
+    CONSUMABLE_USED    = { partyMin = 0, partyMax = 1, raidMin = 0, raidMax = 1 },
+    MAJOR_COOLDOWN     = { partyMin = 0, partyMax = 1, raidMin = 0, raidMax = 1 },
 }
 
 ---------------------------------------------------------------------------
 -- Per-trigger base probability  (0-1, checked after global cooldown)
 ---------------------------------------------------------------------------
 scenes.TRIGGER_CHANCE = {
-    PLAYER_DEAD     = 0.80,
-    WIPE            = 0.90,
-    HEALTH_LOW      = 0.30,
-    MANA_ZERO       = 0.25,
-    LOOT            = 0.40,
-    ENTER_INSTANCE  = 0.70,
-    INTERRUPT       = 0.20,
-    PERIODIC_DAMAGE = 0.25,
-    COMBAT_START    = 0.25,
-    MOB_KILL        = 0.20,
-    CROWD_CONTROL   = 0.60,
-    AMBIENT         = 0.10,
+    PLAYER_DEAD        = 0.80,
+    WIPE               = 0.90,
+    HEALTH_LOW         = 0.30,
+    MANA_ZERO          = 0.25,
+    LOOT               = 0.40,
+    ENTER_INSTANCE     = 0.70,
+    INTERRUPT          = 0.20,
+    PERIODIC_DAMAGE    = 0.25,
+    COMBAT_START       = 0.25,
+    MOB_KILL           = 0.20,
+    CROWD_CONTROL      = 0.60,
+    AMBIENT            = 0.10,
+    PLAYER_DISCONNECT  = 0.75,
+    CONSUMABLE_USED    = 0.25,
+    MAJOR_COOLDOWN     = 0.35,
 }
 
 ---------------------------------------------------------------------------
@@ -162,9 +168,36 @@ end
 ---------------------------------------------------------------------------
 -- Pick a response line for a responder's persona + trigger
 ---------------------------------------------------------------------------
-function scenes.PickResponse(persona, trigger)
+function scenes.PickResponse(persona, trigger, sourcePersona)
     local pData = ns.personas[persona]
-    if not pData or not pData.responses or not pData.responses[trigger] then
+    if not pData then
+        ns.Debug("No persona data for " .. tostring(persona))
+        return nil
+    end
+
+    -- CROSS-CLASS BANTER — targeted responses based on who spoke
+    if sourcePersona and pData.banter then
+        local banterSource = pData.banter[sourcePersona]
+        if banterSource and banterSource[trigger] then
+            local banterPool = banterSource[trigger]
+            if #banterPool > 0 then
+                local filtered = {}
+                for _, line in ipairs(banterPool) do
+                    if not IsRecentResponse(line) then
+                        table.insert(filtered, line)
+                    end
+                end
+                if #filtered == 0 then filtered = banterPool end
+                local line = filtered[math.random(#filtered)]
+                TrackResponse(line)
+                ns.Debug("Banter hit: " .. persona .. " reacting to " .. sourcePersona .. "/" .. trigger)
+                return line
+            end
+        end
+    end
+
+    -- FALLBACK — generic response pool (rarity-tiered)
+    if not pData.responses or not pData.responses[trigger] then
         ns.Debug("No response data for " .. tostring(persona) .. "/" .. tostring(trigger))
         return nil
     end

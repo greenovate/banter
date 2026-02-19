@@ -14,12 +14,18 @@ local lastResponseAt    = 0
 local nextResponseDelay = 0
 
 local function ResetSceneGate()
-    local db = ns.db or {}
-    nextSceneDelay = ns.RandBetween(db.frequencyMin or 25, db.frequencyMax or 90)
+    local db  = ns.db or {}
+    local mul = ns.core and ns.core.GetChattinessMultiplier and ns.core.GetChattinessMultiplier() or 1
+    local lo  = (db.frequencyMin or 25) / mul
+    local hi  = (db.frequencyMax or 90) / mul
+    nextSceneDelay = ns.RandBetween(math.max(lo, 5), math.max(hi, lo + 1))
 end
 local function ResetResponseGate()
-    local db = ns.db or {}
-    nextResponseDelay = ns.RandBetween(db.responseMin or 20, db.responseMax or 60)
+    local db  = ns.db or {}
+    local mul = ns.core and ns.core.GetChattinessMultiplier and ns.core.GetChattinessMultiplier() or 1
+    local lo  = (db.responseMin or 20) / mul
+    local hi  = (db.responseMax or 60) / mul
+    nextResponseDelay = ns.RandBetween(math.max(lo, 3), math.max(hi, lo + 1))
 end
 
 ---------------------------------------------------------------------------
@@ -27,18 +33,21 @@ end
 ---------------------------------------------------------------------------
 local triggerCooldowns = {}
 local TRIGGER_COOLDOWN = {
-    PLAYER_DEAD     = 15,
-    WIPE            = 60,
-    HEALTH_LOW      = 30,
-    MANA_ZERO       = 45,
-    LOOT            = 20,
-    ENTER_INSTANCE  = 120,
-    INTERRUPT       = 30,
-    PERIODIC_DAMAGE = 30,
-    AMBIENT         = 0,
-    COMBAT_START    = 20,
-    MOB_KILL        = 12,
-    CROWD_CONTROL   = 25,
+    PLAYER_DEAD        = 15,
+    WIPE               = 60,
+    HEALTH_LOW         = 30,
+    MANA_ZERO          = 45,
+    LOOT               = 20,
+    ENTER_INSTANCE     = 120,
+    INTERRUPT          = 30,
+    PERIODIC_DAMAGE    = 30,
+    AMBIENT            = 0,
+    COMBAT_START       = 20,
+    MOB_KILL           = 12,
+    CROWD_CONTROL      = 25,
+    PLAYER_DISCONNECT  = 60,
+    CONSUMABLE_USED    = 45,
+    MAJOR_COOLDOWN     = 30,
 }
 
 ---------------------------------------------------------------------------
@@ -54,11 +63,77 @@ local WIPE_WINDOW    = 8
 local WIPE_THRESHOLD = 3
 
 ---------------------------------------------------------------------------
+-- Disconnect tracking
+---------------------------------------------------------------------------
+local connectionState = {}   -- { ["Name"] = true/false (connected) }
+
+---------------------------------------------------------------------------
+-- Consumable / Major CD spell ID lists  (Anniversary Classic)
+---------------------------------------------------------------------------
+local CONSUMABLE_SPELLS = {
+    -- Health/Mana potions
+    [17534] = true,  -- Major Healing Potion
+    [17530] = true,  -- Superior Healing Potion
+    [17531] = true,  -- Major Mana Potion
+    [17532] = true,  -- Superior Mana Potion
+    [11359] = true,  -- Restorative Potion
+    [6615]  = true,  -- Free Action Potion
+    [3169]  = true,  -- Limited Invulnerability Potion
+    -- Bandages
+    [18608] = true,  -- Heavy Runecloth Bandage
+    [10839] = true,  -- Heavy Mageweave Bandage
+    -- Flasks
+    [17626] = true,  -- Flask of the Titans
+    [17627] = true,  -- Flask of Distilled Wisdom
+    [17628] = true,  -- Flask of Supreme Power
+    [17629] = true,  -- Flask of Chromatic Resistance
+    -- Food/Drink
+    [25660] = true,  -- Dirge's Kickin' Chimaerok Chops
+    [18229] = true,  -- Runn Tum Tuber
+}
+
+local MAJOR_COOLDOWN_SPELLS = {
+    -- Warrior
+    [871]   = "Shield Wall",
+    [1719]  = "Recklessness",
+    [12975] = "Last Stand",
+    -- Mage
+    [12051] = "Evocation",
+    [12472] = "Icy Veins",
+    [11958] = "Cold Snap",
+    -- Warlock
+    [18540] = "Ritual of Doom",
+    -- Priest
+    [10060] = "Power Infusion",
+    [724]   = "Lightwell",
+    -- Rogue
+    [14185] = "Preparation",
+    [13750] = "Adrenaline Rush",
+    [13877] = "Blade Flurry",
+    -- Hunter
+    [19574] = "Bestial Wrath",
+    [3045]  = "Rapid Fire",
+    -- Druid
+    [17116] = "Nature's Swiftness",
+    [29166] = "Innervate",
+    -- Paladin
+    [642]   = "Divine Shield",
+    [633]   = "Lay on Hands",
+    [1038]  = "Blessing of Salvation",
+    -- Shaman
+    [16190] = "Mana Tide Totem",
+    [16166] = "Elemental Mastery",
+    [20608] = "Reincarnation",
+}
+
+---------------------------------------------------------------------------
 -- Public gating API
 ---------------------------------------------------------------------------
 function triggers.CanStartScene()
     if not ns.db or not ns.db.enabled then return false end
     if not ns.initialized then return false end
+    -- Raid-disable check
+    if ns.db.disableInRaids and (ns.core.GetGroupMode() == "RAID") then return false end
     return (GetTime() - lastSceneAt) >= nextSceneDelay
 end
 
@@ -77,7 +152,7 @@ function triggers.MarkResponded()
     ResetResponseGate()
 end
 
---- Per-trigger cooldown + RNG probability check.
+--- Per-trigger cooldown + RNG probability check (chattiness-modified).
 function triggers.CheckTrigger(trigger)
     local cd   = TRIGGER_COOLDOWN[trigger] or 30
     local last = triggerCooldowns[trigger] or 0
@@ -86,9 +161,12 @@ function triggers.CheckTrigger(trigger)
         return false
     end
 
-    local chance = ns.scenes.TRIGGER_CHANCE[trigger] or 0.50
+    local baseChance = ns.scenes.TRIGGER_CHANCE[trigger] or 0.50
+    local mul = ns.core.GetChattinessMultiplier and ns.core.GetChattinessMultiplier() or 1
+    local chance = math.min(baseChance * mul, 0.95)
+
     if math.random() > chance then
-        ns.Debug(trigger .. " failed RNG (" .. (chance * 100) .. "%)")
+        ns.Debug(trigger .. " failed RNG (" .. math.floor(chance * 100) .. "%)")
         return false
     end
     return true
@@ -131,6 +209,8 @@ frame:RegisterEvent("PLAYER_REGEN_DISABLED")
 frame:RegisterEvent("PLAYER_REGEN_ENABLED")
 frame:RegisterEvent("UNIT_HEALTH")
 frame:RegisterEvent("UNIT_POWER_UPDATE")
+frame:RegisterEvent("GROUP_ROSTER_UPDATE")
+frame:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
 
 frame:SetScript("OnEvent", function(self, event, ...)
     -----------------------------------------------------------------------
@@ -144,7 +224,8 @@ frame:SetScript("OnEvent", function(self, event, ...)
             ResetResponseGate()
             ns.core.Init()
             ns.initialized = true
-            ns.Debug("Banter loaded — persona: " .. (ns.db.persona or "?"))
+            ns.Debug("Banter loaded — persona: " .. (ns.db.persona or "?")
+                     .. " class: " .. (ns.playerClassKey or "?"))
             self:UnregisterEvent("ADDON_LOADED")
         end
         return
@@ -154,15 +235,17 @@ frame:SetScript("OnEvent", function(self, event, ...)
     if not ns.initialized or not ns.db or not ns.db.enabled then return end
 
     -----------------------------------------------------------------------
-    -- Combat state tracking
+    -- Combat state tracking  + state machine
     -----------------------------------------------------------------------
     if event == "PLAYER_REGEN_DISABLED" then
         inCombat = true
+        ns.state.Set(ns.state.COMBAT)
         triggers.OnCombatStart()
         return
     end
     if event == "PLAYER_REGEN_ENABLED" then
         inCombat = false
+        ns.state.EnterPostCombat()
         return
     end
 
@@ -171,7 +254,20 @@ frame:SetScript("OnEvent", function(self, event, ...)
     -----------------------------------------------------------------------
     if event == "PLAYER_ENTERING_WORLD" then
         triggers.OnEnterWorld()
+        -- Show changelog popup after a short delay so the UI is fully ready
+        local timer = CreateFrame("Frame")
+        local elapsed = 0
+        timer:SetScript("OnUpdate", function(self, dt)
+            elapsed = elapsed + dt
+            if elapsed >= 2 then
+                self:SetScript("OnUpdate", nil)
+                if ns.ShowChangelog then ns.ShowChangelog() end
+            end
+        end)
     elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
+        -- Feed stats tracker first
+        ns.stats.ProcessCombatLog()
+        -- Then check for trigger events
         triggers.OnCombatLog()
     elseif event == "CHAT_MSG_LOOT" then
         triggers.OnLoot(...)
@@ -179,6 +275,10 @@ frame:SetScript("OnEvent", function(self, event, ...)
         triggers.OnHealthChange(...)
     elseif event == "UNIT_POWER_UPDATE" then
         triggers.OnPowerChange(...)
+    elseif event == "GROUP_ROSTER_UPDATE" then
+        triggers.OnRosterUpdate()
+    elseif event == "UNIT_SPELLCAST_SUCCEEDED" then
+        triggers.OnSpellCast(...)
     end
 end)
 
@@ -193,6 +293,8 @@ frame:SetScript("OnUpdate", function(_, elapsed)
     ambientElapsed = ambientElapsed + elapsed
     if ambientElapsed >= AMBIENT_INTERVAL then
         ambientElapsed = 0
+        -- Evaluate activity state before ambient check
+        ns.state.Evaluate()
         if triggers.CanStartScene() then
             ns.core.StartScene("AMBIENT", {})
         end
@@ -219,6 +321,8 @@ function triggers.OnEnterWorld()
             ns.core.StartScene("ENTER_INSTANCE", { zone = GetRealZoneText() })
         end
     end
+    -- Update state
+    ns.state.Evaluate()
 end
 
 ---------------------------------------------------------------------------
@@ -266,6 +370,18 @@ function triggers.OnCombatLog()
                 if triggers.CanStartScene() then
                     ns.core.StartScene("PERIODIC_DAMAGE", { target = dstName })
                 end
+            end
+        end
+        return
+    end
+
+    -- MAJOR_COOLDOWN — big CDs used by group members
+    if subEvent == "SPELL_CAST_SUCCESS" then
+        if triggers.IsPlayerOrGroup(srcGUID) then
+            local spellId = select(12, CombatLogGetCurrentEventInfo())
+            local spellName = MAJOR_COOLDOWN_SPELLS[spellId]
+            if spellName and triggers.CanStartScene() then
+                ns.core.StartScene("MAJOR_COOLDOWN", { source = srcName, spell = spellName })
             end
         end
         return
@@ -384,6 +500,55 @@ function triggers.OnPowerChange(unit, powerType)
     if mana == 0 then
         if triggers.CanStartScene() then
             ns.core.StartScene("MANA_ZERO", { target = UnitName(unit) })
+        end
+    end
+end
+
+---------------------------------------------------------------------------
+-- PLAYER_DISCONNECT / RECONNECT  (track connection state per group member)
+---------------------------------------------------------------------------
+function triggers.OnRosterUpdate()
+    if not IsInGroup() then
+        connectionState = {}
+        return
+    end
+
+    local prefix = IsInRaid() and "raid" or "party"
+    local n = GetNumGroupMembers() or 0
+    for i = 1, n do
+        local unit = prefix .. i
+        local name = UnitName(unit)
+        if name then
+            local connected = UnitIsConnected(unit)
+            local prev = connectionState[name]
+
+            if prev ~= nil and prev ~= connected then
+                if not connected then
+                    -- Player disconnected
+                    if triggers.CanStartScene() then
+                        ns.core.StartScene("PLAYER_DISCONNECT", { target = name })
+                    end
+                end
+                -- Could add PLAYER_RECONNECT trigger here later
+            end
+            connectionState[name] = connected
+        end
+    end
+end
+
+---------------------------------------------------------------------------
+-- CONSUMABLE_USED  (via UNIT_SPELLCAST_SUCCEEDED on group members)
+---------------------------------------------------------------------------
+function triggers.OnSpellCast(unit, _, spellId)
+    if not unit then return end
+    -- Only track group members (including self)
+    if unit ~= "player" and not UnitInParty(unit) and not UnitInRaid(unit) then return end
+
+    if CONSUMABLE_SPELLS[spellId] then
+        local name = UnitName(unit) or "someone"
+        local spellName = GetSpellInfo(spellId) or "something"
+        if triggers.CanStartScene() then
+            ns.core.StartScene("CONSUMABLE_USED", { source = name, spell = spellName })
         end
     end
 end

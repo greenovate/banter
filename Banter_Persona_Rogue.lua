@@ -1,0 +1,569 @@
+-- Banter_Persona_Rogue.lua
+-- Voice: ROGUE CLASS — paranoid, always looking for exits, stealth humor, 
+-- treats everything like a heist movie.
+-- Rules: 1) Trusts nobody, not even the group. 2) Every situation is an excuse to Vanish.
+-- 3) Obsessed with being behind things. 4) Treats every dungeon like a covert op.
+-- 5) Secretly the most dramatic person alive (replaces Ninja).
+local _, ns = ...
+
+ns.personas.ROGUE = {
+
+---------------------------------------------------------------------------
+-- STATEMENTS
+---------------------------------------------------------------------------
+statements = {
+
+    PLAYER_DEAD = {
+        COMMON = {
+            { id="rog_dead_c01", weight=1, line="{dead} is dead. I marked the exits, they didn't. Lesson learned." },
+            { id="rog_dead_c02", weight=1, line="{dead} went down. Should've stealthed. Oh wait. Can't. Tragic." },
+            { id="rog_dead_c03", weight=1, line="RIP {dead}. The target was supposed to be the MOB, not you." },
+            { id="rog_dead_c04", weight=1, line="{dead} died in the open. Like an amateur. In PLAIN SIGHT." },
+            { id="rog_dead_c05", weight=1, line="I'd have saved {dead} but I was busy being invisible. Priorities." },
+            { id="rog_dead_c06", weight=1, line="{dead} is gone. I cased the room before we entered. The threat was obvious." },
+            { id="rog_dead_c07", weight=1, line="Another casualty. This is why I always have Vanish ready." },
+            { id="rog_dead_c08", weight=1, line="{dead} died standing in the front. Fronts are for tanks. Backs are for professionals." },
+        },
+        UNCOMMON = {
+            { id="rog_dead_u01", weight=1, line="I was behind the mob. Behind it. Where it's safe. {dead} was... not there." },
+            { id="rog_dead_u02", weight=1, line="I Vanished during that. Did I need to? No. Did I survive? Yes. Coincidence?" },
+            { id="rog_dead_u03", weight=1, line="{dead} didn't have Evasion, Vanish, or Sprint. What kind of class doesn't have an escape plan?" },
+            { id="rog_dead_u04", weight=1, line="In my line of work, the ones who die are the ones who forget to check their six." },
+        },
+        RARE = {
+            { id="rog_dead_r01", weight=1, line="I've survived every group I've ever been in. Not all of them can say the same." },
+            { id="rog_dead_r02", weight=1, line="I have three escape routes, two Vanish charges, and zero sympathy for people who stand in the open." },
+        },
+        MYTHIC = {
+            { id="rog_dead_m01", weight=1, line="{dead} is dead. I'll mourn later. In stealth. Where it's safe." },
+        },
+    },
+
+    WIPE = {
+        COMMON = {
+            { id="rog_wipe_c01", weight=1, line="Wipe. I Vanished. I'm alive. I see no problem here." },
+            { id="rog_wipe_c02", weight=1, line="Everyone's dead. I'm stealthed in the corner. This is fine." },
+            { id="rog_wipe_c03", weight=1, line="I tried to Vanish but we were already wiping. Even I have limits." },
+            { id="rog_wipe_c04", weight=1, line="Total party kill. Except me. Because I have Vanish. Because I plan ahead." },
+        },
+        UNCOMMON = {
+            { id="rog_wipe_u01", weight=1, line="I assessed the situation. The situation was: everyone dies. So I Vanished. It's called tactical analysis." },
+            { id="rog_wipe_u02", weight=1, line="I could have stayed and fought. But the smart play was Vanish. I always make the smart play." },
+        },
+        RARE = {
+            { id="rog_wipe_r01", weight=1, line="I Vanished, restealthed, and sapped the nearest mob. I'm running this solo now. Just kidding. ...maybe." },
+        },
+        MYTHIC = {
+            { id="rog_wipe_m01", weight=1, line="Nobody saw me Vanish. Nobody sees me do anything. That's literally the point." },
+        },
+    },
+
+    HEALTH_LOW = {
+        COMMON = {
+            { id="rog_hplo_c01", weight=1, line="{target} is low. Should probably do something about that. Not me. I'm DPS." },
+            { id="rog_hplo_c02", weight=1, line="{target} is about to die. I'd help but I'm behind the mob and things are going well here." },
+            { id="rog_hplo_c03", weight=1, line="I see {target} dying. I also see my combo points at 5. Guess which one I'm dealing with first." },
+            { id="rog_hplo_c04", weight=1, line="{target} needs health. I have bandages. ...somewhere. Maybe." },
+        },
+        UNCOMMON = {
+            { id="rog_hplo_u01", weight=1, line="I could Gouge the mob hitting {target}. But that resets my combo chain. Hard pass." },
+            { id="rog_hplo_u02", weight=1, line="My solution to low health is Evasion and hope. Works 70% of the time." },
+        },
+        RARE = {
+            { id="rog_hplo_r01", weight=1, line="Rogues have bandages and prayers. Neither scales. I'm aware." },
+        },
+        MYTHIC = {
+            { id="rog_hplo_m01", weight=1, line="If {target} dies, that's one less person who can see me fail. ...wait, I never fail." },
+        },
+    },
+
+    MANA_ZERO = {
+        COMMON = {
+            { id="rog_mana_c01", weight=1, line="OOM? I use energy. Infinite energy. Well, not infinite. But it comes back FAST." },
+            { id="rog_mana_c02", weight=1, line="{target} is out of mana. I can't relate. My resource regenerates every 2 seconds." },
+            { id="rog_mana_c03", weight=1, line="Imagine needing to DRINK to fight. Rogues wake up ready." },
+            { id="rog_mana_c04", weight=1, line="No mana? Just auto-attack. That's 60% of my rotation anyway." },
+        },
+        UNCOMMON = {
+            { id="rog_mana_u01", weight=1, line="Mana is a crutch for people who fight from the front. Real work happens from behind. With a dagger." },
+            { id="rog_mana_u02", weight=1, line="Energy regen is the most elegant resource system in the game. I will not be taking follow-up questions." },
+        },
+        RARE = {
+            { id="rog_mana_r01", weight=1, line="I've never gone OOM. I've never had to drink. My only downtime is when I choose to be dramatic." },
+        },
+        MYTHIC = {
+            { id="rog_mana_m01", weight=1, line="Mana users: you're all prisoners of a blue bar. I'm free. Free and stabbing things." },
+        },
+    },
+
+    LOOT = {
+        COMMON = {
+            { id="rog_loot_c01", weight=1, line="AGI and crit or I walk." },
+            { id="rog_loot_c02", weight=1, line="Is it a dagger? Is it fast? Does it have Agility? THREE yeses or I'm out." },
+            { id="rog_loot_c03", weight=1, line="{looter} got loot. I mean, I already picked the lock on this dungeon. Where's MY reward?" },
+            { id="rog_loot_c04", weight=1, line="Nice drop, {looter}. I definitely wasn't going to pickpocket it from you. ...definitely." },
+        },
+        UNCOMMON = {
+            { id="rog_loot_u01", weight=1, line="Leather with Agility or I'm offended. Personally and professionally." },
+            { id="rog_loot_u02", weight=1, line="I've been waiting for that dagger since I pickpocketed my first mob at level 12." },
+        },
+        RARE = {
+            { id="rog_loot_r01", weight=1, line="I don't need loot. I need faster daggers. Faster. FASTER." },
+        },
+        MYTHIC = {
+            { id="rog_loot_m01", weight=1, line="If I could pickpocket the loot table, I would. I've thought about it. Extensively." },
+        },
+    },
+
+    ENTER_INSTANCE = {
+        COMMON = {
+            { id="rog_inst_c01", weight=1, line="{zone}. I've already scouted three exits and two sap targets." },
+            { id="rog_inst_c02", weight=1, line="Entering {zone}. I'll go in first. In stealth. You won't see me. That's the point." },
+            { id="rog_inst_c03", weight=1, line="New dungeon. New things to stab in the back. Let's move." },
+            { id="rog_inst_c04", weight=1, line="I've been here before. Stealthed past everything. Want me to show you how? ...you can't stealth. Shame." },
+        },
+        UNCOMMON = {
+            { id="rog_inst_u01", weight=1, line="I've mapped every patrol route. I know where the patrols stop. I know where the chests are. Shall we?" },
+            { id="rog_inst_u02", weight=1, line="Before we start: I'm going to Vanish at least twice. It's not cowardice. It's called surviving." },
+        },
+        RARE = {
+            { id="rog_inst_r01", weight=1, line="Fun fact: I could solo stealth to the last boss. I won't. But the OPTION exists and that's power." },
+        },
+        MYTHIC = {
+            { id="rog_inst_m01", weight=1, line="I treat every dungeon like a heist. Entry plan. Mark the targets. Execute. Vanish before the guards show. Classic." },
+        },
+    },
+
+    INTERRUPT = {
+        COMMON = {
+            { id="rog_int_c01", weight=1, line="Kicked. That's MY specialty. 10 second lockout. Sit down." },
+            { id="rog_int_c02", weight=1, line="{source} with the interrupt. Precise. Efficient. I approve." },
+            { id="rog_int_c03", weight=1, line="Kick landed. Nothing gets past rogue reflexes." },
+        },
+        UNCOMMON = {
+            { id="rog_int_u01", weight=1, line="My Kick is on a 10-second cooldown. The mob's castbar is on a 2-second cooldown. I see the problem." },
+        },
+        RARE = {
+            { id="rog_int_r01", weight=1, line="I interrupted mid-Eviscerate. Cost me a finisher. Worth it. Barely." },
+        },
+        MYTHIC = {
+            { id="rog_int_m01", weight=1, line="That Kick was frame-perfect. I've been training for moments like this my entire rogue career." },
+        },
+    },
+
+    PERIODIC_DAMAGE = {
+        COMMON = {
+            { id="rog_fire_c01", weight=1, line="Fire? On the ground? Where I STAND? Behind the boss? This is a personal attack." },
+            { id="rog_fire_c02", weight=1, line="Can't DPS the back of the boss if the back of the boss is ON FIRE." },
+            { id="rog_fire_c03", weight=1, line="I'm in the fire. I know. All the good positions are in the fire." },
+            { id="rog_fire_c04", weight=1, line="Ground AoE is the natural enemy of melee. And I take it personally." },
+        },
+        UNCOMMON = {
+            { id="rog_fire_u01", weight=1, line="I Sprinted out of the fire. Burned 30% of my energy. The fire burned 30% of my health. Nobody won." },
+            { id="rog_fire_u02", weight=1, line="Evasion doesn't dodge fire. I've tested this. Several times. Painfully." },
+        },
+        RARE = {
+            { id="rog_fire_r01", weight=1, line="I could Cloak of Shadows through this. Saving it for something scarier. Like social interaction." },
+        },
+        MYTHIC = {
+            { id="rog_fire_m01", weight=1, line="The fire is in my spot. MY spot. The one behind the boss. I've been here ALL fight. Unacceptable." },
+        },
+    },
+
+    COMBAT_START = {
+        COMMON = {
+            { id="rog_cbt_c01", weight=1, line="Opening from stealth. Don't blink." },
+            { id="rog_cbt_c02", weight=1, line="Cheap Shot. Backstab. Eviscerate. That's the whole plan." },
+            { id="rog_cbt_c03", weight=1, line="Engaging. From behind. As professionals do." },
+            { id="rog_cbt_c04", weight=1, line="Going in. If things go wrong, I was never here." },
+        },
+        UNCOMMON = {
+            { id="rog_cbt_u01", weight=1, line="Ambush from stealth does more damage than most people's entire openers. You're welcome." },
+            { id="rog_cbt_u02", weight=1, line="I don't start fights. I finish them. From behind. Silently." },
+        },
+        RARE = {
+            { id="rog_cbt_r01", weight=1, line="People say rogues are one-trick ponies. Our trick is being invisible and doing 40% of the group's damage. Some trick." },
+        },
+        MYTHIC = {
+            { id="rog_cbt_m01", weight=1, line="I've been in stealth since the last pull. Nobody noticed. Perfect." },
+        },
+    },
+
+    MOB_KILL = {
+        COMMON = {
+            { id="rog_kill_c01", weight=1, line="Target neutralized. Clean work." },
+            { id="rog_kill_c02", weight=1, line="Dead. Didn't even see me coming. That's how it should be." },
+            { id="rog_kill_c03", weight=1, line="Another one down. Total backstabs this session: classified." },
+        },
+        UNCOMMON = {
+            { id="rog_kill_u01", weight=1, line="I got the killing blow. From behind. While stealthed. ...okay I might be exaggerating one of those." },
+        },
+        RARE = {
+            { id="rog_kill_r01", weight=1, line="The mob never saw me. The healer never saw me. Nobody sees me. That's the gig." },
+        },
+        MYTHIC = {
+            { id="rog_kill_m01", weight=1, line="I've been tracking that mob since we entered. It was personal. Don't ask why." },
+        },
+    },
+
+    CROWD_CONTROL = {
+        COMMON = {
+            { id="rog_cc_c01", weight=1, line="Sapped. Clean. Silent. Artistic." },
+            { id="rog_cc_c02", weight=1, line="I got stunned. A ROGUE. Getting stunned. This is humiliating." },
+            { id="rog_cc_c03", weight=1, line="Someone broke my Sap. I don't sap for fun. I sap for SAFETY." },
+            { id="rog_cc_c04", weight=1, line="CC'd. Can't Backstab. Can't Eviscerate. My entire identity is on hold." },
+        },
+        UNCOMMON = {
+            { id="rog_cc_u01", weight=1, line="I have Sap, Blind, Gouge, Cheap Shot, and Kidney Shot. I'm basically a crowd control sommelier." },
+            { id="rog_cc_u02", weight=1, line="Being feared as a rogue is wrong. I'm supposed to CAUSE fear. Not feel it." },
+        },
+        RARE = {
+            { id="rog_cc_r01", weight=1, line="I got CC'd and my cat reflexes failed me. I'm going to need a moment. In stealth." },
+        },
+        MYTHIC = {
+            { id="rog_cc_m01", weight=1, line="Five CC abilities and I still got stunned. The universe has a sense of humor." },
+        },
+    },
+
+    AMBIENT = {
+        COMMON = {
+            { id="rog_amb_c01", weight=1, line="Standing here. In stealth. ...you can't see me, right? Good." },
+            { id="rog_amb_c02", weight=1, line="Scouting ahead. ...or just standing here stealthed. You don't know which." },
+            { id="rog_amb_c03", weight=1, line="I've been behind you this entire time. Just testing something." },
+            { id="rog_amb_c04", weight=1, line="Does anyone need a lockpick? No? Then I've contributed nothing. As usual." },
+            { id="rog_amb_c05", weight=1, line="Waiting in the shadows. My natural habitat." },
+            { id="rog_amb_c06", weight=1, line="I could pickpocket that mob. For like, 2 silver. Hardly worth breaking stealth." },
+        },
+        UNCOMMON = {
+            { id="rog_amb_u01", weight=1, line="Between pulls, I plan my next Vanish. It's not paranoia. It's preparedness." },
+            { id="rog_amb_u02", weight=1, line="I'm the only class that could leave this dungeon right now without anyone noticing. Just putting that out there." },
+            { id="rog_amb_u03", weight=1, line="Rogues don't rest. We lurk. Lurking is our rest." },
+        },
+        RARE = {
+            { id="rog_amb_r01", weight=1, line="I counted 14 mobs, 3 patrols, and 2 chest spawns while you were all buffing. Casual recon." },
+        },
+        MYTHIC = {
+            { id="rog_amb_m01", weight=1, line="I love this group. Not because I trust you. I trust nobody. But you're useful. Same thing." },
+        },
+    },
+
+    PLAYER_DISCONNECT = {
+        COMMON = {
+            { id="rog_dc_c01", weight=1, line="{target} vanished. Not the cool kind. The 'router died' kind." },
+            { id="rog_dc_c02", weight=1, line="{target} disconnected. In THIS dungeon? Amateur." },
+            { id="rog_dc_c03", weight=1, line="{target} is gone. At least when I disappear, it's on purpose." },
+        },
+        UNCOMMON = {
+            { id="rog_dc_u01", weight=1, line="{target} DC'd. If a rogue disappears, it's skill. When anyone else disappears, it's a problem." },
+            { id="rog_dc_u02", weight=1, line="When I vanish, I come back with backstabs. When {target} vanishes, they come back with excuses." },
+        },
+        RARE = {
+            { id="rog_dc_r01", weight=1, line="{target} disconnected. I've been stealthed next to them for 3 minutes. Didn't even notice they left." },
+        },
+        MYTHIC = {
+            { id="rog_dc_m01", weight=1, line="Man down. Or rather, man offline. We adapt. We improvise. We Vanish if necessary." },
+        },
+    },
+
+    CONSUMABLE_USED = {
+        COMMON = {
+            { id="rog_cons_c01", weight=1, line="Potion? I prefer Thistle Tea. Pure energy. No side effects. Probably." },
+            { id="rog_cons_c02", weight=1, line="{source} popped a pot. I pop Thistle Tea and pretend it's coffee." },
+            { id="rog_cons_c03", weight=1, line="I use poisons, not potions. Different kind of consumable." },
+        },
+        UNCOMMON = {
+            { id="rog_cons_u01", weight=1, line="My consumable game: Deadly Poison, Instant Poison, Thistle Tea, and a bandage I've never used." },
+        },
+        RARE = {
+            { id="rog_cons_r01", weight=1, line="I applied poisons to my blades before this run. In the dark. Alone. It was very atmospheric." },
+        },
+        MYTHIC = {
+            { id="rog_cons_m01", weight=1, line="Rogues don't drink potions. We apply solutions. Toxic solutions. To our weapons." },
+        },
+    },
+
+    MAJOR_COOLDOWN = {
+        COMMON = {
+            { id="rog_cd_c01", weight=1, line="{source} popped something big. My Adrenaline Rush is ready if we need it." },
+            { id="rog_cd_c02", weight=1, line="Major CDs. When I pop Blade Flurry, everything around me suffers. Elegantly." },
+            { id="rog_cd_c03", weight=1, line="Big cooldown energy. Evasion is MY big CD. Because surviving is a DPS increase." },
+        },
+        UNCOMMON = {
+            { id="rog_cd_u01", weight=1, line="Adrenaline Rush turns me into a stabbing machine. More than usual." },
+        },
+        RARE = {
+            { id="rog_cd_r01", weight=1, line="Preparation resets ALL my cooldowns. It's like a second chance. I always plan for second chances." },
+        },
+        MYTHIC = {
+            { id="rog_cd_m01", weight=1, line="Cold Blood, Eviscerate. One button. Maximum drama. That's the rogue way." },
+        },
+    },
+
+},
+
+---------------------------------------------------------------------------
+-- RESPONSES
+---------------------------------------------------------------------------
+responses = {
+
+    PLAYER_DEAD = {
+        COMMON = {
+            "Should've had an escape plan.",
+            "I Vanished. They didn't. Circle of life.",
+            "I was behind the boss. Safe zone. Join me next time. Oh wait.",
+            "I'd rez but that's not in my skill set. My skill set is stabbing.",
+            "Next time, stand behind the mob. Like a civilized person.",
+        },
+        UNCOMMON = {
+            "In my professional opinion, {dead} died from being visible. Fatal condition.",
+            "I survived because I planned for this exact scenario. During character creation.",
+        },
+        RARE = {
+            "I've never died in this dungeon. ...I've also Vanished 47 times.",
+        },
+        MYTHIC = {
+            "Gone. Another casualty of the 'standing in the open' epidemic.",
+        },
+    },
+
+    WIPE = {
+        COMMON = {
+            "I Vanished. I'm alive. I call that a draw.",
+            "Wipe, but my Vanish worked perfectly. Personal victory.",
+            "Everyone's dead. I'm stealthed next to the boss. ...now what?",
+        },
+        UNCOMMON = {
+            "I could have Vanished earlier but I was mid-combo chain. The DPS was too good to abandon.",
+        },
+        RARE = {
+            "I'm alive, in stealth, behind the boss that killed everyone. This is technically a solo attempt now.",
+        },
+        MYTHIC = {
+            "I survived the wipe. Nobody's surprised. Least of all me.",
+        },
+    },
+
+    HEALTH_LOW = {
+        COMMON = {
+            "Low health? Evasion. Sprint. Vanish. Three solutions. None involve healing.",
+            "I'd help but I'm mid-combo. The backstab must flow.",
+            "Bandage incoming. ...after this Eviscerate.",
+        },
+        UNCOMMON = {
+            "My healthcare plan is Evasion and Vanish. The deductible is my combo points.",
+        },
+        RARE = {
+            "When I'm low, I Vanish and eat a bandage in stealth. It's the rogue spa treatment.",
+        },
+        MYTHIC = {
+            "Low health is a temporary condition. Death is permanent. Vanish splits the difference.",
+        },
+    },
+
+    MANA_ZERO = {
+        COMMON = {
+            "Mana? Never heard of it. Energy regenerates every tick. Built different.",
+            "Can't relate. My bar refills while I stab things.",
+            "OOM sounds like a personal problem. Energy is a rogue thing.",
+        },
+        UNCOMMON = {
+            "While you drink, I pickpocket. Different downtime activities.",
+        },
+        RARE = {
+            "The only resource I run out of is patience. And combo points, briefly.",
+        },
+        MYTHIC = {
+            "Energy. Renewable. Infinite. Superior. Don't @ me.",
+        },
+    },
+
+    LOOT = {
+        COMMON = {
+            "Agility or it doesn't exist to me.",
+            "Daggers or bust.",
+            "Grats. I'll pickpocket my own rewards, thanks.",
+        },
+        UNCOMMON = {
+            "If it doesn't have AGI or crit, my eyes glaze over.",
+        },
+        RARE = {
+            "I rolled Need on accident once. Everyone believed me. Rogue trust issues working in my favor for once.",
+        },
+        MYTHIC = {
+            "My BIS dagger is out there. In the shadows. Where I'll find it.",
+        },
+    },
+
+    ENTER_INSTANCE = {
+        COMMON = {
+            "I'll scout ahead. ...in stealth. ...alone. ...my favorite way.",
+            "Mark sap targets. I'll handle the rest.",
+            "Three exits confirmed. Let's proceed.",
+        },
+        UNCOMMON = {
+            "I could skip this entire dungeon in stealth. But that would be selfish. And tempting.",
+        },
+        RARE = {
+            "I've already pickpocketed the first three mobs. Did you not see? Good. You shouldn't have.",
+        },
+        MYTHIC = {
+            "Every dungeon is a heist. The loot is the target. Let's make a clean extraction.",
+        },
+    },
+
+    INTERRUPT = {
+        COMMON = {
+            "Kick landed. 10 seconds of quiet. Beautiful.",
+            "That's what Kick is for. Clean. Fast.",
+            "Interrupted. Silence is golden. And rogue-shaped.",
+        },
+        UNCOMMON = {
+            "I interrupted from behind. The mob never even saw me. Peak performance.",
+        },
+        RARE = {
+            "Kick is the most satisfying button I press. Second only to Vanish.",
+        },
+        MYTHIC = {
+            "Perfect interrupt. No wasted energy. No wasted motion. Just precision.",
+        },
+    },
+
+    PERIODIC_DAMAGE = {
+        COMMON = {
+            "Fire behind the boss. Of course. Because I can't have nice things.",
+            "I Sprinted out. Lost combo points. Worth it. Barely.",
+            "Ground AoE in melee. Designers hate rogues confirmed.",
+        },
+        UNCOMMON = {
+            "I used Cloak of Shadows. The fire still hurt. It's physical fire apparently.",
+        },
+        RARE = {
+            "I Vanished from the fire. The fire can't target what it can't see. Theoretically.",
+        },
+        MYTHIC = {
+            "The fire burns. But losing DPS uptime burns MORE.",
+        },
+    },
+
+    COMBAT_START = {
+        COMMON = {
+            "Opening from stealth. It's showtime.",
+            "Cheap Shot, Backstab, go go go.",
+            "Target acquired. Engaging from behind.",
+        },
+        UNCOMMON = {
+            "Always open from stealth. It's not about damage. It's about the principle.",
+        },
+        RARE = {
+            "My opener hit for 40% of the mob's health. The other 60% is just cleanup.",
+        },
+        MYTHIC = {
+            "From the shadows I come. Into the shadows I return. The middle part is all stabbing.",
+        },
+    },
+
+    MOB_KILL = {
+        COMMON = {
+            "Clean kill. Next target.",
+            "Done. Nobody saw. Standard.",
+            "Target eliminated. Moving to next position.",
+        },
+        UNCOMMON = {
+            "I got the killing blow from behind. Obviously.",
+        },
+        RARE = {
+            "That mob never detected me. I was behind it the entire fight. Rogue excellence.",
+        },
+        MYTHIC = {
+            "Professional. Silent. Lethal. Another day at the office.",
+        },
+    },
+
+    CROWD_CONTROL = {
+        COMMON = {
+            "Sapped. Don't touch. Professional CC in progress.",
+            "I have Sap for days. Mark 'em, I'll nap 'em.",
+            "CC'd. I'm aware. I'm also annoyed.",
+        },
+        UNCOMMON = {
+            "Someone broke my Sap. That Sap was ART. You ruined ART.",
+        },
+        RARE = {
+            "I Sap better than most people DPS. It's a talent. Literally.",
+        },
+        MYTHIC = {
+            "Sap, Blind, Gouge, Kidney Shot. A CC for every occasion. I'm versatile.",
+        },
+    },
+
+    AMBIENT = {
+        COMMON = {
+            "Stealthed. Watching. Judging.",
+            "I'm here. You just can't see me. Working as intended.",
+            "Lurking. As one does.",
+        },
+        UNCOMMON = {
+            "I pickpocketed three mobs while you were rebuffing. Made 47 copper. Worth it.",
+        },
+        RARE = {
+            "When you can go invisible at will, downtime hits different. Better. Quieter.",
+        },
+        MYTHIC = {
+            "I've been standing next to you this whole time. In stealth. You didn't notice. I'm flattered.",
+        },
+    },
+
+    PLAYER_DISCONNECT = {
+        COMMON = {
+            "Gone. Poof. My kind of exit, minus the style.",
+            "DC'd. At least when I disappear, I come back with backstabs.",
+            "Down a person. I'll stealth harder to compensate.",
+        },
+        UNCOMMON = {
+            "If I DC'd, you'd never know if I was offline or just in stealth.",
+        },
+        RARE = {
+            "They vanished. Without the class skill. Embarrassing.",
+        },
+        MYTHIC = {
+            "I respect the disappearance but the execution was sloppy.",
+        },
+    },
+
+    CONSUMABLE_USED = {
+        COMMON = {
+            "I use poisons. Different kind of consumable.",
+            "Potions are for people without escape plans.",
+            "Thistle Tea crew checking in.",
+        },
+        UNCOMMON = {
+            "My consumable budget goes entirely to poisons. Priorities.",
+        },
+        RARE = {
+            "I applied Deadly Poison in the middle of combat. Multitasking.",
+        },
+        MYTHIC = {
+            "Consumables? I consume combo points and enemy health bars.",
+        },
+    },
+
+    MAJOR_COOLDOWN = {
+        COMMON = {
+            "Big CD. Respect the commitment.",
+            "When I pop Evasion, the mob literally can't touch me. Living the dream.",
+            "CDs out. Time to stab with enthusiasm.",
+        },
+        UNCOMMON = {
+            "Adrenaline Rush is my 'I've decided to try now' button.",
+        },
+        RARE = {
+            "Blade Flurry hitting two targets at once. I'm essentially two rogues.",
+        },
+        MYTHIC = {
+            "All cooldowns. Full energy. Five combo points. This is the moment.",
+        },
+    },
+
+},
+
+}
