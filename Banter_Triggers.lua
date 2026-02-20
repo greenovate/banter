@@ -49,6 +49,8 @@ local TRIGGER_COOLDOWN = {
     CONSUMABLE_USED    = 45,
     MAJOR_COOLDOWN     = 30,
     FLIGHT_PATH        = 0,
+    ZONE_CHANGED       = 30,
+    SOLO_AMBIENT       = 0,
 }
 
 ---------------------------------------------------------------------------
@@ -208,6 +210,7 @@ triggers.IsGroupMember = triggers.IsPlayerOrGroup
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("ADDON_LOADED")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+frame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 frame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 frame:RegisterEvent("CHAT_MSG_LOOT")
 frame:RegisterEvent("PLAYER_REGEN_DISABLED")
@@ -275,6 +278,8 @@ frame:SetScript("OnEvent", function(self, event, ...)
                 end
             end)
         end
+    elseif event == "ZONE_CHANGED_NEW_AREA" then
+        triggers.OnZoneChanged()
     elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
         -- Feed stats tracker first
         ns.stats.ProcessCombatLog()
@@ -361,6 +366,32 @@ function triggers.OnEnterWorld()
     end
     -- Update state
     ns.state.Evaluate()
+end
+
+---------------------------------------------------------------------------
+-- ZONE_CHANGED — solo exploration trigger
+-- Fires when the player moves into a new major zone (not subzones).
+-- Only fires in solo mode — in groups, zone data is handled by engagements.
+---------------------------------------------------------------------------
+local lastZoneName = ""
+
+function triggers.OnZoneChanged()
+    local zone = GetRealZoneText() or ""
+    if zone == "" or zone == lastZoneName then return end
+    lastZoneName = zone
+
+    -- Solo only — group/raid has engagements for zone content
+    if ns.core.GetGroupMode() ~= "SOLO" then return end
+    if not ns.db.soloMode then return end
+
+    -- Brief delay so the player sees the zone name before banter fires
+    C_Timer.After(4, function()
+        if not ns.initialized then return end
+        if ns.core.GetGroupMode() ~= "SOLO" then return end  -- may have grouped up
+        if triggers.CanStartScene() then
+            ns.core.StartScene("ZONE_CHANGED", { zone = zone })
+        end
+    end)
 end
 
 ---------------------------------------------------------------------------

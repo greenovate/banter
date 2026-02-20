@@ -374,6 +374,60 @@ function ns.engagements.GetCounts()
 end
 
 ---------------------------------------------------------------------------
+-- Solo Zone Line Picker
+-- Returns a random zone-specific opener for the current zone.
+-- Only uses Z() topics (target == "ANY") — excludes class-targeted ZT().
+-- Has its own dedup buffer so solo doesn't repeat zone lines quickly.
+---------------------------------------------------------------------------
+local soloZoneRecent = {}
+local SOLO_ZONE_CAP  = 15
+
+--- Pick a random zone opener for solo emote use.
+--- @param zone string  The zone name (from GetRealZoneText)
+--- @return string|nil  A zone-flavoured line, or nil if no data for this zone
+function ns.engagements.PickSoloZoneLine(zone)
+    if not zone or zone == "" then return nil end
+    local bag = zoneTopics[zone:lower()]
+    if not bag then return nil end
+
+    -- Collect all "ANY" openers from all Z() topics in this zone
+    local pool = {}
+    for key, topic in pairs(bag) do
+        if topic.target == "ANY" then
+            for _, line in ipairs(topic.openers) do
+                -- Dedup check
+                local dominated = false
+                for _, recent in ipairs(soloZoneRecent) do
+                    if recent == line then dominated = true; break end
+                end
+                if not dominated then
+                    table.insert(pool, line)
+                end
+            end
+        end
+    end
+
+    -- All lines recently used → reset and pick from full pool
+    if #pool == 0 then
+        pool = {}
+        for _, topic in pairs(bag) do
+            if topic.target == "ANY" then
+                for _, line in ipairs(topic.openers) do
+                    table.insert(pool, line)
+                end
+            end
+        end
+    end
+
+    if #pool == 0 then return nil end
+
+    local pick = pool[math.random(#pool)]
+    table.insert(soloZoneRecent, pick)
+    if #soloZoneRecent > SOLO_ZONE_CAP then table.remove(soloZoneRecent, 1) end
+    return pick
+end
+
+---------------------------------------------------------------------------
 -- Init: load persisted used-keys from SavedVariables
 ---------------------------------------------------------------------------
 function ns.engagements.Init()

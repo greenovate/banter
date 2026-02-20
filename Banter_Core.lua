@@ -180,37 +180,63 @@ end
 
 ---------------------------------------------------------------------------
 -- Solo Emote Mode — /me inner monologue when not in a group
--- No extra timers. Hooks into the existing AMBIENT trigger system.
--- When solo + soloMode, AMBIENT statements route through EMOTE with a
--- persona-flavoured prefix instead of being blocked by SAY.
+-- Zone-aware: picks from zone data when available, persona content otherwise.
+-- Dedicated SOLO_AMBIENT trigger for unique solo inner-monologue content.
+-- Non-AMBIENT triggers (FLIGHT_PATH, COMBAT_START, etc.) still use persona
+-- lines since those are already situation-specific and solo-appropriate.
 ---------------------------------------------------------------------------
 
 local SOLO_PREFIXES = {
-    WARRIOR = { "mutters:",   "grumbles:",  "grunts:" },
-    MAGE    = { "muses:",     "ponders:",   "mutters:" },
-    PRIEST  = { "murmurs:",   "whispers a prayer:", "reflects:" },
-    ROGUE   = { "mutters from the shadows:", "thinks aloud:", "whispers:" },
-    HUNTER  = { "mutters to their pet:",     "thinks aloud:", "sighs:" },
-    PALADIN = { "reflects:",  "murmurs:",   "contemplates:" },
-    WARLOCK = { "mutters darkly:", "hisses:", "chuckles:" },
-    SHAMAN  = { "murmurs:",   "reflects:",  "communes:" },
-    DRUID   = { "muses:",     "hums:",      "reflects:" },
-    PIRATE  = { "mutters:",   "growls:",    "grumbles:" },
-    NEUTRAL = { "mutters:",   "thinks:",    "muses:" },
+    WARRIOR  = { "mutters:",   "grumbles:",  "grunts:" },
+    MAGE     = { "muses:",     "ponders:",   "mutters:" },
+    PRIEST   = { "murmurs:",   "sighs:",     "reflects:" },
+    ROGUE    = { "thinks:",    "observes:",  "notes:" },
+    HUNTER   = { "mutters to their pet:", "glances around:", "sighs:" },
+    PALADIN  = { "reflects:",  "murmurs:",   "contemplates:" },
+    WARLOCK  = { "mutters darkly:", "hisses:", "chuckles:" },
+    SHAMAN   = { "murmurs:",   "senses:",    "communes:" },
+    DRUID    = { "muses:",     "sniffs the air:", "reflects:" },
+    PIRATE   = { "mutters:",   "growls:",    "grumbles:" },
+    NEUTRAL  = { "mutters:",   "thinks:",    "muses:" },
 }
 
-local SOLO_SKIP = {
-    " we ",  " we'",  "^we ",  " us ",  " us.",  " us,",
-    "pull",  "anyone", " group", " crew ",  " party ",
-}
-
-local function IsSoloSafe(line)
-    if not line or #line < 10 then return false end
-    local l = " " .. line:lower() .. " "
-    for _, pat in ipairs(SOLO_SKIP) do
-        if l:find(pat, 1, true) then return false end
+--- Solo ambient: try zone-specific content first, then SOLO_AMBIENT persona
+--- content. Returns formatted emote line or nil.
+local function PickSoloAmbientLine(persona)
+    -- Phase 1: Zone-aware line (60% chance when zone data exists)
+    local zone = ns.context and ns.context.GetZone() or ""
+    if zone ~= "" and math.random() < 0.60 then
+        local zoneLine = ns.engagements.PickSoloZoneLine(zone)
+        if zoneLine then
+            ns.Debug("Solo: zone line for " .. zone)
+            return zoneLine, "ZONE"
+        end
     end
-    return true
+
+    -- Phase 2: Dedicated SOLO_AMBIENT persona content
+    local soloStatement = ns.scenes.PickStatement(persona, "SOLO_AMBIENT")
+    if soloStatement then
+        ns.Debug("Solo: SOLO_AMBIENT for " .. persona)
+        return soloStatement.line, "SOLO_AMBIENT/" .. soloStatement.rarity
+    end
+
+    -- Phase 3: Fallback — AMBIENT persona content (filtered for solo safety)
+    local fallback = ns.scenes.PickStatement(persona, "AMBIENT")
+    if fallback then
+        local line = fallback.line
+        -- Quick filter for obviously group-directed language
+        local l = " " .. line:lower() .. " "
+        local groupWords = { " we ", " we'", " us ", " us.", "pull", "anyone", " group", " crew ", " party " }
+        for _, pat in ipairs(groupWords) do
+            if l:find(pat, 1, true) then
+                ns.Debug("Solo: skipped group-dependent fallback line")
+                return nil, nil
+            end
+        end
+        return line, "AMBIENT/" .. fallback.rarity
+    end
+
+    return nil, nil
 end
 
 ---------------------------------------------------------------------------
@@ -234,7 +260,51 @@ function core.StartScene(trigger, ctx)
     -- Per-trigger RNG + cooldown check
     if not ns.triggers.CheckTrigger(trigger) then return end
 
-    local persona   = ns.ResolvePersona()
+    local persona = ns.ResolvePersona()
+    local mode    = core.GetGroupMode()
+
+    ---------------------------------------------------------------------------
+    -- SOLO PATH — zone-aware ambient, dedicated solo content
+    ---------------------------------------------------------------------------
+    if mode == "SOLO" and ns.db.soloMode then
+        local line, source
+
+        if trigger == "AMBIENT" or trigger == "ZONE_CHANGED" then
+            -- Zone-aware + SOLO_AMBIENT + filtered fallback
+            line, source = PickSoloAmbientLine(persona)
+            if not line then
+                ns.Debug("Solo: no suitable ambient line, skipping")
+                return
+            end
+        else
+            -- Non-ambient triggers (FLIGHT_PATH, COMBAT_START, MOB_KILL, etc.)
+            -- These persona lines are situation-specific and already solo-appropriate
+            local statement = ns.scenes.PickStatement(persona, trigger)
+            if not statement then
+                ns.Debug("Solo: no statement for " .. trigger)
+                return
+            end
+            line   = core.ReplaceTokens(statement.line, ctx)
+            source = trigger .. "/" .. statement.rarity
+        end
+
+        -- Mark gates
+        ns.triggers.MarkSceneStarted()
+        ns.triggers.MarkTriggerFired(trigger)
+
+        -- Format as emote with persona prefix
+        local prefixes = SOLO_PREFIXES[persona] or SOLO_PREFIXES.WARRIOR
+        local prefix   = prefixes[math.random(#prefixes)]
+        line = prefix .. ' "' .. line .. '"'
+
+        core.SafeSend(line, "EMOTE")
+        ns.Debug("SOLO [" .. (source or trigger) .. "]: " .. line)
+        return
+    end
+
+    ---------------------------------------------------------------------------
+    -- GROUP / RAID PATH — existing scene orchestration
+    ---------------------------------------------------------------------------
     local statement = ns.scenes.PickStatement(persona, trigger)
     if not statement then
         ns.Debug("No statement for " .. trigger .. " (persona: " .. persona .. ")")
@@ -249,25 +319,11 @@ function core.StartScene(trigger, ctx)
     local line    = core.ReplaceTokens(statement.line, ctx)
     local channel = core.GetOutputChannel()
 
-    -- Solo mode: route ALL triggers through EMOTE when not in a group
-    local mode = core.GetGroupMode()
-    if mode == "SOLO" and ns.db.soloMode then
-        -- AMBIENT lines get filtered for group-dependent language
-        if trigger == "AMBIENT" and not IsSoloSafe(line) then
-            ns.Debug("Solo: skipped group-dependent AMBIENT line")
-            return
-        end
-        local prefixes = SOLO_PREFIXES[persona] or SOLO_PREFIXES.WARRIOR
-        local prefix   = prefixes[math.random(#prefixes)]
-        line    = prefix .. ' "' .. line .. '"'
-        channel = "EMOTE"
-    end
-
     core.SafeSend(line, channel)
     ns.Debug("STMT [" .. trigger .. "/" .. statement.rarity .. "]: " .. line)
 
     -- Group coordination
-    if mode ~= "SOLO" and ns.comm.GetPeerCount() > 0 then
+    if ns.comm.GetPeerCount() > 0 then
         local ctxStr = core.SerializeContext(ctx)
         ns.comm.SendSceneStart(statement.id, trigger, persona, ctxStr)
 

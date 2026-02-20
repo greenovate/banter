@@ -351,6 +351,53 @@ statements = {
         },
     },
 
+    -- SOLO_AMBIENT
+    SOLO_AMBIENT = {
+        COMMON = {
+            { id="mag_solo_c01", weight=1, line="Alone with my intellect. The best company there is." },
+            { id="mag_solo_c02", weight=1, line="No one around to misunderstand my brilliance. Refreshing." },
+            { id="mag_solo_c03", weight=1, line="Mana: full. Intellect: superior. Company: unnecessary." },
+            { id="mag_solo_c04", weight=1, line="I could Blink ahead but why rush perfection?" },
+            { id="mag_solo_c05", weight=1, line="The arcane hums in this area. Or that's my stomach. Hard to tell." },
+            { id="mag_solo_c06", weight=1, line="Solo travel: no one drinks my conjured water but me. As intended." },
+            { id="mag_solo_c07", weight=1, line="I wonder if other mages think this much. Unlikely. I set the standard." },
+            { id="mag_solo_c08", weight=1, line="This would be a lovely spot for a portal. To somewhere better." },
+            { id="mag_solo_c09", weight=1, line="Not lost. Conducting field research on alternate routes." },
+            { id="mag_solo_c10", weight=1, line="The calculations say I should keep walking. The calculations are always right." },
+            { id="mag_solo_c11", weight=1, line="Walking is just Blinking very slowly. And with more effort." },
+            { id="mag_solo_c12", weight=1, line="Out here alone. No interruptions. Peak scholarly conditions." },
+            { id="mag_solo_c13", weight=1, line="Spotted a mob. Assessed it. Beneath me. Moving on." },
+            { id="mag_solo_c14", weight=1, line="The ambient magical field here is... adequate. At best." },
+            { id="mag_solo_c15", weight=1, line="I left Dalaran for THIS? Willingly? Questionable." },
+            { id="mag_solo_c16", weight=1, line="Every step away from a library is a step in the wrong direction." },
+            { id="mag_solo_c17", weight=1, line="Solo questing: when you're too efficient to wait for others." },
+            { id="mag_solo_c18", weight=1, line="Frost Armor active, Arcane Intellect active, ego active. Ready for anything." },
+        },
+        UNCOMMON = {
+            { id="mag_solo_u01", weight=1, line="I've been thinking about the nature of arcane energy in open terrain. My conclusion: it's fine. I'm fine. Everything is fine. I'm a genius." },
+            { id="mag_solo_u02", weight=1, line="Source: me. The wilderness is statistically more dangerous for non-mages. I have evidence. The evidence is that I'm alive." },
+            { id="mag_solo_u03", weight=1, line="Other classes struggle out here alone. I have Frost Nova, Blink, and intellectual superiority. The wilderness is struggling against ME." },
+            { id="mag_solo_u04", weight=1, line="Keeping a mental journal. Entry one: still smarter than everything around me. Entry two: see entry one." },
+            { id="mag_solo_u05", weight=1, line="Being alone gives me time to theorize. Current theory: I could probably solve everything if people just listened to me." },
+            { id="mag_solo_u06", weight=1, line="I passed a warrior earlier. Hitting a tree. With purpose. I did not stop to ask questions. Some mysteries are beneath the arcane." },
+            { id="mag_solo_u07", weight=1, line="My robes have grass stains. This is what happens when they make mages walk. In the WILDERNESS. Like commoners." },
+            { id="mag_solo_u08", weight=1, line="Mentally designing a spell that creates a chair anywhere. The greatest contribution to magic since Polymorph." },
+            { id="mag_solo_u09", weight=1, line="No one around to appreciate my Polymorph technique. Tragic. The sheep don't know how lucky they are." },
+            { id="mag_solo_u10", weight=1, line="Conjured myself a snack. Ate it alone. Reviewed it critically. Three stars. My conjuration has room for improvement." },
+        },
+        RARE = {
+            { id="mag_solo_r01", weight=1, line="The great mages of history had towers, libraries, entire academies. I have a bag full of conjured bread and a vague sense of direction. We are not the same. Yet." },
+            { id="mag_solo_r02", weight=1, line="Out here alone, I've had time to recalculate my entire spellbook. Seventeen optimizations found. Two of them are groundbreaking. One might be illegal. All of them are brilliant." },
+            { id="mag_solo_r03", weight=1, line="I think the wilderness respects me. Nothing has attacked in minutes. Either that or everything is hiding. Both interpretations confirm my superiority." },
+            { id="mag_solo_r04", weight=1, line="Solo travel gives a mage perspective. I've gained perspective on three arcane theorems, one existential crisis, and the exact temperature at which conjured water tastes wrong. Productive." },
+            { id="mag_solo_r05", weight=1, line="Somewhere, a group is wiping without me. They don't know it yet, but their failure is my absence. I choose not to feel guilty. I choose to feel correct." },
+        },
+        MYTHIC = {
+            { id="mag_solo_m01", weight=1, line="Alone in the wild. No students. No rivals. No warriors asking what Intellect does. Just me, the arcane, and an entire continent that has no idea how lucky it is that I'm passing through peacefully. For now." },
+            { id="mag_solo_m02", weight=1, line="I've spent an hour walking and thinking. The thinking was extraordinary. The walking was beneath me. When they write the history of arcane achievement, this walk will be a footnote — but the footnote will be better than most mages' entire chapters." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -632,6 +679,24 @@ responses = {
         },
         MYTHIC = {
             "When we land, I'm opening a portal back to where we started. Just to prove a point.",
+        },
+    },
+
+    SOLO_AMBIENT = {
+        COMMON = {
+            "Was I thinking out loud? Ignore that. It was above your level anyway.",
+            "I was mid-theorem. You've cost the arcane sciences dearly.",
+            "Yes? Make it quick. My thoughts are more interesting than most conversations.",
+        },
+        UNCOMMON = {
+            "Oh, you're here. I was conducting a solo study. Emphasis on SOLO. The methodology is now compromised.",
+            "Interrupted during peak intellectual output. The arcane community will hear about this.",
+        },
+        RARE = {
+            "I was on the verge of a breakthrough. It involved Frost Nova and philosophy. Now it's gone. I hope you're satisfied.",
+        },
+        MYTHIC = {
+            "Perfect. I'd just achieved a state of pure arcane contemplation — something only three mages in history have managed — and now it's gone. You've set back magical theory by decades. I'll bill you.",
         },
     },
 

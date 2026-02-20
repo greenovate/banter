@@ -346,6 +346,53 @@ statements = {
         },
     },
 
+    -- SOLO_AMBIENT
+    SOLO_AMBIENT = {
+        COMMON = {
+            { id="pal_solo_c01", weight=1, line="Walking the righteous path. Alone. By CHOICE. The Light understands." },
+            { id="pal_solo_c02", weight=1, line="Solo pilgrimage. Very spiritual. Not at all avoiding guild duties." },
+            { id="pal_solo_c03", weight=1, line="The Light guides my steps. My steps are slow. Plate armor." },
+            { id="pal_solo_c04", weight=1, line="Bubble isn't on cooldown. Nobody's here to judge. Feels strange." },
+            { id="pal_solo_c05", weight=1, line="Out here serving the Light by... wandering around. Counts." },
+            { id="pal_solo_c06", weight=1, line="Nobody needs a blessing right now. Weird. I've got blessings ready. Just in case." },
+            { id="pal_solo_c07", weight=1, line="My cooldowns are all up and there's nothing to use them on. This is the true test of faith." },
+            { id="pal_solo_c08", weight=1, line="Solo paladin out here. Shining armor, moral authority, no audience." },
+            { id="pal_solo_c09", weight=1, line="The Light doesn't take days off. Neither do I. This isn't a day off. It's a solo crusade." },
+            { id="pal_solo_c10", weight=1, line="Just me and my aura. And my faith. And this enormous amount of plate armor." },
+            { id="pal_solo_c11", weight=1, line="Judged a mob in passing. Didn't even fight it. Just Judged it. Spiritually." },
+            { id="pal_solo_c12", weight=1, line="I could heal myself if I took damage. I could bubble if things got bad. Nothing can go wrong. Famous last words." },
+            { id="pal_solo_c13", weight=1, line="Thought about using Divine Shield to cross that river. Decided to walk around. Restraint is a virtue." },
+            { id="pal_solo_c14", weight=1, line="The world needs paladins. Right now it specifically needs THIS paladin to walk over THERE. For the Light." },
+            { id="pal_solo_c15", weight=1, line="Blessing of Wisdom on myself. Because the Light says knowledge is power. Also I'm out of mana." },
+            { id="pal_solo_c16", weight=1, line="Every step in service of the Light. Even the steps that are just general wandering." },
+            { id="pal_solo_c17", weight=1, line="My armor shines in the sunlight. Impressive to no one. The trees don't care." },
+            { id="pal_solo_c18", weight=1, line="Lay on Hands is ready. Hearthstone is ready. Bubble is ready. I'm over-prepared for a walk." },
+        },
+        UNCOMMON = {
+            { id="pal_solo_u01", weight=1, line="The Light illuminates the solitary path. Also it reflects off my armor and blinds me. The Light works in mysterious and sometimes inconvenient ways." },
+            { id="pal_solo_u02", weight=1, line="Being alone means no one is dying for me to heal. This should be relaxing. Instead I feel USELESS. The paladin condition." },
+            { id="pal_solo_u03", weight=1, line="I have seven different blessings and no one to cast them on. I've started blessing wildlife. The rabbits seem confused but spiritually fortified." },
+            { id="pal_solo_u04", weight=1, line="Solo questing in plate armor. Every other class jogs past me in cloth and leather. I CLANK. But I clank RIGHTEOUSLY." },
+            { id="pal_solo_u05", weight=1, line="Other classes go solo for efficiency. Paladins go solo for spiritual growth. That's my story. Don't check my quest log." },
+            { id="pal_solo_u06", weight=1, line="My Divine Shield timer is at zero. I could bubble right now, for no reason, and be invincible for twelve seconds. The temptation is constant." },
+            { id="pal_solo_u07", weight=1, line="Walked past a group struggling with elites. Felt the Light urging me to help. Also felt my legs urging me to keep walking. The internal debate was brief." },
+            { id="pal_solo_u08", weight=1, line="In a group I'm a paladin — healer, buffer, emergency bubble dispenser. Solo I'm just a person in too much armor with opinions about morality." },
+            { id="pal_solo_u09", weight=1, line="My Judgement crits look really impressive when no one's around to see them. The Light sees. The Light keeps score." },
+            { id="pal_solo_u10", weight=1, line="Considered using Lay on Hands on a wounded deer. Decided it was a waste of a cooldown. Then felt guilty. The guilt IS the cooldown for paladins." },
+        },
+        RARE = {
+            { id="pal_solo_r01", weight=1, line="When I'm alone, I can admit things. Like the fact that I use Bubble more often to avoid awkward conversations than actual lethal damage. The Light shields the righteous. The righteous are socially exhausted." },
+            { id="pal_solo_r02", weight=1, line="Found a chapel on the road. Small, empty, dusty. Knelt down for a prayer. The Light answered immediately: 'what do you need.' I said 'nothing, just visiting.' Awkward pause. The Light and I don't do casual well." },
+            { id="pal_solo_r03", weight=1, line="Uther walked alone into darkness to face evil. I'm walking alone into a field to pick herbs. Not all pilgrimages are epic. But the Light doesn't rank them. I do. This one is a six out of ten." },
+            { id="pal_solo_r04", weight=1, line="Every paladin wrestles with faith. Am I worthy? Am I good enough? Then I bubble, and for twelve perfect seconds, nothing can hurt me. That's not faith. That's better. That's a cooldown." },
+            { id="pal_solo_r05", weight=1, line="My shield has dents from a hundred fights. My sword has weight from a thousand blessings. My boots have mud from every road in Azeroth. The Light asked me to serve. It didn't mention the chafing. Or the walks." },
+        },
+        MYTHIC = {
+            { id="pal_solo_m01", weight=1, line="A paladin alone is still a paladin. The armor stays on. The aura stays up. The moral superiority is non-negotiable. But out here, with no one watching, I can admit the truth: I bubble-hearthed once. On purpose. Not in danger. Just to see if I could. I could. It was the greatest moment of my career and I will never tell anyone." },
+            { id="pal_solo_m02", weight=1, line="The Light chose me. Out of everyone, it chose THIS paladin to walk THIS road today. Alone, in full plate, sweating under a holy aura I can't turn off. Other paladins get visions. Great quests. Moments of divine clarity. I get long walks and the nagging feeling that I should be buffing someone. Even the Light doesn't know what to do with me sometimes." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -626,6 +673,24 @@ responses = {
         },
         MYTHIC = {
             "Uther never rode a flight path bird. Then again, Uther didn't have to get to the Hinterlands by 3 o'clock.",
+        },
+    },
+
+    SOLO_AMBIENT = {
+        COMMON = {
+            "The Light sent you to interrupt my meditation? Bold move.",
+            "I was communing with the Light. Privately. The Light doesn't do walk-ins.",
+            "Oh. Hello. I was just... praying. Out loud. In armor. Normal paladin things.",
+        },
+        UNCOMMON = {
+            "I was having a spiritual experience and you've turned it into a social one. The Light charges extra for those.",
+            "My bubble was almost off cooldown and I was going to pop it just to feel something. You've ruined the sacred moment.",
+        },
+        RARE = {
+            "I was about to reach enlightenment. Could feel it. Right there. Then you walked up and the Light said 'we'll reschedule.' This is why I solo. THIS.",
+        },
+        MYTHIC = {
+            "The Light spoke to me in the silence. It said 'you are worthy, champion.' Then you showed up and the Light said 'oh, company. How nice. Help them.' I didn't WANT to help anyone. I wanted ONE quiet moment of PERSONAL holiness. But no. Paladins don't get days off. The Light said so. Just now.",
         },
     },
 

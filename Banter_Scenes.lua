@@ -36,6 +36,8 @@ scenes.CAPS = {
     CONSUMABLE_USED    = { partyMin = 0, partyMax = 1, raidMin = 0, raidMax = 1 },
     MAJOR_COOLDOWN     = { partyMin = 0, partyMax = 1, raidMin = 0, raidMax = 1 },
     FLIGHT_PATH        = { partyMin = 0, partyMax = 1, raidMin = 0, raidMax = 0 },
+    ZONE_CHANGED       = { partyMin = 0, partyMax = 0, raidMin = 0, raidMax = 0 },
+    SOLO_AMBIENT       = { partyMin = 0, partyMax = 0, raidMin = 0, raidMax = 0 },
 }
 
 ---------------------------------------------------------------------------
@@ -58,6 +60,8 @@ scenes.TRIGGER_CHANCE = {
     CONSUMABLE_USED    = 0.25,
     MAJOR_COOLDOWN     = 0.35,
     FLIGHT_PATH        = 0.75,
+    ZONE_CHANGED       = 0.70,
+    SOLO_AMBIENT       = 0.50,
 }
 
 ---------------------------------------------------------------------------

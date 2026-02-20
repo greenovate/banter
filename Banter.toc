@@ -2,7 +2,7 @@
 ## Title: Banter
 ## Notes: Automated RP banter for parties and raids — Anniversary Classic
 ## Author: Derrick
-## Version: 1.4.0
+## Version: 1.4.5
 ## SavedVariables: BanterDB
 ## SavedVariablesPerCharacter: BanterCharDB
 ## X-Curse-Project-ID: 1466191

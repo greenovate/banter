@@ -344,6 +344,53 @@ statements = {
         },
     },
 
+    -- SOLO_AMBIENT
+    SOLO_AMBIENT = {
+        COMMON = {
+            { id="wlk_solo_c01", weight=1, line="Just me and my demons. So, the usual." },
+            { id="wlk_solo_c02", weight=1, line="Alone. Well, alone-adjacent. The imp is here. Unfortunately." },
+            { id="wlk_solo_c03", weight=1, line="Nice day. Could be darker." },
+            { id="wlk_solo_c04", weight=1, line="My soul shard count is looking healthy. Everyone else's isn't." },
+            { id="wlk_solo_c05", weight=1, line="Wandering the world. Corrupting nothing in particular. Yet." },
+            { id="wlk_solo_c06", weight=1, line="Nobody around. Good. Fewer witnesses." },
+            { id="wlk_solo_c07", weight=1, line="The void whispers to me. I whisper back. It's a whole thing." },
+            { id="wlk_solo_c08", weight=1, line="Out here alone, my dark aura is really just for me. Still worth it." },
+            { id="wlk_solo_c09", weight=1, line="Solitude agrees with me. Then again, most things agree with me. Or else." },
+            { id="wlk_solo_c10", weight=1, line="I should summon something. Just to have someone to ignore." },
+            { id="wlk_solo_c11", weight=1, line="Passed a graveyard. Felt nostalgic." },
+            { id="wlk_solo_c12", weight=1, line="My shadow is the only company I need. It never argues. Much." },
+            { id="wlk_solo_c13", weight=1, line="Every flower I walk past wilts a little. Still got it." },
+            { id="wlk_solo_c14", weight=1, line="Thinking about dark things. So, thinking." },
+            { id="wlk_solo_c15", weight=1, line="The imp asked where we're going. I said 'away from you.' It followed anyway." },
+            { id="wlk_solo_c16", weight=1, line="This area has a nice ambient dread. Very homey." },
+            { id="wlk_solo_c17", weight=1, line="If I drain enough life out here does the forest notice? Asking for me." },
+            { id="wlk_solo_c18", weight=1, line="Walking alone in silence. My favorite hobby after soul harvesting." },
+        },
+        UNCOMMON = {
+            { id="wlk_solo_u01", weight=1, line="People fear the warlock walking alone. Smart people. The dumb ones try to talk to me." },
+            { id="wlk_solo_u02", weight=1, line="My demon keeps making small talk. I keep threatening banishment. Our relationship is built on mutual inconvenience." },
+            { id="wlk_solo_u03", weight=1, line="Solo adventuring means I don't have to pretend the soul shards are 'ethically sourced.' They're not. They never were." },
+            { id="wlk_solo_u04", weight=1, line="I wonder if other warlocks enjoy the solitude or if they're just as annoyed by their demons as I am. Rhetorical. We all are." },
+            { id="wlk_solo_u05", weight=1, line="Somewhere in the Twisting Nether, a demon is telling its friends it works with me. It says this like it's a complaint. It is." },
+            { id="wlk_solo_u06", weight=1, line="Considered setting something on fire for warmth. Then remembered I can just drain the warmth from something living. Efficiency." },
+            { id="wlk_solo_u07", weight=1, line="My Healthstone is essentially a solo snack. Tastes like regret and dark magic. So, decent." },
+            { id="wlk_solo_u08", weight=1, line="The nice thing about traveling alone is no one asks why your eyes glow. They just avoid you. As intended." },
+            { id="wlk_solo_u09", weight=1, line="Been walking past wildlife. None of it attacks me. Survival instincts, probably. Even the boars know." },
+            { id="wlk_solo_u10", weight=1, line="I collect soul shards the way other people collect flowers. Except mine scream. Briefly." },
+        },
+        RARE = {
+            { id="wlk_solo_r01", weight=1, line="Sometimes, alone in the wild, I feel at peace. Then I remember peace is a liability and I curse something. Balance restored." },
+            { id="wlk_solo_r02", weight=1, line="My old master said solitude builds power. He was right, but I didn't need solitude for that. I just needed his soul shard. Which I have. In my bag. We don't talk about it." },
+            { id="wlk_solo_r03", weight=1, line="The wilderness is full of life. Seeds sprouting, birds singing, deer grazing. Disgusting. I cast Corruption on a bush and felt better immediately." },
+            { id="wlk_solo_r04", weight=1, line="Alone out here, I've had time to review my pacts. Three active contracts with the Nether, one pending soul audit, and the imp still hasn't filed its quarterly report. Running a demonic workforce is paperwork." },
+            { id="wlk_solo_r05", weight=1, line="I passed a paladin on the road. We made eye contact. I smiled. They walked faster. Some interactions are just perfect." },
+        },
+        MYTHIC = {
+            { id="wlk_solo_m01", weight=1, line="Out here, no group, no judgment, just me and the dark arts — this is where a warlock is most honest. No pretending the demons are 'under control.' No assuring anyone the soul shards are 'fine.' Just raw, unfiltered demonology and a nice walk. Therapeutic, really." },
+            { id="wlk_solo_m02", weight=1, line="I've been wandering alone for an hour. My demon has complained nine times. A bush caught fire spontaneously when I looked at it. A squirrel offered me its soul out of fear — I declined, I have standards. Just another quiet afternoon as a warlock." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -624,6 +671,24 @@ responses = {
         },
         MYTHIC = {
             "When I die, I want to be reincarnated as a flight master. Just to make other warlocks sit on birds. Revenge.",
+        },
+    },
+
+    SOLO_AMBIENT = {
+        COMMON = {
+            "You're interrupting my communion with darkness. It was going well.",
+            "What. I was brooding. It's a process.",
+            "Oh, a person. How... unnecessary.",
+        },
+        UNCOMMON = {
+            "I was having a very productive conversation with my demon. You've lowered the average IQ of this interaction.",
+            "Interesting timing. I was just thinking about how nice it is to be alone. Was.",
+        },
+        RARE = {
+            "My demon warned me someone was approaching. I told it to be quiet. For once, it was right. I'll never admit that out loud.",
+        },
+        MYTHIC = {
+            "I had achieved perfect solitude. The void was silent. The shadows were still. My demon was quiet for the first time in recorded history. And then you showed up. I hope you're happy. You've ruined something beautiful.",
         },
     },
 

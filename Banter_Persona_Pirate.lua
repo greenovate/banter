@@ -478,6 +478,53 @@ statements = {
         },
     },
 
+    -- SOLO_AMBIENT
+    SOLO_AMBIENT = {
+        COMMON = {
+            { id="pir_solo_c01", weight=1, line="Arr, just me and the open road. Would prefer an open sea." },
+            { id="pir_solo_c02", weight=1, line="No crew. No ship. No problem. ...okay, SOME problems." },
+            { id="pir_solo_c03", weight=1, line="A pirate alone is just a person with poor life decisions and a hat." },
+            { id="pir_solo_c04", weight=1, line="The rum supply is low. The company is worse. It's just me." },
+            { id="pir_solo_c05", weight=1, line="Can't see the ocean from here. Hate it." },
+            { id="pir_solo_c06", weight=1, line="Wanderin' the land like some kind of landlubber. Shameful." },
+            { id="pir_solo_c07", weight=1, line="Every step away from the coast is a step I regret." },
+            { id="pir_solo_c08", weight=1, line="The wind smells wrong. No salt. No sea spray. Just dirt." },
+            { id="pir_solo_c09", weight=1, line="Me compass says north. Me heart says harbor." },
+            { id="pir_solo_c10", weight=1, line="Arr, talking to meself again. First sign of too long ashore." },
+            { id="pir_solo_c11", weight=1, line="No crew to boss around. Weirdly peaceful. Hate it." },
+            { id="pir_solo_c12", weight=1, line="A good pirate needs a ship. A great pirate makes do. I'm makin' do. Badly." },
+            { id="pir_solo_c13", weight=1, line="If I squint, that hill kinda looks like a wave. It's not. But let me have this." },
+            { id="pir_solo_c14", weight=1, line="The ground is too still. Nothin' sways. How does anyone live like this?" },
+            { id="pir_solo_c15", weight=1, line="I'd trade all this adventure for a dock and a tavern." },
+            { id="pir_solo_c16", weight=1, line="Passed a puddle. Best part of me day so far." },
+            { id="pir_solo_c17", weight=1, line="Still got me hat. Still got me dignity. One of those might be a lie." },
+            { id="pir_solo_c18", weight=1, line="Arr, nobody around for miles. Just how a pirate likes it. Mostly. Sometimes." },
+        },
+        UNCOMMON = {
+            { id="pir_solo_u01", weight=1, line="Walkin' through the woods like some kind of ranger. Rangers don't have ships. Or rum. What's the POINT of being a ranger?" },
+            { id="pir_solo_u02", weight=1, line="Me old captain said a pirate without a crew is just a bloke with a sword and a drinking problem. He was right about most things. Except navigation." },
+            { id="pir_solo_u03", weight=1, line="Been ashore so long I've forgotten the feel of a deck beneath me boots. That's a lie. I think about it every single second." },
+            { id="pir_solo_u04", weight=1, line="I keep lookin' at rivers and thinkin' 'too narrow for a proper vessel.' The pirate brain never shuts off." },
+            { id="pir_solo_u05", weight=1, line="Saw a lake on the horizon. Heart rate doubled. Got closer. It was a field. Green. Flat. No water. I've never been more betrayed." },
+            { id="pir_solo_u06", weight=1, line="Counted me gold. Not much. Counted me rum. Less. Counted me regrets. Stopped countin'." },
+            { id="pir_solo_u07", weight=1, line="The pirate life was supposed to be freedom. Freedom to sail, to plunder, to adventure. Instead I'm walkin'. On LAND. Freedom is a scam." },
+            { id="pir_solo_u08", weight=1, line="Every innkeeper I meet gets the same question: 'how far to the nearest port?' Every innkeeper gives the same answer: 'too far.' Conspiracy, I say." },
+            { id="pir_solo_u09", weight=1, line="Tried to sing a sea shanty. The birds flew away. Either me singing is that bad or they know something I don't. Probably both." },
+            { id="pir_solo_u10", weight=1, line="Found a rock shaped like an anchor. Kept it. Don't judge me. A pirate needs SOMETHING from the sea. Even if it's just a rock that reminds me of the sea." },
+        },
+        RARE = {
+            { id="pir_solo_r01", weight=1, line="Sometimes I hear the waves. Then I realize it's just wind through the trees. Trees. Glorified masts that went nowhere. What a waste of good timber." },
+            { id="pir_solo_r02", weight=1, line="Me first mate used to say: 'a pirate ashore is a fish out of water.' Then he fell overboard and became a fish IN water. Irony's a cruel mistress. Almost as cruel as the sea. Almost." },
+            { id="pir_solo_r03", weight=1, line="There's a special kind of lonely reserved for pirates on land. It's not that ye miss people. It's that ye miss the BOAT. And the rum. And the way the stars look from the crow's nest. And the rum. Mentioned that twice. Meant to." },
+            { id="pir_solo_r04", weight=1, line="I've sailed three oceans, survived four mutinies, and drank enough rum to float a frigate. And now I'm walking through a meadow. Alone. With flowers. I am reduced. The sea would not approve." },
+            { id="pir_solo_r05", weight=1, line="Sat down under a tree and carved a little ship into the bark. Didn't mean to. Hands just did it. Pirate muscle memory. Even me hands miss the sea." },
+        },
+        MYTHIC = {
+            { id="pir_solo_m01", weight=1, line="Arr, I'll tell ye something I'd never say to a crew. Out here, alone, walkin' the dirt roads of this landlocked nightmare — I wonder sometimes if the sea even misses me back. I've given her everything. Me youth, me crew, me liver, probably. And she just keeps rollin'. Doesn't care who's sailing and who's stuck on shore. Cold woman, the sea. But I love 'er. Always have. Always will. Even from here." },
+            { id="pir_solo_m02", weight=1, line="Captain's log, day... I've stopped countin'. The land stretches on. No tide, no current, no horizon where water meets sky. Just grass and rocks and the occasional disapproving villager. Me hat draws stares. Me sword draws questions. Me accent draws confusion. But I keep walkin'. Because somewhere ahead there's a coast. And on that coast there's a dock. And at that dock there's a ship. And on that ship there's rum. And THAT is worth every miserable step on this forsaken dirt." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -883,6 +930,25 @@ responses = {
             "One day they'll build ships that fly. And on that day, I will finally be whole.",
         },
     },
+
+    SOLO_AMBIENT = {
+        COMMON = {
+            "Arr, ye startled me. Almost drew me sword. ...okay I DID draw me sword.",
+            "A person! Been talkin' to meself for hours. Ye'll do.",
+            "What? I was havin' a private moment with the horizon. Or where the horizon WOULD be if there was water.",
+        },
+        UNCOMMON = {
+            "Ye snuck up on a pirate. On LAND. That's either impressive or I've gone soft. I choose to blame the terrain.",
+            "I was in the middle of a very important internal monologue about the sea. Now I have to start over. From the beginning. It was long.",
+        },
+        RARE = {
+            "Nobody's talked to me in days. Me reply skills might be rusty. Give it a second. ...arr. Nailed it.",
+        },
+        MYTHIC = {
+            "I was composing an epic sea ballad in me head. Verse four was about a kraken. Verse five was about rum. Verse six was going to make grown pirates weep. And now it's gone. All of it. Ye've sunk me magnum opus and we're not even at sea. Impressive vandalism.",
+        },
+    },
+
 },
 
 }  -- end ns.personas.PIRATE

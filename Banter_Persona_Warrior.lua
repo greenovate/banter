@@ -386,6 +386,53 @@ statements = {
         },
     },
 
+    -- SOLO_AMBIENT
+    SOLO_AMBIENT = {
+        COMMON = {
+            { id="war_solo_c01", weight=1, line="Just me out here. No healer. No problem. I AM the problem." },
+            { id="war_solo_c02", weight=1, line="Haven't hit anything in two minutes. Starting to get TWITCHY." },
+            { id="war_solo_c03", weight=1, line="Nice day for a walk. Nicer day for a fight. BEST day for both." },
+            { id="war_solo_c04", weight=1, line="That rock looked at me funny. Don't think I won't." },
+            { id="war_solo_c05", weight=1, line="Solo adventuring. Just me, my axe, and poor decisions." },
+            { id="war_solo_c06", weight=1, line="Quiet out here. Too quiet. I hate quiet." },
+            { id="war_solo_c07", weight=1, line="My rage bar is empty. My ACTUAL rage is not." },
+            { id="war_solo_c08", weight=1, line="I could use a good fight right about now. Or a bad one. I'm not picky." },
+            { id="war_solo_c09", weight=1, line="Walking. Walking. Walking. Is this what mages feel like ALL the time?" },
+            { id="war_solo_c10", weight=1, line="Pretty sure that tree is hostile. Only one way to find out." },
+            { id="war_solo_c11", weight=1, line="No one around to judge my pulls. This is FREEDOM." },
+            { id="war_solo_c12", weight=1, line="I don't get lost. I find new things to hit." },
+            { id="war_solo_c13", weight=1, line="Somewhere a mage is drinking water. I'm out here LIVING." },
+            { id="war_solo_c14", weight=1, line="The wind out here smells like adventure. And dirt. Mostly dirt." },
+            { id="war_solo_c15", weight=1, line="Every mob I see is a personal invitation." },
+            { id="war_solo_c16", weight=1, line="Plate armor was not designed for scenic strolls. I'm chafing." },
+            { id="war_solo_c17", weight=1, line="Just flexed at a rabbit. It ran. Warrior intimidation: still working." },
+            { id="war_solo_c18", weight=1, line="Out here alone with my thoughts. They're mostly about axes." },
+        },
+        UNCOMMON = {
+            { id="war_solo_u01", weight=1, line="People ask why I solo. Because in a group, someone always says 'wait.' I don't WAIT. Waiting is for people without axes." },
+            { id="war_solo_u02", weight=1, line="I've been walking for an hour and I haven't Charged a single thing. This is what discipline looks like. I hate it." },
+            { id="war_solo_u03", weight=1, line="My weapon trainer told me to find inner peace. I found inner RAGE. Close enough." },
+            { id="war_solo_u04", weight=1, line="Solo tanking the wilderness. No healer, no DPS, no excuses. If I die out here it's between me and the graveyard." },
+            { id="war_solo_u05", weight=1, line="Passed a signpost. Couldn't read it. Not because I'm illiterate — the letters were too small and I was moving too fast. That's my story." },
+            { id="war_solo_u06", weight=1, line="When I'm alone I practice my battle shouts at the sky. The sky doesn't buff. Useless sky." },
+            { id="war_solo_u07", weight=1, line="My armor weighs more than most adventurers. I carry it everywhere. Uphill. In the rain. You're welcome, nobody." },
+            { id="war_solo_u08", weight=1, line="Other classes 'prepare' before a fight. I prepare BY fighting. The first mob is the warm-up. The second mob is the warm-up for the warm-up's warm-up." },
+            { id="war_solo_u09", weight=1, line="Haven't talked to anyone all day. My social skills are just battle cries and looting. And I'm okay with that." },
+            { id="war_solo_u10", weight=1, line="I wonder if my axe gets lonely when I sheathe it. Probably not. It's an axe. But still." },
+        },
+        RARE = {
+            { id="war_solo_r01", weight=1, line="Out here on my own and the world feels bigger. Not in a poetic way. In a 'there's more things to hit' way. That IS poetic. For a warrior." },
+            { id="war_solo_r02", weight=1, line="Sometimes I wonder what I'd be if I wasn't a warrior. Then I remember: dead. Warriors don't wonder. We hit things until the answer falls out." },
+            { id="war_solo_r03", weight=1, line="Found a quiet hill with a nice view. Sat down for a minute. Felt weird. Got up. Charged a boar. Normal service resumed." },
+            { id="war_solo_r04", weight=1, line="Every scar on this armor is a story. Most of them start with 'I probably shouldn't have pulled that.' All of them end with 'but I did.'" },
+            { id="war_solo_r05", weight=1, line="The road ahead is long, the enemies are many, and my repair bill is already catastrophic. Another beautiful day as a warrior." },
+        },
+        MYTHIC = {
+            { id="war_solo_m01", weight=1, line="They tell campfire stories about warriors who charged into impossible odds alone and won. They don't tell stories about the ones who lost. Because there were no witnesses. I plan to leave witnesses. Impressed ones." },
+            { id="war_solo_m02", weight=1, line="Out here, alone, full plate, big axe, nothing but horizon and hostiles — this is what they trained me for. Not the dungeons. Not the raids. THIS. Just me and everything that's about to regret being in my path." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -684,6 +731,24 @@ responses = {
         },
         MYTHIC = {
             "One day they'll let us fight things from the air. On that day, I will finally know peace.",
+        },
+    },
+
+    SOLO_AMBIENT = {
+        COMMON = {
+            "What. I was thinking.",
+            "I'm busy. Being alone. On PURPOSE.",
+            "Did someone say something or was that the wind being annoying?",
+        },
+        UNCOMMON = {
+            "I was having a perfectly good internal monologue and now it's RUINED.",
+            "Interrupting a warrior's thoughts is like interrupting a warrior's swing. Dangerous and rude.",
+        },
+        RARE = {
+            "I was just about to figure out the meaning of life. It involved axes. You've cost the world a philosophical breakthrough.",
+        },
+        MYTHIC = {
+            "Great. Now I forgot what I was thinking about. It was either battle strategy or lunch. Both are equally important to a warrior.",
         },
     },
 

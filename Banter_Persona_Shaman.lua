@@ -346,6 +346,53 @@ statements = {
         },
     },
 
+    -- SOLO_AMBIENT
+    SOLO_AMBIENT = {
+        COMMON = {
+            { id="sha_solo_c01", weight=1, line="The elements are quiet. Suspiciously quiet." },
+            { id="sha_solo_c02", weight=1, line="Dropped a totem. Just for company. It's a totem thing." },
+            { id="sha_solo_c03", weight=1, line="Earth says 'slow down.' Wind says 'speed up.' Typical." },
+            { id="sha_solo_c04", weight=1, line="Out here alone with four opinionated elements. Not really alone." },
+            { id="sha_solo_c05", weight=1, line="Ankh in my bags. Can die once without consequences. Living dangerously." },
+            { id="sha_solo_c06", weight=1, line="Fire keeps suggesting I burn things. I keep saying no. This is our relationship." },
+            { id="sha_solo_c07", weight=1, line="The spirits of the land say hello. I say hello back. This is my social life." },
+            { id="sha_solo_c08", weight=1, line="Solo shaman in the wild. Just me and the elemental committee." },
+            { id="sha_solo_c09", weight=1, line="Water is humming. Earth is grumbling. Fire is crackling. Wind is... somewhere. Probably late." },
+            { id="sha_solo_c10", weight=1, line="My totems would enjoy this area. I'd plant them but nobody's around to buff." },
+            { id="sha_solo_c11", weight=1, line="Ghost Wolf form for traveling. Still slower than a mount. But it's about the spiritual journey." },
+            { id="sha_solo_c12", weight=1, line="The ancestors walk with me. They have opinions about my gear." },
+            { id="sha_solo_c13", weight=1, line="Good location for an Earth Totem. Not that anyone's here. Earth doesn't care. Earth works alone." },
+            { id="sha_solo_c14", weight=1, line="Peaceful out here. Fire wants me to change that. Fire always wants me to change that." },
+            { id="sha_solo_c15", weight=1, line="Communing with the elements. Or trying to. They're on break." },
+            { id="sha_solo_c16", weight=1, line="Wind just blew my hair sideways. Not a message. Just rude." },
+            { id="sha_solo_c17", weight=1, line="Ankh ready, totems stacked, elements complaining. Standard operations." },
+            { id="sha_solo_c18", weight=1, line="Nature is beautiful. The elements take credit for all of it. Every time." },
+        },
+        UNCOMMON = {
+            { id="sha_solo_u01", weight=1, line="Earth says I should ground myself. Water says I should flow with the moment. Fire says I should fight something. Wind went to get snacks. The committee never agrees." },
+            { id="sha_solo_u02", weight=1, line="Being a solo shaman means every conversation is between me and an element. Today Fire told a joke. I didn't laugh. Fire set my sleeve on fire. It thought THAT was a joke too." },
+            { id="sha_solo_u03", weight=1, line="I've been walking for an hour and Air has blown my cape over my face eleven times. I counted. Air says it was twelve. Air is wrong. This is why we fight." },
+            { id="sha_solo_u04", weight=1, line="Dropped a Strength of Earth totem on this rock just to mark my territory. Earth approved. Wind knocked it over. This is why shaman diplomacy takes so long." },
+            { id="sha_solo_u05", weight=1, line="Other classes have inner monologues. I have inner ARGUMENTS. Four voices. None of them helpful. All of them loud." },
+            { id="sha_solo_u06", weight=1, line="Reincarnation is ready. Which means technically I can die and it's just an inconvenience. No other class has a 'die casually' button. It's our flex." },
+            { id="sha_solo_u07", weight=1, line="Met a stream. Water wanted me to stop and 'listen to its story.' I did. It was pointless. Forty minutes about erosion. Water has no sense of pacing." },
+            { id="sha_solo_u08", weight=1, line="Solo shaman on the road. I heal, I DPS, I drop totems nobody asked for. The elements assigned me four jobs and no help. Typical management." },
+            { id="sha_solo_u09", weight=1, line="The ancestors gave me wisdom today. They said 'bring a group next time.' Thanks, dead people. Very helpful." },
+            { id="sha_solo_u10", weight=1, line="Fire keeps pointing out flammable things. That bush. That tree. That other tree. My cloak. Fire needs a hobby that isn't arson." },
+        },
+        RARE = {
+            { id="sha_solo_r01", weight=1, line="When I'm alone, the elements get chatty. Earth talks about the old days. Water talks about the weather. Fire talks about Fire. Wind doesn't talk — it just moves things when you're not looking. I didn't sign up for this support group." },
+            { id="sha_solo_r02", weight=1, line="Found a hilltop. Good view. Asked the elements for guidance. Earth said 'stand firm.' Water said 'adapt.' Fire said 'BURN IT ALL.' Wind said nothing and stole my hat. Average consultation." },
+            { id="sha_solo_r03", weight=1, line="The ancestors whispered my name on the wind today. I whispered back. We had a nice chat. Mostly they complained about politics. Even in the spirit world there's drama. Death solves nothing, apparently." },
+            { id="sha_solo_r04", weight=1, line="I placed all four totems in a clearing. Earth, Water, Fire, Air. For a moment, they were in harmony. Then Fire tried to evaporate Water. Water retaliated. Earth took sides. Air just watched. I spent twenty minutes mediating. Standard totem deployment." },
+            { id="sha_solo_r05", weight=1, line="Sometimes I wonder what a normal person feels when they walk through nature. Do they hear Earth complaining about erosion? Does Fire whisper 'ignite' when they see a bush? Does Water narrate the clouds? Probably not. Must be quiet in there. Sounds boring." },
+        },
+        MYTHIC = {
+            { id="sha_solo_m01", weight=1, line="A shaman is never truly alone. I have Earth beneath my feet, offering structural opinions. Water at my side, narrating everything. Fire in my hand, lobbying for destruction. And Wind at my back, doing whatever Wind wants because Wind answers to no one. Four elements, four personalities, one shaman, zero peace. And somewhere in the middle of all that noise, I find my path. Usually by accident." },
+            { id="sha_solo_m02", weight=1, line="Out here, no group, no raid, just me and the elemental board of directors. Earth submitted a proposal for 'standing still.' Water counter-proposed 'going with the flow.' Fire vetoed both and submitted 'burn everything in a half-mile radius.' Wind abstained. As usual. I overruled all of them and kept walking. This is leadership. This is shamanism. This is exhausting." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -626,6 +673,24 @@ responses = {
         },
         MYTHIC = {
             "When shamans travel, the elements are supposed to guide us. Right now Air is giggling, Earth is asleep, Water is confused, and Fire just burned my seat. Guided indeed.",
+        },
+    },
+
+    SOLO_AMBIENT = {
+        COMMON = {
+            "You startled Earth. Earth doesn't GET startled. What did you do?",
+            "Oh, someone's here. Fire perked up. Fire always perks up when there's company.",
+            "I was mid-commune. The elements say hi. Except Fire. Fire says 'threat assessment in progress.'",
+        },
+        UNCOMMON = {
+            "You interrupted an elemental meeting. Earth is annoyed, Water is curious, Fire wants to know if you're flammable, and Wind already left. Classic Wind.",
+            "The ancestors were mid-sentence. Something about humility and patience. They'll have to wait. Ironic.",
+        },
+        RARE = {
+            "I was THIS close to getting all four elements to agree on something. First time in months. And here you are. Fire is blaming you. Earth is blaming Fire. The meeting has collapsed.",
+        },
+        MYTHIC = {
+            "I had achieved elemental harmony. HARMONY. Earth was singing. Water was dancing. Fire was calm. Wind was present AND paying attention for the first time ever. It was unprecedented. Historic. And then you showed up and they all started arguing about who should introduce themselves first and it's been downhill since. You've set back elemental diplomacy by decades.",
         },
     },
 

@@ -345,6 +345,53 @@ statements = {
         },
     },
 
+    -- SOLO_AMBIENT
+    SOLO_AMBIENT = {
+        COMMON = {
+            { id="rog_solo_c01", weight=1, line="Solo operative. Preferred status." },
+            { id="rog_solo_c02", weight=1, line="Moving through unsecured territory. Standard protocol." },
+            { id="rog_solo_c03", weight=1, line="No witnesses. No complications. No complaints." },
+            { id="rog_solo_c04", weight=1, line="Stealth active. Not because I need it. Because I can." },
+            { id="rog_solo_c05", weight=1, line="Field assessment: clear. Threat level: low. Boredom level: rising." },
+            { id="rog_solo_c06", weight=1, line="Every shadow is a potential position. Every corner is a potential exit." },
+            { id="rog_solo_c07", weight=1, line="Alone. The way operations were meant to be run." },
+            { id="rog_solo_c08", weight=1, line="Quiet out here. Perfect conditions for not existing." },
+            { id="rog_solo_c09", weight=1, line="I leave no trace. No footprints. No evidence. Just results." },
+            { id="rog_solo_c10", weight=1, line="Checked my six. Clear. Checked it again. Still clear. Old habits." },
+            { id="rog_solo_c11", weight=1, line="Nobody knows I'm here. Ideal." },
+            { id="rog_solo_c12", weight=1, line="Passed a patrol. They didn't see me. Amateur hour." },
+            { id="rog_solo_c13", weight=1, line="The terrain here offers adequate concealment. Acceptable." },
+            { id="rog_solo_c14", weight=1, line="Operating independently. Efficiency up three hundred percent." },
+            { id="rog_solo_c15", weight=1, line="I could kill everything between here and the horizon. But I'm on a schedule." },
+            { id="rog_solo_c16", weight=1, line="Vanish is not an escape. It is a lifestyle." },
+            { id="rog_solo_c17", weight=1, line="Inventory check: poisons loaded, daggers sharp, ego intact." },
+            { id="rog_solo_c18", weight=1, line="Tracking nothing in particular. Everything in general." },
+        },
+        UNCOMMON = {
+            { id="rog_solo_u01", weight=1, line="Solo operations are clean. No one pulls extra mobs. No one breaks stealth. No one asks 'what does Sap do?' Nobody asks anything. Bliss." },
+            { id="rog_solo_u02", weight=1, line="My trainer said rogues work best alone. My trainer was right about that and wrong about almost everything else. But that one stuck." },
+            { id="rog_solo_u03", weight=1, line="Mapped three escape routes since I got here. One by land, one by shadow, one by sheer audacity. All viable." },
+            { id="rog_solo_u04", weight=1, line="The difference between a rogue alone and a rogue in a group: alone, everything is a target. In a group, everything is a headache." },
+            { id="rog_solo_u05", weight=1, line="Spent the last ten minutes observing patrol patterns of local wildlife. The rabbits have no discipline. Easy marks." },
+            { id="rog_solo_u06", weight=1, line="My poisons are freshly applied, my blades are honed, and there's no one around to appreciate it. Standard rogue experience." },
+            { id="rog_solo_u07", weight=1, line="Scouting ahead. Of no one. For nothing. But the technique stays sharp or the technique dies. Those are the rules." },
+            { id="rog_solo_u08", weight=1, line="Considered pickpocketing that mob. Then considered the risk-reward ratio. Then did it anyway. Because I'm a professional." },
+            { id="rog_solo_u09", weight=1, line="In a group, I'm the silent professional. Solo, I'm the silent professional who doesn't have to pretend to care about loot rolls." },
+            { id="rog_solo_u10", weight=1, line="Walking in daylight without stealth feels like being naked. Not that I'd know what that feels like. I don't go places without stealth." },
+        },
+        RARE = {
+            { id="rog_solo_r01", weight=1, line="The wilderness strips away pretense. No group roles, no loot drama, no 'can the rogue open this lockbox.' Just me, the dark, and whatever poor creature wanders into striking range. This is the purest form of the craft." },
+            { id="rog_solo_r02", weight=1, line="Been solo for hours. Haven't spoken, haven't been detected, haven't left a trace. If I disappeared right now, no one would know for days. That's not loneliness. That's a five-star operational review." },
+            { id="rog_solo_r03", weight=1, line="Other classes need groups for validation. Rogues need solitude for precision. Every moment alone is a moment spent refining the art of being exactly where you need to be, with exactly the right blade, at exactly the right time." },
+            { id="rog_solo_r04", weight=1, line="Found a good vantage point. High ground, clear sightlines, wind at my back. Sat there for twenty minutes watching the road. Nothing happened. Best twenty minutes this week." },
+            { id="rog_solo_r05", weight=1, line="My daggers don't ask questions. My poisons don't complain. My stealth doesn't have opinions on the pull order. This is why I work alone." },
+        },
+        MYTHIC = {
+            { id="rog_solo_m01", weight=1, line="They say a rogue is most dangerous when you can't see them. They're wrong. A rogue is most dangerous when they've been alone long enough to get bored. Bored rogues start planning. And a rogue with a plan, idle hands, and no supervision is the reason cities have locks." },
+            { id="rog_solo_m02", weight=1, line="Solo in the field. No handler, no team, no extraction plan. Just shadows, steel, and a very clear understanding of every living thing within two hundred yards. This is not solitude. This is sovereignty. The wilderness doesn't know I'm here. And that's exactly how I like it." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -625,6 +672,24 @@ responses = {
         },
         MYTHIC = {
             "When we land, I'm going to Vanish immediately. Not because of danger. Because of shame.",
+        },
+    },
+
+    SOLO_AMBIENT = {
+        COMMON = {
+            "You can see me. That's a problem. Yours.",
+            "I was invisible until just now. Coincidence.",
+            "Contact. Unexpected. Noted.",
+        },
+        UNCOMMON = {
+            "My position has been compromised. Recalculating. Your presence is an operational variable I didn't account for.",
+            "I was conducting a solo surveillance operation. Your arrival has downgraded it to a social interaction. Unacceptable.",
+        },
+        RARE = {
+            "The fact that you found me means either you're very good or I'm slipping. I choose to believe you're very good. It's less terrifying.",
+        },
+        MYTHIC = {
+            "Fourteen minutes of perfect stealth. Zero detection. Zero contact. And then you stumbled in like a warrior at a buffet and now every mob in the area knows something's here. This is why I work alone.",
         },
     },
 

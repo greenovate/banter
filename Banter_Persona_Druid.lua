@@ -345,6 +345,53 @@ statements = {
         },
     },
 
+    -- SOLO_AMBIENT
+    SOLO_AMBIENT = {
+        COMMON = {
+            { id="dru_solo_c01", weight=1, line="In the right form for once. I think. ...what form am I in?" },
+            { id="dru_solo_c02", weight=1, line="Nature speaks to me out here. I'm pretending to listen." },
+            { id="dru_solo_c03", weight=1, line="Walking on two legs by choice. Questionable choice, but still." },
+            { id="dru_solo_c04", weight=1, line="The trees are whispering. Probably about me. They do that." },
+            { id="dru_solo_c05", weight=1, line="Out here alone with nature. Which is technically my coworker." },
+            { id="dru_solo_c06", weight=1, line="Should I be a cat right now? Bear? Tree? ...person? The options are paralyzing." },
+            { id="dru_solo_c07", weight=1, line="Feeling very in-tune with the earth. Also very unsure which direction is north." },
+            { id="dru_solo_c08", weight=1, line="Nature doesn't judge. Nature just... is. Unlike my guild chat." },
+            { id="dru_solo_c09", weight=1, line="Stepped on a flower. Felt guilty for twenty minutes. Druid life." },
+            { id="dru_solo_c10", weight=1, line="My HoTs are ticking on nobody. Feels wasteful somehow." },
+            { id="dru_solo_c11", weight=1, line="Solo druid in the wild. So, just... a very confused animal. Essentially." },
+            { id="dru_solo_c12", weight=1, line="The balance between light and dark... the harmony of... I just tripped on a root." },
+            { id="dru_solo_c13", weight=1, line="Cat form for speed. Bear form for safety. Caster form for... existential dread." },
+            { id="dru_solo_c14", weight=1, line="Every tree I pass is a potential friend. Or colleague. The line is blurry." },
+            { id="dru_solo_c15", weight=1, line="The wind, the leaves, the grass... this is home. I'm lost, but it's home." },
+            { id="dru_solo_c16", weight=1, line="Just spoke to a squirrel. It didn't answer. Rude." },
+            { id="dru_solo_c17", weight=1, line="Mark of the Wild on myself. Because I deserve it. Self-care is nature-care." },
+            { id="dru_solo_c18", weight=1, line="Considered going into travel form. Stayed in caster form. Indecision IS a form." },
+        },
+        UNCOMMON = {
+            { id="dru_solo_u01", weight=1, line="Other druids seem so serene in the wild. Centered. At peace. I'm out here accidentally shifting into bear because a leaf startled me. Different paths." },
+            { id="dru_solo_u02", weight=1, line="The Cenarion Circle says I should commune with nature. I'm trying. Nature keeps changing the subject. There was a breeze, then a bug, now it's raining. Focus, Nature." },
+            { id="dru_solo_u03", weight=1, line="I have four forms and right now none of them feel appropriate. Standing here as a druid in... person form? Is that what we call this? Did they teach us this?" },
+            { id="dru_solo_u04", weight=1, line="Being alone in the forest should be peaceful for a druid. Instead I'm hyper-aware that everything around me is alive and probably has opinions about my spec." },
+            { id="dru_solo_u05", weight=1, line="Started as Resto, went Feral in my head, considered Balance, circled back to Resto. I've specced in and out mentally six times on this walk." },
+            { id="dru_solo_u06", weight=1, line="A bird just landed near me. I could be that bird. I AM sometimes that bird. But right now I'm just watching the bird. It's complicated." },
+            { id="dru_solo_u07", weight=1, line="Nature is balanced. Predators and prey. Growth and decay. Me and my inability to commit to a form for more than thirty seconds. All part of the cycle." },
+            { id="dru_solo_u08", weight=1, line="I heal, I tank, I DPS, I shapeshift. Jack of all trades, master of none, confused by most." },
+            { id="dru_solo_u09", weight=1, line="My Rejuvenation is ticking on me right now. I'm not injured. It's just a comfort thing. Like a security blanket but green and leafy." },
+            { id="dru_solo_u10", weight=1, line="Other classes have one identity. Warriors hit things. Mages cast things. I... become things. Multiple things. Sometimes the wrong thing. It's a lot." },
+        },
+        RARE = {
+            { id="dru_solo_r01", weight=1, line="When I'm alone in the forest, I sometimes forget which parts of me are druid and which parts are... the forms. Did I always like fish or is that the cat? Do I genuinely enjoy dirt naps or is that the bear? Identity is fluid. Literally." },
+            { id="dru_solo_r02", weight=1, line="The Emerald Dream calls to me in quiet moments. It says 'come rest, child of nature.' I say 'I would but I'm in bear form and can't find the button.' The Dream sighs. It sighs a lot around me." },
+            { id="dru_solo_r03", weight=1, line="Other druids meditate. They enter trances. They receive visions. I sat down to meditate and shifted into cat form by accident. Chased a butterfly for ten minutes. Came to standing in a river. Visions are overrated." },
+            { id="dru_solo_r04", weight=1, line="Found a clearing. Perfect circle of mushrooms. Moonlight through the canopy. Everything quiet. For once, I felt like a real druid. Then I sneezed, shifted into bear, and scared off every animal in a two hundred yard radius. Moment over." },
+            { id="dru_solo_r05", weight=1, line="Cenarius walked these forests once. Perfect balance, perfect harmony. I trip on roots and argue with my own shapeshifts. We are in the same tradition. Allegedly." },
+        },
+        MYTHIC = {
+            { id="dru_solo_m01", weight=1, line="A druid alone in the wild should be the most natural thing in the world. Bear for protection, cat for travel, moonkin for the big threats. But what am I? A person. Walking. On legs. Manually. Because I couldn't decide which form to take and now I've been walking in caster form for half an hour and it's too late to switch without admitting I failed." },
+            { id="dru_solo_m02", weight=1, line="Sometimes I wonder if the shapes define the druid, or the druid defines the shapes. Deep question. I asked Cenarius once. He said 'you become what the world needs.' The world apparently needs a confused elf who spends forty percent of fights in the wrong form and apologizes to flowers. I serve with distinction." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -625,6 +672,24 @@ responses = {
         },
         MYTHIC = {
             "The circle of life goes: birth, growth, death, rebirth. Nowhere in there does it say 'sit on a bird.' But here we are. Nature adapts.",
+        },
+    },
+
+    SOLO_AMBIENT = {
+        COMMON = {
+            "Oh! A person. I was... in the middle of a nature thing. It's fine.",
+            "Was I talking to that tree? ...no. Maybe. It's a druid thing.",
+            "Hi! Yes. I'm in the right form. Don't worry about it.",
+        },
+        UNCOMMON = {
+            "I was having a very meaningful moment with a fern and now there's a whole social situation happening. The fern was LISTENING.",
+            "You caught me in caster form. Which is... not my best form. Or my worst. It's my 'didn't commit to anything' form.",
+        },
+        RARE = {
+            "I was JUST about to achieve inner balance. Cat instincts said run, bear instincts said stay, and person instincts said 'too late, someone's here.' The inner council is deadlocked. As usual.",
+        },
+        MYTHIC = {
+            "I had found the perfect tree. The exact right clearing. The moonlight was on my face and nature was holding its breath and I was about to have the most druid moment of my entire druid career and then you showed up and I panicked and shifted into bear and now the moment is gone and the tree is judging me.",
         },
     },
 

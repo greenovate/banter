@@ -346,6 +346,53 @@ statements = {
         },
     },
 
+    -- SOLO_AMBIENT
+    SOLO_AMBIENT = {
+        COMMON = {
+            { id="hun_solo_c01", weight=1, line="Just me and my pet. Best group I've ever been in." },
+            { id="hun_solo_c02", weight=1, line="My pet just looked at me. I looked at my pet. We're having a moment." },
+            { id="hun_solo_c03", weight=1, line="Nice area. Good for a walk. Great for taming something." },
+            { id="hun_solo_c04", weight=1, line="Ooh, what's that animal? Already have one. Want another." },
+            { id="hun_solo_c05", weight=1, line="Solo with my pet. Not really solo though, is it? That's the beauty." },
+            { id="hun_solo_c06", weight=1, line="My pet keeps looking at me like I know where we're going. I don't. But it trusts me." },
+            { id="hun_solo_c07", weight=1, line="Feign Death practice. Even when nothing's attacking. Gotta stay sharp." },
+            { id="hun_solo_c08", weight=1, line="I wonder if my pet thinks I'm its pet. Honestly? Fair." },
+            { id="hun_solo_c09", weight=1, line="The wild is where hunters belong. Also where snacks are." },
+            { id="hun_solo_c10", weight=1, line="My pet just ate something off the ground. Proud? Concerned? Both." },
+            { id="hun_solo_c11", weight=1, line="Set a trap. Just in case. You never know. Just saying." },
+            { id="hun_solo_c12", weight=1, line="Walking through the woods with my pet. This is the whole game for me." },
+            { id="hun_solo_c13", weight=1, line="I named every animal I've seen today. None of them asked me to." },
+            { id="hun_solo_c14", weight=1, line="Out here in nature. My happy place. Well, my pet's happy place. Same thing." },
+            { id="hun_solo_c15", weight=1, line="Saw a rare spawn. Heart rate: doubled. It was a tree stump." },
+            { id="hun_solo_c16", weight=1, line="Pet is happy. I'm happy. The mob we're about to kill is not." },
+            { id="hun_solo_c17", weight=1, line="Aspect of the Cheetah for traveling. Aspect of the monkey for style." },
+            { id="hun_solo_c18", weight=1, line="Nobody around. Just nature. And my pet eating nature." },
+        },
+        UNCOMMON = {
+            { id="hun_solo_u01", weight=1, line="People don't get hunters. They think it's about the bow. It's about the bond. Me and my pet against the world. The bow is just how we say hi." },
+            { id="hun_solo_u02", weight=1, line="I keep looking at every animal and thinking 'could tame that.' Deer? Could tame it. Bear? Have one. That weird bug? ...tempting." },
+            { id="hun_solo_u03", weight=1, line="My pet and I have a system. It growls at danger, I shoot danger, and we both eat after. Perfect partnership." },
+            { id="hun_solo_u04", weight=1, line="Solo questing means all the loot is mine. And by mine I mean my pet gets first pick. Obviously." },
+            { id="hun_solo_u05", weight=1, line="Tried to explain to my pet why we're out here. It stared at me, ate a butterfly, and walked away. Communication is a journey." },
+            { id="hun_solo_u06", weight=1, line="Other classes need groups. Hunters ARE a group. I'm the ranged DPS, my pet's the tank, and my traps are the strategy. Three-person operation, two of us are the same person." },
+            { id="hun_solo_u07", weight=1, line="Mend Pet is basically healthcare. Feed Pet is basically cooking. Tame Beast is basically HR. I'm not a hunter, I'm a small business owner." },
+            { id="hun_solo_u08", weight=1, line="I talk to my pet more than I talk to people. My pet is a better listener. Just saying." },
+            { id="hun_solo_u09", weight=1, line="Set three traps on the walk here. Not for anything specific. Just felt right. Hunter instincts. Or paranoia. Same thing." },
+            { id="hun_solo_u10", weight=1, line="My pet keeps side-eyeing the wildlife. Silently judging every animal we pass. It gets that from me." },
+        },
+        RARE = {
+            { id="hun_solo_r01", weight=1, line="Sometimes I sit in the wild and just watch animals. Not to tame them. Not to hunt them. Just to watch. My pet sits next to me and watches too. We don't talk about it. We don't need to." },
+            { id="hun_solo_r02", weight=1, line="My first pet was a boar outside the starting area. Small, angry, perfect. Still have it in the stable. Visit sometimes. It pretends not to care. I pretend not to notice. We both know." },
+            { id="hun_solo_r03", weight=1, line="The other classes think hunters are simple. Point, shoot, pet does the rest. They don't see the tracking, the trap placement, the split-second decisions. They don't see my pet giving me a disappointed look when I miss. That look has more tactical depth than most raid plans." },
+            { id="hun_solo_r04", weight=1, line="I've been walking for an hour and my pet hasn't left my side once. Loyal, constant, unwavering. Meanwhile I got distracted by a cool-looking rock twice. My pet is literally a better adventurer than me." },
+            { id="hun_solo_r05", weight=1, line="Long day out here. Shot things, tracked things, fed my pet, fed myself, Feigned Death twice for no reason. Just another day in the life. Best life there is." },
+        },
+        MYTHIC = {
+            { id="hun_solo_m01", weight=1, line="Somewhere out there is a beast I haven't met yet. The one. The perfect companion. Every hunter knows the feeling — you see an animal and something clicks. My pet looks at me every time I slow down near a new creature. It knows. It doesn't judge. Much. Okay it judges a little. But it stays. And that's what matters." },
+            { id="hun_solo_m02", weight=1, line="A hunter alone in the wild isn't alone at all. I've got my pet at my side, tracks under my feet, wind telling me which way the prey went, and a quiver full of arrows that all have someone's name on them. The wilderness isn't empty. It's full of things that don't know I'm here yet. And honestly? That's the most beautiful sentence I've ever thought." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -626,6 +673,24 @@ responses = {
         },
         MYTHIC = {
             "When I land, my pet is going to pretend it didn't miss me. I'll pretend I didn't miss it. We'll both be lying.",
+        },
+    },
+
+    SOLO_AMBIENT = {
+        COMMON = {
+            "Oh hey! A person! My pet saw you first. It always does.",
+            "Didn't see you there. Well, my PET did. I was looking at a butterfly.",
+            "Hi! We were just — well, I was thinking and my pet was eating something.",
+        },
+        UNCOMMON = {
+            "My pet and I were having a silent conversation and you just walked into the middle of it. Don't worry. It happens. We'll catch up later.",
+            "I was telling my pet about my day. It doesn't understand words but it understands vibes. You've changed the vibe. Just saying.",
+        },
+        RARE = {
+            "My pet growled before you showed up. Thought it was a warning. Turns out it was just commentary. My pet has opinions about everyone.",
+        },
+        MYTHIC = {
+            "I was having a perfect moment. Me, my pet, the open sky, a really interesting bug on that rock over there. And now there's a whole person here and my pet is doing the social thing and I have to do the social thing and honestly I was happier with the bug.",
         },
     },
 

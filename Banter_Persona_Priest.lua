@@ -352,6 +352,53 @@ statements = {
         },
     },
 
+    -- SOLO_AMBIENT
+    SOLO_AMBIENT = {
+        COMMON = {
+            { id="pri_solo_c01", weight=1, line="Nobody is dying right now. This is INCREDIBLE." },
+            { id="pri_solo_c02", weight=1, line="Alone. No health bars dropping. I might cry." },
+            { id="pri_solo_c03", weight=1, line="My mana is full and nobody needs it. Is this heaven?" },
+            { id="pri_solo_c04", weight=1, line="Solo time. The Light's gift to healers everywhere." },
+            { id="pri_solo_c05", weight=1, line="No one has whispered 'heal?' in ten whole minutes. Record." },
+            { id="pri_solo_c06", weight=1, line="Just me out here. Healing NO ONE. Maximum efficiency." },
+            { id="pri_solo_c07", weight=1, line="I could go Shadow out here. No one would know. NO ONE." },
+            { id="pri_solo_c08", weight=1, line="The peace out here is almost suspicious. Something's about to go wrong." },
+            { id="pri_solo_c09", weight=1, line="Wind in my robes. Mana at full. No tanks pulling extra packs. Perfection." },
+            { id="pri_solo_c10", weight=1, line="Out here, the only health bar I worry about is MINE. Revolutionary concept." },
+            { id="pri_solo_c11", weight=1, line="Thinking about speccing Shadow permanently. Again." },
+            { id="pri_solo_c12", weight=1, line="Nature is healing. Without me. That's... nice? I think?" },
+            { id="pri_solo_c13", weight=1, line="Solo questing. Or as I call it: vacation." },
+            { id="pri_solo_c14", weight=1, line="Every second alone is a second I'm not being blamed for someone else's death." },
+            { id="pri_solo_c15", weight=1, line="Buffed myself with Fortitude. Just for me. Selfish and I love it." },
+            { id="pri_solo_c16", weight=1, line="No raid frames. No debuffs. No problems." },
+            { id="pri_solo_c17", weight=1, line="Inner Fire active. Inner peace? Also active. For once." },
+            { id="pri_solo_c18", weight=1, line="If anyone asks, I'm on a spiritual retreat. Not avoiding LFG." },
+        },
+        UNCOMMON = {
+            { id="pri_solo_u01", weight=1, line="My therapist said I need boundaries. My boundary is forty miles between me and the nearest tank. Healing." },
+            { id="pri_solo_u02", weight=1, line="I've been alone for an hour and my Blood Pressure has HALVED. Coincidence? The Light says no." },
+            { id="pri_solo_u03", weight=1, line="Solo priest in the wild. People see me and assume I'm lost. I'm not lost. I'm ESCAPING." },
+            { id="pri_solo_u04", weight=1, line="Used Power Word: Shield on myself. Not because I needed it. Because I DESERVE it. For once." },
+            { id="pri_solo_u05", weight=1, line="The Light illuminates my path. The path leads away from groups. The Light UNDERSTANDS." },
+            { id="pri_solo_u06", weight=1, line="Out here I can drink without someone pulling. I can eat without someone dying. I can BREATHE without a DPS check." },
+            { id="pri_solo_u07", weight=1, line="I keep looking at the horizon expecting to see someone's health bar drop. Phantom healer syndrome. It's real." },
+            { id="pri_solo_u08", weight=1, line="Spent five minutes deciding between Shadow and Holy for this walk. Went Shadow. Felt rebellious. Went back to Holy. Felt guilty. The priest experience." },
+            { id="pri_solo_u09", weight=1, line="My wand does more damage out here than anyone gives me credit for. If anyone was here. They're not. And that's the point." },
+            { id="pri_solo_u10", weight=1, line="Considered casting Prayer of Healing on the wildlife. Old habits. Old, exhausting habits." },
+        },
+        RARE = {
+            { id="pri_solo_r01", weight=1, line="When I'm alone, I remember why I became a priest. To help people. Then I remember the PEOPLE and I understand why I'm alone right now." },
+            { id="pri_solo_r02", weight=1, line="The Light speaks to those who listen. Right now it's saying 'you needed this break.' The Light has seen my raid logs. The Light has seen what those DPS do to themselves." },
+            { id="pri_solo_r03", weight=1, line="Somewhere out there, a group is wiping because they don't have a healer. That healer is me. I'm over HERE. They'll be fine. Probably. Maybe. I'm not going back." },
+            { id="pri_solo_r04", weight=1, line="Found a quiet spot by a stream. Sat down. Started to relax. Immediately felt guilty for not healing something. Stood up. Sat down again. This is the cycle." },
+            { id="pri_solo_r05", weight=1, line="My Shadow spec whispers to me when I'm alone. It says 'embrace me.' My Holy spec says 'don't you dare.' I say 'it's my DAY OFF.' Nobody listens. Not even my own specs." },
+        },
+        MYTHIC = {
+            { id="pri_solo_m01", weight=1, line="A priest alone in the world is a rare thing. We're always needed, always summoned, always guilted into one more dungeon. But right now — mana full, robes clean, no one dying — I am free. For exactly as long as it takes someone to type 'LF healer.' Which could be any second. I'm savoring this." },
+            { id="pri_solo_m02", weight=1, line="I have healed thousands. I have resurrected hundreds. I have shielded more bad decisions than I can count. And today, I am doing NONE of those things. Today, the only person I'm keeping alive is me. And honestly? One health bar is magnificent. This is what warriors must feel like. I finally understand." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -634,6 +681,24 @@ responses = {
         },
         MYTHIC = {
             "Seven minutes of nobody dying. A priest's paradise. I'm going to remember this flight forever.",
+        },
+    },
+
+    SOLO_AMBIENT = {
+        COMMON = {
+            "I was NOT healing. For ONCE. And now there's people.",
+            "I'm off duty. The Light can confirm.",
+            "Whatever you need, the answer is 'no, I'm full on groups.'",
+        },
+        UNCOMMON = {
+            "I was having a moment. A RARE moment of not being responsible for anyone's survival. It's gone now. Thanks.",
+            "Do you NEED something or did you just come to ruin the only quiet I've had all week?",
+        },
+        RARE = {
+            "My brain just switched from 'at peace' to 'checking your health bar.' I hate that this is automatic. I HATE that I can't turn it off.",
+        },
+        MYTHIC = {
+            "I had finally stopped monitoring health bars. FINALLY. And then you appeared and my healer instincts kicked in and I've already mentally triaged you. You're fine. Barely. But you've ruined my vacation.",
         },
     },
 
