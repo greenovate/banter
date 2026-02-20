@@ -300,6 +300,52 @@ statements = {
         },
     },
 
+    FLIGHT_PATH = {
+        COMMON = {
+            { id="pal_fp_c01", weight=1, line="The Light guides this bird. I asked. It said yes. Probably." },
+            { id="pal_fp_c02", weight=1, line="A paladin on a bird. The Light did not design us for aviation." },
+            { id="pal_fp_c03", weight=1, line="I'm in full plate. On a bird. This bird is doing the Light's work and also too much heavy lifting." },
+            { id="pal_fp_c04", weight=1, line="If this bird drops me, I'm using Divine Shield. Then suing the flight master." },
+            { id="pal_fp_c05", weight=1, line="Plate armor at altitude. The wind goes right through the joints. The Light keeps me warm. Barely." },
+            { id="pal_fp_c06", weight=1, line="I could be doing righteous deeds right now. Instead I am sitting. On a bird. The Light is patient." },
+            { id="pal_fp_c07", weight=1, line="Blessed this bird before takeoff. Standard procedure. Can't be too careful." },
+            { id="pal_fp_c08", weight=1, line="The flight master charged me full price. Even after I explained I'm on official Light business. No discount." },
+            { id="pal_fp_c09", weight=1, line="Lay on Hands is on cooldown. If this bird crashes, we're relying on gravity and prayer." },
+            { id="pal_fp_c10", weight=1, line="Every minute on this bird is a minute I'm not judging anyone. Figuratively AND literally." },
+            { id="pal_fp_c11", weight=1, line="The view is gorgeous. I'm judging it anyway. Could use more cathedrals." },
+            { id="pal_fp_c12", weight=1, line="I tried bubbling on the bird. Just to feel safe. The bird didn't notice. I felt safer anyway." },
+            { id="pal_fp_c13", weight=1, line="This armor weighs more than the bird. The bird knows it. I know it. We don't discuss it." },
+            { id="pal_fp_c14", weight=1, line="No undead to smite up here. No heretics to judge. Just clouds and silence." },
+            { id="pal_fp_c15", weight=1, line="The Light shines brightest in service to others. But right now it's shining on me. On a bird. Doing nothing." },
+            { id="pal_fp_c16", weight=1, line="I cast Blessing of Wisdom on myself for the flight. Seemed appropriate. Learned nothing." },
+            { id="pal_fp_c17", weight=1, line="Seal of the Crusader: righteous. Aura of Devotion: active. Sitting on a bird: undignified." },
+            { id="pal_fp_c18", weight=1, line="If the bird falls, I bubble. If the bubble pops, I Lay on Hands. If that's on cooldown... the Light provides. Theoretically." },
+        },
+        UNCOMMON = {
+            { id="pal_fp_u01", weight=1, line="Applied Blessing of Protection to the bird. Couldn't figure out what it was protecting it FROM. Did it anyway. Protocol is protocol." },
+            { id="pal_fp_u02", weight=1, line="Another paladin flew past us going the other direction. Full plate. Same bird model. We nodded. Paladin solidarity." },
+            { id="pal_fp_u03", weight=1, line="I wrote 'The Light Prevails' in the frost on the saddle. Nobody will ever see it. But the Light knows." },
+            { id="pal_fp_u04", weight=1, line="Tried to use my hearthstone mid-flight. It worked. Teleported to the inn. Forgot I was in the air. Fell. Bubbled. Walked back to the flight master. Paid again." },
+            { id="pal_fp_u05", weight=1, line="The bird tried to drop below the clouds. I Judged it. Not with Justice. With my eyes. Disappointed eyes. It went higher." },
+            { id="pal_fp_u06", weight=1, line="Calculated the fall damage from this height. Answer: lethal. Unless you're a paladin. Then: inconvenient." },
+            { id="pal_fp_u07", weight=1, line="My Consecration range is 8 yards. This bird is 800 yards up. I'm outside my operational comfort zone by exactly 792 yards." },
+            { id="pal_fp_u08", weight=1, line="Saw a group wiping below us. Wanted to help. Couldn't. The bird has no 'descend into righteous fury' button." },
+            { id="pal_fp_u09", weight=1, line="Flight paths test a paladin's patience. And I say that as someone who uses Seal of Command with a two-hander. I KNOW patience." },
+            { id="pal_fp_u10", weight=1, line="Someone once asked why paladins can't fly. We're too heavily armored. Too righteous. Too... dense. In multiple senses." },
+        },
+        RARE = {
+            { id="pal_fp_r01", weight=1, line="I've used Lay on Hands, Divine Shield, and Blessing of Protection more on TRANSPORTATION than on actual combat this week. Paladin priorities." },
+            { id="pal_fp_r02", weight=1, line="The Light illuminates the righteous path. Today, the righteous path is a flight route from Ironforge to Menethil. The Light doesn't judge. I do." },
+            { id="pal_fp_r03", weight=1, line="In plate armor, at altitude, on a bird the size of my shield — this is either faith or foolishness. For a paladin, those are the same thing." },
+            { id="pal_fp_r04", weight=1, line="Other classes travel in style. Rogues stealth. Mages portal. Druids shapeshift. Paladins sit in full plate on a bird and PRAY. That's our brand." },
+            { id="pal_fp_r05", weight=1, line="Every flight path is a pilgrimage. That's what I tell myself. Makes the boredom feel HOLY instead of just boring." },
+        },
+        MYTHIC = {
+            { id="pal_fp_m01", weight=1, line="I am a champion of the Light. I have faced demons. I have healed the dying. I have judged the wicked. And I am on a bird, in full plate, white-knuckling the saddle, because the Light said 'take the scenic route.'" },
+            { id="pal_fp_m02", weight=1, line="The great paladins of history — Uther, Turalyon, Tirion — not one of them was ever depicted on a flight path bird. Because they had DIGNITY. I have a two-silver ticket and a prayer." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -562,6 +608,24 @@ responses = {
         },
         MYTHIC = {
             "Paladin CDs are either legendary saves or hour-long regrets. No middle ground.",
+        },
+    },
+
+    FLIGHT_PATH = {
+        COMMON = {
+            "Also on a bird? The Light watches over all travelers. Even the slow ones.",
+            "It's a pilgrimage. That's what I'm calling it. Don't correct me.",
+            "Full plate on a bird. You get used to it. The bird doesn't, but YOU do.",
+        },
+        UNCOMMON = {
+            "I blessed this bird before takeoff. Not because it asked. Because I'm thorough.",
+            "If we crash, I'm bubbling. You're on your own. The Light has priorities.",
+        },
+        RARE = {
+            "Every great paladin has a humbling moment. Mine is this bird. Every single time.",
+        },
+        MYTHIC = {
+            "Uther never rode a flight path bird. Then again, Uther didn't have to get to the Hinterlands by 3 o'clock.",
         },
     },
 

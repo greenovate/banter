@@ -300,6 +300,52 @@ statements = {
         },
     },
 
+    FLIGHT_PATH = {
+        COMMON = {
+            { id="sha_fp_c01", weight=1, line="The wind is carrying this bird. The wind is also screaming in my ear. Mixed signals." },
+            { id="sha_fp_c02", weight=1, line="I asked the Air elemental to make us go faster. Air said 'no.' Classic Air." },
+            { id="sha_fp_c03", weight=1, line="Earth is down there. Water is... somewhere. Fire is irrelevant. Air is being smug." },
+            { id="sha_fp_c04", weight=1, line="Can't place totems on a bird. Tried. Totem fell off. I felt it scream on the way down." },
+            { id="sha_fp_c05", weight=1, line="My Ghost Wolf form could outrun this bird. But Ghost Wolf can't fly. So. Bird." },
+            { id="sha_fp_c06", weight=1, line="The elements are quiet up here. Except Air. Air never shuts up at altitude." },
+            { id="sha_fp_c07", weight=1, line="Wind is everywhere up here. It's like Air is showing off. 'Look at MY domain.' We get it, Air." },
+            { id="sha_fp_c08", weight=1, line="No earth below my feet. No water in sight. Fire is confused. Air is having the time of its life." },
+            { id="sha_fp_c09", weight=1, line="Shamans are supposed to be grounded. Connected to the earth. I am 800 yards in the air. On a bird." },
+            { id="sha_fp_c10", weight=1, line="The bird doesn't respond to Lightning Bolt. Or Lightning Shield. Or any lightning. I've checked." },
+            { id="sha_fp_c11", weight=1, line="Earth Spirit is silent. Water Spirit is distant. Fire Spirit is bored. Air Spirit is insufferable." },
+            { id="sha_fp_c12", weight=1, line="My totems are back on the ground. I can feel their disappointment from up here. Little judgmental sticks." },
+            { id="sha_fp_c13", weight=1, line="Flight paths: where shamans go to remember that Air thinks it's the most important element." },
+            { id="sha_fp_c14", weight=1, line="The bird is struggling. Might be the wind. Might be the mail armor. Might be the totems in my bags." },
+            { id="sha_fp_c15", weight=1, line="I told the elements I'd be gone for a few minutes. Earth said 'take your time.' Earth doesn't miss me." },
+            { id="sha_fp_c16", weight=1, line="Just Purged the bird on instinct. Force of habit. The bird is fine. Just... slightly less buffed." },
+            { id="sha_fp_c17", weight=1, line="If this bird falls, I have Reincarnation. That's my safety net. A net made of dying and coming back. Fine." },
+            { id="sha_fp_c18", weight=1, line="Mages portal. Druids fly. Warlocks summon. Shamans... negotiate with the wind and sit on a bird." },
+        },
+        UNCOMMON = {
+            { id="sha_fp_u01", weight=1, line="Asked Air for a tailwind. Air gave me a headwind. Then laughed. The WIND laughed. I'm arguing with WEATHER." },
+            { id="sha_fp_u02", weight=1, line="Dropped a Searing Totem on the saddle. The bird panicked. The totem panicked. I panicked. Fire panicked. Everyone panicked." },
+            { id="sha_fp_u03", weight=1, line="My Grounding Totem would love it up here. All this open sky. All this electricity. It's basically totem paradise." },
+            { id="sha_fp_u04", weight=1, line="The bird flew through a thundercloud. I felt at home for exactly four seconds. Then the lightning missed me. Even nature has bad aim." },
+            { id="sha_fp_u05", weight=1, line="I tried Chain Healing the bird out of boredom. The heal bounced to nothing. Loneliest Chain Heal of my career." },
+            { id="sha_fp_u06", weight=1, line="Water said to tell ye it misses ye. Earth said nothing. Fire said 'hurry up.' Air said 'wheeeee.' They're all terrible coworkers." },
+            { id="sha_fp_u07", weight=1, line="Saw a thunderstorm in the distance. My first instinct was to claim it as mine. Shaman territorial instincts are REAL." },
+            { id="sha_fp_u08", weight=1, line="The bird just flew through rain. I cast Water Walking on it out of reflex. It didn't help. It's a bird. It walks on nothing." },
+            { id="sha_fp_u09", weight=1, line="Asked Earth how things are going down there. Earth said 'rocky.' Earth thinks that's funny. I do not." },
+            { id="sha_fp_u10", weight=1, line="I have an Ankh in my bag. If this bird crashes, I'll die, self-rez, and walk the rest of the way. Plan B has always been death." },
+        },
+        RARE = {
+            { id="sha_fp_r01", weight=1, line="Twenty minutes in Air's domain. Air has told me forty jokes. None of them were funny. Wind humor is just... bad." },
+            { id="sha_fp_r02", weight=1, line="From up here I can see rivers, mountains, plains, and forests. Every element represented. None of them care that I'm on a bird. Independent contractors, all of them." },
+            { id="sha_fp_r03", weight=1, line="The ancestors whisper to me on the wind. They're saying 'why didn't you walk.' The ancestors are cheap." },
+            { id="sha_fp_r04", weight=1, line="I commune with four elements. Direct line. Spiritual connection. And not ONE of them can get me across a continent without a bird. Useless." },
+            { id="sha_fp_r05", weight=1, line="Placed Earthbind Totem on the saddle to have something familiar. It slowed the bird. Now we're going BACKWARDS. I've made things worse." },
+        },
+        MYTHIC = {
+            { id="sha_fp_m01", weight=1, line="I speak to the earth and it trembles. I call to the water and it rises. I command fire and it obeys. I ask Air for a faster bird and Air says 'no.' The power dynamic up here is HUMBLING." },
+            { id="sha_fp_m02", weight=1, line="My totems are on the ground. My elements are unresponsive. My Ankh is my only safety net. I am a shaman — master of the elements, speaker of spirits — sitting on a bird. And the bird is in charge." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -562,6 +608,24 @@ responses = {
         },
         MYTHIC = {
             "My ultimate cooldown: Reincarnation. Step 1: die. Step 2: refuse.",
+        },
+    },
+
+    FLIGHT_PATH = {
+        COMMON = {
+            "Also on a bird? Air says hi. Air says hi to everyone. Air has no boundaries.",
+            "We're in Air's territory now. Stay humble. Air has opinions.",
+            "The wind is carrying us both. Allegedly. I have trust issues with Air.",
+        },
+        UNCOMMON = {
+            "If the bird crashes, I have Reincarnation. You... might want to buckle something.",
+            "Asked the wind to pass along a message. It delivered it to the wrong continent. Typical.",
+        },
+        RARE = {
+            "Four elements and not one of them can fly me somewhere faster than this bird. I've filed a formal complaint with the spirit world.",
+        },
+        MYTHIC = {
+            "When shamans travel, the elements are supposed to guide us. Right now Air is giggling, Earth is asleep, Water is confused, and Fire just burned my seat. Guided indeed.",
         },
     },
 

@@ -35,6 +35,7 @@ scenes.CAPS = {
     PLAYER_DISCONNECT  = { partyMin = 1, partyMax = 2, raidMin = 1, raidMax = 2 },
     CONSUMABLE_USED    = { partyMin = 0, partyMax = 1, raidMin = 0, raidMax = 1 },
     MAJOR_COOLDOWN     = { partyMin = 0, partyMax = 1, raidMin = 0, raidMax = 1 },
+    FLIGHT_PATH        = { partyMin = 0, partyMax = 1, raidMin = 0, raidMax = 0 },
 }
 
 ---------------------------------------------------------------------------
@@ -56,26 +57,31 @@ scenes.TRIGGER_CHANCE = {
     PLAYER_DISCONNECT  = 0.75,
     CONSUMABLE_USED    = 0.25,
     MAJOR_COOLDOWN     = 0.35,
+    FLIGHT_PATH        = 0.75,
 }
 
 ---------------------------------------------------------------------------
 -- Repeat protection
 ---------------------------------------------------------------------------
-local recentStatements  = {}     -- circular buffer of statement IDs
+local recentStatements  = {}     -- per-trigger circular buffers: { [trigger] = { id, ... } }
 local recentResponses   = {}     -- circular buffer of response lines
-local STATEMENT_CAP     = 20
+local STATEMENT_CAP     = 12     -- per-trigger cap (prevents cross-trigger eviction)
 local RESPONSE_CAP      = 30
 
-local function IsRecentStatement(id)
-    for _, v in ipairs(recentStatements) do
+local function IsRecentStatement(trigger, id)
+    local buf = recentStatements[trigger]
+    if not buf then return false end
+    for _, v in ipairs(buf) do
         if v == id then return true end
     end
     return false
 end
 
-local function TrackStatement(id)
-    table.insert(recentStatements, id)
-    if #recentStatements > STATEMENT_CAP then table.remove(recentStatements, 1) end
+local function TrackStatement(trigger, id)
+    if not recentStatements[trigger] then recentStatements[trigger] = {} end
+    local buf = recentStatements[trigger]
+    table.insert(buf, id)
+    if #buf > STATEMENT_CAP then table.remove(buf, 1) end
 end
 
 local function IsRecentResponse(line)
@@ -111,12 +117,12 @@ end
 -- Weighted random pick from a list of { id, weight, line }
 -- Skips recently-used IDs when skipRecent is true.
 ---------------------------------------------------------------------------
-function scenes.WeightedPick(pool, skipRecent)
+function scenes.WeightedPick(pool, skipRecent, trigger)
     if not pool or #pool == 0 then return nil end
 
     local filtered = {}
     for _, item in ipairs(pool) do
-        if not skipRecent or not IsRecentStatement(item.id) then
+        if not skipRecent or not IsRecentStatement(trigger, item.id) then
             table.insert(filtered, item)
         end
     end
@@ -155,9 +161,9 @@ function scenes.PickStatement(persona, trigger)
     for i = tierIdx, 1, -1 do
         local t = scenes.RARITY_ORDER[i]
         if pool[t] and #pool[t] > 0 then
-            local pick = scenes.WeightedPick(pool[t], true)
+            local pick = scenes.WeightedPick(pool[t], true, trigger)
             if pick then
-                TrackStatement(pick.id)
+                TrackStatement(trigger, pick.id)
                 return { id = pick.id, line = pick.line, rarity = t }
             end
         end

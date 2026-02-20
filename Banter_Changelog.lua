@@ -10,45 +10,45 @@ local _, ns = ...
 local CHANGELOG_VERSION = ns.version   -- ties to ns.version in Namespace
 
 local CHANGELOG_LINES = {
-    "|cffffcc00Banter v" .. ns.version .. " — The Context Update|r",
+    "|cffffcc00Banter v" .. ns.version .. " — The Solo & Settings Update|r",
     "|cffffffffThe Comedy RP Engine for WoW Classic|r",
     "",
-    "|cff00ff00Your banter now knows WHERE you are!|r",
+    "|cff00ff00Banter now works when you're ALONE.|r",
+    "|cff00ff00New settings. New triggers. New banter. Solo or grouped.|r",
     "",
-    "|cffffcc00—— CONTEXT AWARENESS ——|r",
-    "• Zone detection: dungeon, raid, BG, city, or open world",
-    "• Environment sensing: forest, desert, snow, coastal, haunted,",
-    "  swamp, mountain, underground — every zone in Azeroth",
-    "• All 35 Classic & TBC dungeons mapped",
-    "• All 17 raids mapped (Classic + TBC)",
-    "• All 4 battlegrounds tagged",
-    "• Dungeon jokes stay in dungeons, city talk stays in cities",
+    "|cffffcc00—— SOLO MODE ——|r",
+    "• Full banter experience while playing solo",
+    "• ALL triggers fire solo — kills, loot, combat, low HP, everything",
+    "• Character talks to themselves via /emote — no channel needed",
+    "• Dedicated frequency slider in the Solo settings tab",
+    "• Every persona has unique solo voice lines",
     "",
-    "|cffffcc00—— 64 NEW ZONE TOPICS ——|r",
-    "• Raid banter: 25-man chaos, loot drama, wipe culture",
-    "• Battleground banter: PvP strategy, graveyard bonding",
-    "• 14 class+zone combos: warrior/snow, priest/haunted,",
-    "  rogue/city, warlock/haunted, paladin/desert, and more",
-    "• Desert: sand complaints, heat, hostile cacti",
-    "• Forest: talking trees, druid feelings, angry wildlife",
-    "• Snow: frozen toes, frost mage privilege, ice regret",
-    "• Coastal: murloc neighbors, swimming in armor, beach buffets",
-    "• Haunted: sentient shadows, plague colors, squishy ground",
-    "• Swamp: fist-sized bugs, hostile moss, mysterious smells",
-    "• Mountain: endless uphill, cliff denial, calf complaints",
-    "• Plus dungeon, city, world, and underground topics",
+    "|cffffcc00—— FLIGHT PATH BANTER ——|r",
+    "• Your character now comments while riding flight paths",
+    "• Detects taxi automatically — banter triggers every ~35 seconds",
+    "• 35 unique statements + 7 responses per persona",
+    "• Works solo AND in groups — 10 personas, 350+ flight lines",
+    "• Ambient banter pauses while on a taxi (no overlap)",
     "",
-    "|cffffcc00—— BY THE NUMBERS ——|r",
-    "• 128 total engagement topics (was 73)",
-    "• 16 existing topics context-tagged",
-    "• Every Classic & TBC zone, dungeon, and raid covered",
-    "• 20,000+ unique conversation combinations",
+    "|cffffcc00—— REDESIGNED SETTINGS ——|r",
+    "• Brand-new tabbed interface — 6 tabs for every mode",
+    "• General, Group, Raid, Solo, PVP BG, and Arena tabs",
+    "• Independent frequency sliders per mode",
+    "• Per-mode enable/disable for fine-grained control",
+    "• Fixed slider backgrounds for ElvUI users",
+    "• PVP tabs coming soon in a future update",
+    "",
+    "|cffffcc00—— QUALITY OF LIFE ——|r",
+    "• Ambient timer restored to standard 60-second interval",
+    "• Solo ambient boost balanced at 30% chance",
+    "• Settings automatically migrate from older versions",
+    "• Cleaner internal structure for future content updates",
     "",
     "|cffffcc00Bugs & Feedback|r",
     "Report issues or share ideas on CurseForge:",
     "|cff00ccffcurseforge.com/wow/addons/banter|r",
     "",
-    "|cff888888curseforge.com/wow/addons/banter|r",
+    "|cff888888Thank you for using Banter!|r",
 }
 
 ---------------------------------------------------------------------------
@@ -132,16 +132,14 @@ local function CreatePopup()
     local closeX = CreateFrame("Button", nil, f, "UIPanelCloseButton")
     closeX:SetPoint("TOPRIGHT", -4, -4)
 
-    -- "Got it" button (bottom-right)
+    -- "Got it" button (bottom-right) — always dismisses this version
     local btn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     btn:SetSize(100, 24)
     btn:SetPoint("BOTTOMRIGHT", -18, 18)
     btn:SetText("Got it!")
     btn:SetScript("OnClick", function()
-        -- Save dismissal if checkbox is checked
-        if cb:GetChecked() then
-            ns.db.lastChangelogVersion = CHANGELOG_VERSION
-        end
+        ns.db.lastChangelogVersion = CHANGELOG_VERSION
+        cb:SetChecked(true)
         f:Hide()
     end)
 

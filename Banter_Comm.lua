@@ -11,6 +11,7 @@ local SEP    = "|"
 ---------------------------------------------------------------------------
 comm.peers       = {}      -- { ["Name"] = { persona, lastSeen } }
 comm.activeScene = nil     -- current scene tracking table
+comm.groupZones  = {}      -- { ["Name"] = "Zone Name" } — zone of each Banter peer
 
 -- Fairness: track recent response counts per player
 local responseHistory    = {}    -- { ["Name"] = count }
@@ -26,12 +27,17 @@ local lastHeartbeat      = 0
 -- Internal helpers
 ---------------------------------------------------------------------------
 local function GetChannel()
+    -- In BGs/arenas, the group is an instance group — must use INSTANCE_CHAT
+    local _, iType = IsInInstance()
+    if iType == "pvp" or iType == "arena" then return "INSTANCE_CHAT" end
     if IsInRaid()  then return "RAID"  end
     if IsInGroup() then return "PARTY" end
     return nil
 end
 
 local function Send(msgType, data, channel)
+    -- Suppress all addon comms in PvP instances (banter disabled there)
+    if ns.core and ns.core.IsInPvPInstance and ns.core.IsInPvPInstance() then return end
     channel = channel or GetChannel()
     if not channel then return end
     local payload = data and (msgType .. SEP .. data) or msgType
@@ -66,6 +72,7 @@ function comm.Init()
     C_ChatInfo.RegisterAddonMessagePrefix(PREFIX)
     comm.peers       = {}
     comm.activeScene = nil
+    comm.groupZones  = {}
 end
 
 function comm.GetPeerCount()
@@ -105,6 +112,12 @@ end
 
 function comm.SendEngageFollowUp(threadKey)
     Send("ENGAGE_FOLLOWUP", threadKey)
+end
+
+--- Broadcast current zone to group (called by Banter_Context on zone change)
+function comm.SendZone(zoneName)
+    if not IsInGroup() then return end
+    Send("ZONE", zoneName)
 end
 
 ---------------------------------------------------------------------------
@@ -149,6 +162,10 @@ function comm.OnMessage(prefix, text, distribution, sender)
 
     elseif msgType == "ENGAGE_FOLLOWUP" then
         comm.HandleEngageFollowUp(senderName, parts[2])
+
+    elseif msgType == "ZONE" then
+        comm.groupZones[senderName] = parts[2] or ""
+        ns.Debug("Peer zone: " .. senderName .. " -> " .. (parts[2] or "?"))
     end
 end
 
@@ -398,6 +415,8 @@ end
 ---------------------------------------------------------------------------
 local function DoHeartbeat()
     if not ns.initialized or not IsInGroup() then return end
+    -- No heartbeat in PvP instances
+    if ns.core and ns.core.IsInPvPInstance and ns.core.IsInPvPInstance() then return end
     local now = GetTime()
     if (now - lastHeartbeat) >= HEARTBEAT_INTERVAL then
         lastHeartbeat = now
@@ -417,10 +436,13 @@ commFrame:SetScript("OnEvent", function(_, event, ...)
         comm.OnMessage(...)
     elseif event == "GROUP_ROSTER_UPDATE" then
         if IsInGroup() then
-            C_Timer.After(2, function()
-                comm.SendHello()
-                comm.CleanupPeers()
-            end)
+            -- Don't send HELLO in PvP instances (banter disabled there)
+            if not (ns.core and ns.core.IsInPvPInstance and ns.core.IsInPvPInstance()) then
+                C_Timer.After(2, function()
+                    comm.SendHello()
+                    comm.CleanupPeers()
+                end)
+            end
         else
             comm.peers       = {}
             comm.activeScene = nil

@@ -7,4 +7,6 @@ ignore:
   - banter-logo.png
   - "*.zip"
   - .gitignore
+  - .github
+  - scripts
   - README.md

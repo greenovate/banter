@@ -300,6 +300,52 @@ statements = {
         },
     },
 
+    FLIGHT_PATH = {
+        COMMON = {
+            { id="hun_fp_c01", weight=1, line="My pet is running below me. On the ground. Keeping pace. Good boy." },
+            { id="hun_fp_c02", weight=1, line="This bird is basically a really big pet. That I can't name. Or feed. Or dismiss. Hmm." },
+            { id="hun_fp_c03", weight=1, line="I should tame one of these. Imagine showing up to a dungeon on a flight bird. Power move." },
+            { id="hun_fp_c04", weight=1, line="My pet is looking up at me from below. I can feel the judgment." },
+            { id="hun_fp_c05", weight=1, line="I wonder if this bird eats the same food as my pet. Probably not. This bird has standards." },
+            { id="hun_fp_c06", weight=1, line="I'm at zero range right now. ZERO. I don't know what to do with my hands." },
+            { id="hun_fp_c07", weight=1, line="The bird just dodged something. Good reflexes. I'd rate it a 6 out of 10 pet. Maybe 7." },
+            { id="hun_fp_c08", weight=1, line="I tried to put Aspect of the Cheetah on to go faster. Remembered I'm on a bird. Not a cheetah." },
+            { id="hun_fp_c09", weight=1, line="Saw a rare spawn from up here. Couldn't tame it. This is the worst day of my life." },
+            { id="hun_fp_c10", weight=1, line="My pet is probably eating something it shouldn't right now. I can sense it." },
+            { id="hun_fp_c11", weight=1, line="I have max range on my bow up here. Could hit anything. Not allowed to. Torture." },
+            { id="hun_fp_c12", weight=1, line="The bird made a noise. My pet made a noise back. They're talking. About me. Definitely about me." },
+            { id="hun_fp_c13", weight=1, line="Just realized I left my pet on aggressive. It's fine. Probably. Maybe. ...it's not fine." },
+            { id="hun_fp_c14", weight=1, line="I've been on enough flight paths to know this bird's name. It doesn't have one. Crime." },
+            { id="hun_fp_c15", weight=1, line="My Feign Death instinct is kicking in. But if I play dead on a bird I just... fall. Right?" },
+            { id="hun_fp_c16", weight=1, line="The view from up here is amazing. I can see animals EVERYWHERE. All untameable from this distance." },
+            { id="hun_fp_c17", weight=1, line="I packed extra pet food for the trip. Ate it myself. Don't tell my pet." },
+            { id="hun_fp_c18", weight=1, line="Nature looks different from above. Smaller. But with more things I want to tame." },
+        },
+        UNCOMMON = {
+            { id="hun_fp_u01", weight=1, line="I spend 90% of my time at max range. This bird has the OPPOSITE energy. We are uncomfortably close. I can feel its heartbeat." },
+            { id="hun_fp_u02", weight=1, line="Saw a bear from the air. My taming finger twitched. The bird swerved. I think it knows what I am." },
+            { id="hun_fp_u03", weight=1, line="My pet tried to follow me onto the bird. The flight master said no. My pet sat by the post. Like a hero. I'm emotional." },
+            { id="hun_fp_u04", weight=1, line="I named this bird in my head. Reginald. Reginald is dependable. Reginald is slow but honest. I already love Reginald." },
+            { id="hun_fp_u05", weight=1, line="Counted every beast I could see from up here. Thirty-seven. Taming priority list: all of them." },
+            { id="hun_fp_u06", weight=1, line="The bird's flying in a straight line. My pet on the ground is running into every tree. Different approaches. Both valid." },
+            { id="hun_fp_u07", weight=1, line="I should've put my pet on passive before I left. Instead I put it on defensive. Near a road. With NPCs. Oh no." },
+            { id="hun_fp_u08", weight=1, line="Tried to track beasts from up here. The tracking arrow is just spinning. It's overwhelmed. So many beasts. So high up." },
+            { id="hun_fp_u09", weight=1, line="This bird is technically a beast. I'm riding a beast while missing my beast. Beast-ception." },
+            { id="hun_fp_u10", weight=1, line="My pet looked up at the bird with jealousy. The bird looked down at my pet with indifference. I'm caught in the middle of a beast love triangle." },
+        },
+        RARE = {
+            { id="hun_fp_r01", weight=1, line="Twenty minutes in the air and I've mentally named fourteen birds, three clouds, and a suspicious-looking mountain. The hunter brain never turns off." },
+            { id="hun_fp_r02", weight=1, line="From up here I can see the whole food chain. Wolves chase deer. Hawks chase rabbits. And I'm on a bird, chasing nothing. Unnatural." },
+            { id="hun_fp_r03", weight=1, line="I told my pet I'd be back soon. That was twenty minutes ago. I can feel the disappointment from up here." },
+            { id="hun_fp_r04", weight=1, line="Other classes see landscape from up here. I see habitats. Spawn points. Migration patterns. Two potential rare tameable elites. I need to land." },
+            { id="hun_fp_r05", weight=1, line="The bond between hunter and pet transcends distance. Or at least that's what I tell myself while I'm on this bird and my pet is eating a mailbox." },
+        },
+        MYTHIC = {
+            { id="hun_fp_m01", weight=1, line="If you told me I'd spend my career bonding with wild animals, sleeping in the dirt, and riding birds across continents, I'd say 'yes, obviously, that's the dream.' And I'd mean it. Every word." },
+            { id="hun_fp_m02", weight=1, line="My pet is down there. Waiting. Loyal. Patient. And I'm up here, on another animal, wondering if this counts as cheating. It does. I'm sorry. I love you both." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -562,6 +608,24 @@ responses = {
         },
         MYTHIC = {
             "When every CD lines up, the DPS meter screams. I live for that scream.",
+        },
+    },
+
+    FLIGHT_PATH = {
+        COMMON = {
+            "Also on a bird? Did you leave your pet behind too? Mine's... probably fine.",
+            "This bird reminds me of my pet. Except it listens. And flies.",
+            "I've been rating every animal I see from up here. That deer? Seven out of ten. The bear? Solid nine.",
+        },
+        UNCOMMON = {
+            "If your pet does something weird while you're on this bird, it wasn't my pet's fault. Probably.",
+            "I tried to Feign Death on the bird. Thought better of it. Gravity and all.",
+        },
+        RARE = {
+            "Hunters and flight paths: leaving our pets behind, one trip at a time. It never gets easier.",
+        },
+        MYTHIC = {
+            "When I land, my pet is going to pretend it didn't miss me. I'll pretend I didn't miss it. We'll both be lying.",
         },
     },
 

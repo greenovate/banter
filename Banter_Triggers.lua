@@ -14,17 +14,17 @@ local lastResponseAt    = 0
 local nextResponseDelay = 0
 
 local function ResetSceneGate()
-    local db  = ns.db or {}
+    local ms  = ns.settings and ns.settings.GetModeSettings and ns.settings.GetModeSettings() or {}
     local mul = ns.core and ns.core.GetChattinessMultiplier and ns.core.GetChattinessMultiplier() or 1
-    local lo  = (db.frequencyMin or 25) / mul
-    local hi  = (db.frequencyMax or 90) / mul
+    local lo  = (ms.frequencyMin or 25) / mul
+    local hi  = (ms.frequencyMax or 90) / mul
     nextSceneDelay = ns.RandBetween(math.max(lo, 5), math.max(hi, lo + 1))
 end
 local function ResetResponseGate()
-    local db  = ns.db or {}
+    local ms  = ns.settings and ns.settings.GetModeSettings and ns.settings.GetModeSettings() or {}
     local mul = ns.core and ns.core.GetChattinessMultiplier and ns.core.GetChattinessMultiplier() or 1
-    local lo  = (db.responseMin or 20) / mul
-    local hi  = (db.responseMax or 60) / mul
+    local lo  = (ms.responseMin or 20) / mul
+    local hi  = (ms.responseMax or 60) / mul
     nextResponseDelay = ns.RandBetween(math.max(lo, 3), math.max(hi, lo + 1))
 end
 
@@ -48,6 +48,7 @@ local TRIGGER_COOLDOWN = {
     PLAYER_DISCONNECT  = 60,
     CONSUMABLE_USED    = 45,
     MAJOR_COOLDOWN     = 30,
+    FLIGHT_PATH        = 0,
 }
 
 ---------------------------------------------------------------------------
@@ -133,7 +134,7 @@ function triggers.CanStartScene()
     if not ns.db or not ns.db.enabled then return false end
     if not ns.initialized then return false end
     -- Raid-disable check
-    if ns.db.disableInRaids and (ns.core.GetGroupMode() == "RAID") then return false end
+    if ns.db.raid and not ns.db.raid.enabled and (ns.core.GetGroupMode() == "RAID") then return false end
     return (GetTime() - lastSceneAt) >= nextSceneDelay
 end
 
@@ -162,6 +163,10 @@ function triggers.CheckTrigger(trigger)
     end
 
     local baseChance = ns.scenes.TRIGGER_CHANCE[trigger] or 0.50
+    -- Solo AMBIENT gets a moderate boost for idle chatter between combat triggers
+    if trigger == "AMBIENT" and ns.db.soloMode and ns.core.GetGroupMode() == "SOLO" then
+        baseChance = 0.30
+    end
     local mul = ns.core.GetChattinessMultiplier and ns.core.GetChattinessMultiplier() or 1
     local chance = math.min(baseChance * mul, 0.95)
 
@@ -226,6 +231,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
             ResetResponseGate()
             ns.core.Init()
             ns.initialized = true
+            print(" |cff33ff99>|r Welcome to |cff33ff99Banter|r version |cff33ff99" .. (ns.version or "?") .. "|r, type |cff33ff99/banter|r for options.")
             ns.Debug("Banter loaded — persona: " .. (ns.db.persona or "?")
                      .. " class: " .. (ns.playerClassKey or "?"))
             self:UnregisterEvent("ADDON_LOADED")
@@ -256,16 +262,19 @@ frame:SetScript("OnEvent", function(self, event, ...)
     -----------------------------------------------------------------------
     if event == "PLAYER_ENTERING_WORLD" then
         triggers.OnEnterWorld()
-        -- Show changelog popup after a short delay so the UI is fully ready
-        local timer = CreateFrame("Frame")
-        local elapsed = 0
-        timer:SetScript("OnUpdate", function(self, dt)
-            elapsed = elapsed + dt
-            if elapsed >= 2 then
-                self:SetScript("OnUpdate", nil)
-                if ns.ShowChangelog then ns.ShowChangelog() end
-            end
-        end)
+        -- Show changelog popup ONCE on initial login only (not on every zone change)
+        if not ns._changelogShown then
+            ns._changelogShown = true
+            local timer = CreateFrame("Frame")
+            local elapsed = 0
+            timer:SetScript("OnUpdate", function(self, dt)
+                elapsed = elapsed + dt
+                if elapsed >= 2 then
+                    self:SetScript("OnUpdate", nil)
+                    if ns.ShowChangelog then ns.ShowChangelog() end
+                end
+            end)
+        end
     elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
         -- Feed stats tracker first
         ns.stats.ProcessCombatLog()
@@ -285,13 +294,40 @@ frame:SetScript("OnEvent", function(self, event, ...)
 end)
 
 ---------------------------------------------------------------------------
--- Ambient timer  (OnUpdate, fires every AMBIENT_INTERVAL seconds)
+-- Ambient + Flight-path timer  (OnUpdate, shared tick)
 ---------------------------------------------------------------------------
 local AMBIENT_INTERVAL = 60
+local FLIGHT_INTERVAL  = 35
 local ambientElapsed   = 0
+local flightElapsed    = 0
+local wasOnTaxi        = false
 
 frame:SetScript("OnUpdate", function(_, elapsed)
     if not ns.initialized or not ns.db or not ns.db.enabled then return end
+
+    -- Taxi / flight-path banter
+    local onTaxi = UnitOnTaxi("player")
+    if onTaxi then
+        if not wasOnTaxi then
+            wasOnTaxi = true
+            flightElapsed = FLIGHT_INTERVAL  -- fire soon after boarding
+        end
+        flightElapsed = flightElapsed + elapsed
+        if flightElapsed >= FLIGHT_INTERVAL then
+            flightElapsed = 0
+            if triggers.CanStartScene() then
+                ns.core.StartScene("FLIGHT_PATH", {})
+            end
+        end
+        return  -- skip AMBIENT while on a taxi
+    else
+        if wasOnTaxi then
+            wasOnTaxi = false
+            flightElapsed = 0
+        end
+    end
+
+    -- Normal ambient tick
     ambientElapsed = ambientElapsed + elapsed
     if ambientElapsed >= AMBIENT_INTERVAL then
         ambientElapsed = 0

@@ -9,6 +9,14 @@
 *.swp
 *~
 
+# Scripts (API keys, dev tools — never publish)
+scripts/
+
+# Planning docs (internal only)
+Planning/
+Copilot-Prompt-Pack.md
+.github/copilot-instructions.md
+
 # OS
 Thumbs.db
 Desktop.ini

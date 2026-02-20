@@ -299,6 +299,52 @@ statements = {
         },
     },
 
+    FLIGHT_PATH = {
+        COMMON = {
+            { id="rog_fp_c01", weight=1, line="Can't stealth on a bird. This is the most exposed I've been in months." },
+            { id="rog_fp_c02", weight=1, line="No shadows up here. No cover. No corners. Just open sky. Nightmare." },
+            { id="rog_fp_c03", weight=1, line="The bird follows a fixed route. Predictable. Traceable. Amateur." },
+            { id="rog_fp_c04", weight=1, line="I've already identified three exits. All of them involve falling." },
+            { id="rog_fp_c05", weight=1, line="If this bird gets ambushed I'm Vanishing. Good luck, bird." },
+            { id="rog_fp_c06", weight=1, line="Rogues don't sit on birds. We sit in shadows. This is a deviation from protocol." },
+            { id="rog_fp_c07", weight=1, line="Can't pick the bird's pocket. Tried. No pockets." },
+            { id="rog_fp_c08", weight=1, line="Someone could see me up here. In the OPEN. On a BIRD. Like a civilian." },
+            { id="rog_fp_c09", weight=1, line="The flight master knows my face now. Operational security: compromised." },
+            { id="rog_fp_c10", weight=1, line="I could've run there. Stealthed. Through the shadows. Like a professional. But no. Bird." },
+            { id="rog_fp_c11", weight=1, line="My daggers are useless up here. I've checked. Multiple times." },
+            { id="rog_fp_c12", weight=1, line="The wind is loud. Can't hear footsteps. Can't hear anything. Vulnerability status: high." },
+            { id="rog_fp_c13", weight=1, line="Altitude: too high. Cover: none. Escape routes: zero. Comfort level: negative." },
+            { id="rog_fp_c14", weight=1, line="This bird makes noise. A lot of noise. I hate noise. We have a disagreement." },
+            { id="rog_fp_c15", weight=1, line="I'm wearing all black on a white bird in broad daylight. Stealth rating: zero." },
+            { id="rog_fp_c16", weight=1, line="Clocked the flight time. Six minutes fourteen seconds. I could sprint halfway there in that time." },
+            { id="rog_fp_c17", weight=1, line="Everyone can see where I'm going. The trajectory is OBVIOUS. This goes against everything I believe in." },
+            { id="rog_fp_c18", weight=1, line="No blind spots on this bird. I've done a full assessment. Unacceptable." },
+        },
+        UNCOMMON = {
+            { id="rog_fp_u01", weight=1, line="I've mapped every flight path in three continents. Memorized the schedules. Noted the blind spots. There are no blind spots. It's infuriating." },
+            { id="rog_fp_u02", weight=1, line="The bird banked left without warning. No signal. No visual cue. In my line of work, that gets you stabbed." },
+            { id="rog_fp_u03", weight=1, line="Saw another bird pass us going the opposite direction. Made eye contact with the rider. They saw me. Cover blown." },
+            { id="rog_fp_u04", weight=1, line="I tried crouching on the saddle to lower my profile. The bird compensated. We had a disagreement about aerodynamics." },
+            { id="rog_fp_u05", weight=1, line="This flight path goes directly over hostile territory. I've noted six potential ambush points. The bird noted zero. Amateurs run this operation." },
+            { id="rog_fp_u06", weight=1, line="Counted my poison vials to pass the time. All accounted for. Then counted again. Still all there. Counted a third time. I need to land." },
+            { id="rog_fp_u07", weight=1, line="The bird squawked. Loudly. In what I can only describe as the OPPOSITE of stealth. We are natural enemies." },
+            { id="rog_fp_u08", weight=1, line="If I had Vanish right now I'd use it. Just to feel safe. Even though I'm alone. On a bird. In the sky." },
+            { id="rog_fp_u09", weight=1, line="Someone on the ground just waved at me. I didn't wave back. Acknowledgment creates witnesses." },
+            { id="rog_fp_u10", weight=1, line="My Detect Traps sense is tingling. There are no traps up here. But I'm not about to stop checking." },
+        },
+        RARE = {
+            { id="rog_fp_r01", weight=1, line="A rogue's power comes from the unknown. Right now, everyone knows exactly where I am: on a bird, in the sky, visible from the GROUND. This is anti-rogue propaganda." },
+            { id="rog_fp_r02", weight=1, line="Spent the whole flight planning the perfect route I could've taken on foot. Through the shadows. Past the guards. No witnesses. Instead: bird." },
+            { id="rog_fp_r03", weight=1, line="The bird has no sense of urgency. No situational awareness. No respect for operational tempo. I would never partner with this bird voluntarily." },
+            { id="rog_fp_r04", weight=1, line="Stared at the horizon for eight minutes. In that time I've planned three heists, two escapes, and one very specific assassination. Of the bird." },
+            { id="rog_fp_r05", weight=1, line="I operate in darkness. I thrive in silence. I move unseen. And right now I'm on the loudest, most visible, most OBVIOUS mode of transport in Azeroth." },
+        },
+        MYTHIC = {
+            { id="rog_fp_m01", weight=1, line="Flight path debrief: visibility — total. Stealth options — none. Cover — none. Escape routes — fatal. Dignity — compromised. Mission status: survived. Barely." },
+            { id="rog_fp_m02", weight=1, line="They train us to be invisible. To be ghosts. To move without a trace. And then they put us on a bird. In the SKY. Where everyone can SEE. This isn't travel. This is a betrayal of everything I stand for." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -561,6 +607,24 @@ responses = {
         },
         MYTHIC = {
             "All cooldowns. Full energy. Five combo points. This is the moment.",
+        },
+    },
+
+    FLIGHT_PATH = {
+        COMMON = {
+            "You didn't see me on this bird. This conversation didn't happen.",
+            "We're both exposed up here. I hate it. You should hate it too.",
+            "If anyone asks, I wasn't on this flight path. I was... elsewhere.",
+        },
+        UNCOMMON = {
+            "I cased this bird before I got on. No traps. No tails. Just a slow ride and wounded dignity.",
+            "The fact that you can see me right now means my cover is blown. Thanks for that.",
+        },
+        RARE = {
+            "Rogues on flight paths. The single most visible a rogue can be. I'm filing a complaint with someone.",
+        },
+        MYTHIC = {
+            "When we land, I'm going to Vanish immediately. Not because of danger. Because of shame.",
         },
     },
 

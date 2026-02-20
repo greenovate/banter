@@ -306,6 +306,52 @@ statements = {
         },
     },
 
+    FLIGHT_PATH = {
+        COMMON = {
+            { id="pri_fp_c01", weight=1, line="Nobody to heal up here. This is the closest thing to a vacation I've had in weeks." },
+            { id="pri_fp_c02", weight=1, line="The bird is at full health. I checked. Force of habit." },
+            { id="pri_fp_c03", weight=1, line="Flight paths: the only time nobody is standing in fire and asking me to fix it." },
+            { id="pri_fp_c04", weight=1, line="My mana is actually full right now. FULL. I forgot what that felt like." },
+            { id="pri_fp_c05", weight=1, line="Just me and the bird. The bird doesn't pull extra mobs. I love this bird." },
+            { id="pri_fp_c06", weight=1, line="No damage meters up here. No blame. No whispers. Just wind." },
+            { id="pri_fp_c07", weight=1, line="I'm getting separation anxiety from my party. ...no wait. That's relief." },
+            { id="pri_fp_c08", weight=1, line="Can't drink while flying. But my mana is full. Because NOBODY IS TAKING DAMAGE." },
+            { id="pri_fp_c09", weight=1, line="The flight master said 'have a safe flight.' First person today who hasn't asked me to heal something." },
+            { id="pri_fp_c10", weight=1, line="Theoretically I should be bored. In practice, not healing is AMAZING." },
+            { id="pri_fp_c11", weight=1, line="This bird is taking damage from the cold wind. ...no it isn't. I need to stop diagnosing things." },
+            { id="pri_fp_c12", weight=1, line="I just instinctively tried to shield the bird. We're fine. Everything is fine." },
+            { id="pri_fp_c13", weight=1, line="Going Shadow up here. Nobody can stop me. There's no raid leader in the sky." },
+            { id="pri_fp_c14", weight=1, line="The view is beautiful. I never see the view. I'm always staring at health bars." },
+            { id="pri_fp_c15", weight=1, line="Wind's picking up. My first thought was 'does wind do Nature damage?' I need help." },
+            { id="pri_fp_c16", weight=1, line="Nobody has died in the last five minutes. Personal record." },
+            { id="pri_fp_c17", weight=1, line="Just flew over a group fighting something. Saw a health bar drop. Flinched. From up here. On a bird." },
+            { id="pri_fp_c18", weight=1, line="When I land, it's back to healing. Let me have this." },
+        },
+        UNCOMMON = {
+            { id="pri_fp_u01", weight=1, line="I whispered a Prayer of Fortitude for the bird. It now has 6,000 extra health. You're welcome, bird." },
+            { id="pri_fp_u02", weight=1, line="I'm using this flight time to practice NOT healing. It's called self-care. I read about it. In between rezzes." },
+            { id="pri_fp_u03", weight=1, line="The bird just coughed. I cast Abolish Disease instantly. I can't turn it off. This is who I am now." },
+            { id="pri_fp_u04", weight=1, line="Other classes use flight paths to travel. Priests use flight paths to remember we're people with needs. Mana needs, mostly." },
+            { id="pri_fp_u05", weight=1, line="Started humming a hymn up here. The bird seemed to like it. Better audience than most dungeon groups." },
+            { id="pri_fp_u06", weight=1, line="I've healed through wipes, through disconnects, through people standing in EVERY conceivable fire. This bird asks nothing of me. I'm emotional." },
+            { id="pri_fp_u07", weight=1, line="If someone dies while I'm on this bird, it's NOT my fault. For the record. Writing that down." },
+            { id="pri_fp_u08", weight=1, line="The sky is clear. The air is fresh. My brain just whispered 'someone needs a dispel.' Nobody needs a dispel. WE'RE IN THE AIR." },
+            { id="pri_fp_u09", weight=1, line="I can see a dungeon entrance from up here. My eye twitched. Involuntary healer response." },
+            { id="pri_fp_u10", weight=1, line="The wind sounds like someone screaming for heals. It's just wind. Probably. I'm choosing to believe it's wind." },
+        },
+        RARE = {
+            { id="pri_fp_r01", weight=1, line="Priests don't get breaks. We don't get thanked. We get flight paths. And on flight paths, for seven beautiful minutes, we get peace." },
+            { id="pri_fp_r02", weight=1, line="Up here, nobody is dying. Nobody is pulling. Nobody is whispering 'heal?' at me. This is what heaven feels like. I'm a priest. I would know." },
+            { id="pri_fp_r03", weight=1, line="Looked down at the world. All those people, taking damage, needing heals. And I'm up here. On a bird. Having a MOMENT." },
+            { id="pri_fp_r04", weight=1, line="I've been on this bird long enough to forget what rage whispers look like. That's healing in itself." },
+            { id="pri_fp_r05", weight=1, line="The Light shines on me from above. The bird carries me forward. My mana is full. I am at peace. ...we're landing in 30 seconds aren't we. It was nice while it lasted." },
+        },
+        MYTHIC = {
+            { id="pri_fp_m01", weight=1, line="I heal the living. I rez the dead. I shield the stupid. I dispel the cursed. And right now, on this bird, I am doing NONE OF THAT. And it is the most profound spiritual experience of my career." },
+            { id="pri_fp_m02", weight=1, line="Other priests pray for wisdom. I pray for longer flight paths. The Light understands. The Light has SEEN my party." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -570,6 +616,24 @@ responses = {
         },
         MYTHIC = {
             "All healing CDs burning. This is the 'if you die now, it's DEFINITELY your fault' phase.",
+        },
+    },
+
+    FLIGHT_PATH = {
+        COMMON = {
+            "Nobody is dying right now. This is unprecedented. I'm suspicious.",
+            "Also on a bird? At least you can't stand in fire up here.",
+            "The bird doesn't need healing. The bird is my favourite patient.",
+        },
+        UNCOMMON = {
+            "I just buffed the bird with Fortitude. Don't judge me. It's a reflex.",
+            "If you need healing during this flight, something has gone catastrophically wrong and I'm interested.",
+        },
+        RARE = {
+            "For once, I'm not the one keeping everyone alive. The bird is. Thank you, bird.",
+        },
+        MYTHIC = {
+            "Seven minutes of nobody dying. A priest's paradise. I'm going to remember this flight forever.",
         },
     },
 

@@ -299,6 +299,52 @@ statements = {
         },
     },
 
+    FLIGHT_PATH = {
+        COMMON = {
+            { id="dru_fp_c01", weight=1, line="I have Flight Form. I don't need this bird. I took the bird anyway. I don't know why." },
+            { id="dru_fp_c02", weight=1, line="...I could BE this bird. I have the spell. I'm CHOOSING to sit on it instead. Choices were made." },
+            { id="dru_fp_c03", weight=1, line="Nature is beautiful from up here. As a druid, I feel connected to— is that a ROAD through a forest? Barbarians." },
+            { id="dru_fp_c04", weight=1, line="Almost shifted into cat form out of habit. On a bird. In the sky. The results would have been educational." },
+            { id="dru_fp_c05", weight=1, line="The bird is part of nature. I am one with nature. So technically, I'm one with this bird. That's my excuse for being lazy." },
+            { id="dru_fp_c06", weight=1, line="I could be a bird right now. My OWN bird. But this bird was here and I'm tired." },
+            { id="dru_fp_c07", weight=1, line="Went bear form on the saddle. Bad idea. The bird dipped. Back to caster." },
+            { id="dru_fp_c08", weight=1, line="The trees look peaceful from up here. When I'm down there, they look like obstacles I keep getting stuck on in cat form." },
+            { id="dru_fp_c09", weight=1, line="This bird has ONE form. Bird. Must be nice. I have four and I'm always in the wrong one." },
+            { id="dru_fp_c10", weight=1, line="Just saw a moonkin on the ground. We made eye contact. There but for the grace of Elune go I." },
+            { id="dru_fp_c11", weight=1, line="The circle of life includes flight paths. I didn't make the rules. Nature did." },
+            { id="dru_fp_c12", weight=1, line="Bear form: too heavy for the bird. Cat form: too fidgety. Caster form: too cold. There is no winning." },
+            { id="dru_fp_c13", weight=1, line="Shifted into travel form by accident. My legs started running. On the saddle. The bird was not amused." },
+            { id="dru_fp_c14", weight=1, line="Technically, I'm IN nature right now. The sky IS nature. This counts as communing. It counts." },
+            { id="dru_fp_c15", weight=1, line="The wind is whispering to me. It's saying 'you could fly yourself.' Thanks. I know. I'm being lazy. LET ME BE LAZY." },
+            { id="dru_fp_c16", weight=1, line="Looked at the bird. The bird looked at me. It knows I can shapeshift. It knows I chose to sit here. The contempt is palpable." },
+            { id="dru_fp_c17", weight=1, line="I Rejuvenated the bird. Not because it needed healing. Because I felt guilty for being a passenger." },
+            { id="dru_fp_c18", weight=1, line="Other druids would judge me for taking a flight path. Other druids also can't find the right form in combat. We all have our flaws." },
+        },
+        UNCOMMON = {
+            { id="dru_fp_u01", weight=1, line="I tried to Innervate the bird to make it fly faster. That's not how Innervate works. I know this. I was desperate." },
+            { id="dru_fp_u02", weight=1, line="Cat form on a bird: bad. Bear form on a bird: worse. Moonkin on a bird: the bird said no. Explicitly." },
+            { id="dru_fp_u03", weight=1, line="The bird flies in one direction. No form changes. No role swaps. No existential crisis about whether to DPS or heal mid-flight. Enviable simplicity." },
+            { id="dru_fp_u04", weight=1, line="Started counting the different species of trees below. Lost count. Got emotional. This is normal druid behavior." },
+            { id="dru_fp_u05", weight=1, line="I shapeshifted fourteen times during this flight. Not for any reason. The muscle memory kicks in when I'm bored." },
+            { id="dru_fp_u06", weight=1, line="Saw a deforested area from up here. Considered jumping off the bird in bear form to investigate. Then remembered: gravity." },
+            { id="dru_fp_u07", weight=1, line="The Emerald Dream is FULL of flying creatures. None of them charge for the service. Something to consider." },
+            { id="dru_fp_u08", weight=1, line="I asked the bird if it was happy in its job. As a druid, I feel responsible. The bird did not respond. Fair." },
+            { id="dru_fp_u09", weight=1, line="Thought about shifting into aquatic form. On a bird. In the sky. The thought lasted three seconds. A new personal record for bad ideas." },
+            { id="dru_fp_u10", weight=1, line="Nature provides all you need. Except a fast flight path. Nature skipped that page." },
+        },
+        RARE = {
+            { id="dru_fp_r01", weight=1, line="I am a guardian of nature. A keeper of balance. A shapeshifter of four forms. And I paid two silver to sit on a bird because I DIDN'T FEEL LIKE FLYING MYSELF. Cenarius forgive me." },
+            { id="dru_fp_r02", weight=1, line="Below me: forests I've sworn to protect. Above me: sky I could be flying through. Around me: a bird with more life direction than I've had in months." },
+            { id="dru_fp_r03", weight=1, line="The bird doesn't worry about being a cat or a bear or a tree. The bird is just a bird. I envy the bird. ...I'm having a moment." },
+            { id="dru_fp_r04", weight=1, line="Flew over Moonglade. From up here it looks like a green thumbprint on the continent. That tiny place is supposed to fix all of nature. No pressure." },
+            { id="dru_fp_r05", weight=1, line="Sometimes I shift into bird form next to the flight path bird. We fly side by side. I think it appreciates the company. I know I do." },
+        },
+        MYTHIC = {
+            { id="dru_fp_m01", weight=1, line="I can be a bear. I can be a cat. I can be a tree. I can be a BIRD. And I am sitting on SOMEONE ELSE'S bird, in caster form, because I am a fraud and the forest knows it." },
+            { id="dru_fp_m02", weight=1, line="Druids don't take flight paths. That's what I tell new druids. Then they see me on a bird and the illusion shatters. Along with their respect. And my dignity." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -561,6 +607,24 @@ responses = {
         },
         MYTHIC = {
             "Rebirth, Innervate, and shapeshifting. Three superpowers. All on cooldown. Always.",
+        },
+    },
+
+    FLIGHT_PATH = {
+        COMMON = {
+            "Yes I have Flight Form. Yes I'm on this bird. No I won't explain myself.",
+            "We're all just leaves on the wind up here. ...that sounded better in my head.",
+            "The bird is doing great. I told it. It didn't care. Nature rarely does.",
+        },
+        UNCOMMON = {
+            "I could fly myself but then who would keep this bird company? It's called EMPATHY.",
+            "Almost shifted into bear form out of habit. On a bird. At altitude. Would not recommend.",
+        },
+        RARE = {
+            "Other druids fly themselves. I take the bird. We're not the same. They have discipline. I have excuses.",
+        },
+        MYTHIC = {
+            "The circle of life goes: birth, growth, death, rebirth. Nowhere in there does it say 'sit on a bird.' But here we are. Nature adapts.",
         },
     },
 

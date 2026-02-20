@@ -298,6 +298,52 @@ statements = {
         },
     },
 
+    FLIGHT_PATH = {
+        COMMON = {
+            { id="wlk_fp_c01", weight=1, line="My demon is down there. Walking. I'm up here. On a bird. We're both unhappy." },
+            { id="wlk_fp_c02", weight=1, line="Could've summoned myself somewhere. But that requires friends. And a second warlock. ...so no." },
+            { id="wlk_fp_c03", weight=1, line="This bird has a soul. I checked. Professionally." },
+            { id="wlk_fp_c04", weight=1, line="Flying over graveyards. So many potential minions just SITTING there." },
+            { id="wlk_fp_c05", weight=1, line="The wind up here smells like nothing. I miss the sulfur." },
+            { id="wlk_fp_c06", weight=1, line="My Voidwalker could carry me. He won't, but he COULD. Spite is a powerful motivator." },
+            { id="wlk_fp_c07", weight=1, line="I tried to Life Tap on the bird. Lost my balance. The bird didn't care. Cold." },
+            { id="wlk_fp_c08", weight=1, line="Every flight path is a reminder that I sold my soul for power, not convenience." },
+            { id="wlk_fp_c09", weight=1, line="The flight master smiled at me. Nobody smiles at warlocks. I'm suspicious." },
+            { id="wlk_fp_c10", weight=1, line="Thought about putting a DoT on the bird to pass the time. Decided against it. For once." },
+            { id="wlk_fp_c11", weight=1, line="I have a Dreadsteed that runs faster than this bird flies. Let that sink in." },
+            { id="wlk_fp_c12", weight=1, line="My succubus asked why I didn't just summon a flying demon. I said we don't have those. She laughed." },
+            { id="wlk_fp_c13", weight=1, line="Just flew over a town. Counted the souls. Habit." },
+            { id="wlk_fp_c14", weight=1, line="The shadow magic in my veins is BORED. I'm bored. Even the darkness is bored." },
+            { id="wlk_fp_c15", weight=1, line="Warlocks shouldn't be this high up. We belong in basements. Plotting." },
+            { id="wlk_fp_c16", weight=1, line="I offered the bird a Healthstone. It looked at me like I was insane. Fair." },
+            { id="wlk_fp_c17", weight=1, line="This saddle was not made for robes. Nothing is made for robes. Robes are a punishment." },
+            { id="wlk_fp_c18", weight=1, line="Somewhere below me, my imp is causing problems. I can feel it." },
+        },
+        UNCOMMON = {
+            { id="wlk_fp_u01", weight=1, line="Started reading my Grimoire up here. Wind blew it open to the 'Ritual of Summoning' page. Mocking me." },
+            { id="wlk_fp_u02", weight=1, line="The altitude is making me philosophical. What IS a soul, really? Besides currency." },
+            { id="wlk_fp_u03", weight=1, line="My Felhunter could track this bird's soul from three zones away. But can it FLY me there? No. Useless." },
+            { id="wlk_fp_u04", weight=1, line="I tried to Fear the bird. For fun. It didn't work. The bird has more willpower than most party members." },
+            { id="wlk_fp_u05", weight=1, line="Every warlock trainer said 'power comes at a cost.' Nobody mentioned the cost was sitting on birds." },
+            { id="wlk_fp_u06", weight=1, line="The bird looked back at me mid-flight. We locked eyes. It saw the void in me. I saw dinner in it. We broke eye contact." },
+            { id="wlk_fp_u07", weight=1, line="If I had a soul shard for every minute on this bird, I'd have enough to summon a small army. Of myself. To different locations." },
+            { id="wlk_fp_u08", weight=1, line="Just cast Detect Invisibility. Nothing invisible up here. Just me, the bird, and existential dread." },
+            { id="wlk_fp_u09", weight=1, line="My imp set something on fire while I was gone. I can sense the chaos from up here. I'm oddly proud." },
+            { id="wlk_fp_u10", weight=1, line="Flew over a warlock trainer. From this height, they look small. From any height, they look disappointed in me." },
+        },
+        RARE = {
+            { id="wlk_fp_r01", weight=1, line="Twenty minutes on a bird. In this time I could have summoned a demon, bound it to my will, and ridden IT instead. But no. Bird." },
+            { id="wlk_fp_r02", weight=1, line="The wind is howling. My demons howl better. This is amateur-hour howling." },
+            { id="wlk_fp_r03", weight=1, line="Started writing a Curse of Slow Flight Paths. No mana cost. Unlimited range. Targets: Blizzard." },
+            { id="wlk_fp_r04", weight=1, line="Somewhere in the Twisting Nether, a demon lord is watching me sit on a bird and questioning whether he made the right pact." },
+            { id="wlk_fp_r05", weight=1, line="I commune with dark powers beyond mortal comprehension. And I am on a bird. These two facts coexist and I hate it." },
+        },
+        MYTHIC = {
+            { id="wlk_fp_m01", weight=1, line="I have bargained with entities from the void. I have ripped souls from the living. I have stared into the abyss and the abyss offered me a seat. And yet the abyss didn't offer me a FASTER BIRD." },
+            { id="wlk_fp_m02", weight=1, line="Captain's log: Flight seventeen into the howling nothing. The bird has stopped fearing me. The wind carries whispers of the damned. I think one of them said 'we're almost there.' Liar." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -560,6 +606,24 @@ responses = {
         },
         MYTHIC = {
             "Full cooldowns. Maximum DoTs. This is peak dark magic performance.",
+        },
+    },
+
+    FLIGHT_PATH = {
+        COMMON = {
+            "Another lost soul on a bird. I sympathize. Darkly.",
+            "We're all just passengers on this feathered nightmare. Some of us more literally than others.",
+            "The bird doesn't stop for anyone. I respect that. It's evil. But I respect it.",
+        },
+        UNCOMMON = {
+            "If we both jumped off this bird right now, I'd Slow Fall. You'd... well. Let's not dwell.",
+            "I'd offer you a Healthstone but I need it for when this bird inevitably tries to kill me.",
+        },
+        RARE = {
+            "Warlocks and flight paths: two things that exist to make everyone else uncomfortable.",
+        },
+        MYTHIC = {
+            "When I die, I want to be reincarnated as a flight master. Just to make other warlocks sit on birds. Revenge.",
         },
     },
 

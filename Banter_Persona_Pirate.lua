@@ -431,6 +431,53 @@ statements = {
             { id="pir_cd_m01", weight=1, line="Popped everything. No holdin' back. If this don't work, we're swimmin' home. An' I can't swim." },
         },
     },
+
+    FLIGHT_PATH = {
+        COMMON = {
+            { id="pir_fp_c01", weight=1, line="This ain't a ship. This ain't even a boat. This is a BIRD. Pirates don't ride BIRDS." },
+            { id="pir_fp_c02", weight=1, line="I'm gonna be sick. An' not the fun rum kind of sick." },
+            { id="pir_fp_c03", weight=1, line="Where's the ocean? All I see is LAND. Disgusting." },
+            { id="pir_fp_c04", weight=1, line="If me crew could see me now... on a oversized parrot... they'd mutiny." },
+            { id="pir_fp_c05", weight=1, line="This bird got a rudder? No? Then how do ye STEER?" },
+            { id="pir_fp_c06", weight=1, line="I miss the sea. The sea doesn't have turbulence. It has WAVES. There's a difference." },
+            { id="pir_fp_c07", weight=1, line="Pirates belong on boats. On the WATER. Not... whatever this is." },
+            { id="pir_fp_c08", weight=1, line="Can this thing go faster? I've seen rowboats with more urgency." },
+            { id="pir_fp_c09", weight=1, line="Arr, me knuckles are white. Not from cold. From TERROR." },
+            { id="pir_fp_c10", weight=1, line="Just looked down. Shouldn't have looked down. Don't look down." },
+            { id="pir_fp_c11", weight=1, line="At least on a ship ye can drink while ye travel. Up here one wrong move and it's OVERBOARD." },
+            { id="pir_fp_c12", weight=1, line="This bird just squawked at me. I squawked back. We have an arrangement now." },
+            { id="pir_fp_c13", weight=1, line="If I had a cannon I'd be havin' a much better time right now." },
+            { id="pir_fp_c14", weight=1, line="Me peg leg keeps slidin' off the saddle. This wasn't designed for pirates." },
+            { id="pir_fp_c15", weight=1, line="The wind up here tastes like nothin'. At sea it tastes like salt and adventure." },
+            { id="pir_fp_c16", weight=1, line="I've named this bird. It's called 'Mistake.'" },
+            { id="pir_fp_c17", weight=1, line="Are we flyin' over water? ...no. Just more dirt. Disappointing." },
+            { id="pir_fp_c18", weight=1, line="This is the longest I've gone without rum. Well, without WANTING rum. I always want rum." },
+        },
+        UNCOMMON = {
+            { id="pir_fp_u01", weight=1, line="Ye know what a pirate's worst nightmare is? Not the kraken. Not the navy. It's bein' on a bird with no rum and no escape." },
+            { id="pir_fp_u02", weight=1, line="I tried singin' a sea shanty up here. The bird tried to throw me off. It don't appreciate the arts." },
+            { id="pir_fp_u03", weight=1, line="That cloud looks like a ship. And that one looks like a bigger ship. I'm airsick AND homesick." },
+            { id="pir_fp_u04", weight=1, line="Saw another bird fly past with someone on it. We made eye contact. A pirate nod. Both of us sufferin'." },
+            { id="pir_fp_u05", weight=1, line="The bird's takin' me the scenic route. I don't WANT scenic. I want FAST. And BOATS." },
+            { id="pir_fp_u06", weight=1, line="Me hat almost blew off. Do ye KNOW how hard it is to find a good pirate hat? I'm not losin' it to WIND." },
+            { id="pir_fp_u07", weight=1, line="I've survived storms, krakens, and three mutinies. But this bird might actually kill me." },
+            { id="pir_fp_u08", weight=1, line="If ships could fly, I'd be captain of the skies. But they can't. So here I am. On a bird. In shame." },
+            { id="pir_fp_u09", weight=1, line="Started talkin' to the bird. It's a good listener. Better than most first mates I've had." },
+            { id="pir_fp_u10", weight=1, line="Just flew over a lake. A LAKE. It's not the ocean but I nearly jumped. Nearly." },
+        },
+        RARE = {
+            { id="pir_fp_r01", weight=1, line="Been on this bird so long I've started thinkin' about me life choices. First bad one: gettin' on this bird." },
+            { id="pir_fp_r02", weight=1, line="The bird and I have reached an understanding. It carries me, I don't set it on fire. Fair trade." },
+            { id="pir_fp_r03", weight=1, line="Ye know what ruins a perfectly good sunset? Seein' it from a bird instead of the deck of a ship." },
+            { id="pir_fp_r04", weight=1, line="Told the bird about me adventures at sea. It don't care. Nobody up here cares about the sea. Heathens." },
+            { id="pir_fp_r05", weight=1, line="I can see the coast from here. The ocean is RIGHT THERE. And I'm stuck on a BIRD going the other direction." },
+        },
+        MYTHIC = {
+            { id="pir_fp_m01", weight=1, line="Arr, ye know what? This bird's alright. Steady wings, decent altitude, good squawk. ...I take it back, it just pooped. We're sworn enemies again." },
+            { id="pir_fp_m02", weight=1, line="Captain's log, flight seventeen. The bird has stopped listenin' to me commands. The wind is cold. The rum is gone. I am become landlubber. Send boats." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -816,6 +863,24 @@ responses = {
         },
         MYTHIC = {
             "A pirate who saves cooldowns is a pirate who dies with 'em. USE 'EM.",
+        },
+    },
+
+    FLIGHT_PATH = {
+        COMMON = {
+            "Arr, another bird rider. Me condolences.",
+            "Ye look as miserable as I feel up here.",
+            "At least we're sufferin' together. Misery loves company.",
+        },
+        UNCOMMON = {
+            "If ye see me hat blow past, grab it. It's me only one.",
+            "A real pirate would've sailed here. But a SMART pirate takes the bird. ...I said smart, not proud.",
+        },
+        RARE = {
+            "The bird life chose us. We did not choose the bird life.",
+        },
+        MYTHIC = {
+            "One day they'll build ships that fly. And on that day, I will finally be whole.",
         },
     },
 },

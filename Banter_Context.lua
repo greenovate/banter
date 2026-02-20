@@ -261,6 +261,11 @@ local function Refresh()
         ns.Print(("Context: location=%s  zone=%s  env=%s"):format(
             current.location, current.zone, current.environment))
     end
+
+    -- Broadcast zone to group peers via comm
+    if ns.comm and ns.comm.SendZone then
+        ns.comm.SendZone(current.zone)
+    end
 end
 
 ---------------------------------------------------------------------------

@@ -24,6 +24,11 @@ local topics       = {}   -- topics[key] = { target, openers={}, responses={}, f
 local byTarget     = {}   -- byTarget[targetPersona] = { topicKey1, topicKey2, ... }
 local universals   = {}   -- universal topic keys (any persona → any persona)
 
+-- NEW: Zone-specific topic pools (exact zone name → topic pool)
+local zoneTopics      = {}   -- zoneTopics[zoneLower] = { [key] = topicData, ... }
+local allZoneTopics   = {}   -- flat lookup: key → topicData (for GetThread)
+local zoneKeyCount    = 0
+
 -- Recently-used tracking — prevents repeats with cross-session persistence
 local usedKeys     = {}   -- usedKeys[key] = timestamp (Unix epoch)
 local EXPIRY_SECONDS = 6 * 3600   -- 6 hours: keys older than this are treated as fresh
@@ -138,18 +143,59 @@ local T = ns.engagements.T
 local U = ns.engagements.U
 
 ---------------------------------------------------------------------------
+-- Zone-specific topic registration — exact zone targeting
+---------------------------------------------------------------------------
+
+--- Register a zone-specific universal topic.
+--- Only fires when the group is in the exact named zone.
+--- @param zone string  Exact zone name (e.g. "Duskwood", "The Deadmines")
+function ns.engagements.Z(zone, openers, responses, followUps)
+    local zl = zone:lower()
+    if not zoneTopics[zl] then zoneTopics[zl] = {} end
+    zoneKeyCount = zoneKeyCount + 1
+    local key = "Z" .. zoneKeyCount
+    local topic = {
+        target    = "ANY",
+        openers   = openers,
+        responses = responses,
+        followUps = followUps or {},
+    }
+    zoneTopics[zl][key] = topic
+    allZoneTopics[key]  = topic   -- flat lookup for GetThread
+end
+
+--- Register a zone-specific class-targeted topic.
+--- Fires when the group is in the exact named zone AND a matching class is present.
+function ns.engagements.ZT(zone, target, openers, responses, followUps)
+    local zl = zone:lower()
+    if not zoneTopics[zl] then zoneTopics[zl] = {} end
+    zoneKeyCount = zoneKeyCount + 1
+    local key = "ZT" .. zoneKeyCount
+    local topic = {
+        target    = target:upper(),
+        openers   = openers,
+        responses = responses,
+        followUps = followUps or {},
+    }
+    zoneTopics[zl][key] = topic
+    allZoneTopics[key]  = topic   -- flat lookup for GetThread
+end
+
+---------------------------------------------------------------------------
 -- Public API
 ---------------------------------------------------------------------------
 
 --- Retrieve a thread/topic by key.
---- For topics (T/U), randomly picks from the arrays each call.
+--- For topics (T/U/Z/ZT), randomly picks from the arrays each call.
 --- Returns a normalized { opener, response, followUp } shape.
 function ns.engagements.GetThread(key)
     -- Legacy E/M threads — return as-is (fixed strings)
     if threads[key] then return threads[key] end
 
-    -- Topic-based T/U threads — pick random from arrays
+    -- Topic-based T/U threads
     local topic = topics[key]
+    -- Zone-specific Z/ZT threads
+    if not topic then topic = allZoneTopics[key] end
     if not topic then return nil end
 
     local opener   = topic.openers[math.random(#topic.openers)]
@@ -189,6 +235,46 @@ function ns.engagements.PickEngagement()
     -- Build candidate list: { key, targetName }
     local candidates = {}
     local allKeys    = {}   -- track all valid keys for dedup reset logic
+
+    ---------------------------------------------------------------------------
+    -- PHASE 0: Zone-specific topics (Z / ZT)
+    -- These are highest priority — if we're in a mapped zone, 60% chance to
+    -- pick a zone-specific topic before falling through to generic pools.
+    ---------------------------------------------------------------------------
+    local currentZone = ns.context and ns.context.GetZone() or ""
+    local zoneBag = zoneTopics[currentZone:lower()]
+    if zoneBag and next(zoneBag) and math.random() < 0.60 then
+        local zoneCandidates = {}
+        for key, topic in pairs(zoneBag) do
+            if not IsRecentlyUsed(key) then
+                if topic.target == "ANY" then
+                    -- Universal zone topic: pick a random peer
+                    for peerName in pairs(peers) do
+                        table.insert(zoneCandidates, { key = key, target = peerName })
+                        break
+                    end
+                else
+                    -- Class-targeted zone topic: find a matching peer
+                    for peerName, peerData in pairs(peers) do
+                        if (peerData.persona or "UNKNOWN") == topic.target then
+                            table.insert(zoneCandidates, { key = key, target = peerName })
+                            table.insert(zoneCandidates, { key = key, target = peerName })  -- double weight
+                            break
+                        end
+                    end
+                end
+            end
+        end
+        if #zoneCandidates > 0 then
+            local pick = zoneCandidates[math.random(#zoneCandidates)]
+            MarkUsed(pick.key)
+            return pick.key, pick.target
+        end
+    end
+
+    ---------------------------------------------------------------------------
+    -- PHASE 1-4: Context-filtered T/U/E/M pools (existing logic)
+    ---------------------------------------------------------------------------
 
     for peerName, peerData in pairs(peers) do
         local theirPersona = peerData.persona    or "UNKNOWN"
@@ -277,13 +363,14 @@ end
 
 --- Get total topic/thread counts for debug
 function ns.engagements.GetCounts()
-    local tCount, uCount = 0, 0
+    local tCount, uCount, zCount = 0, 0, 0
     for _ in pairs(byTarget) do end
     for k in pairs(topics) do
         if k:sub(1,1) == "T" then tCount = tCount + 1
         elseif k:sub(1,1) == "U" then uCount = uCount + 1 end
     end
-    return threadCount, tCount, uCount
+    for _ in pairs(allZoneTopics) do zCount = zCount + 1 end
+    return threadCount, tCount, uCount, zCount
 end
 
 ---------------------------------------------------------------------------

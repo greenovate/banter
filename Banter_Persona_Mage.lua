@@ -305,6 +305,52 @@ statements = {
         },
     },
 
+    FLIGHT_PATH = {
+        COMMON = {
+            { id="mag_fp_c01", weight=1, line="A mage. On a bird. Because the portal network doesn't go EVERYWHERE apparently." },
+            { id="mag_fp_c02", weight=1, line="I could teleport. But nooo, this destination isn't in my spellbook. So here I am. On a bird." },
+            { id="mag_fp_c03", weight=1, line="The aerodynamics of this creature are questionable. I've done the calculations." },
+            { id="mag_fp_c04", weight=1, line="Every second on this bird is a second I could be studying. Or drinking. Or both." },
+            { id="mag_fp_c05", weight=1, line="I'm the only person on this flight path who could literally teleport. Let that sink in." },
+            { id="mag_fp_c06", weight=1, line="This bird is moving at what I estimate to be twelve percent of Blink speed. Insulting." },
+            { id="mag_fp_c07", weight=1, line="I brought a book. Finished it. We're not even halfway there." },
+            { id="mag_fp_c08", weight=1, line="The wind up here is disrupting my concentration. I had a THOUGHT and the wind took it." },
+            { id="mag_fp_c09", weight=1, line="Just calculated how many Blinks it would take to cover this distance. Answer: fewer than this bird needs." },
+            { id="mag_fp_c10", weight=1, line="If I Blink off this bird I die. I've considered it anyway. Twice." },
+            { id="mag_fp_c11", weight=1, line="The flight master said 'enjoy the ride.' I do not enjoy things that aren't magic." },
+            { id="mag_fp_c12", weight=1, line="At least up here nobody is asking me to make food. Small mercies." },
+            { id="mag_fp_c13", weight=1, line="Mages invented portals to AVOID this. Someone didn't get the memo." },
+            { id="mag_fp_c14", weight=1, line="This bird has no respect for my schedule. I have spells to research. Theories to disprove." },
+            { id="mag_fp_c15", weight=1, line="I'm sitting on a bird in robes. The chafing is real and I refuse to elaborate." },
+            { id="mag_fp_c16", weight=1, line="I Frost Nova'd the saddle so I don't slide off. Practical magic." },
+            { id="mag_fp_c17", weight=1, line="Warlocks summon people. Mages portal people. And yet HERE I AM. ON A BIRD." },
+            { id="mag_fp_c18", weight=1, line="The view is adequate. I've seen better. In books." },
+        },
+        UNCOMMON = {
+            { id="mag_fp_u01", weight=1, line="I've been mentally redesigning the flight path network for twenty minutes. My version has seventeen fewer stops and a lounge." },
+            { id="mag_fp_u02", weight=1, line="This bird just dipped through a cloud. My robes are damp. My dignity is damp. Everything is damp." },
+            { id="mag_fp_u03", weight=1, line="I tried casting Slow Fall on the bird to see what would happen. It didn't appreciate the experiment." },
+            { id="mag_fp_u04", weight=1, line="The person who designed these flight routes clearly failed basic geometry. I could optimize this in my sleep." },
+            { id="mag_fp_u05", weight=1, line="Counted every tree below us. Lost count at four hundred. Started categorizing them by species. This is what boredom does to intellectuals." },
+            { id="mag_fp_u06", weight=1, line="I conjured a table up here. For myself. The bird looked at me. I looked at the bird. We're sharing." },
+            { id="mag_fp_u07", weight=1, line="Just saw a mage on the ground open a portal. A PORTAL. While I'm up here. On this bird. The irony is physically painful." },
+            { id="mag_fp_u08", weight=1, line="Hypothetically, if I Polymorphed this bird mid-flight... actually, no. I know the answer. The answer is bad." },
+            { id="mag_fp_u09", weight=1, line="I've written three pages of notes on high-altitude arcane theory. When I land, I'll realize none of it makes sense." },
+            { id="mag_fp_u10", weight=1, line="The wind resistance at this altitude suggests the bird is doing roughly 40 knots. A glacier moves with more purpose." },
+        },
+        RARE = {
+            { id="mag_fp_r01", weight=1, line="I am a master of the arcane arts. I have bent the fabric of reality. I have frozen armies. And I am on a bird because the Caverns of Time doesn't have a portal." },
+            { id="mag_fp_r02", weight=1, line="Started workshopping a new spell up here. 'Mass Teleport — Anywhere.' Funding pending. Interest: high. Progress: none." },
+            { id="mag_fp_r03", weight=1, line="The bird made a noise. I made a noise back. We've been communicating for ten minutes. I think it's insulting me." },
+            { id="mag_fp_r04", weight=1, line="If you look down from this altitude and squint, every town looks the same. I'm choosing to find that philosophically interesting." },
+            { id="mag_fp_r05", weight=1, line="Someone once asked me why I don't just Blink everywhere. That person has never Blinked into a wall at full speed." },
+        },
+        MYTHIC = {
+            { id="mag_fp_m01", weight=1, line="Twenty minutes of flight time. I've mentally composed a thesis on avian propulsion, disproved two arcane theorems, and come to terms with the fact that I — a MAGE — am sitting on a bird. Like a commoner." },
+            { id="mag_fp_m02", weight=1, line="The great mages of history never had to take flight paths. Medivh had Karazhan. Khadgar has Shattrath. I have Gerald. Gerald is a bird. Gerald is slow." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -568,6 +614,24 @@ responses = {
         },
         MYTHIC = {
             "All cooldowns aligned. This is the moment. Execute perfection.",
+        },
+    },
+
+    FLIGHT_PATH = {
+        COMMON = {
+            "Also on a bird? My condolences. From one intellectual to... whoever you are.",
+            "The view is acceptable. The company is tolerable. The bird is slow.",
+            "If anyone needs a portal when we land, form an orderly queue. Or don't. I'll judge either way.",
+        },
+        UNCOMMON = {
+            "I've redesigned this flight route six times in my head. All six versions are faster. You're welcome, nobody.",
+            "Fun fact: Blink covers 20 yards in zero seconds. This bird covers 20 yards in what feels like a lifetime.",
+        },
+        RARE = {
+            "Saw a mage on the ground open a portal while I was up here. On a bird. I've never felt more betrayed by my own class.",
+        },
+        MYTHIC = {
+            "When we land, I'm opening a portal back to where we started. Just to prove a point.",
         },
     },
 

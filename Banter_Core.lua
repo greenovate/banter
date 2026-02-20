@@ -28,16 +28,28 @@ function core.GetGroupMode()
     return "SOLO"
 end
 
+--- Returns true inside a battleground or arena (PvP instance).
+function core.IsInPvPInstance()
+    local _, iType = IsInInstance()
+    return iType == "pvp" or iType == "arena"
+end
+
 function core.GetOutputChannel()
-    local db   = ns.db
     local mode = core.GetGroupMode()
 
-    if db.outputChannel == "AUTO" then
+    -- Solo is always EMOTE — no configuration
+    if mode == "SOLO" then return "EMOTE" end
+
+    -- Read channel from the mode's sub-table
+    local modeDB  = (mode == "RAID") and ns.db.raid or ns.db.group
+    local channel = modeDB and modeDB.channel or "AUTO"
+
+    if channel == "AUTO" then
         if mode == "RAID"  then return "RAID"  end
         if mode == "PARTY" then return "PARTY" end
         return "SAY"
     end
-    return db.outputChannel
+    return channel
 end
 
 ---------------------------------------------------------------------------
@@ -46,6 +58,12 @@ end
 -- When the channel is restricted (solo + SAY), display locally instead.
 ---------------------------------------------------------------------------
 function core.SafeSend(text, channel)
+    -- Suppress all banter output in BGs/arenas (PvP not yet supported)
+    if core.IsInPvPInstance() then
+        ns.Debug("SafeSend: blocked (inside PvP instance)")
+        return
+    end
+
     if channel == "PARTY" or channel == "RAID" or channel == "GUILD"
        or channel == "RAID_WARNING" or channel == "INSTANCE_CHAT" then
         SendChatMessage(text, channel)
@@ -128,7 +146,8 @@ end
 -- Returns a multiplier (0.5 at chattiness=1, 1.0 at 5, 2.0 at 10)
 ---------------------------------------------------------------------------
 function core.GetChattinessMultiplier()
-    local c = ns.db and ns.db.chattiness or 5
+    local ms = ns.settings and ns.settings.GetModeSettings and ns.settings.GetModeSettings() or {}
+    local c = ms.chattiness or 5
     -- Linear interpolation: 1→0.5, 5→1.0, 10→2.0
     if c <= 5 then
         return 0.5 + (c - 1) * (0.5 / 4)
@@ -160,13 +179,54 @@ function core.Init()
 end
 
 ---------------------------------------------------------------------------
+-- Solo Emote Mode — /me inner monologue when not in a group
+-- No extra timers. Hooks into the existing AMBIENT trigger system.
+-- When solo + soloMode, AMBIENT statements route through EMOTE with a
+-- persona-flavoured prefix instead of being blocked by SAY.
+---------------------------------------------------------------------------
+
+local SOLO_PREFIXES = {
+    WARRIOR = { "mutters:",   "grumbles:",  "grunts:" },
+    MAGE    = { "muses:",     "ponders:",   "mutters:" },
+    PRIEST  = { "murmurs:",   "whispers a prayer:", "reflects:" },
+    ROGUE   = { "mutters from the shadows:", "thinks aloud:", "whispers:" },
+    HUNTER  = { "mutters to their pet:",     "thinks aloud:", "sighs:" },
+    PALADIN = { "reflects:",  "murmurs:",   "contemplates:" },
+    WARLOCK = { "mutters darkly:", "hisses:", "chuckles:" },
+    SHAMAN  = { "murmurs:",   "reflects:",  "communes:" },
+    DRUID   = { "muses:",     "hums:",      "reflects:" },
+    PIRATE  = { "mutters:",   "growls:",    "grumbles:" },
+    NEUTRAL = { "mutters:",   "thinks:",    "muses:" },
+}
+
+local SOLO_SKIP = {
+    " we ",  " we'",  "^we ",  " us ",  " us.",  " us,",
+    "pull",  "anyone", " group", " crew ",  " party ",
+}
+
+local function IsSoloSafe(line)
+    if not line or #line < 10 then return false end
+    local l = " " .. line:lower() .. " "
+    for _, pat in ipairs(SOLO_SKIP) do
+        if l:find(pat, 1, true) then return false end
+    end
+    return true
+end
+
+---------------------------------------------------------------------------
 -- Start a new scene  (called by trigger handlers)
 ---------------------------------------------------------------------------
 function core.StartScene(trigger, ctx)
     ctx = ctx or {}
 
+    -- PvP instance suppression (BGs / arenas — not yet supported)
+    if core.IsInPvPInstance() then
+        ns.Debug("Scene suppressed — inside PvP instance")
+        return
+    end
+
     -- Raid-disable check
-    if ns.db.disableInRaids and core.GetGroupMode() == "RAID" then
+    if ns.db.raid and not ns.db.raid.enabled and core.GetGroupMode() == "RAID" then
         ns.Debug("Scene suppressed — banter disabled in raids")
         return
     end
@@ -188,11 +248,25 @@ function core.StartScene(trigger, ctx)
     -- Build & send the line
     local line    = core.ReplaceTokens(statement.line, ctx)
     local channel = core.GetOutputChannel()
+
+    -- Solo mode: route ALL triggers through EMOTE when not in a group
+    local mode = core.GetGroupMode()
+    if mode == "SOLO" and ns.db.soloMode then
+        -- AMBIENT lines get filtered for group-dependent language
+        if trigger == "AMBIENT" and not IsSoloSafe(line) then
+            ns.Debug("Solo: skipped group-dependent AMBIENT line")
+            return
+        end
+        local prefixes = SOLO_PREFIXES[persona] or SOLO_PREFIXES.WARRIOR
+        local prefix   = prefixes[math.random(#prefixes)]
+        line    = prefix .. ' "' .. line .. '"'
+        channel = "EMOTE"
+    end
+
     core.SafeSend(line, channel)
     ns.Debug("STMT [" .. trigger .. "/" .. statement.rarity .. "]: " .. line)
 
     -- Group coordination
-    local mode = core.GetGroupMode()
     if mode ~= "SOLO" and ns.comm.GetPeerCount() > 0 then
         local ctxStr = core.SerializeContext(ctx)
         ns.comm.SendSceneStart(statement.id, trigger, persona, ctxStr)
@@ -262,8 +336,11 @@ function core.TryEngagement()
     local now = GetTime()
     if now < nextEngagementAt then return end
 
+    -- PvP instance suppression
+    if core.IsInPvPInstance() then return end
+
     -- Raid-disable check
-    if ns.db.disableInRaids and core.GetGroupMode() == "RAID" then return end
+    if ns.db.raid and not ns.db.raid.enabled and core.GetGroupMode() == "RAID" then return end
 
     -- Need at least one peer
     if ns.comm.GetPeerCount() < 1 then return end

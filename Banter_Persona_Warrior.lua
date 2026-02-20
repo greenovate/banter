@@ -340,6 +340,52 @@ statements = {
         },
     },
 
+    FLIGHT_PATH = {
+        COMMON = {
+            { id="war_fp_c01", weight=1, line="I could run faster than this bird." },
+            { id="war_fp_c02", weight=1, line="Why is this thing going in circles. I can SEE the flight master from here." },
+            { id="war_fp_c03", weight=1, line="Can't swing my axe up here. This is torture." },
+            { id="war_fp_c04", weight=1, line="If this bird doesn't speed up I'm gonna Charge off of it." },
+            { id="war_fp_c05", weight=1, line="Heights don't scare me. The lack of things to hit up here scares me." },
+            { id="war_fp_c06", weight=1, line="I wonder if I could fight one of these birds mid-flight. For science." },
+            { id="war_fp_c07", weight=1, line="My rage is decaying. This is the REAL damage of flight paths." },
+            { id="war_fp_c08", weight=1, line="Every second on this bird is a second I'm not hitting something." },
+            { id="war_fp_c09", weight=1, line="Just flew over a bear. Could've fought that bear. But no. We're FLYING." },
+            { id="war_fp_c10", weight=1, line="Are we there yet? I've asked six times. The bird won't answer." },
+            { id="war_fp_c11", weight=1, line="I'm not afraid of falling. I'm afraid of landing without anything to fight." },
+            { id="war_fp_c12", weight=1, line="My arms are getting stiff. Need to swing at something." },
+            { id="war_fp_c13", weight=1, line="This bird smells like wet dog and disappointment." },
+            { id="war_fp_c14", weight=1, line="How does the flight master train these things? Bribery? Threats? Respect? ...it's threats right?" },
+            { id="war_fp_c15", weight=1, line="Sitting on a bird. In armor. For twenty minutes. This is fine." },
+            { id="war_fp_c16", weight=1, line="I can see my house from here. Wait no that's just a rock. Everything looks like a rock from up here." },
+            { id="war_fp_c17", weight=1, line="What do these birds eat? Hopefully not warriors." },
+            { id="war_fp_c18", weight=1, line="Nice view. Hate it. Would prefer a dungeon." },
+        },
+        UNCOMMON = {
+            { id="war_fp_u01", weight=1, line="You know what would make this flight better? Enemies. Just scatter some enemies along the route. I'd be fine." },
+            { id="war_fp_u02", weight=1, line="The bird just banked left. My stomach went right. Plate armor was not designed for aviation." },
+            { id="war_fp_u03", weight=1, line="I tried flexing to stay warm up here. The bird gave me a look. We have an understanding now." },
+            { id="war_fp_u04", weight=1, line="I've been on this bird so long I've named it. Gerald. Gerald is slow." },
+            { id="war_fp_u05", weight=1, line="My battlecry doesn't even echo up here. Just gets swallowed by the sky. Depressing." },
+            { id="war_fp_u06", weight=1, line="The guy who invented flight paths could have invented FAST flight paths. But no." },
+            { id="war_fp_u07", weight=1, line="Saw a cloud that looked like an axe. Best part of this whole trip." },
+            { id="war_fp_u08", weight=1, line="I keep reaching for my weapon. The bird flinches every time. We're both having a bad time." },
+            { id="war_fp_u09", weight=1, line="Pretty sure that other bird just passed us. We're losing a RACE and nobody cares but me." },
+            { id="war_fp_u10", weight=1, line="If I fall off this thing, I want my axe buried with me. And whoever finds my body better say I looked cool." },
+        },
+        RARE = {
+            { id="war_fp_r01", weight=1, line="Thirty minutes on a bird and I've had three existential thoughts. That's three more than my annual limit." },
+            { id="war_fp_r02", weight=1, line="I can see the whole valley from up here. Beautiful. Disgusting. I want to go down there and fight all of it." },
+            { id="war_fp_r03", weight=1, line="The wind is screaming. Or that's me screaming. Hard to tell at this altitude." },
+            { id="war_fp_r04", weight=1, line="Started doing push-ups on the saddle. The bird dipped. We almost died. Worth it though. Felt something." },
+            { id="war_fp_r05", weight=1, line="You know what never has to take a flight path? A Mage. With a portal. I hate Mages." },
+        },
+        MYTHIC = {
+            { id="war_fp_m01", weight=1, line="Twenty minutes in the air and I've planned seven new battle strategies, named my bird, and considered retirement. In that order." },
+            { id="war_fp_m02", weight=1, line="They say the journey is the destination. They've never been on this bird. The destination is the destination. And it's TAKING FOREVER." },
+        },
+    },
+
 },
 
 ---------------------------------------------------------------------------
@@ -620,6 +666,24 @@ responses = {
         },
         MYTHIC = {
             "All cooldowns burning. This is either the winning play or the wipe. Let's find out.",
+        },
+    },
+
+    FLIGHT_PATH = {
+        COMMON = {
+            "Same bird. Same route. Same suffering.",
+            "You're on a bird too? Solidarity.",
+            "I've been on this bird for ages. Ages.",
+        },
+        UNCOMMON = {
+            "If you're also bored on a flight path right now, just know I'm out here flexing in the wind. Alone.",
+            "The warrior's guide to flight paths: sit down, shut up, wait. I'm bad at all three.",
+        },
+        RARE = {
+            "Saw a warrior fall off a flight path once. Got up and kept fighting. Legend.",
+        },
+        MYTHIC = {
+            "One day they'll let us fight things from the air. On that day, I will finally know peace.",
         },
     },
 
