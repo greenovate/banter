@@ -10,14 +10,22 @@ local _, ns = ...
 local CHANGELOG_VERSION = ns.version   -- ties to ns.version in Namespace
 
 local CHANGELOG_LINES = {
-    "|cffffcc00Banter v" .. ns.version .. " — CurseForge Update|r",
+    "|cffffcc00Banter v" .. ns.version .. " — The Glow-Up|r",
     "|cffffffffThe Comedy RP Engine for WoW Classic|r",
     "",
-    "|cff00ff00All in-game links now point to CurseForge.|r",
-    "Promo lines, settings credits, and changelog links",
-    "updated from GitHub to curseforge.com/wow/addons/banter.",
+    "|cff00ff00Custom artwork throughout the addon!|r",
     "",
-    "|cffffcc00Download & update Banter through the CurseForge app!|r",
+    "|cffffcc00—— NEW VISUALS ——|r",
+    "• Custom banner header on the changelog popup",
+    "• Custom banner header on the settings panel",
+    "• Custom minimap icon (goodbye generic spell icon)",
+    "• All art generated in WoW's warm tavern style",
+    "",
+    "|cffffcc00—— ALSO INCLUDED ——|r",
+    "• All CurseForge link updates from V1.1.1",
+    "• 15,000+ unique conversation combinations",
+    "• Smart dedup engine (6-hour cross-session)",
+    "• 10 comedy personas, 477 engagement keys",
     "",
     "|cffffcc00Bugs & Feedback|r",
     "Report issues or share ideas on CurseForge:",
@@ -37,7 +45,7 @@ local function CreatePopup()
     -- BackdropTemplate exists in retail but may not in Classic; use native SetBackdrop
     local template = BackdropTemplateMixin and "BackdropTemplate" or nil
     local f = CreateFrame("Frame", "BanterChangelogPopup", UIParent, template)
-    f:SetSize(480, 580)
+    f:SetSize(480, 640)
     f:SetPoint("CENTER")
     f:SetFrameStrata("DIALOG")
     f:SetMovable(true)
@@ -54,14 +62,15 @@ local function CreatePopup()
         insets   = { left = 11, right = 11, top = 12, bottom = 11 },
     })
 
-    -- Title bar
-    local title = f:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
-    title:SetPoint("TOP", 0, -20)
-    title:SetText("|cffffcc00Banter|r — What's New")
+    -- Custom banner header
+    local banner = f:CreateTexture(nil, "ARTWORK")
+    banner:SetTexture("Interface\\AddOns\\Banter\\Textures\\BanterChangelogBanner")
+    banner:SetSize(440, 110)
+    banner:SetPoint("TOP", 0, -8)
 
     -- Scrollable body
     local scroll = CreateFrame("ScrollFrame", nil, f, "UIPanelScrollFrameTemplate")
-    scroll:SetPoint("TOPLEFT", 20, -50)
+    scroll:SetPoint("TOPLEFT", 20, -124)
     scroll:SetPoint("BOTTOMRIGHT", -36, 70)
 
     local content = CreateFrame("Frame", nil, scroll)

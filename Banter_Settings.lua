@@ -155,7 +155,7 @@ local function CreateSettingsFrame()
     if frame then return frame end
 
     frame = CreateFrame("Frame", "BanterSettingsFrame", UIParent, "BackdropTemplate")
-    frame:SetSize(420, 640)
+    frame:SetSize(420, 720)
     frame:SetPoint("CENTER")
     frame:SetMovable(true)
     frame:EnableMouse(true)
@@ -173,15 +173,15 @@ local function CreateSettingsFrame()
     })
     frame:SetBackdropColor(0.05, 0.05, 0.08, 0.95)
 
-    -- Title bar
-    local titleBg = frame:CreateTexture(nil, "ARTWORK")
-    titleBg:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Header")
-    titleBg:SetSize(280, 64)
-    titleBg:SetPoint("TOP", 0, 12)
+    -- Custom banner header
+    local banner = frame:CreateTexture(nil, "ARTWORK")
+    banner:SetTexture("Interface\\AddOns\\Banter\\Textures\\BanterSettingsBanner")
+    banner:SetSize(380, 95)
+    banner:SetPoint("TOP", 0, -6)
 
-    local titleText = frame:CreateFontString(nil, "ARTWORK", "GameFontNormal")
-    titleText:SetPoint("TOP", 0, -2)
-    titleText:SetText("Banter v" .. ns.version)
+    local titleText = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    titleText:SetPoint("TOP", 0, -100)
+    titleText:SetText("v" .. ns.version)
 
     -- Close button
     local closeBtn = CreateFrame("Button", nil, frame, "UIPanelCloseButton")
@@ -193,19 +193,19 @@ local function CreateSettingsFrame()
     local LEFT = 24
 
     -- Enable checkbox
-    MakeCheckbox(frame, "BanterCB_Enable", LEFT, -40, "Enable Banter", "enabled")
+    MakeCheckbox(frame, "BanterCB_Enable", LEFT, -115, "Enable Banter", "enabled")
 
     -- Persona dropdown  (AUTO = current class)
-    MakeDropdown(frame, "BanterDD_Persona", LEFT, -80, "Persona", PERSONA_LIST, "persona")
+    MakeDropdown(frame, "BanterDD_Persona", LEFT, -155, "Persona", PERSONA_LIST, "persona")
 
     -- Output channel dropdown
-    MakeDropdown(frame, "BanterDD_Channel", LEFT, -140, "Output Channel", CHANNEL_LIST, "outputChannel")
+    MakeDropdown(frame, "BanterDD_Channel", LEFT, -215, "Output Channel", CHANNEL_LIST, "outputChannel")
 
     -- Chattiness slider  (1-10)
-    MakeLabel(frame, LEFT, -204, "Chattiness", "GameFontNormalLarge")
+    MakeLabel(frame, LEFT, -279, "Chattiness", "GameFontNormalLarge")
     do
         local chatSlider = CreateFrame("Slider", "BanterSlider_Chattiness", frame, "OptionsSliderTemplate")
-        chatSlider:SetPoint("TOPLEFT", LEFT, -222)
+        chatSlider:SetPoint("TOPLEFT", LEFT, -297)
         chatSlider:SetWidth(200)
         chatSlider:SetMinMaxValues(1, 10)
         chatSlider:SetValueStep(1)
@@ -224,42 +224,42 @@ local function CreateSettingsFrame()
     end
 
     -- Frequency sliders
-    MakeLabel(frame, LEFT, -268, "Scene Frequency", "GameFontNormalLarge")
+    MakeLabel(frame, LEFT, -343, "Scene Frequency", "GameFontNormalLarge")
 
-    MakeSlider(frame, "BanterSlider_FreqMin", LEFT, -292, "Min Delay",
+    MakeSlider(frame, "BanterSlider_FreqMin", LEFT, -367, "Min Delay",
                10, 120, 5, "frequencyMin")
 
-    MakeSlider(frame, "BanterSlider_FreqMax", LEFT + 220, -292, "Max Delay",
+    MakeSlider(frame, "BanterSlider_FreqMax", LEFT + 220, -367, "Max Delay",
                20, 300, 5, "frequencyMax")
 
     -- Response sliders
-    MakeLabel(frame, LEFT, -360, "Response Timing", "GameFontNormalLarge")
+    MakeLabel(frame, LEFT, -435, "Response Timing", "GameFontNormalLarge")
 
-    MakeSlider(frame, "BanterSlider_RespMin", LEFT, -384, "Min Delay",
+    MakeSlider(frame, "BanterSlider_RespMin", LEFT, -459, "Min Delay",
                5, 60, 5, "responseMin")
 
-    MakeSlider(frame, "BanterSlider_RespMax", LEFT + 220, -384, "Max Delay",
+    MakeSlider(frame, "BanterSlider_RespMax", LEFT + 220, -459, "Max Delay",
                10, 120, 5, "responseMax")
 
     -- ═══════════════════════════════════════════════════════════════
     -- Toggles section
     -- ═══════════════════════════════════════════════════════════════
-    MakeLabel(frame, LEFT, -452, "Options", "GameFontNormalLarge")
+    MakeLabel(frame, LEFT, -527, "Options", "GameFontNormalLarge")
 
-    MakeCheckbox(frame, "BanterCB_Filter", LEFT, -470,
+    MakeCheckbox(frame, "BanterCB_Filter", LEFT, -545,
                  "Transform outgoing chat in persona voice", "enableChatFilter")
 
-    MakeCheckbox(frame, "BanterCB_RaidDisable", LEFT, -496,
+    MakeCheckbox(frame, "BanterCB_RaidDisable", LEFT, -571,
                  "Disable all banter in raids", "disableInRaids")
 
-    MakeCheckbox(frame, "BanterCB_Roast", LEFT, -522,
+    MakeCheckbox(frame, "BanterCB_Roast", LEFT, -597,
                  "Roast Mode — stat-based player callouts", "roastMode")
 
-    MakeCheckbox(frame, "BanterCB_Promo", LEFT, -548,
+    MakeCheckbox(frame, "BanterCB_Promo", LEFT, -623,
                  "Self-promo — respond to \"what addon?\" questions", "selfPromo")
 
     -- Debug
-    MakeCheckbox(frame, "BanterCB_Debug", LEFT, -574,
+    MakeCheckbox(frame, "BanterCB_Debug", LEFT, -649,
                  "Debug Mode (verbose logging)", "debug")
 
     -- Credits
@@ -297,7 +297,7 @@ local function CreateMinimapButton()
     local icon = btn:CreateTexture(nil, "BACKGROUND")
     icon:SetSize(20, 20)
     icon:SetPoint("TOPLEFT", 7, -5)
-    icon:SetTexture("Interface\\Icons\\Spell_Holy_Silence")
+    icon:SetTexture("Interface\\AddOns\\Banter\\Textures\\BanterMinimapIcon")
 
     local border = btn:CreateTexture(nil, "OVERLAY")
     border:SetSize(53, 53)
