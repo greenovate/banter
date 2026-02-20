@@ -220,6 +220,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
         local addon = ...
         if addon == ns.name then
             ns.settings.Init()
+            ns.context.Init()
             ns.engagements.Init()
             ResetSceneGate()
             ResetResponseGate()

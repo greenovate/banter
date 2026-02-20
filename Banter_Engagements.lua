@@ -101,7 +101,9 @@ end
 
 --- Register a target-specific topic (anyone → TARGET persona)
 --- openers, responses, followUps are arrays of strings for multi-choice
-function ns.engagements.T(target, openers, responses, followUps)
+--- context is an optional tag: "dungeon", "world", "city", "desert", etc.
+---   nil or "any" = fires anywhere. Compound: "dungeon|underground"
+function ns.engagements.T(target, openers, responses, followUps, context)
     topicCount = topicCount + 1
     local key = "T" .. topicCount
     topics[key] = {
@@ -109,6 +111,7 @@ function ns.engagements.T(target, openers, responses, followUps)
         openers   = openers,
         responses = responses,
         followUps = followUps or {},
+        context   = context,   -- nil = any
     }
     if not byTarget[target] then byTarget[target] = {} end
     table.insert(byTarget[target], key)
@@ -116,7 +119,8 @@ end
 
 --- Register a universal topic (any persona → any persona)
 --- openers, responses, followUps are arrays of strings for multi-choice
-function ns.engagements.U(openers, responses, followUps)
+--- context is an optional tag: "dungeon", "world", "city", etc.
+function ns.engagements.U(openers, responses, followUps, context)
     topicCount = topicCount + 1
     local key = "U" .. topicCount
     topics[key] = {
@@ -124,6 +128,7 @@ function ns.engagements.U(openers, responses, followUps)
         openers   = openers,
         responses = responses,
         followUps = followUps or {},
+        context   = context,   -- nil = any
     }
     table.insert(universals, key)
 end
@@ -166,11 +171,20 @@ end
 
 --- Pick a random engagement for this player to initiate.
 --- Returns: threadKey, targetPlayerName  (or nil if nothing qualifies)
---- Uses recently-used tracking to avoid repeats.
+--- Uses recently-used tracking and context filtering to avoid repeats.
 function ns.engagements.PickEngagement()
     local myPersona = ns.ResolvePersona()
     local peers = ns.comm.peers
     if not peers then return nil, nil end
+
+    -- Context filter helper
+    local function ContextOK(key)
+        local topic = topics[key]
+        if not topic then return true end           -- legacy thread, no context
+        if not topic.context then return true end   -- nil = any
+        if not ns.context then return true end      -- module not loaded yet
+        return ns.context.Matches(topic.context)
+    end
 
     -- Build candidate list: { key, targetName }
     local candidates = {}
@@ -186,7 +200,7 @@ function ns.engagements.PickEngagement()
             if pool then
                 for _, key in ipairs(pool) do
                     table.insert(allKeys, key)
-                    if not IsRecentlyUsed(key) then
+                    if not IsRecentlyUsed(key) and ContextOK(key) then
                         table.insert(candidates, { key = key, target = peerName })
                     end
                 end
@@ -198,7 +212,7 @@ function ns.engagements.PickEngagement()
         if pool then
             for _, key in ipairs(pool) do
                 table.insert(allKeys, key)
-                if not IsRecentlyUsed(key) then
+                if not IsRecentlyUsed(key) and ContextOK(key) then
                     table.insert(candidates, { key = key, target = peerName })
                 end
             end
@@ -210,7 +224,7 @@ function ns.engagements.PickEngagement()
             if tPool then
                 for _, key in ipairs(tPool) do
                     table.insert(allKeys, key)
-                    if not IsRecentlyUsed(key) then
+                    if not IsRecentlyUsed(key) and ContextOK(key) then
                         table.insert(candidates, { key = key, target = peerName })
                     end
                 end
@@ -220,7 +234,7 @@ function ns.engagements.PickEngagement()
         -- 4) Universal topics (U) — anyone → anyone
         for _, key in ipairs(universals) do
             table.insert(allKeys, key)
-            if not IsRecentlyUsed(key) then
+            if not IsRecentlyUsed(key) and ContextOK(key) then
                 table.insert(candidates, { key = key, target = peerName })
             end
         end

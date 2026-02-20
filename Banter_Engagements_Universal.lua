@@ -52,7 +52,7 @@ T("WARRIOR", {
     "Forty?! WHERE do you keep forty weapons?!",
     "It's working. I'm very annoyed.",
     "I don't think that's how helmets work but I'm afraid to argue.",
-})
+}, "dungeon|raid")
 
 T("WARRIOR", {
     "{name}, what's it like knowing your entire strategy is 'run at it'?",
@@ -156,7 +156,7 @@ T("MAGE", {
     "You can't feel your TOES?! {name}, that's not magic, that's frostbite!",
     "I'm going to stand further away from you during pulls.",
     "EXPELLED?! For WHAT?!",
-})
+}, "dungeon|raid")
 
 T("MAGE", {
     "{name}, be honest — do you just teleport to avoid walking, like... always?",
@@ -400,7 +400,7 @@ T("PRIEST", {
     "'I'm not supposed to enjoy Shadow this much' — somebody get this priest a therapist!",
     "The Light is PASSIVE AGGRESSIVE?! Even the Light?!",
     "Judging the tank's life choices — truly a healer's pre-pull ritual.",
-})
+}, "dungeon|raid")
 
 --=========================================================================
 --  TARGET-SPECIFIC TOPICS: Anyone → ROGUE
@@ -509,7 +509,7 @@ T("HUNTER", {
     "'More approximate.' That's a WILD euphemism for 'I pulled the whole room.'",
     "You chose the PET over US! Publicly! Without hesitation!",
     "The universe told you to pull? The universe is WRONG.",
-})
+}, "dungeon|raid")
 
 T("HUNTER", {
     "{name}, quick question — has your pet ever bitten a party member? On purpose?",
@@ -569,7 +569,7 @@ T("HUNTER", {
     "Evidence you should DESTROY?! {name}, what HAPPENED?!",
     "You can't IDENTIFY your own pet?! How is that possible?!",
     "It 'builds character' to be DAZED by your OWN hunter?!",
-})
+}, "dungeon|raid")
 
 --=========================================================================
 --  TARGET-SPECIFIC TOPICS: Anyone → PALADIN
@@ -614,7 +614,7 @@ T("PALADIN", {
     "We eat like ANIMALS because we're in a CAVE fighting MONSTERS!",
     "Lay on Hands for a STUBBED TOE! That's the most paladin thing EVER!",
     "'Quietly.' Nothing about you is quiet, {name}.",
-})
+}, "dungeon")
 
 T("PALADIN", {
     "{name}, do you ever take the armor off? Like, ever?",
@@ -736,7 +736,7 @@ T("DRUID", {
     "The Great Shift of '04?! There's druid LORE about form arguments?!",
     "It's NICE?! You LIKE being watered?! That's the most druid thing ever!",
     "Photosynthesizing. In a dungeon. With no sunlight.",
-})
+}, "dungeon")
 
 --=========================================================================
 --  TARGET-SPECIFIC TOPICS: Anyone → SHAMAN
@@ -781,7 +781,7 @@ T("SHAMAN", {
     "You and lightning have a 'dynamic'?! That sounds DANGEROUS!",
     "Earth doesn't try to kill you ACCIDENTALLY? What about ON PURPOSE?!",
     "The earth speaks in WEIRD WORDS? Like what? What does earth SAY?!",
-})
+}, "dungeon|raid")
 
 T("SHAMAN", {
     "{name}, do the other classes take you seriously or is it the totem thing?",
@@ -819,7 +819,7 @@ T("SHAMAN", {
     "Four elemental CHILDREN arguing about who gets used?! NO WONDER you're stressed!",
     "Bloodlust changes your SHOPPING IMPULSE?! What does that even mean?!",
     "You DON'T KNOW if your totems are sentient?! Shouldn't you FIND OUT?!",
-})
+}, "dungeon|raid")
 
 --=========================================================================
 --  TARGET-SPECIFIC TOPICS: Anyone → PIRATE
@@ -952,7 +952,7 @@ U({
     "'Good is aspirational.' I'm offended but you're not wrong.",
     "Your brain merged fun and loot?! Is that healthy?!",
     "Most productive thing all day... in a dungeon... yeah, same actually.",
-})
+}, "dungeon")
 
 U({
     "Hey {name}, unpopular opinion time — what's overrated in this game?",
@@ -971,7 +971,7 @@ U({
     "Nobody yelling during trash is basically vacation.",
     "You're LYING about our gear?! How badly?!",
     "Emotionally haunted by a wipe. We should all get therapy.",
-})
+}, "dungeon")
 
 U({
     "{name}, if this group had a name, what would it be?",
@@ -990,7 +990,7 @@ U({
     "The pain IS specific! Why is that so TRUE?!",
     "Research?! You're RESEARCHING the game?! For WHOM?!",
     "Real life doesn't have an auction house. The truest thing said today.",
-})
+}, "dungeon")
 
 U({
     "{name}, random question — what's the last thing you ate? In game AND real life.",
@@ -1051,7 +1051,7 @@ U({
     "Throw it in and close your eyes! That's not a SYSTEM!",
     "All the mounts and no gold. The classic trade.",
     "'Stuff' and 'more stuff.' I can't even argue. That IS a system.",
-})
+}, "city")
 
 U({
     "{name}, random thought — do you think mobs talk about US after we leave?",
@@ -1232,7 +1232,7 @@ U({
     "'That was easy' jinxes EVERY time! EVERY. TIME!",
     "Blame the encounter design. Very diplomatic. Very cowardly. I respect it.",
     "You contemplate life choices AND res anyway! That's the human condition!",
-})
+}, "dungeon|raid")
 
 U({
     "{name}, if bosses dropped REAL rewards, like pizza, would you play more or less?",
@@ -1292,7 +1292,7 @@ U({
     "'It's NOW.' You got trapped for a WHOLE NIGHT!",
     "Jumping in circles to cope with waiting! I DO THAT TOO!",
     "Your word means nothing and you've accepted it! Beautiful self-awareness!",
-})
+}, "dungeon")
 
 U({
     "Hey {name}, what's something every player does but nobody admits?",
@@ -1472,7 +1472,7 @@ U({
     "AFK without telling anyone! Are they DEAD?! DID THEY GO TO BED?!",
     "Always say gg. Even lying gg. Because MANNERS. I love that.",
     "Never blame the healer — said while the healer reads this and CRIES.",
-})
+}, "dungeon")
 
 U({
     "Hey {name}, do you screenshot anything or is your memories folder empty?",
