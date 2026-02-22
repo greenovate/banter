@@ -386,8 +386,8 @@ statements = {
             { id="wlk_solo_r05", weight=1, line="I passed a paladin on the road. We made eye contact. I smiled. They walked faster. Some interactions are just perfect." },
         },
         MYTHIC = {
-            { id="wlk_solo_m01", weight=1, line="Out here, no group, no judgment, just me and the dark arts — this is where a warlock is most honest. No pretending the demons are 'under control.' No assuring anyone the soul shards are 'fine.' Just raw, unfiltered demonology and a nice walk. Therapeutic, really." },
-            { id="wlk_solo_m02", weight=1, line="I've been wandering alone for an hour. My demon has complained nine times. A bush caught fire spontaneously when I looked at it. A squirrel offered me its soul out of fear — I declined, I have standards. Just another quiet afternoon as a warlock." },
+            { id="wlk_solo_m01", weight=1, line="No group, no judgment, just me and the dark arts — where a warlock is most honest. No pretending the demons are 'under control.' No assuring anyone the soul shards are 'fine.' Just raw demonology and a nice walk. Therapeutic." },
+            { id="wlk_solo_m02", weight=1, line="I've been wandering alone for an hour. My demon has complained nine times. A bush caught fire when I looked at it. A squirrel offered me its soul out of fear — I declined, I have standards. Just another quiet afternoon as a warlock." },
         },
     },
 

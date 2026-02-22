@@ -8,6 +8,8 @@ local DEFAULTS = {
     roastMode        = false,
     selfPromo        = true,
     soloMode         = false,
+    manualMode       = false,
+    showButton       = false,
     enableChatFilter = false,
     chatFilterChannels = { SAY = true, PARTY = true, RAID = true },
     debug            = false,
@@ -459,6 +461,29 @@ local function CreateSettingsFrame()
 
         MakeCheckbox(p, "BanterCB_Debug", LEFT, y,
                      "Debug Mode (verbose logging)", ns.db, "debug")
+        y = y - 40
+
+        MakeLabel(p, LEFT, y, "Banter Button", "GameFontNormalLarge")
+        y = y - 24
+
+        MakeCheckbox(p, "BanterCB_ShowBtn", LEFT, y,
+                     "Show Banter Button (click to fire banter)",
+                     ns.db, "showButton")
+        y = y - 28
+
+        MakeCheckbox(p, "BanterCB_Manual", LEFT, y,
+                     "Manual Mode — only fire banter on button click",
+                     ns.db, "manualMode")
+
+        -- Wire up showButton checkbox to update button visibility live
+        local showCB = _G["BanterCB_ShowBtn"]
+        if showCB then
+            showCB:HookScript("OnClick", function()
+                if ns.button and ns.button.UpdateVisibility then
+                    ns.button.UpdateVisibility()
+                end
+            end)
+        end
     end
 
     -- ── Group ────────────────────────────────────────────
@@ -629,6 +654,8 @@ SlashCmdList["BANTER"] = function(input)
         ns.Print("  /banter freq <min> <max>  — scene frequency (current mode)")
         ns.Print("  /banter chattiness <1-10>  — chattiness (current mode)")
         ns.Print("  /banter solo on|off  — solo /me inner monologue")
+        ns.Print("  /banter button  — toggle Banter Button")
+        ns.Print("  /banter manual on|off  — Manual Mode (button-only banter)")
         ns.Print("  /banter roast on|off  — stat-based player callouts")
         ns.Print("  /banter promo on|off  — self-promotion responses")
         ns.Print("  /banter reset  — reset session stats")
@@ -685,6 +712,21 @@ SlashCmdList["BANTER"] = function(input)
             ns.Print("Solo Mode disabled.")
         else
             ns.Print("Solo Mode: " .. (ns.db.soloMode and "ON" or "OFF"))
+        end
+    elseif cmd == "button" then
+        if ns.button and ns.button.Toggle then
+            ns.button.Toggle()
+        end
+    elseif cmd:match("^manual") then
+        local toggle = cmd:match("^manual%s+(%a+)")
+        if toggle == "on" then
+            ns.db.manualMode = true
+            ns.Print("Manual Mode enabled. Auto-triggers suppressed — use Banter Button.")
+        elseif toggle == "off" then
+            ns.db.manualMode = false
+            ns.Print("Manual Mode disabled. Auto-triggers restored.")
+        else
+            ns.Print("Manual Mode: " .. (ns.db.manualMode and "ON" or "OFF"))
         end
     elseif cmd:match("^roast") then
         local toggle = cmd:match("^roast%s+(%a+)")

@@ -176,6 +176,9 @@ function triggers.CheckTrigger(trigger)
         ns.Debug(trigger .. " failed RNG (" .. math.floor(chance * 100) .. "%)")
         return false
     end
+
+    -- Immediately mark cooldown to prevent same-frame duplicates (e.g., AoE kills)
+    triggerCooldowns[trigger] = GetTime()
     return true
 end
 

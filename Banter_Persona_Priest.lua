@@ -394,8 +394,8 @@ statements = {
             { id="pri_solo_r05", weight=1, line="My Shadow spec whispers to me when I'm alone. It says 'embrace me.' My Holy spec says 'don't you dare.' I say 'it's my DAY OFF.' Nobody listens. Not even my own specs." },
         },
         MYTHIC = {
-            { id="pri_solo_m01", weight=1, line="A priest alone in the world is a rare thing. We're always needed, always summoned, always guilted into one more dungeon. But right now — mana full, robes clean, no one dying — I am free. For exactly as long as it takes someone to type 'LF healer.' Which could be any second. I'm savoring this." },
-            { id="pri_solo_m02", weight=1, line="I have healed thousands. I have resurrected hundreds. I have shielded more bad decisions than I can count. And today, I am doing NONE of those things. Today, the only person I'm keeping alive is me. And honestly? One health bar is magnificent. This is what warriors must feel like. I finally understand." },
+            { id="pri_solo_m01", weight=1, line="A priest alone in the world is a rare thing. Always needed, always summoned, always guilted into one more dungeon. But right now — mana full, robes clean, no one dying — I am free. For as long as it takes someone to type 'LF healer.'" },
+            { id="pri_solo_m02", weight=1, line="I have healed thousands. Resurrected hundreds. Shielded more bad decisions than I can count. And today I am doing NONE of those things. The only person I'm keeping alive is me. One health bar is magnificent. This is what warriors feel like." },
         },
     },
 

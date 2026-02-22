@@ -388,8 +388,8 @@ statements = {
             { id="pal_solo_r05", weight=1, line="My shield has dents from a hundred fights. My sword has weight from a thousand blessings. My boots have mud from every road in Azeroth. The Light asked me to serve. It didn't mention the chafing. Or the walks." },
         },
         MYTHIC = {
-            { id="pal_solo_m01", weight=1, line="A paladin alone is still a paladin. The armor stays on. The aura stays up. The moral superiority is non-negotiable. But out here, with no one watching, I can admit the truth: I bubble-hearthed once. On purpose. Not in danger. Just to see if I could. I could. It was the greatest moment of my career and I will never tell anyone." },
-            { id="pal_solo_m02", weight=1, line="The Light chose me. Out of everyone, it chose THIS paladin to walk THIS road today. Alone, in full plate, sweating under a holy aura I can't turn off. Other paladins get visions. Great quests. Moments of divine clarity. I get long walks and the nagging feeling that I should be buffing someone. Even the Light doesn't know what to do with me sometimes." },
+            { id="pal_solo_m01", weight=1, line="A paladin alone is still a paladin. Armor on. Aura up. Moral superiority non-negotiable. But with no one watching, I can admit it: I bubble-hearthed once. On purpose. Not in danger. Just to feel alive. Greatest moment of my career." },
+            { id="pal_solo_m02", weight=1, line="The Light chose me. Out of everyone, THIS paladin, THIS road. Alone, full plate, sweating under a holy aura I can't turn off. Other paladins get visions. Great quests. I get long walks and the nagging feeling I should be buffing someone." },
         },
     },
 

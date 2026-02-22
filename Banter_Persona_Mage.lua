@@ -394,7 +394,7 @@ statements = {
         },
         MYTHIC = {
             { id="mag_solo_m01", weight=1, line="Alone in the wild. No students. No rivals. No warriors asking what Intellect does. Just me, the arcane, and an entire continent that has no idea how lucky it is that I'm passing through peacefully. For now." },
-            { id="mag_solo_m02", weight=1, line="I've spent an hour walking and thinking. The thinking was extraordinary. The walking was beneath me. When they write the history of arcane achievement, this walk will be a footnote — but the footnote will be better than most mages' entire chapters." },
+            { id="mag_solo_m02", weight=1, line="I've spent an hour walking and thinking. The thinking was extraordinary. The walking was beneath me. When they write the history of arcane achievement, this walk will be a footnote — but it'll outshine most mages' entire chapters." },
         },
     },
 

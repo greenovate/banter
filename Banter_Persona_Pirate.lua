@@ -520,8 +520,8 @@ statements = {
             { id="pir_solo_r05", weight=1, line="Sat down under a tree and carved a little ship into the bark. Didn't mean to. Hands just did it. Pirate muscle memory. Even me hands miss the sea." },
         },
         MYTHIC = {
-            { id="pir_solo_m01", weight=1, line="Arr, I'll tell ye something I'd never say to a crew. Out here, alone, walkin' the dirt roads of this landlocked nightmare — I wonder sometimes if the sea even misses me back. I've given her everything. Me youth, me crew, me liver, probably. And she just keeps rollin'. Doesn't care who's sailing and who's stuck on shore. Cold woman, the sea. But I love 'er. Always have. Always will. Even from here." },
-            { id="pir_solo_m02", weight=1, line="Captain's log, day... I've stopped countin'. The land stretches on. No tide, no current, no horizon where water meets sky. Just grass and rocks and the occasional disapproving villager. Me hat draws stares. Me sword draws questions. Me accent draws confusion. But I keep walkin'. Because somewhere ahead there's a coast. And on that coast there's a dock. And at that dock there's a ship. And on that ship there's rum. And THAT is worth every miserable step on this forsaken dirt." },
+            { id="pir_solo_m01", weight=1, line="Arr, I'll tell ye somethin' I'd never say to a crew. Out here on dirt roads, I wonder if the sea even misses me back. Given 'er everything. Me youth, me crew, me liver. She just keeps rollin'. Cold woman, the sea. Love 'er though." },
+            { id="pir_solo_m02", weight=1, line="Captain's log, day... stopped countin'. No tide, no current, just grass and disapproving villagers. Somewhere ahead there's a coast, on that coast a dock, at that dock a ship, on that ship — rum. Worth every landlocked step." },
         },
     },
 

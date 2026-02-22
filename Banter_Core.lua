@@ -64,6 +64,12 @@ function core.SafeSend(text, channel)
         return
     end
 
+    -- WoW enforces a 255-character limit on chat messages
+    if #text > 255 then
+        ns.Debug("SafeSend: blocked (message " .. #text .. " chars, limit 255)")
+        return
+    end
+
     if channel == "PARTY" or channel == "RAID" or channel == "GUILD"
        or channel == "RAID_WARNING" or channel == "INSTANCE_CHAT" then
         SendChatMessage(text, channel)
@@ -175,6 +181,7 @@ function core.Init()
     -- WoW seeds math.random internally; math.randomseed is removed from the sandbox
     ns.settings.CreateOptionsPanel()
     ns.chatFilter.Init()
+    ns.button.Init()
     ns.Debug("Core initialised (v" .. ns.version .. ").")
 end
 
@@ -257,8 +264,14 @@ function core.StartScene(trigger, ctx)
         return
     end
 
-    -- Per-trigger RNG + cooldown check
-    if not ns.triggers.CheckTrigger(trigger) then return end
+    -- Manual Mode gate — suppress auto-triggers, allow manual button clicks
+    if ns.db.manualMode and not (ctx and ctx.manualTrigger) then
+        ns.Debug("Scene suppressed — Manual Mode (use Banter Button)")
+        return
+    end
+
+    -- Per-trigger RNG + cooldown check  (skip for manual button presses)
+    if not (ctx and ctx.manualTrigger) and not ns.triggers.CheckTrigger(trigger) then return end
 
     local persona = ns.ResolvePersona()
     local mode    = core.GetGroupMode()

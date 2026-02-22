@@ -383,13 +383,13 @@ statements = {
         RARE = {
             { id="hun_solo_r01", weight=1, line="Sometimes I sit in the wild and just watch animals. Not to tame them. Not to hunt them. Just to watch. My pet sits next to me and watches too. We don't talk about it. We don't need to." },
             { id="hun_solo_r02", weight=1, line="My first pet was a boar outside the starting area. Small, angry, perfect. Still have it in the stable. Visit sometimes. It pretends not to care. I pretend not to notice. We both know." },
-            { id="hun_solo_r03", weight=1, line="The other classes think hunters are simple. Point, shoot, pet does the rest. They don't see the tracking, the trap placement, the split-second decisions. They don't see my pet giving me a disappointed look when I miss. That look has more tactical depth than most raid plans." },
+            { id="hun_solo_r03", weight=1, line="Other classes think hunters are simple. Point, shoot, pet does the rest. They don't see the tracking, the traps, the split-second calls. They don't see my pet's disappointed look when I miss. That look outclasses most raid plans." },
             { id="hun_solo_r04", weight=1, line="I've been walking for an hour and my pet hasn't left my side once. Loyal, constant, unwavering. Meanwhile I got distracted by a cool-looking rock twice. My pet is literally a better adventurer than me." },
             { id="hun_solo_r05", weight=1, line="Long day out here. Shot things, tracked things, fed my pet, fed myself, Feigned Death twice for no reason. Just another day in the life. Best life there is." },
         },
         MYTHIC = {
-            { id="hun_solo_m01", weight=1, line="Somewhere out there is a beast I haven't met yet. The one. The perfect companion. Every hunter knows the feeling — you see an animal and something clicks. My pet looks at me every time I slow down near a new creature. It knows. It doesn't judge. Much. Okay it judges a little. But it stays. And that's what matters." },
-            { id="hun_solo_m02", weight=1, line="A hunter alone in the wild isn't alone at all. I've got my pet at my side, tracks under my feet, wind telling me which way the prey went, and a quiver full of arrows that all have someone's name on them. The wilderness isn't empty. It's full of things that don't know I'm here yet. And honestly? That's the most beautiful sentence I've ever thought." },
+            { id="hun_solo_m01", weight=1, line="Somewhere out there is a beast I haven't met yet. The one. Every hunter knows the feeling — you see an animal and something clicks. My pet watches me every time I slow down near a new creature. It knows. It judges a little. But it stays." },
+            { id="hun_solo_m02", weight=1, line="A hunter alone in the wild isn't alone at all. Pet at my side, tracks under my feet, quiver full of arrows with names on them. The wild isn't empty — it's full of things that don't know I'm here yet. Best thought I've ever had." },
         },
     },
 

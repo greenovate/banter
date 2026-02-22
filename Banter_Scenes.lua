@@ -84,6 +84,10 @@ end
 local function TrackStatement(trigger, id)
     if not recentStatements[trigger] then recentStatements[trigger] = {} end
     local buf = recentStatements[trigger]
+    -- Remove existing occurrence so the buffer reflects true recency order
+    for i = #buf, 1, -1 do
+        if buf[i] == id then table.remove(buf, i); break end
+    end
     table.insert(buf, id)
     if #buf > STATEMENT_CAP then table.remove(buf, 1) end
 end
@@ -96,6 +100,10 @@ local function IsRecentResponse(line)
 end
 
 local function TrackResponse(line)
+    -- Remove existing occurrence so the buffer reflects true recency order
+    for i = #recentResponses, 1, -1 do
+        if recentResponses[i] == line then table.remove(recentResponses, i); break end
+    end
     table.insert(recentResponses, line)
     if #recentResponses > RESPONSE_CAP then table.remove(recentResponses, 1) end
 end
@@ -118,8 +126,40 @@ function scenes.RollRarity()
 end
 
 ---------------------------------------------------------------------------
+-- LRU fallback helper
+-- When all items in a pool are in the recent buffer, pick randomly from the
+-- OLDEST half of the matching entries.  This guarantees maximum spacing
+-- between repeats even for very small pools.
+--   pool    – array of items (tables or strings)
+--   buf     – the relevant recent-buffer (ordered oldest→newest)
+--   keyFn   – extracts the comparable key from a pool item
+-- Returns a single pool item, or nil on error.
+---------------------------------------------------------------------------
+local function LRUFallback(pool, buf, keyFn)
+    -- Collect pool items in buffer order (oldest → newest), unique only
+    local ordered = {}
+    local seen    = {}
+    for i = 1, #buf do
+        for _, item in ipairs(pool) do
+            local key = keyFn(item)
+            if buf[i] == key and not seen[key] then
+                table.insert(ordered, item)
+                seen[key] = true
+                break
+            end
+        end
+    end
+    if #ordered == 0 then return pool[math.random(#pool)] end
+    -- Pick randomly from the oldest half (rounded up)
+    local cutoff = math.ceil(#ordered / 2)
+    return ordered[math.random(cutoff)]
+end
+
+---------------------------------------------------------------------------
 -- Weighted random pick from a list of { id, weight, line }
 -- Skips recently-used IDs when skipRecent is true.
+-- When every item in the pool is recent, uses LRU fallback instead of
+-- random to guarantee maximum spacing between repeats.
 ---------------------------------------------------------------------------
 function scenes.WeightedPick(pool, skipRecent, trigger)
     if not pool or #pool == 0 then return nil end
@@ -130,7 +170,12 @@ function scenes.WeightedPick(pool, skipRecent, trigger)
             table.insert(filtered, item)
         end
     end
-    if #filtered == 0 then filtered = pool end   -- all filtered → allow repeats
+
+    -- LRU fallback: pick from the oldest half of buffer-matched items
+    if #filtered == 0 then
+        local buf = recentStatements[trigger] or {}
+        return LRUFallback(pool, buf, function(item) return item.id end)
+    end
 
     local total = 0
     for _, item in ipairs(filtered) do total = total + (item.weight or 1) end
@@ -197,8 +242,13 @@ function scenes.PickResponse(persona, trigger, sourcePersona)
                         table.insert(filtered, line)
                     end
                 end
-                if #filtered == 0 then filtered = banterPool end
-                local line = filtered[math.random(#filtered)]
+                local line
+                if #filtered == 0 then
+                    -- LRU fallback for cross-class banter
+                    line = LRUFallback(banterPool, recentResponses, function(l) return l end)
+                else
+                    line = filtered[math.random(#filtered)]
+                end
                 TrackResponse(line)
                 ns.Debug("Banter hit: " .. persona .. " reacting to " .. sourcePersona .. "/" .. trigger)
                 return line
@@ -226,8 +276,13 @@ function scenes.PickResponse(persona, trigger, sourcePersona)
             for _, line in ipairs(pool[t]) do
                 if not IsRecentResponse(line) then table.insert(filtered, line) end
             end
-            if #filtered == 0 then filtered = pool[t] end
-            local line = filtered[math.random(#filtered)]
+            local line
+            if #filtered == 0 then
+                -- LRU fallback for generic responses
+                line = LRUFallback(pool[t], recentResponses, function(l) return l end)
+            else
+                line = filtered[math.random(#filtered)]
+            end
             TrackResponse(line)
             return line
         end

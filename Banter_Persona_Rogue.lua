@@ -387,8 +387,8 @@ statements = {
             { id="rog_solo_r05", weight=1, line="My daggers don't ask questions. My poisons don't complain. My stealth doesn't have opinions on the pull order. This is why I work alone." },
         },
         MYTHIC = {
-            { id="rog_solo_m01", weight=1, line="They say a rogue is most dangerous when you can't see them. They're wrong. A rogue is most dangerous when they've been alone long enough to get bored. Bored rogues start planning. And a rogue with a plan, idle hands, and no supervision is the reason cities have locks." },
-            { id="rog_solo_m02", weight=1, line="Solo in the field. No handler, no team, no extraction plan. Just shadows, steel, and a very clear understanding of every living thing within two hundred yards. This is not solitude. This is sovereignty. The wilderness doesn't know I'm here. And that's exactly how I like it." },
+            { id="rog_solo_m01", weight=1, line="They say a rogue is most dangerous when you can't see them. Wrong. A rogue is most dangerous when they've been alone long enough to get bored. Bored rogues plan. A rogue with a plan, idle hands, and no supervision is why cities have locks." },
+            { id="rog_solo_m02", weight=1, line="Solo in the field. No handler, no team, no extraction plan. Just shadows, steel, and a clear understanding of every living thing within two hundred yards. This is not solitude. This is sovereignty. The wilderness doesn't know I'm here." },
         },
     },
 

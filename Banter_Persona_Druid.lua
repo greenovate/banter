@@ -387,8 +387,8 @@ statements = {
             { id="dru_solo_r05", weight=1, line="Cenarius walked these forests once. Perfect balance, perfect harmony. I trip on roots and argue with my own shapeshifts. We are in the same tradition. Allegedly." },
         },
         MYTHIC = {
-            { id="dru_solo_m01", weight=1, line="A druid alone in the wild should be the most natural thing in the world. Bear for protection, cat for travel, moonkin for the big threats. But what am I? A person. Walking. On legs. Manually. Because I couldn't decide which form to take and now I've been walking in caster form for half an hour and it's too late to switch without admitting I failed." },
-            { id="dru_solo_m02", weight=1, line="Sometimes I wonder if the shapes define the druid, or the druid defines the shapes. Deep question. I asked Cenarius once. He said 'you become what the world needs.' The world apparently needs a confused elf who spends forty percent of fights in the wrong form and apologizes to flowers. I serve with distinction." },
+            { id="dru_solo_m01", weight=1, line="A druid alone in the wild should be the most natural thing in the world. Bear, cat, moonkin — I have OPTIONS. But here I am. Walking. On legs. In caster form. For half an hour. Because I couldn't decide and now it's too awkward to switch." },
+            { id="dru_solo_m02", weight=1, line="Sometimes I wonder if the shapes define the druid, or the druid defines the shapes. I asked Cenarius once. He said 'you become what the world needs.' The world needs a confused elf in the wrong form who apologizes to flowers. Noted." },
         },
     },
 

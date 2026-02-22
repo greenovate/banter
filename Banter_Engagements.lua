@@ -407,21 +407,45 @@ function ns.engagements.PickSoloZoneLine(zone)
         end
     end
 
-    -- All lines recently used → reset and pick from full pool
+    -- All lines recently used → LRU fallback: pick from oldest half
     if #pool == 0 then
-        pool = {}
+        local fullPool = {}
         for _, topic in pairs(bag) do
             if topic.target == "ANY" then
                 for _, line in ipairs(topic.openers) do
-                    table.insert(pool, line)
+                    table.insert(fullPool, line)
                 end
             end
+        end
+        if #fullPool == 0 then return nil end
+        -- Collect pool items in buffer order (oldest → newest), unique only
+        local ordered = {}
+        local seen    = {}
+        for i = 1, #soloZoneRecent do
+            for _, line in ipairs(fullPool) do
+                if soloZoneRecent[i] == line and not seen[line] then
+                    table.insert(ordered, line)
+                    seen[line] = true
+                    break
+                end
+            end
+        end
+        if #ordered == 0 then
+            pool = fullPool
+        else
+            local cutoff = math.ceil(#ordered / 2)
+            pool = {}
+            for i = 1, cutoff do table.insert(pool, ordered[i]) end
         end
     end
 
     if #pool == 0 then return nil end
 
     local pick = pool[math.random(#pool)]
+    -- Remove existing occurrence so buffer reflects true recency order
+    for i = #soloZoneRecent, 1, -1 do
+        if soloZoneRecent[i] == pick then table.remove(soloZoneRecent, i); break end
+    end
     table.insert(soloZoneRecent, pick)
     if #soloZoneRecent > SOLO_ZONE_CAP then table.remove(soloZoneRecent, 1) end
     return pick
