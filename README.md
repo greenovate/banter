@@ -4,7 +4,9 @@
 
 Banter is a comedy RP engine for World of Warcraft Anniversary Classic (TBC 2.5.5). It watches what happens in-game — deaths, wipes, low health, loot rolls, combat, flight paths, zone changes, and more — then fires off class-specific comedic commentary in chat as if your character has *opinions*.
 
-No macros. No keybinds. No effort. Just laughs.
+No macros. No keybinds. Just a big shiny button and thousands of jokes.
+
+**NEW in 1.4.6:** The **Banter Button** — a floating action button for on-demand RP. Click it and your character fires a contextual banter line instantly. Pair it with **Manual Mode** to go full user-controlled: auto-triggers stop, but you still auto-respond to other Banter users. Perfect for new groups or when you want to be the one pulling the comedy trigger.
 
 ---
 
@@ -77,6 +79,24 @@ In groups and raids, Banter fires **engagement threads** — multi-line conversa
 
 ---
 
+## Banter Button — On-Demand RP
+
+Sometimes you want to control the comedy. The **Banter Button** is a floating action button you can place anywhere on screen.
+
+- **Left-click** — fires a context-aware banter line (combat, flight path, ambient — it picks the right one)
+- **Right-click** — opens settings
+- **Middle-click drag** — reposition the button anywhere
+- **10-second cooldown** — standard WoW cooldown wheel so you know when it's ready
+- **Toggle visibility** — `/banter button` or checkbox in General settings
+
+### Manual Mode
+
+Enable **Manual Mode** in General settings (or `/banter manual on`) and all automatic banter triggers stop. Your character only speaks when YOU click the button. But here's the key: **auto-responses to other Banter users still fire**. So in a group with other Banter users, your character still reacts to their lines — you just control when you initiate.
+
+Perfect for joining a new group where you don't want to spam chat before people know what's happening.
+
+---
+
 ## Multi-Addon Sync
 
 Running Banter with friends? The addon automatically discovers other Banter users in your group, elects a scene leader, and staggers responses so everyone's persona reacts in sequence.
@@ -111,6 +131,8 @@ Bypass anytime with `!` prefix.
 ## Settings
 
 - **Tabbed UI** — General, Group, Raid, Solo, PVP BG, Arena
+- **Banter Button** — floating action button for on-demand banter, toggle in General tab
+- **Manual Mode** — suppress auto-triggers, keep auto-responses — button-only banter
 - **Minimap button** — click to open, drag to reposition
 - **Persona selector** — switch voices instantly, or set to AUTO for class detection
 - **Per-mode output channel** — choose where banter goes for each group type
