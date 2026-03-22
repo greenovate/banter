@@ -232,6 +232,32 @@ statements = {
         },
     },
 
+    CC_CALLOUT = {
+        COMMON = {
+            { id="pri_cca_c01", weight=1, line="{victim} just ate a {spell}! That's {duration}! I'm already stressed enough!" },
+            { id="pri_cca_c02", weight=1, line="{victim} is CC'd! {spell}! I CANNOT HEAL THROUGH CC, PEOPLE." },
+            { id="pri_cca_c03", weight=1, line="{spell} on {victim}! {duration}! Does anyone else see this or is it just ME?" },
+            { id="pri_cca_c04", weight=1, line="{victim} is locked down by {spell}. One more thing on MY plate. Great." },
+            { id="pri_cca_c05", weight=1, line="{victim} caught a {spell}! That's {duration} they're not helping with damage!" },
+            { id="pri_cca_c06", weight=1, line="{victim} is out of action! {spell}! It's fine. I'll just heal everyone ELSE harder." },
+            { id="pri_cca_c07", weight=1, line="{spell} hit {victim}. Add it to the list of things I have to worry about." },
+            { id="pri_cca_c08", weight=1, line="{victim} just got {spell}'d! I saw it! I always see it! NOBODY ELSE DOES!" },
+        },
+        UNCOMMON = {
+            { id="pri_cca_u01", weight=1, line="I can dispel {victim}'s {spell} myself but I'm BUSY. {dispeller}, you could help." },
+            { id="pri_cca_u02", weight=1, line="{dispeller}, {victim} has been sitting in {spell} for {duration}. DISPEL EXISTS. USE IT." },
+            { id="pri_cca_u03", weight=1, line="{victim} is CC'd and now I choose: dispel or keep the tank alive. WHY IS THIS MY LIFE." },
+            { id="pri_cca_u04", weight=1, line="I keep track of every undispelled CC. The spreadsheet is DAMNING, {dispeller}." },
+        },
+        RARE = {
+            { id="pri_cca_r01", weight=1, line="{victim} is {spell}'d. I have Dispel Magic, everything. But I'm HEALING. {dispeller} has ONE JOB." },
+            { id="pri_cca_r02", weight=1, line="My dispel has a cooldown. My patience doesn't. Wait yes it does. {dispeller}, CLICK THE BUTTON." },
+        },
+        MYTHIC = {
+            { id="pri_cca_m01", weight=1, line="{victim} CC'd. {dispeller} asleep. Tank dropping. I threaten to go Shadow ONCE and suddenly everyone pays attention." },
+        },
+    },
+
     AMBIENT = {
         COMMON = {
             { id="pri_amb_c01", weight=1, line="Drinking. Do NOT pull." },
@@ -595,6 +621,24 @@ responses = {
         },
         MYTHIC = {
             "CC'd the healer? Bold strategy. Let's see how it plays out. Spoiler: badly.",
+        },
+    },
+
+    CC_CALLOUT = {
+        COMMON = {
+            "I SEE IT. I'm BUSY. Healing the ENTIRE REST OF YOU.",
+            "Dispel is on cooldown! OR IS IT?! ...it is.",
+            "Noted. Added to the dispel queue. There IS a queue.",
+        },
+        UNCOMMON = {
+            "I dispel 47 things per dungeon. You notice the ONE time I'm late.",
+            "Oh I'M sleeping at the wheel? I'm the ONLY one at the wheel!",
+        },
+        RARE = {
+            "I have Mass Dispel. In a future expansion. For now you get Regular Dispel at MY pace.",
+        },
+        MYTHIC = {
+            "You want fast dispels? Bring two priests. Oh wait, nobody wants TWO healers. So you get ME. At MY speed. With MY attitude.",
         },
     },
 

@@ -39,12 +39,13 @@ local TRIGGER_COOLDOWN = {
     MANA_ZERO          = 45,
     LOOT               = 20,
     ENTER_INSTANCE     = 120,
-    INTERRUPT          = 30,
+    INTERRUPT          = 5,
     PERIODIC_DAMAGE    = 30,
     AMBIENT            = 0,
     COMBAT_START       = 20,
     MOB_KILL           = 12,
     CROWD_CONTROL      = 25,
+    CC_CALLOUT         = 5,
     PLAYER_DISCONNECT  = 60,
     CONSUMABLE_USED    = 45,
     MAJOR_COOLDOWN     = 30,
@@ -184,6 +185,14 @@ end
 
 function triggers.MarkTriggerFired(trigger)
     triggerCooldowns[trigger] = GetTime()
+end
+
+function triggers.GetTriggerCooldown(trigger)
+    return TRIGGER_COOLDOWN[trigger] or 30
+end
+
+function triggers.GetLastTriggerTime(trigger)
+    return triggerCooldowns[trigger] or 0
 end
 
 function triggers.InCombat()
@@ -416,18 +425,34 @@ function triggers.OnCombatLog()
 
     -- SPELL_INTERRUPT
     if subEvent == "SPELL_INTERRUPT" then
-        if triggers.IsPlayerOrGroup(srcGUID) and triggers.CanStartScene() then
-            ns.core.StartScene("INTERRUPT", { source = srcName, target = dstName })
+        if triggers.IsPlayerOrGroup(srcGUID) then
+            -- Interrupt callouts use their own gate (independent of main enabled)
+            if not ns.db or not ns.db.interruptCallouts then return end
+            if not ns.initialized then return end
+            if (GetTime() - lastSceneAt) < nextSceneDelay then return end
+            local spellName     = select(13, CombatLogGetCurrentEventInfo())
+            local extraSpellName = select(16, CombatLogGetCurrentEventInfo())
+            ns.core.StartScene("INTERRUPT", {
+                source      = srcName,
+                target      = dstName,
+                spell       = spellName,
+                interrupted = extraSpellName,
+            })
         end
         return
     end
 
-    -- CROWD CONTROL — fear, polymorph, stun, etc. on the player
+    -- CROWD CONTROL — fear, polymorph, stun, etc.
+    -- Self-CC fires existing CROWD_CONTROL trigger (persona reaction).
+    -- Group-member CC from hostile mobs fires CC_CALLOUT (callout + dispel shame).
     if subEvent == "SPELL_AURA_APPLIED" then
-        if dstGUID == UnitGUID("player") then
-            local spellId, spellName, _, auraType = select(12, CombatLogGetCurrentEventInfo())
-            if auraType == "DEBUFF" then
+        local spellId, spellName, _, auraType = select(12, CombatLogGetCurrentEventInfo())
+        if auraType == "DEBUFF" then
+            if dstGUID == UnitGUID("player") then
                 triggers.OnCrowdControl(srcName, spellName)
+            elseif triggers.IsPlayerOrGroup(dstGUID) and not triggers.IsPlayerOrGroup(srcGUID) then
+                -- A mob CC'd a group member — fire CC_CALLOUT
+                triggers.OnCCCallout(dstGUID, dstName, srcName, spellName, spellId)
             end
         end
         return
@@ -482,6 +507,166 @@ function triggers.OnCrowdControl(srcName, spellName)
     if triggers.CanStartScene() then
         ns.core.StartScene("CROWD_CONTROL", { source = srcName, target = UnitName("player"), spell = spellName })
     end
+end
+
+---------------------------------------------------------------------------
+-- CC CALLOUT — group member CC'd by a mob in dungeon/raid
+-- Calls out the victim, spell, duration, and shames a dispeller if one exists.
+---------------------------------------------------------------------------
+
+-- Known CC spell durations (seconds) for common TBC Classic mob abilities.
+-- Falls back to debuff scanning if not listed.
+local CC_DURATIONS = {
+    -- Generic mob CC types (lowercase spell name → seconds)
+    ["fear"]                 = 8,
+    ["psychic scream"]       = 8,
+    ["howl of terror"]       = 8,
+    ["bellowing roar"]       = 4,
+    ["terrifying screech"]   = 4,
+    ["intimidating shout"]   = 8,
+    ["polymorph"]            = 8,
+    ["hex"]                  = 6,
+    ["freeze"]               = 5,
+    ["frost nova"]           = 8,
+    ["entangling roots"]     = 10,
+    ["stun"]                 = 4,
+    ["war stomp"]            = 2,
+    ["hammer of justice"]    = 6,
+    ["gouge"]                = 4,
+    ["kidney shot"]          = 6,
+    ["cheap shot"]           = 4,
+    ["sap"]                  = 10,
+    ["blind"]                = 10,
+    ["charm"]                = 10,
+    ["sleep"]                = 6,
+    ["death coil"]           = 3,
+    ["repentance"]           = 6,
+    ["scatter shot"]         = 4,
+    ["wyvern sting"]         = 12,
+    ["seduction"]            = 15,
+    ["banish"]               = 10,
+    ["mind control"]         = 10,
+    ["web"]                  = 5,
+    ["net"]                  = 5,
+}
+
+-- Which classes can dispel which debuff categories (TBC Classic)
+-- magic: Priest, Paladin  |  disease: Priest, Paladin, Shaman
+-- poison: Paladin, Shaman, Druid  |  curse: Mage, Druid
+local DISPEL_CLASSES = {
+    PRIEST  = { magic = true, disease = true },
+    PALADIN = { magic = true, disease = true, poison = true },
+    SHAMAN  = { disease = true, poison = true },
+    DRUID   = { poison = true, curse = true },
+    MAGE    = { curse = true },
+}
+
+-- Guess the debuff category from the CC keyword
+local function GuessDebuffType(spellName)
+    local lower = spellName:lower()
+    if lower:find("fear") or lower:find("horror") or lower:find("charm")
+       or lower:find("polymorph") or lower:find("sheep") or lower:find("hex")
+       or lower:find("mind control") or lower:find("seduction")
+       or lower:find("banish") or lower:find("sleep") then
+        return "magic"
+    end
+    if lower:find("poison") or lower:find("sting") then
+        return "poison"
+    end
+    if lower:find("curse") then
+        return "curse"
+    end
+    if lower:find("web") or lower:find("net") or lower:find("root")
+       or lower:find("entangling") then
+        return "magic"
+    end
+    return "magic"   -- default assumption for mob CCs
+end
+
+-- Scan group for a player who can dispel a specific debuff type
+local function FindDispeller(debuffType, excludeGUID)
+    local n = GetNumGroupMembers() or 0
+    if n == 0 then return nil end
+    local prefix = IsInRaid() and "raid" or "party"
+    local candidates = {}
+
+    -- Check self first
+    local _, myClass = UnitClass("player")
+    if DISPEL_CLASSES[myClass] and DISPEL_CLASSES[myClass][debuffType]
+       and UnitGUID("player") ~= excludeGUID and not UnitIsDeadOrGhost("player") then
+        table.insert(candidates, UnitName("player"))
+    end
+
+    for i = 1, n do
+        local unit = prefix .. i
+        if UnitExists(unit) and not UnitIsDeadOrGhost(unit) then
+            local _, cls = UnitClass(unit)
+            if cls and DISPEL_CLASSES[cls] and DISPEL_CLASSES[cls][debuffType] then
+                local guid = UnitGUID(unit)
+                if guid ~= excludeGUID then
+                    table.insert(candidates, UnitName(unit) or "someone")
+                end
+            end
+        end
+    end
+
+    if #candidates == 0 then return nil end
+    return candidates[math.random(#candidates)]
+end
+
+-- Look up the CC duration: try known table, then scan unit debuffs
+local function GetCCDuration(spellName, unitName)
+    if not spellName then return nil end
+
+    -- Check known durations (partial match)
+    local lower = spellName:lower()
+    for pat, dur in pairs(CC_DURATIONS) do
+        if lower:find(pat, 1, true) then return dur end
+    end
+
+    -- Fallback: try scanning the unit's debuffs (only works for valid unit IDs)
+    if unitName then
+        for i = 1, 40 do
+            local name, _, _, _, _, dur = UnitDebuff(unitName, i)
+            if not name then break end
+            if name == spellName then return dur end
+        end
+    end
+
+    return nil
+end
+
+function triggers.OnCCCallout(dstGUID, dstName, srcName, spellName, spellId)
+    if not spellName then return end
+
+    -- Only fire for meaningful CCs
+    local lowerSpell = spellName:lower()
+    local isCC = false
+    for _, kw in ipairs(CC_KEYWORDS) do
+        if lowerSpell:find(kw) then isCC = true; break end
+    end
+    if not isCC then return end
+
+    -- CC callouts have their own toggle — independent of main enabled
+    if not ns.db or not ns.db.ccCallouts then return end
+    if not ns.initialized then return end
+    if (GetTime() - lastSceneAt) < nextSceneDelay then return end
+
+    -- Gather context
+    local duration = GetCCDuration(spellName, dstName)
+    local debuffType = GuessDebuffType(spellName)
+    local dispeller = FindDispeller(debuffType, dstGUID)
+
+    local ctx = {
+        victim   = dstName or "someone",
+        target   = dstName or "someone",
+        source   = srcName or "something",
+        spell    = spellName,
+        duration = duration and (tostring(math.floor(duration)) .. "s") or "???",
+        dispeller = dispeller,
+    }
+
+    ns.core.StartScene("CC_CALLOUT", ctx)
 end
 
 ---------------------------------------------------------------------------

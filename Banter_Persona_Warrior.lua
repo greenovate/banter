@@ -259,6 +259,32 @@ statements = {
         },
     },
 
+    CC_CALLOUT = {
+        COMMON = {
+            { id="war_cca_c01", weight=1, line="{victim} just got hit with {spell}! That's {duration} of not hitting things!" },
+            { id="war_cca_c02", weight=1, line="{victim} is CC'd! {spell} for {duration}. SOMEONE DO SOMETHING." },
+            { id="war_cca_c03", weight=1, line="{victim} is locked down! {spell}! I'd break it myself but I only know how to break FACES." },
+            { id="war_cca_c04", weight=1, line="{victim} caught a {spell}! {duration} of standing there like a statue!" },
+            { id="war_cca_c05", weight=1, line="{victim} is stunned! If I could Intercept the CC off them I would!" },
+            { id="war_cca_c06", weight=1, line="{spell} on {victim}! That's {duration} they're not contributing. UNACCEPTABLE." },
+            { id="war_cca_c07", weight=1, line="{victim} just ate a {spell}. Get them out of that. NOW." },
+            { id="war_cca_c08", weight=1, line="{victim} is disabled! {spell}! This is why I hate magic!" },
+        },
+        UNCOMMON = {
+            { id="war_cca_u01", weight=1, line="{victim} got {spell}'d for {duration}. {dispeller}, you gonna dispel that or just WATCH?" },
+            { id="war_cca_u02", weight=1, line="{victim} is CC'd and {dispeller} is over there doing NOTHING about it. Typical." },
+            { id="war_cca_u03", weight=1, line="Every second {victim} spends in {spell} is a second the mob isn't dying. DO THE MATH." },
+            { id="war_cca_u04", weight=1, line="{dispeller}! {victim} is eating a {spell} right now! DISPEL! BUTTONS! USE THEM!" },
+        },
+        RARE = {
+            { id="war_cca_r01", weight=1, line="{victim} got {spell}'d. {dispeller} is apparently on break. Must be nice having a DISPEL and choosing not to use it." },
+            { id="war_cca_r02", weight=1, line="I've been screaming about {victim}'s {spell} for {duration} and nobody moved. I'm surrounded by people who DON'T HIT THEIR BUTTONS." },
+        },
+        MYTHIC = {
+            { id="war_cca_m01", weight=1, line="{victim} is CC'd. {dispeller} is doing nothing. The mob is winning. I'm the only one who cares. AS USUAL." },
+        },
+    },
+
     AMBIENT = {
         COMMON = {
             { id="war_amb_c01", weight=1, line="So are we pulling or are we starting a book club? I didn't bring a book." },
@@ -643,6 +669,24 @@ responses = {
         },
         MYTHIC = {
             "You CC a warrior, you just delay the inevitable. And the inevitable is furious.",
+        },
+    },
+
+    CC_CALLOUT = {
+        COMMON = {
+            "SOMEBODY HIT SOMETHING! ANYTHING!",
+            "CC'd?! BREAK IT! WITH VIOLENCE!",
+            "How is that MY problem?! I CHARGE THINGS!",
+        },
+        UNCOMMON = {
+            "If I could dispel I would. Aggressively. With an axe.",
+            "That's {duration} of lost DPS. I'm counting.",
+        },
+        RARE = {
+            "I don't have a dispel button. I have a RAGE button. They are the same button.",
+        },
+        MYTHIC = {
+            "Back in my day we just hit CC'd people until the CC broke. It worked. EVERYTHING WORKS IF YOU HIT IT HARD ENOUGH.",
         },
     },
 

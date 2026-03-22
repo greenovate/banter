@@ -226,6 +226,32 @@ statements = {
         },
     },
 
+    CC_CALLOUT = {
+        COMMON = {
+            { id="hun_cca_c01", weight=1, line="{victim} just got {spell}'d! {duration}! My pet wants to help but he'd probably make it worse." },
+            { id="hun_cca_c02", weight=1, line="{victim} is CC'd! {spell}! I could Scatter Shot the mob but... wrong target." },
+            { id="hun_cca_c03", weight=1, line="{spell} on {victim}! That's {duration}! My pet is staring at them. He's concerned." },
+            { id="hun_cca_c04", weight=1, line="{victim} is locked down by {spell}. My pet just tilted his head. He does that when he's worried." },
+            { id="hun_cca_c05", weight=1, line="{victim} caught a {spell}! {duration}! Someone who isn't me should fix that!" },
+            { id="hun_cca_c06", weight=1, line="{victim} is disabled! {spell}! I'd help but I only know how to CC mobs, not un-CC friends." },
+            { id="hun_cca_c07", weight=1, line="{spell} hit {victim}! My pet looked at me like I should do something. I looked back. Standoff." },
+            { id="hun_cca_c08", weight=1, line="{victim} just ate a {spell}. {duration}. My pet is offering emotional support by sitting nearby." },
+        },
+        UNCOMMON = {
+            { id="hun_cca_u01", weight=1, line="{dispeller}, {victim} is in a {spell}! You have a dispel! My pet doesn't! USE YOURS!" },
+            { id="hun_cca_u02", weight=1, line="{victim} is CC'd and {dispeller} is just... standing there? Even my pet has faster reaction time." },
+            { id="hun_cca_u03", weight=1, line="{dispeller} could dispel {victim}'s {spell} but apparently that's too much effort. My PET tries harder." },
+            { id="hun_cca_u04", weight=1, line="I trained my pet to sit, stay, and attack. {dispeller} can't even train themselves to click dispel." },
+        },
+        RARE = {
+            { id="hun_cca_r01", weight=1, line="My pet once broke my own Freezing Trap mid-pull. Even HE has better reflexes than {dispeller}'s dispel timing." },
+            { id="hun_cca_r02", weight=1, line="If my pet could dispel I'd send him to {victim} right now. But he can't. So {dispeller}... just saying." },
+        },
+        MYTHIC = {
+            { id="hun_cca_m01", weight=1, line="My pet is looking at {dispeller}. Then at {victim}. Then back at {dispeller}. I think even HE gets it. Dispel." },
+        },
+    },
+
     AMBIENT = {
         COMMON = {
             { id="hun_amb_c01", weight=1, line="Feeding my pet. He's hungry. He's always hungry." },
@@ -587,6 +613,24 @@ responses = {
         },
         MYTHIC = {
             "Ice Trap chain into Scatter Shot. I just CC'd that mob for 30 seconds. Nobody clap. I know.",
+        },
+    },
+
+    CC_CALLOUT = {
+        COMMON = {
+            "Ooh! {victim} is stuck! My pet wants to help. I said no. He's sulking.",
+            "That looks rough! My pet is doing the concerned-head-tilt thing.",
+            "Yikes. I'd Scatter Shot the mob but that only works on enemies.",
+        },
+        UNCOMMON = {
+            "My pet once broke my own Freezing Trap. But at least he TRIES. Unlike {dispeller}.",
+            "If my pet had a dispel button he'd mash it. He mashes EVERYTHING.",
+        },
+        RARE = {
+            "I asked my pet if he could dispel. He bit me. That's a no, I think.",
+        },
+        MYTHIC = {
+            "My pet is staring at {dispeller}. Judging. He does that. It's very effective. DISPEL.",
         },
     },
 

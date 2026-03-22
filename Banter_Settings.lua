@@ -10,6 +10,8 @@ local DEFAULTS = {
     soloMode         = false,
     manualMode       = false,
     showButton       = false,
+    ccCallouts       = true,
+    interruptCallouts = true,
     enableChatFilter = false,
     chatFilterChannels = { SAY = true, PARTY = true, RAID = true },
     debug            = false,
@@ -459,6 +461,14 @@ local function CreateSettingsFrame()
                      ns.db, "selfPromo")
         y = y - 28
 
+        MakeCheckbox(p, "BanterCB_CCCallouts", LEFT, y,
+                     "CC Callouts — announce when group members get CC'd",
+                     ns.db, "ccCallouts")
+        y = y - 28
+        MakeCheckbox(p, "BanterCB_IntCallouts", LEFT, y,
+                     "Interrupt Callouts — announce group member interrupts",
+                     ns.db, "interruptCallouts")
+        y = y - 28
         MakeCheckbox(p, "BanterCB_Debug", LEFT, y,
                      "Debug Mode (verbose logging)", ns.db, "debug")
         y = y - 40
@@ -654,6 +664,8 @@ SlashCmdList["BANTER"] = function(input)
         ns.Print("  /banter freq <min> <max>  — scene frequency (current mode)")
         ns.Print("  /banter chattiness <1-10>  — chattiness (current mode)")
         ns.Print("  /banter solo on|off  — solo /me inner monologue")
+        ns.Print("  /banter cc on|off  — CC callout announcements")
+        ns.Print("  /banter interrupts on|off  — interrupt callout announcements")
         ns.Print("  /banter button  — toggle Banter Button")
         ns.Print("  /banter manual on|off  — Manual Mode (button-only banter)")
         ns.Print("  /banter roast on|off  — stat-based player callouts")
@@ -712,6 +724,28 @@ SlashCmdList["BANTER"] = function(input)
             ns.Print("Solo Mode disabled.")
         else
             ns.Print("Solo Mode: " .. (ns.db.soloMode and "ON" or "OFF"))
+        end
+    elseif cmd:match("^cc") then
+        local toggle = cmd:match("^cc%s+(%a+)")
+        if toggle == "on" then
+            ns.db.ccCallouts = true
+            ns.Print("CC Callouts enabled.")
+        elseif toggle == "off" then
+            ns.db.ccCallouts = false
+            ns.Print("CC Callouts disabled.")
+        else
+            ns.Print("CC Callouts: " .. (ns.db.ccCallouts and "ON" or "OFF"))
+        end
+    elseif cmd:match("^interrupts") then
+        local toggle = cmd:match("^interrupts%s+(%a+)")
+        if toggle == "on" then
+            ns.db.interruptCallouts = true
+            ns.Print("Interrupt Callouts enabled.")
+        elseif toggle == "off" then
+            ns.db.interruptCallouts = false
+            ns.Print("Interrupt Callouts disabled.")
+        else
+            ns.Print("Interrupt Callouts: " .. (ns.db.interruptCallouts and "ON" or "OFF"))
         end
     elseif cmd == "button" then
         if ns.button and ns.button.Toggle then
@@ -797,6 +831,8 @@ SlashCmdList["BANTER"] = function(input)
         ns.Print("Chat filter: "  .. (ns.db.enableChatFilter and "ON" or "OFF"))
         ns.Print("Raid banter: "  .. (ns.db.raid and ns.db.raid.enabled and "ON" or "OFF"))
         ns.Print("Roast Mode: "   .. (ns.db.roastMode and "ON" or "OFF"))
+        ns.Print("CC Callouts: "  .. (ns.db.ccCallouts and "ON" or "OFF"))
+        ns.Print("Interrupts: "   .. (ns.db.interruptCallouts and "ON" or "OFF"))
         ns.Print("Self-promo: "   .. (ns.db.selfPromo and "ON" or "OFF"))
         ns.Print("Debug: "        .. (ns.db.debug and "ON" or "OFF"))
         ns.Print("Banter peers: " .. ns.comm.GetPeerCount())

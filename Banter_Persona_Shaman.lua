@@ -226,6 +226,32 @@ statements = {
         },
     },
 
+    CC_CALLOUT = {
+        COMMON = {
+            { id="sha_cca_c01", weight=1, line="{victim} just got {spell}'d! {duration}! The elements are... they're yelling at me about it." },
+            { id="sha_cca_c02", weight=1, line="{victim} is CC'd! {spell}! My Tremor Totem is pulsing but I don't think that covers this one!" },
+            { id="sha_cca_c03", weight=1, line="{spell} on {victim}! {duration}! Earth says 'help them.' Wind says 'not my problem.'" },
+            { id="sha_cca_c04", weight=1, line="{victim} is locked down by {spell}. I asked the elements to help. They're deliberating." },
+            { id="sha_cca_c05", weight=1, line="{victim} caught a {spell}! {duration}! Someone with a REAL dispel should handle this!" },
+            { id="sha_cca_c06", weight=1, line="{victim} is disabled! {spell}! I can Purge enemies but not free allies. The irony. THE IRONY." },
+            { id="sha_cca_c07", weight=1, line="{spell} hit {victim}. {duration}. The elements are taking a vote on whether to care. It's not looking good." },
+            { id="sha_cca_c08", weight=1, line="{victim} ate a {spell}. If this were a poison or disease I'd Cure it. But it's not. Nature is cruel." },
+        },
+        UNCOMMON = {
+            { id="sha_cca_u01", weight=1, line="{dispeller}, {victim} has {spell} on them. Even Water agrees you should dispel. And Water agrees with NOTHING." },
+            { id="sha_cca_u02", weight=1, line="{victim} is CC'd. {dispeller} has dispel. The elements and I are both staring at you, {dispeller}." },
+            { id="sha_cca_u03", weight=1, line="I placed Tremor Totem, Grounding Totem, and a prayer. {dispeller} could just click one button." },
+            { id="sha_cca_u04", weight=1, line="Fire says burn the mob. Earth says stomp it. {dispeller} says nothing. DISPEL {victim}'s {spell}." },
+        },
+        RARE = {
+            { id="sha_cca_r01", weight=1, line="I communed with all four elements about {dispeller}'s dispel speed. They're all embarrassed. ALL FOUR." },
+            { id="sha_cca_r02", weight=1, line="My totems have shorter reaction times than {dispeller}. And my totems are STICKS IN THE GROUND." },
+        },
+        MYTHIC = {
+            { id="sha_cca_m01", weight=1, line="{victim} is {spell}'d. {dispeller} idle. Fire wants to rage. Earth wants to quake. I want someone to CLICK DISPEL." },
+        },
+    },
+
     AMBIENT = {
         COMMON = {
             { id="sha_amb_c01", weight=1, line="Repositioning totems. They're 20 yards from everyone. As usual." },
@@ -587,6 +613,24 @@ responses = {
         },
         MYTHIC = {
             "Shaman CC: a slow, a snare totem, and optimism.",
+        },
+    },
+
+    CC_CALLOUT = {
+        COMMON = {
+            "The elements are SCREAMING. Someone dispel that!",
+            "I dropped Tremor Totem. If it's fear, we're covered. If not... sorry.",
+            "Earth says help. Wind says run. I'm going with Earth on this one.",
+        },
+        UNCOMMON = {
+            "I can Cure Disease and Cure Poison. That's NEITHER. {dispeller}, you're up.",
+            "My totems have a faster response time than {dispeller}. And they're STICKS.",
+        },
+        RARE = {
+            "All four elements agree: {dispeller} should dispel. That NEVER happens. Take the hint.",
+        },
+        MYTHIC = {
+            "Fire is angry. Earth is disappointed. Water is crying. Wind left. {dispeller}, CLICK THE BUTTON.",
         },
     },
 

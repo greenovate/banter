@@ -343,6 +343,32 @@ statements = {
         },
     },
 
+    CC_CALLOUT = {
+        COMMON = {
+            { id="pir_cca_c01", weight=1, line="{victim} just got {spell}'d! That's {duration} of NOT SWINGIN'! UNACCEPTABLE!" },
+            { id="pir_cca_c02", weight=1, line="{victim} be CC'd! {spell}! SOMEONE FREE ME CREWMATE!" },
+            { id="pir_cca_c03", weight=1, line="{spell} on {victim}! {duration}! In me pirate code that's grounds fer a RESCUE!" },
+            { id="pir_cca_c04", weight=1, line="{victim} is locked down! {spell}! NO PIRATE STAYS LOCKED DOWN! FREE 'EM!" },
+            { id="pir_cca_c05", weight=1, line="{victim} caught a {spell}! {duration}! If I had a key I'd pick the lock meself!" },
+            { id="pir_cca_c06", weight=1, line="{victim} be disabled by {spell}! This be MUTINY against me crew!" },
+            { id="pir_cca_c07", weight=1, line="{spell} hit {victim}! They be stuck fer {duration}! SOMEBODY DO SOMETHIN'!" },
+            { id="pir_cca_c08", weight=1, line="{victim} ate a {spell}! ARR! That's {duration} of lost swashbucklin'!" },
+        },
+        UNCOMMON = {
+            { id="pir_cca_u01", weight=1, line="{dispeller}! {victim} has {spell} on 'em! Ye have a DISPEL! USE IT or walk the plank!" },
+            { id="pir_cca_u02", weight=1, line="{victim} be CC'd and {dispeller} be standin' there like a barnacle on a rock. DISPEL!" },
+            { id="pir_cca_u03", weight=1, line="{dispeller} could free {victim} from {spell} but they CHOOSE not to. Sounds like MUTINY to me." },
+            { id="pir_cca_u04", weight=1, line="I've seen sea cucumbers react faster than {dispeller}'s dispel. FREE {victim} ye bilge rat!" },
+        },
+        RARE = {
+            { id="pir_cca_r01", weight=1, line="On me ship, if someone didn't help a crew member out of {spell}, they'd be scrubbin' the deck with their TEETH. DISPEL, {dispeller}!" },
+            { id="pir_cca_r02", weight=1, line="{victim} be {spell}'d fer {duration}. {dispeller} be napping. If this were me boat I'd keelhaul 'em both." },
+        },
+        MYTHIC = {
+            { id="pir_cca_m01", weight=1, line="{victim} trapped in {spell}. {dispeller} doin' NOTHIN'. In all me years at sea I've never seen a more useless first mate. DISPEL OR SWIM." },
+        },
+    },
+
     AMBIENT = {
         COMMON = {
             { id="pir_amb_c01", weight=1, line="Could really go fer some rum right about now." },
@@ -831,6 +857,24 @@ responses = {
         },
         MYTHIC = {
             "Ye know what? I almost feel bad. ALMOST. The 'almost' is doin' a LOT of work in that sentence.",
+        },
+    },
+
+    CC_CALLOUT = {
+        COMMON = {
+            "FREE ME CREWMATE! NOW!",
+            "That's MUTINY against the crew! SOMEONE DO SOMETHIN'!",
+            "ARR! If I had a dispel I'd use it meself!",
+        },
+        UNCOMMON = {
+            "{dispeller}! Ye have the tools! FREE {victim} or walk the plank!",
+            "I've seen barnacles move faster than {dispeller}'s dispel finger.",
+        },
+        RARE = {
+            "On me ship, crew what don't help crew get thrown overboard. Just sayin', {dispeller}.",
+        },
+        MYTHIC = {
+            "In all me years at sea I've never seen a sorrier display. {dispeller}, DISPEL or I'm promotin' the ship's cat above ye.",
         },
     },
 

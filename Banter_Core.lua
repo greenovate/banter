@@ -103,6 +103,12 @@ function core.ReplaceTokens(line, ctx)
     r = r:gsub("{zone}",   ctx.zone   or GetRealZoneText() or "here")
     r = r:gsub("{spell}",  ctx.spell  or "something")
 
+    -- CC Callout tokens
+    r = r:gsub("{victim}",    ctx.victim    or ctx.target or "someone")
+    r = r:gsub("{duration}",  ctx.duration  or "a few seconds")
+    r = r:gsub("{dispeller}", ctx.dispeller or "someone")
+    r = r:gsub("{interrupted}", ctx.interrupted or "a spell")
+
     -- Player class tokens
     r = r:gsub("{myclass}", ns.playerClass or "adventurer")
     r = r:gsub("{resource}", CLASS_RESOURCE[ns.playerClassKey or "WARRIOR"] or "mana")
@@ -252,26 +258,38 @@ end
 function core.StartScene(trigger, ctx)
     ctx = ctx or {}
 
+    local isUtilityCallout = (trigger == "CC_CALLOUT" or trigger == "INTERRUPT")
+
     -- PvP instance suppression (BGs / arenas — not yet supported)
-    if core.IsInPvPInstance() then
+    -- Utility callouts (CC / interrupts) are allowed everywhere
+    if not isUtilityCallout and core.IsInPvPInstance() then
         ns.Debug("Scene suppressed — inside PvP instance")
         return
     end
 
-    -- Raid-disable check
-    if ns.db.raid and not ns.db.raid.enabled and core.GetGroupMode() == "RAID" then
+    -- Raid-disable check  (utility callouts bypass this)
+    if not isUtilityCallout and ns.db.raid and not ns.db.raid.enabled and core.GetGroupMode() == "RAID" then
         ns.Debug("Scene suppressed — banter disabled in raids")
         return
     end
 
     -- Manual Mode gate — suppress auto-triggers, allow manual button clicks
-    if ns.db.manualMode and not (ctx and ctx.manualTrigger) then
+    -- Utility callouts always fire regardless of manual mode
+    if not isUtilityCallout and ns.db.manualMode and not (ctx and ctx.manualTrigger) then
         ns.Debug("Scene suppressed — Manual Mode (use Banter Button)")
         return
     end
 
-    -- Per-trigger RNG + cooldown check  (skip for manual button presses)
-    if not (ctx and ctx.manualTrigger) and not ns.triggers.CheckTrigger(trigger) then return end
+    -- Utility callouts: cooldown-only, no RNG
+    -- Regular banter: full RNG + cooldown check (skip for manual button presses)
+    if isUtilityCallout then
+        local cd   = ns.triggers.GetTriggerCooldown(trigger)
+        local last = ns.triggers.GetLastTriggerTime(trigger)
+        if (GetTime() - last) < cd then return end
+        ns.triggers.MarkTriggerFired(trigger)
+    elseif not (ctx and ctx.manualTrigger) and not ns.triggers.CheckTrigger(trigger) then
+        return
+    end
 
     local persona = ns.ResolvePersona()
     local mode    = core.GetGroupMode()

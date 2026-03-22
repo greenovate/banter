@@ -224,6 +224,32 @@ statements = {
         },
     },
 
+    CC_CALLOUT = {
+        COMMON = {
+            { id="wlk_cca_c01", weight=1, line="{victim} just got hit with {spell}. {duration} of suffering. I'd sympathize but I deal in suffering." },
+            { id="wlk_cca_c02", weight=1, line="{victim} is CC'd! {spell}! Not the fun kind of CC. The involuntary kind." },
+            { id="wlk_cca_c03", weight=1, line="{spell} on {victim}. Someone should fix that. Not me. But someone." },
+            { id="wlk_cca_c04", weight=1, line="{victim} is locked down by {spell}. That's {duration}. My DoTs are still ticking though." },
+            { id="wlk_cca_c05", weight=1, line="{victim} caught a {spell}. I'd Fear the mob back but that usually makes things worse." },
+            { id="wlk_cca_c06", weight=1, line="{victim} is disabled. {spell}. Tragic. Anyway, my DoTs need refreshing." },
+            { id="wlk_cca_c07", weight=1, line="Oh, {victim} got {spell}'d. {duration}. The darkness takes another one. Temporarily." },
+            { id="wlk_cca_c08", weight=1, line="{spell} landed on {victim}. That's {duration} of standing there. Very undignified." },
+        },
+        UNCOMMON = {
+            { id="wlk_cca_u01", weight=1, line="{dispeller}, {victim} has {spell} on them. Your literal job includes fixing this." },
+            { id="wlk_cca_u02", weight=1, line="{victim} is CC'd. {dispeller} is watching. My demon is also watching. At least MY minion has an excuse." },
+            { id="wlk_cca_u03", weight=1, line="{dispeller}, that {spell} on {victim} isn't going to dispel itself. Well, in {duration}. But WHY WAIT." },
+            { id="wlk_cca_u04", weight=1, line="I sacrifice my OWN health to deal damage and {dispeller} can't even click dispel for {victim}." },
+        },
+        RARE = {
+            { id="wlk_cca_r01", weight=1, line="My demons respond faster than {dispeller} does. And I have to SUMMON them first." },
+            { id="wlk_cca_r02", weight=1, line="{victim} is {spell}'d. I sold my soul for power. {dispeller} apparently sold their dispel button." },
+        },
+        MYTHIC = {
+            { id="wlk_cca_m01", weight=1, line="{victim} languishes in {spell}. {dispeller} does nothing. A soul shard for every missed dispel and I'd have a full bag." },
+        },
+    },
+
     AMBIENT = {
         COMMON = {
             { id="wlk_amb_c01", weight=1, line="Just... standing here. With my demon. In comfortable sinister silence." },
@@ -585,6 +611,24 @@ responses = {
         },
         MYTHIC = {
             "Being CC'd as a warlock is ironic. I invented being annoying. You can't out-annoy me.",
+        },
+    },
+
+    CC_CALLOUT = {
+        COMMON = {
+            "Amusing. {victim} is learning what my Fear targets feel.",
+            "CC'd? My demon is watching. He's entertained.",
+            "Oh no. Anyway. Where was I? Shards.",
+        },
+        UNCOMMON = {
+            "I could trade a soul shard for a dispel. No takers? Unfortunate.",
+            "My succubus says she could Seduce the mob. Into letting go. It's a method.",
+        },
+        RARE = {
+            "I've been feared, banished, and soul-drained. Being CC'd builds character. Enjoy it, {victim}.",
+        },
+        MYTHIC = {
+            "{victim} suffers. {dispeller} watches. This is essentially what I do for a living but with MORE steps.",
         },
     },
 

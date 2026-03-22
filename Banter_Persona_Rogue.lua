@@ -225,6 +225,32 @@ statements = {
         },
     },
 
+    CC_CALLOUT = {
+        COMMON = {
+            { id="rog_cca_c01", weight=1, line="{victim} just took a {spell}. {duration}. Asset compromised." },
+            { id="rog_cca_c02", weight=1, line="{victim} is CC'd. {spell}. That's an operational liability." },
+            { id="rog_cca_c03", weight=1, line="{spell} on {victim}. {duration} of downtime. Unacceptable in the field." },
+            { id="rog_cca_c04", weight=1, line="{victim} is locked down. {spell}. Someone with clearance should fix that." },
+            { id="rog_cca_c05", weight=1, line="{victim} neutralized by {spell}. {duration}. We're exposed." },
+            { id="rog_cca_c06", weight=1, line="{victim} hit with {spell}. Clean CC. I'd respect it if it weren't on OUR side." },
+            { id="rog_cca_c07", weight=1, line="{victim} is disabled. {spell}. I'd Kick it off them if that's how Kick worked." },
+            { id="rog_cca_c08", weight=1, line="{spell} landed on {victim}. That's {duration}. Time is a resource we're wasting." },
+        },
+        UNCOMMON = {
+            { id="rog_cca_u01", weight=1, line="{dispeller}. {victim}. {spell}. {duration}. Dispel. Now. That's the briefing." },
+            { id="rog_cca_u02", weight=1, line="{dispeller} has dispel capability. {victim} has a {spell}. The connection should be obvious." },
+            { id="rog_cca_u03", weight=1, line="{victim} is CC'd. {dispeller} is right there. In my line of work we call that negligence." },
+            { id="rog_cca_u04", weight=1, line="I've timed {dispeller}'s dispel response. It's slower than my Sap. And Sap is a MELEE ability." },
+        },
+        RARE = {
+            { id="rog_cca_r01", weight=1, line="In my debriefing report, {dispeller}'s failure to dispel {victim}'s {spell} will be noted. With timestamps." },
+            { id="rog_cca_r02", weight=1, line="{victim} spent {duration} in {spell}. {dispeller} spent {duration} doing nothing. Mission efficiency: catastrophic." },
+        },
+        MYTHIC = {
+            { id="rog_cca_m01", weight=1, line="I could have re-stealthed, crossed the room, and Sapped a new target in the time {dispeller} took to NOT dispel {victim}." },
+        },
+    },
+
     AMBIENT = {
         COMMON = {
             { id="rog_amb_c01", weight=1, line="Standing here. In stealth. ...you can't see me, right? Good." },
@@ -586,6 +612,24 @@ responses = {
         },
         MYTHIC = {
             "Sap, Blind, Gouge, Kidney Shot. A CC for every occasion. I'm versatile.",
+        },
+    },
+
+    CC_CALLOUT = {
+        COMMON = {
+            "Target compromised. Awaiting support response.",
+            "CC confirmed on friendly. I can't fix that. Not my department.",
+            "Noted. Adjusting threat priority.",
+        },
+        UNCOMMON = {
+            "I disable enemies. I don't enable allies. Talk to the healer.",
+            "{dispeller} has the tools. I have knives. We are not the same.",
+        },
+        RARE = {
+            "If Cloak of Shadows worked on other people I'd already be done. It doesn't. So here we are.",
+        },
+        MYTHIC = {
+            "In my line of work, when someone's locked down, you either extract them or leave them. {dispeller} is choosing option three: nothing.",
         },
     },
 

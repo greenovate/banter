@@ -226,6 +226,32 @@ statements = {
         },
     },
 
+    CC_CALLOUT = {
+        COMMON = {
+            { id="pal_cca_c01", weight=1, line="{victim} just got {spell}'d! {duration}! The Light shines on those who DISPEL, by the way." },
+            { id="pal_cca_c02", weight=1, line="{victim} is CC'd! {spell}! I'd Cleanse it but I need to check if the Light covers that." },
+            { id="pal_cca_c03", weight=1, line="{spell} on {victim}! {duration}! This is a righteous outrage!" },
+            { id="pal_cca_c04", weight=1, line="{victim} is locked down by {spell}. The Light weeps. Actually I'm weeping. Same thing." },
+            { id="pal_cca_c05", weight=1, line="{victim} caught a {spell}! {duration}! I'd Bubble them if I could! But I can't! I can only Bubble ME!" },
+            { id="pal_cca_c06", weight=1, line="{victim} is disabled! {spell}! Where's the justice? The DIVINE justice specifically?" },
+            { id="pal_cca_c07", weight=1, line="{spell} hit {victim}. {duration}. I'm composing a prayer for their swift liberation." },
+            { id="pal_cca_c08", weight=1, line="{victim} ate a {spell}. The Light protects... well, not right NOW apparently." },
+        },
+        UNCOMMON = {
+            { id="pal_cca_u01", weight=1, line="{dispeller}, the Light gave you Cleanse for moments EXACTLY like {victim}'s {spell}. Use it." },
+            { id="pal_cca_u02", weight=1, line="{victim} is CC'd and {dispeller} stands idle. The Light keeps a ledger, {dispeller}. DISPEL." },
+            { id="pal_cca_u03", weight=1, line="I can Cleanse poison, disease, AND magic. But I'm busy. {dispeller}, your turn. {victim} waits." },
+            { id="pal_cca_u04", weight=1, line="{dispeller}, the paladins have a saying: 'He who does not dispel, tanks the next pull.' Think about it." },
+        },
+        RARE = {
+            { id="pal_cca_r01", weight=1, line="I have Blessing of Protection, Cleanse, and Divine Shield. {dispeller} has ONE dispel and won't even use it on {victim}." },
+            { id="pal_cca_r02", weight=1, line="When I write my memoirs, the chapter on {dispeller}'s dispel timing will be titled 'The Light Giveth, And They Ignoreth.'" },
+        },
+        MYTHIC = {
+            { id="pal_cca_m01", weight=1, line="{victim} suffers in {spell}. {dispeller} ignores it. The Light judges us all but TODAY it judges {dispeller} hardest." },
+        },
+    },
+
     AMBIENT = {
         COMMON = {
             { id="pal_amb_c01", weight=1, line="Blessings are still up. Checked. Double-checked. Triple-checked. It's an obsession." },
@@ -587,6 +613,24 @@ responses = {
         },
         MYTHIC = {
             "Paladin CC: make them think about what they did. For 6 seconds.",
+        },
+    },
+
+    CC_CALLOUT = {
+        COMMON = {
+            "The Light sees all suffering. Including {victim}'s. DISPEL.",
+            "I'd Cleanse that but I'm already Cleansing three other things!",
+            "By the Light, someone free {victim}. Preferably not me. I'm busy.",
+        },
+        UNCOMMON = {
+            "I can Cleanse magic, poison, AND disease. I can't Cleanse {dispeller}'s laziness.",
+            "Divine intervention would fix this. But that kills ME. So... {dispeller}?",
+        },
+        RARE = {
+            "I Cleansed 14 debuffs this fight. {dispeller} Cleansed zero. The Light keeps RECORDS.",
+        },
+        MYTHIC = {
+            "Blessing of Protection can't fix CC. Bubble can't fix CC. Only {dispeller} can fix CC. And they WON'T.",
         },
     },
 

@@ -225,6 +225,32 @@ statements = {
         },
     },
 
+    CC_CALLOUT = {
+        COMMON = {
+            { id="dru_cca_c01", weight=1, line="{victim} just got {spell}'d! {duration}! I could shift out of that but... they can't." },
+            { id="dru_cca_c02", weight=1, line="{victim} is CC'd! {spell}! Nature does NOT approve of this!" },
+            { id="dru_cca_c03", weight=1, line="{spell} on {victim}! {duration}! If it were poison or a curse I'd handle it but... it's not." },
+            { id="dru_cca_c04", weight=1, line="{victim} is locked down by {spell}. The natural order is disrupted. Very un-druidic." },
+            { id="dru_cca_c05", weight=1, line="{victim} caught a {spell}! {duration}! I shifted forms three times in sympathy." },
+            { id="dru_cca_c06", weight=1, line="{victim} is disabled! {spell}! I want to help but I'm currently... a bear? No wait, cat. No..." },
+            { id="dru_cca_c07", weight=1, line="{spell} hit {victim}. {duration}. I'm rooting for them. Not Entangling Roots. Emotionally." },
+            { id="dru_cca_c08", weight=1, line="{victim} ate a {spell}! If I could Abolish THAT I would but nature has limits apparently." },
+        },
+        UNCOMMON = {
+            { id="dru_cca_u01", weight=1, line="{dispeller}, {victim} has a {spell} and you have a dispel. The forest expects you to use it." },
+            { id="dru_cca_u02", weight=1, line="{victim} is CC'd and {dispeller} is watching like a tree in a windstorm. Motionless. Unhelpful." },
+            { id="dru_cca_u03", weight=1, line="I can Remove Curse and Abolish Poison. {victim}'s {spell} is neither. {dispeller}, that's you." },
+            { id="dru_cca_u04", weight=1, line="Nature gave {dispeller} the gift of dispel. Nature is watching. Nature is disappointed." },
+        },
+        RARE = {
+            { id="dru_cca_r01", weight=1, line="I shifted into five forms looking for one that could help {victim}. None of them have dispel. {dispeller} DOES." },
+            { id="dru_cca_r02", weight=1, line="The trees are whispering about {dispeller}'s dispel reflexes. What they're saying isn't kind." },
+        },
+        MYTHIC = {
+            { id="dru_cca_m01", weight=1, line="{victim} is {spell}'d. I'm the wrong form. {dispeller} has the right spell. Nature, society, and I all agree: DISPEL." },
+        },
+    },
+
     AMBIENT = {
         COMMON = {
             { id="dru_amb_c01", weight=1, line="Standing here in caster form. Feeling vulnerable. Might go bear. Just to feel safe." },
@@ -586,6 +612,24 @@ responses = {
         },
         MYTHIC = {
             "The druid answer to CC: become a different animal. Simple. Elegant. Mana-expensive.",
+        },
+    },
+
+    CC_CALLOUT = {
+        COMMON = {
+            "I'd shift them out of it if... that's not how shifting works.",
+            "Nature disapproves. I can feel the disapproval. It's leafy.",
+            "I could Abolish that if it were poison. Or a curse. But it's NOT.",
+        },
+        UNCOMMON = {
+            "I have Remove Curse, Abolish Poison, and NONE of the ones {victim} needs right now.",
+            "The forest is watching {dispeller}. The forest is unimpressed.",
+        },
+        RARE = {
+            "I shifted into cat, bear, travel, and moonkin looking for a form that dispels. There isn't one.",
+        },
+        MYTHIC = {
+            "Nature gave me twenty forms and ZERO of them fix {victim}'s problem. That's on nature. {dispeller}'s inaction? That's on THEM.",
         },
     },
 

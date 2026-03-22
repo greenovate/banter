@@ -231,6 +231,32 @@ statements = {
         },
     },
 
+    CC_CALLOUT = {
+        COMMON = {
+            { id="mag_cca_c01", weight=1, line="{victim} just caught a {spell}. That's {duration} of reduced group DPS. I calculated it." },
+            { id="mag_cca_c02", weight=1, line="{victim} is CC'd! {spell}! Someone with a dispel, this is YOUR moment." },
+            { id="mag_cca_c03", weight=1, line="{spell} on {victim}. {duration}. The math isn't mathing here, people." },
+            { id="mag_cca_c04", weight=1, line="{victim} is incapacitated via {spell}. Fascinating spell. Less fascinating when it's on US." },
+            { id="mag_cca_c05", weight=1, line="{victim} just got {spell}'d. I'd Remove Curse but that's... not what that is." },
+            { id="mag_cca_c06", weight=1, line="{victim} is locked in {spell}! That's {duration} of lost potential!" },
+            { id="mag_cca_c07", weight=1, line="Oh look, {victim} is CC'd. {spell}. Classic mob strategy. Predictable, yet effective." },
+            { id="mag_cca_c08", weight=1, line="{victim} ate a {spell}. Someone handle that. I'm busy being the DPS." },
+        },
+        UNCOMMON = {
+            { id="mag_cca_u01", weight=1, line="{dispeller}, {victim} has been sitting in {spell} for {duration}. Your dispel key works, right?" },
+            { id="mag_cca_u02", weight=1, line="{victim} is CC'd and {dispeller} appears to be AFK at the dispel button. Noted." },
+            { id="mag_cca_u03", weight=1, line="I can Polymorph mobs but I can't un-Polymorph friends. {dispeller}, that's YOUR job." },
+            { id="mag_cca_u04", weight=1, line="{victim} under {spell}. {dispeller} doing nothing. Worst dispel response time I've recorded." },
+        },
+        RARE = {
+            { id="mag_cca_r01", weight=1, line="In my academic analysis: {victim} has been {spell}'d, {dispeller} can fix it, and yet here we are." },
+            { id="mag_cca_r02", weight=1, line="I once wrote a thesis on CC duration optimization. {dispeller} hasn't read it." },
+        },
+        MYTHIC = {
+            { id="mag_cca_m01", weight=1, line="{victim} is CC'd. {dispeller} is ignoring it. I'm the smartest one here and even I can't fix this level of negligence." },
+        },
+    },
+
     AMBIENT = {
         COMMON = {
             { id="mag_amb_c01", weight=1, line="Drinking. Do not disturb." },
@@ -593,6 +619,24 @@ responses = {
         },
         MYTHIC = {
             "My sheep is my art. Breaking it is vandalism.",
+        },
+    },
+
+    CC_CALLOUT = {
+        COMMON = {
+            "Fascinating. Someone besides me is using CC.",
+            "I could Remove Curse if that were a curse. It's not. Pity.",
+            "That looks uncomfortable. Intellectually speaking.",
+        },
+        UNCOMMON = {
+            "The probability of that dispel happening decreases with each passing second.",
+            "I've written papers shorter than {dispeller}'s reaction time.",
+        },
+        RARE = {
+            "In my professional opinion, {victim} is going to be there for a while. Source: I CC people for a living.",
+        },
+        MYTHIC = {
+            "I could Polymorph {victim} to BREAK the CC. No, I won't. But I COULD. The genius is in the option.",
         },
     },
 
