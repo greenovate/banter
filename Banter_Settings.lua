@@ -12,6 +12,8 @@ local DEFAULTS = {
     showButton       = false,
     ccCallouts       = true,
     interruptCallouts = true,
+    pvpCallouts      = true,
+    banterStyle      = "SOCIAL",
     enableChatFilter = false,
     chatFilterChannels = { SAY = true, PARTY = true, RAID = true },
     debug            = false,
@@ -423,11 +425,31 @@ local function CreateSettingsFrame()
     local CONTENT_TOP = TAB_Y - TAB_H - 8
 
     for _, def in ipairs(TAB_DEFS) do
-        local panel = CreateFrame("Frame", nil, frame)
-        panel:SetPoint("TOPLEFT", 8, CONTENT_TOP)
-        panel:SetPoint("BOTTOMRIGHT", -8, 58)
-        panel:Hide()
-        tabPanels[def.key] = panel
+        local scroll = CreateFrame("ScrollFrame", nil, frame)
+        scroll:SetPoint("TOPLEFT", 8, CONTENT_TOP)
+        scroll:SetPoint("BOTTOMRIGHT", -8, 58)
+        scroll:Hide()
+        scroll:EnableMouseWheel(true)
+
+        local content = CreateFrame("Frame", nil, scroll)
+        content:SetWidth(396)
+        content:SetHeight(800)
+        scroll:SetScrollChild(content)
+
+        scroll:SetScript("OnMouseWheel", function(self, delta)
+            local cur = self:GetVerticalScroll()
+            local max = math.max(0, content:GetHeight() - self:GetHeight())
+            local new = math.max(0, math.min(max, cur - delta * 30))
+            self:SetVerticalScroll(new)
+        end)
+
+        -- Pass Show/Hide through to scroll parent so SelectTab works
+        content._scroll = scroll
+        content.Show    = function(s) s._scroll:Show() end
+        content.Hide    = function(s) s._scroll:Hide() end
+        content.IsShown = function(s) return s._scroll:IsShown() end
+
+        tabPanels[def.key] = content
     end
 
     -- ── General ──────────────────────────────────────────
@@ -456,6 +478,10 @@ local function CreateSettingsFrame()
                      ns.db, "roastMode")
         y = y - 28
 
+        local STYLE_LIST = { "SOCIAL", "NARRATIVE", "CALLOUTS" }
+        local styleDD = MakeDropdown(p, LEFT, y, "Banter Style", STYLE_LIST, ns.db, "banterStyle")
+        y = y - 60
+
         MakeCheckbox(p, "BanterCB_Promo", LEFT, y,
                      "Self-promo — respond to \"what addon?\" questions",
                      ns.db, "selfPromo")
@@ -468,6 +494,42 @@ local function CreateSettingsFrame()
         MakeCheckbox(p, "BanterCB_IntCallouts", LEFT, y,
                      "Interrupt Callouts — announce group member interrupts",
                      ns.db, "interruptCallouts")
+        y = y - 28
+        MakeCheckbox(p, "BanterCB_PVPCallouts", LEFT, y,
+                     "PVP Kill Callouts — brag about enemy player kills",
+                     ns.db, "pvpCallouts")
+        y = y - 28
+
+        -- Hide callout checkboxes when CALLOUTS style is active
+        local calloutCBs = {
+            _G["BanterCB_CCCallouts"],
+            _G["BanterCB_IntCallouts"],
+            _G["BanterCB_PVPCallouts"],
+        }
+        local function UpdateCalloutVisibility()
+            local hide = (ns.db.banterStyle == "CALLOUTS")
+            for _, cb in ipairs(calloutCBs) do
+                if cb then
+                    if hide then cb:Hide() else cb:Show() end
+                end
+            end
+        end
+        -- Hook into dropdown selection changes
+        UIDropDownMenu_Initialize(styleDD, function(self, level)
+            for _, opt in ipairs(STYLE_LIST) do
+                local info = UIDropDownMenu_CreateInfo()
+                info.text   = opt
+                info.value  = opt
+                info.func   = function(self)
+                    ns.db.banterStyle = self.value
+                    UIDropDownMenu_SetText(styleDD, self.value)
+                    UpdateCalloutVisibility()
+                end
+                info.checked = (ns.db.banterStyle == opt)
+                UIDropDownMenu_AddButton(info, level)
+            end
+        end)
+        UpdateCalloutVisibility()
         y = y - 28
         MakeCheckbox(p, "BanterCB_Debug", LEFT, y,
                      "Debug Mode (verbose logging)", ns.db, "debug")
@@ -666,6 +728,8 @@ SlashCmdList["BANTER"] = function(input)
         ns.Print("  /banter solo on|off  — solo /me inner monologue")
         ns.Print("  /banter cc on|off  — CC callout announcements")
         ns.Print("  /banter interrupts on|off  — interrupt callout announcements")
+        ns.Print("  /banter pvp on|off  — PVP kill callout announcements")
+        ns.Print("  /banter style social|narrative|callouts  — banter style")
         ns.Print("  /banter button  — toggle Banter Button")
         ns.Print("  /banter manual on|off  — Manual Mode (button-only banter)")
         ns.Print("  /banter roast on|off  — stat-based player callouts")
@@ -746,6 +810,32 @@ SlashCmdList["BANTER"] = function(input)
             ns.Print("Interrupt Callouts disabled.")
         else
             ns.Print("Interrupt Callouts: " .. (ns.db.interruptCallouts and "ON" or "OFF"))
+        end
+    elseif cmd:match("^pvp") then
+        local toggle = cmd:match("^pvp%s+(%a+)")
+        if toggle == "on" then
+            ns.db.pvpCallouts = true
+            ns.Print("PVP Kill Callouts enabled.")
+        elseif toggle == "off" then
+            ns.db.pvpCallouts = false
+            ns.Print("PVP Kill Callouts disabled.")
+        else
+            ns.Print("PVP Kill Callouts: " .. (ns.db.pvpCallouts and "ON" or "OFF"))
+        end
+    elseif cmd:match("^style") then
+        local val = cmd:match("^style%s+(%a+)")
+        if val then val = val:upper() end
+        if val == "SOCIAL" then
+            ns.db.banterStyle = "SOCIAL"
+            ns.Print("Banter Style: SOCIAL — random chit-chat between combat.")
+        elseif val == "NARRATIVE" then
+            ns.db.banterStyle = "NARRATIVE"
+            ns.Print("Banter Style: NARRATIVE — combat-focused commentary between pulls.")
+        elseif val == "CALLOUTS" then
+            ns.db.banterStyle = "CALLOUTS"
+            ns.Print("Banter Style: CALLOUTS — CC/interrupt/PVP callouts only, zero chatter.")
+        else
+            ns.Print("Banter Style: " .. (ns.db.banterStyle or "SOCIAL") .. "  (options: social, narrative, callouts)")
         end
     elseif cmd == "button" then
         if ns.button and ns.button.Toggle then
@@ -833,6 +923,8 @@ SlashCmdList["BANTER"] = function(input)
         ns.Print("Roast Mode: "   .. (ns.db.roastMode and "ON" or "OFF"))
         ns.Print("CC Callouts: "  .. (ns.db.ccCallouts and "ON" or "OFF"))
         ns.Print("Interrupts: "   .. (ns.db.interruptCallouts and "ON" or "OFF"))
+        ns.Print("PVP Callouts: " .. (ns.db.pvpCallouts and "ON" or "OFF"))
+        ns.Print("Banter Style: " .. (ns.db.banterStyle or "SOCIAL"))
         ns.Print("Self-promo: "   .. (ns.db.selfPromo and "ON" or "OFF"))
         ns.Print("Debug: "        .. (ns.db.debug and "ON" or "OFF"))
         ns.Print("Banter peers: " .. ns.comm.GetPeerCount())

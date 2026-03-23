@@ -42,10 +42,12 @@ local TRIGGER_COOLDOWN = {
     INTERRUPT          = 5,
     PERIODIC_DAMAGE    = 30,
     AMBIENT            = 0,
+    COMBAT_RECAP       = 0,
     COMBAT_START       = 20,
     MOB_KILL           = 12,
     CROWD_CONTROL      = 25,
     CC_CALLOUT         = 5,
+    PLAYER_KILL        = 8,
     PLAYER_DISCONNECT  = 60,
     CONSUMABLE_USED    = 45,
     MAJOR_COOLDOWN     = 30,
@@ -255,7 +257,9 @@ frame:SetScript("OnEvent", function(self, event, ...)
     end
 
     -- Guard: don't process triggers before init or when disabled
-    if not ns.initialized or not ns.db or not ns.db.enabled then return end
+    if not ns.initialized or not ns.db then return end
+
+    if not ns.db.enabled then return end
 
     -----------------------------------------------------------------------
     -- Combat state tracking  + state machine
@@ -412,21 +416,33 @@ end
 function triggers.OnCombatLog()
     local ts, subEvent, _, srcGUID, srcName, _, _, dstGUID, dstName = CombatLogGetCurrentEventInfo()
 
-    -- UNIT_DIED → player/group death OR mob kill
+    -- Ignore events that don't involve the player or their group
+    if not triggers.IsPlayerOrGroup(srcGUID) and not triggers.IsPlayerOrGroup(dstGUID) then
+        return
+    end
+
+    -- UNIT_DIED → player/group death OR mob kill OR PVP kill
     if subEvent == "UNIT_DIED" then
         if triggers.IsPlayerOrGroup(dstGUID) then
             triggers.OnDeath(dstGUID, dstName)
         else
-            -- A mob died — check if we or group killed it
-            triggers.OnMobKill(dstGUID, dstName)
+            -- Check if the dead unit is an enemy player (PVP kill)
+            local dstFlags = select(10, CombatLogGetCurrentEventInfo())
+            if dstFlags and bit.band(dstFlags, COMBATLOG_OBJECT_TYPE_PLAYER) ~= 0 then
+                triggers.OnPlayerKill(dstGUID, dstName)
+            else
+                triggers.OnMobKill(dstGUID, dstName)
+            end
         end
         return
     end
 
     -- SPELL_INTERRUPT
     if subEvent == "SPELL_INTERRUPT" then
+        if (GetNumGroupMembers() or 0) == 0 then return end  -- solo = no callouts
         if triggers.IsPlayerOrGroup(srcGUID) then
-            if not ns.db or not ns.db.interruptCallouts then return end
+            if not ns.db then return end
+            if not ns.db.interruptCallouts and ns.db.banterStyle ~= "CALLOUTS" then return end
             if not ns.initialized then return end
             -- Per-trigger cooldown only (no global scene gate)
             local cd   = TRIGGER_COOLDOWN["INTERRUPT"] or 5
@@ -564,11 +580,13 @@ local CC_DURATIONS = {
 }
 
 -- Which classes can dispel which debuff categories (TBC Classic)
--- magic: Priest, Paladin  |  disease: Priest, Paladin, Shaman
+-- magic: Priest only  |  disease: Priest, Paladin, Shaman
 -- poison: Paladin, Shaman, Druid  |  curse: Mage, Druid
+-- NOTE: Paladin Cleanse (magic) requires Holy spec — no reliable spec check
+-- in Classic API, so we exclude paladins from magic to avoid false callouts.
 local DISPEL_CLASSES = {
     PRIEST  = { magic = true, disease = true },
-    PALADIN = { magic = true, disease = true, poison = true },
+    PALADIN = { disease = true, poison = true },
     SHAMAN  = { disease = true, poison = true },
     DRUID   = { poison = true, curse = true },
     MAGE    = { curse = true },
@@ -651,6 +669,7 @@ end
 
 function triggers.OnCCCallout(dstGUID, dstName, srcName, spellName, spellId)
     if not spellName then return end
+    if (GetNumGroupMembers() or 0) == 0 then return end  -- solo = no callouts
 
     -- Only fire for meaningful CCs
     local lowerSpell = spellName:lower()
@@ -661,7 +680,8 @@ function triggers.OnCCCallout(dstGUID, dstName, srcName, spellName, spellId)
     if not isCC then return end
 
     -- CC callouts have their own toggle — independent of main enabled
-    if not ns.db or not ns.db.ccCallouts then return end
+    if not ns.db then return end
+    if not ns.db.ccCallouts and ns.db.banterStyle ~= "CALLOUTS" then return end
     if not ns.initialized then return end
     -- Per-trigger cooldown only (no global scene gate)
     local cd   = TRIGGER_COOLDOWN["CC_CALLOUT"] or 5
@@ -685,6 +705,44 @@ function triggers.OnCCCallout(dstGUID, dstName, srcName, spellName, spellId)
     }
 
     ns.core.StartScene("CC_CALLOUT", ctx)
+end
+
+---------------------------------------------------------------------------
+-- Player Kill  (enemy player died — world PVP / BG / arena)
+---------------------------------------------------------------------------
+function triggers.OnPlayerKill(dstGUID, dstName)
+    if not ns.db then return end
+    if not ns.db.pvpCallouts and ns.db.banterStyle ~= "CALLOUTS" then return end
+    if not ns.initialized then return end
+    if (GetNumGroupMembers() or 0) == 0 then return end  -- solo = no callouts
+
+    -- Per-trigger cooldown only (utility callout pattern)
+    local cd   = TRIGGER_COOLDOWN["PLAYER_KILL"] or 8
+    local last = triggerCooldowns["PLAYER_KILL"] or 0
+    if (GetTime() - last) < cd then return end
+
+    -- Leader-only dedup
+    if ns.comm.GetPeerCount() > 0 and not ns.comm.AmLeader() then return end
+
+    -- Try to get victim class/level if they're our current target
+    local killedClass, killedLevel
+    if UnitName("target") == dstName then
+        killedLevel = UnitLevel("target")
+        local _, cls = UnitClass("target")
+        killedClass = cls
+    end
+
+    -- Player level for level-gap humor
+    local playerLevel = UnitLevel("player")
+    local levelGap = (killedLevel and killedLevel > 0 and playerLevel)
+        and (killedLevel - playerLevel) or nil
+
+    ns.core.StartScene("PLAYER_KILL", {
+        killed       = dstName or "someone",
+        killed_class = killedClass and (killedClass:sub(1,1) .. killedClass:sub(2):lower()) or nil,
+        killed_level = killedLevel and killedLevel > 0 and tostring(killedLevel) or nil,
+        level_gap    = levelGap,
+    })
 end
 
 ---------------------------------------------------------------------------

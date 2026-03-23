@@ -137,35 +137,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="pal_int_c01", weight=1, line="Nice interrupt. I have... um. Hammer of Justice. On a one-minute cooldown. We're basically covered." },
-            { id="pal_int_c02", weight=1, line="{source} kicked it. I would have Hammer of Justice'd but it stuns, not interrupts. Close enough." },
-            { id="pal_int_c03", weight=1, line="Good interrupt. My contribution is standing here, glowing, providing an aura." },
-            { id="pal_int_c04", weight=1, line="{source} stopped {interrupted}! The Light is pleased. Probably." },
-            { id="pal_int_c05", weight=1, line="{interrupted} cancelled! I had Hammer of Justice ready. In 45 seconds." },
-            { id="pal_int_c06", weight=1, line="Cast denied! My one-minute stun was... not ready. But my FAITH was." },
-            { id="pal_int_c07", weight=1, line="{source} kicked {interrupted}. Meanwhile I provide auras. We all contribute differently." },
-            { id="pal_int_c08", weight=1, line="That mob's cast failed. Righteous." },
-            { id="pal_int_c09", weight=1, line="{interrupted} denied. By {source}. Not by me. I was buffing." },
-            { id="pal_int_c10", weight=1, line="Interrupt confirmed! The Light shines on those who kick on time." },
-            { id="pal_int_c11", weight=1, line="{source} shut down {interrupted}. My Hammer was on cooldown. It's ALWAYS on cooldown." },
-            { id="pal_int_c12", weight=1, line="That caster just learned that {source} doesn't negotiate. Inspiring." },
+            { id="pal_int_c01", weight=1, line="{interrupted} interrupted. The Light provides. Slowly. On a one-minute cooldown." },
+            { id="pal_int_c02", weight=1, line="{interrupted} denied. Righteous." },
+            { id="pal_int_c03", weight=1, line="{interrupted} cancelled. My Hammer of Justice was... not ready. But my faith was." },
+            { id="pal_int_c04", weight=1, line="{interrupted} locked out. The Light shines on those who kick on time." },
+            { id="pal_int_c05", weight=1, line="{interrupted} shut down. We all contribute differently. Some with auras." },
+            { id="pal_int_c06", weight=1, line="{interrupted} kicked. My Hammer was on cooldown. It's ALWAYS on cooldown." },
         },
         UNCOMMON = {
-            { id="pal_int_u01", weight=1, line="Paladins don't have a true interrupt. We have a stun. On a 1 minute CD. We do our best." },
-            { id="pal_int_u02", weight=1, line="{source} kicked {interrupted}. I blessed them beforehand. That counts as a team effort." },
-            { id="pal_int_u03", weight=1, line="The Light gives paladins many gifts. A short-cooldown interrupt is not one of them." },
-            { id="pal_int_u04", weight=1, line="Hammer of Justice was 40 seconds from ready. {source} didn't wait. Wise choice." },
-            { id="pal_int_u05", weight=1, line="{source} stopped {interrupted}. I contributed by keeping them alive long enough TO kick." },
-            { id="pal_int_u06", weight=1, line="That {interrupted} almost went off. Almost. Then {source} happened. The Light provides." },
+            { id="pal_int_u01", weight=1, line="{interrupted} off the table. Paladins don't have a real interrupt. We have a stun. On a 1 min CD." },
+            { id="pal_int_u02", weight=1, line="{interrupted} denied. The Light gives many gifts. A short-cooldown interrupt is not one." },
+            { id="pal_int_u03", weight=1, line="{interrupted} deleted. Hammer of Justice was 40 seconds from ready. Wise not to wait." },
         },
         RARE = {
-            { id="pal_int_r01", weight=1, line="Hammer of Justice: technically an interrupt, spiritually a panic button, functionally on cooldown." },
-            { id="pal_int_r02", weight=1, line="{source} denied {interrupted} and I felt the Light smile. Or that was Concentration Aura. Either way." },
-            { id="pal_int_r03", weight=1, line="Once I Hammer of Justice'd a caster to interrupt. Then it wore off. Then it finished casting. Then I Bubbled." },
+            { id="pal_int_r01", weight=1, line="{interrupted} erased. Hammer of Justice: technically an interrupt, functionally on cooldown, spiritually a panic button." },
+            { id="pal_int_r02", weight=1, line="{interrupted} crushed. Once I HoJ'd a caster to interrupt. Then it wore off. Then it finished casting. Then I Bubbled." },
         },
         MYTHIC = {
-            { id="pal_int_m01", weight=1, line="My interrupt tool kit: one stun, one minute cooldown, and righteous indignation." },
-            { id="pal_int_m02", weight=1, line="{source} destroyed {interrupted} in a heartbeat. I would write a hymn about it but I'm too busy being on cooldown." },
+            { id="pal_int_m01", weight=1, line="{interrupted} annihilated. My tool kit is one stun, one minute cooldown, and righteous indignation." },
         },
     },
 
@@ -245,27 +234,84 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="pal_cca_c01", weight=1, line="{victim} just got {spell}'d! The Light shines on those who DISPEL, by the way." },
-            { id="pal_cca_c02", weight=1, line="{victim} is CC'd! {spell}! I'd Cleanse it but I need to check if the Light covers that." },
-            { id="pal_cca_c03", weight=1, line="{spell} on {victim}! This is a righteous outrage!" },
-            { id="pal_cca_c04", weight=1, line="{victim} is locked down by {spell}. The Light weeps. Actually I'm weeping. Same thing." },
-            { id="pal_cca_c05", weight=1, line="{victim} caught a {spell}! I'd Bubble them if I could! But I can't! I can only Bubble ME!" },
-            { id="pal_cca_c06", weight=1, line="{victim} is disabled! {spell}! Where's the justice? The DIVINE justice specifically?" },
-            { id="pal_cca_c07", weight=1, line="{spell} hit {victim}. I'm composing a prayer for their swift liberation." },
-            { id="pal_cca_c08", weight=1, line="{victim} ate a {spell}. The Light protects... well, not right NOW apparently." },
+            { id="pal_cca_c01", weight=1, line="{spell} landed. The Light shines on those who DISPEL." },
+            { id="pal_cca_c02", weight=1, line="{spell} — needs a dispel. Righteous outrage." },
+            { id="pal_cca_c03", weight=1, line="{spell} on our side. I'd Bubble them if I could. I can only Bubble ME." },
+            { id="pal_cca_c04", weight=1, line="{spell} hit. Where's the justice? The DIVINE justice specifically?" },
+            { id="pal_cca_c05", weight=1, line="{spell} active. The Light protects... well, not right NOW apparently." },
+            { id="pal_cca_c06", weight=1, line="{spell} — someone break that. I'm composing a prayer for swift liberation." },
         },
         UNCOMMON = {
-            { id="pal_cca_u01", weight=1, line="{dispeller}, the Light gave you Cleanse for moments EXACTLY like {victim}'s {spell}. Use it." },
-            { id="pal_cca_u02", weight=1, line="{victim} is CC'd and {dispeller} stands idle. The Light keeps a ledger, {dispeller}. DISPEL." },
-            { id="pal_cca_u03", weight=1, line="I can Cleanse poison, disease, AND magic. But I'm busy. {dispeller}, your turn. {victim} waits." },
-            { id="pal_cca_u04", weight=1, line="{dispeller}, the paladins have a saying: 'He who does not dispel, tanks the next pull.' Think about it." },
+            { id="pal_cca_u01", weight=1, line="{spell} still up. The Light gave someone a dispel for moments EXACTLY like this." },
+            { id="pal_cca_u02", weight=1, line="{spell} needs breaking. The Light keeps a ledger. DISPEL." },
+            { id="pal_cca_u03", weight=1, line="{spell} sitting there. Paladins have a saying: 'He who does not dispel, tanks the next pull.'" },
         },
         RARE = {
-            { id="pal_cca_r01", weight=1, line="I have Blessing of Protection, Cleanse, and Divine Shield. {dispeller} has ONE dispel and won't even use it on {victim}." },
-            { id="pal_cca_r02", weight=1, line="When I write my memoirs, the chapter on {dispeller}'s dispel timing will be titled 'The Light Giveth, And They Ignoreth.'" },
+            { id="pal_cca_r01", weight=1, line="{spell} up. I have Blessing of Protection and Divine Shield. Someone else has a dispel. USE IT." },
+            { id="pal_cca_r02", weight=1, line="{spell} still active. When I write my memoirs, this chapter is titled 'The Light Giveth, And They Ignoreth.'" },
         },
         MYTHIC = {
-            { id="pal_cca_m01", weight=1, line="{victim} suffers in {spell}. {dispeller} ignores it. The Light judges us all but TODAY it judges {dispeller} hardest." },
+            { id="pal_cca_m01", weight=1, line="{spell} up. Nobody dispelling. The Light judges us all but TODAY it judges the dispellers hardest." },
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            { id="pal_pk_c01", weight=1, line="{killed} has been judged. The Light did not find in their favor." },
+            { id="pal_pk_c02", weight=1, line="{killed} is down. The Light works in mysterious ways. That one wasn't mysterious though." },
+            { id="pal_pk_c03", weight=1, line="Justice has been served. {killed} was the main course." },
+            { id="pal_pk_c04", weight=1, line="{killed} attacked a paladin. A PALADIN. What was the plan?" },
+            { id="pal_pk_c05", weight=1, line="{killed} is dead by holy mandate. I have a receipt." },
+            { id="pal_pk_c06", weight=1, line="The Light and I sent {killed} to a better place. Like the graveyard." },
+            { id="pal_pk_c07", weight=1, line="{killed} fell to the righteous fury of... okay, mostly auto attacks. But righteous auto attacks." },
+            { id="pal_pk_c08", weight=1, line="Another one returns to the Spirit Healer. You're welcome, {killed}." },
+            { id="pal_pk_c09", weight=1, line="{killed} is down. I'd have Blessing of Protection'd them but saving enemies isn't in my oath." },
+            { id="pal_pk_c10", weight=1, line="The Light compelled me to kill {killed}. Who am I to argue with the Light?" },
+        },
+        UNCOMMON = {
+            { id="pal_pk_u01", weight=1, line="{killed} got me to 10%%. I bubbled, healed to full, and killed them. Standard paladin experience." },
+            { id="pal_pk_u02", weight=1, line="{killed} tried to burst me down. Through plate. Through heals. Through Blessing of Freedom. Ambitious." },
+            { id="pal_pk_u03", weight=1, line="Sealed, Judged, Hammer'd. {killed} experienced the Holy Trinity. Of getting destroyed." },
+            { id="pal_pk_u04", weight=1, line="{killed} popped their big cooldown. I bubbled through it. Then killed them. I know. I hate me too." },
+            { id="pal_pk_u05", weight=1, line="{killed} said 'LOL paladin.' {killed} is now dead. The Light laughs last." },
+        },
+        RARE = {
+            { id="pal_pk_r01", weight=1, line="{killed} attacked me mid-fight with three mobs. I bubbled, healed, killed the mobs, THEN killed them. Patience is a virtue." },
+            { id="pal_pk_r02", weight=1, line="I killed {killed} while Blessing of Freedom was up. They couldn't even slow me. I walked them down like a Sunday crusade." },
+            { id="pal_pk_r03", weight=1, line="{killed} camped me. I came back, Lay on Hands'd mid-fight, and killed them at full HP. Second chances are a paladin specialty." },
+        },
+        MYTHIC = {
+            { id="pal_pk_m01", weight=1, line="{killed} thought killing a paladin was possible. Two bubbles, three heals, and a Lay on Hands later, they realized their mistake. Eventually." },
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            { id="pal_cr_c01", weight=1, line="{death_count} deaths. The Light weeps. I've been weeping LONGER." },
+            { id="pal_cr_c02", weight=1, line="{most_deaths} dying the most. The Light tests those it loves. It REALLY loves {most_deaths}." },
+            { id="pal_cr_c03", weight=1, line="{top_dps} leads damage. The Light also appreciates violence when it's righteous." },
+            { id="pal_cr_c04", weight=1, line="{fire_king} keeps standing in things. I can Blessing of Protection them. Once. Per five minutes. CHOOSE WISELY." },
+            { id="pal_cr_c05", weight=1, line="{interrupter} got the kick. The Light rewards the disciplined." },
+            { id="pal_cr_c06", weight=1, line="Last pull used two blessings, one bubble, and all my patience. Cooldowns are refunding. Patience is not." },
+            { id="pal_cr_c07", weight=1, line="{puller} pulled. The Light was not consulted." },
+            { id="pal_cr_c08", weight=1, line="{death_count} deaths so far. I used my Lay on Hands already. The next one is in an hour." },
+            { id="pal_cr_c09", weight=1, line="{cc_breaker} broke CC. The Light forgives but my cooldowns don't." },
+            { id="pal_cr_c10", weight=1, line="Still alive. Blessings up. Bubble ready. The Lord provides." },
+        },
+        UNCOMMON = {
+            { id="pal_cr_u01", weight=1, line="{most_deaths} has died the most. I bubbled them once. I BoP'd them once. I healed them constantly. I cannot help those who refuse to help themselves." },
+            { id="pal_cr_u02", weight=1, line="{fire_king} has tanked more floor damage than I've tanked mobs. And I'm in PLATE." },
+            { id="pal_cr_u03", weight=1, line="{top_dps} carrying the group while I carry the heals. Everyone else is carrying... feelings." },
+            { id="pal_cr_u04", weight=1, line="Bubble is on cooldown. BoP is on cooldown. Lay on Hands is on cooldown. If someone dies now, that's between them and the Spirit Healer." },
+            { id="pal_cr_u05", weight=1, line="{death_count} deaths. The Light gave me tools to prevent death. It did not give me enough for THIS group." },
+        },
+        RARE = {
+            { id="pal_cr_r01", weight=1, line="{most_deaths} dying, {fire_king} standing in fire, {cc_breaker} breaking CC. The Light has given me trials. These are them." },
+            { id="pal_cr_r02", weight=1, line="I've used Bubble, BoP, Lay on Hands, and every heal I have. {death_count} deaths anyway. The Light provides. This group wastes." },
+            { id="pal_cr_r03", weight=1, line="Only {death_count} deaths? I count that as a miracle. I perform miracles. It's in the job description." },
+        },
+        MYTHIC = {
+            { id="pal_cr_m01", weight=1, line="{death_count} deaths. {most_deaths} leading. {fire_king} grilling. {cc_breaker} breaking. {puller} rushing. And me, one paladin with Bubble on cooldown and the Light on speed-dial, trying to keep this righteous disaster afloat." },
         },
     },
 
@@ -635,19 +681,55 @@ responses = {
 
     CC_CALLOUT = {
         COMMON = {
-            "The Light sees all suffering. Including {victim}'s. DISPEL.",
+            "The Light sees all suffering. DISPEL.",
             "I'd Cleanse that but I'm already Cleansing three other things!",
-            "By the Light, someone free {victim}. Preferably not me. I'm busy.",
+            "By the Light, someone handle that. Preferably not me. I'm busy.",
         },
         UNCOMMON = {
-            "I can Cleanse magic, poison, AND disease. I can't Cleanse {dispeller}'s laziness.",
-            "Divine intervention would fix this. But that kills ME. So... {dispeller}?",
+            "I can Cleanse magic, poison, AND disease. I can't Cleanse laziness.",
+            "Divine intervention would fix this. But that kills ME. So... someone else?",
         },
         RARE = {
-            "I Cleansed 14 debuffs this fight. {dispeller} Cleansed zero. The Light keeps RECORDS.",
+            "I've Cleansed 14 debuffs this fight. The dispel count from others? Zero. The Light keeps RECORDS.",
         },
         MYTHIC = {
-            "Blessing of Protection can't fix CC. Bubble can't fix CC. Only {dispeller} can fix CC. And they WON'T.",
+            "Blessing of Protection can't fix CC. Bubble can't fix CC. Only a dispel can fix CC. And nobody's clicking it.",
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            "The Light has judged. Verdict: guilty.",
+            "Another one falls to righteous fury.",
+            "Bubbled, healed, killed. The paladin special.",
+        },
+        UNCOMMON = {
+            "They got me low. Then I healed. Then they got me low again. Then I bubbled AND healed. Then they died.",
+            "Five-minute fight. I had eight cooldowns. They had one life.",
+        },
+        RARE = {
+            "Killing someone as a paladin takes patience. I have infinite patience. And two bubbles.",
+        },
+        MYTHIC = {
+            "I outlasted them. Through heals. Through plate. Through bubble. Through Lay on Hands. They died of attrition. And embarrassment.",
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            "The Light sees all. And judges accordingly.",
+            "Bubble was ready. As always. That's the important stat.",
+            "The Light tracks these things. I just relay the message.",
+        },
+        UNCOMMON = {
+            "My cooldowns tell the real story. Used: all of them. Available: none.",
+            "I've been bubbling and healing this whole time. The stats don't capture sacrifice.",
+        },
+        RARE = {
+            "If the Light kept a scoreboard, it would look exactly like this. But with more guilt.",
+        },
+        MYTHIC = {
+            "The Light provides clarity. Clarity says: do better. Bubble says: I'll handle it anyway.",
         },
     },
 

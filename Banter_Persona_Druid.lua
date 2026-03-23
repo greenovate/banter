@@ -136,35 +136,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="dru_int_c01", weight=1, line="Nice interrupt. I was in bear form. Bash was ready. Theoretically." },
-            { id="dru_int_c02", weight=1, line="Interrupted. Good. I don't have a reliable kick. I have a stun. In bear form. Sometimes." },
-            { id="dru_int_c03", weight=1, line="{source} with the kick. I had... Feral Charge. If I was in bear. Which I wasn't." },
-            { id="dru_int_c04", weight=1, line="{source} stopped {interrupted}! I would've Bashed but... wrong form. Again." },
-            { id="dru_int_c05", weight=1, line="{interrupted} denied! I was mid-shift. I'm always mid-shift." },
-            { id="dru_int_c06", weight=1, line="Cast cancelled! I had Feral Charge ready. In theory. In practice... cat form." },
-            { id="dru_int_c07", weight=1, line="{source} kicked {interrupted}. Nature approves. I approve. My mana bar weeps." },
-            { id="dru_int_c08", weight=1, line="That mob tried to cast. {source} disagreed. Violently. Druids respect that." },
-            { id="dru_int_c09", weight=1, line="{interrupted} cancelled. I was going to shift to bear and Bash but... it's handled." },
-            { id="dru_int_c10", weight=1, line="Kicked! If only I could interrupt without form-shifting. Three times." },
-            { id="dru_int_c11", weight=1, line="{source} stopped {interrupted}. I contributed by being in the wrong form nearby." },
-            { id="dru_int_c12", weight=1, line="Interrupt landed! My Bash was on standby. In another form. In another universe." },
+            { id="dru_int_c01", weight=1, line="{interrupted} interrupted. I had Bash ready. In another form. As usual." },
+            { id="dru_int_c02", weight=1, line="{interrupted} kicked. Nature approves." },
+            { id="dru_int_c03", weight=1, line="{interrupted} cancelled. I was mid-shift. Always mid-shift." },
+            { id="dru_int_c04", weight=1, line="{interrupted} locked out. If only I could interrupt without form-shifting." },
+            { id="dru_int_c05", weight=1, line="{interrupted} denied. Feral Charge was ready... in theory." },
+            { id="dru_int_c06", weight=1, line="{interrupted} shut down. My Bash was on standby. In another universe." },
         },
         UNCOMMON = {
-            { id="dru_int_u01", weight=1, line="I could have interrupted with Bash. But I would've had to shift to bear. Then back to cat. It's a whole process." },
-            { id="dru_int_u02", weight=1, line="{source} kicked {interrupted}. Cost them nothing. Would've cost me 3 GCDs and my entire identity." },
-            { id="dru_int_u03", weight=1, line="That {interrupted} almost went off. I Feral Charged once to interrupt. Hit a wall. Nature remembers." },
-            { id="dru_int_u04", weight=1, line="Bear → Bash → Cat. That's how I interrupt. {source} just... pressed one button. Must be nice." },
-            { id="dru_int_u05", weight=1, line="{source} stopped {interrupted}. I was emotionally prepared to shift. Physically too slow." },
-            { id="dru_int_u06", weight=1, line="My interrupt requires a form shift, a stun, and a prayer. {source}'s requires one button. Balance? Not for druids." },
+            { id="dru_int_u01", weight=1, line="{interrupted} deleted. Would've cost me 3 GCDs to Bash that. One button for everyone else." },
+            { id="dru_int_u02", weight=1, line="{interrupted} off the table. Bear shift, Bash, cat shift. That's how I interrupt. This was easier." },
+            { id="dru_int_u03", weight=1, line="{interrupted} denied. I was emotionally prepared to shift. Physically too slow." },
         },
         RARE = {
-            { id="dru_int_r01", weight=1, line="I Feral Charged the caster, Bashed it, shifted to cat, and continued DPS. Druid multitasking at its finest." },
-            { id="dru_int_r02", weight=1, line="{source} denied {interrupted} in one button press. I need three form shifts for that. The JEALOUSY." },
-            { id="dru_int_r03", weight=1, line="Once I shifted bear mid-air to Bash a caster. Missed. Shifted back. Nobody saw. Until now." },
+            { id="dru_int_r01", weight=1, line="{interrupted} erased. Once I Feral Charged mid-air to interrupt. Missed. Nobody saw. Until now." },
+            { id="dru_int_r02", weight=1, line="{interrupted} crushed. Between Bash and Feral Charge, I CAN interrupt. It just requires two form shifts and therapy." },
         },
         MYTHIC = {
-            { id="dru_int_m01", weight=1, line="Between Bash and Feral Charge, I CAN interrupt. It just requires 2 form shifts and perfect timing." },
-            { id="dru_int_m02", weight=1, line="{source} annihilated {interrupted} with one kick. I would've needed: bear shift, Bash, cat shift, resuming DPS, and therapy." },
+            { id="dru_int_m01", weight=1, line="{interrupted} annihilated. One button for them. Three forms for me. The jealousy is REAL." },
         },
     },
 
@@ -244,27 +233,84 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="dru_cca_c01", weight=1, line="{victim} just got {spell}'d! I could shift out of that but... they can't." },
-            { id="dru_cca_c02", weight=1, line="{victim} is CC'd! {spell}! Nature does NOT approve of this!" },
-            { id="dru_cca_c03", weight=1, line="{spell} on {victim}! If it were poison or a curse I'd handle it but... it's not." },
-            { id="dru_cca_c04", weight=1, line="{victim} is locked down by {spell}. The natural order is disrupted. Very un-druidic." },
-            { id="dru_cca_c05", weight=1, line="{victim} caught a {spell}! I shifted forms three times in sympathy." },
-            { id="dru_cca_c06", weight=1, line="{victim} is disabled! {spell}! I want to help but I'm currently... a bear? No wait, cat. No..." },
-            { id="dru_cca_c07", weight=1, line="{spell} hit {victim}. I'm rooting for them. Not Entangling Roots. Emotionally." },
-            { id="dru_cca_c08", weight=1, line="{victim} ate a {spell}! If I could Abolish THAT I would but nature has limits apparently." },
+            { id="dru_cca_c01", weight=1, line="{spell} landed. I could shift out of that but... they can't." },
+            { id="dru_cca_c02", weight=1, line="{spell} — needs a dispel. Nature does NOT approve." },
+            { id="dru_cca_c03", weight=1, line="{spell} on our side. If it were poison or curse I'd handle it." },
+            { id="dru_cca_c04", weight=1, line="{spell} hit. The natural order is disrupted." },
+            { id="dru_cca_c05", weight=1, line="{spell} active. I shifted forms three times in sympathy." },
+            { id="dru_cca_c06", weight=1, line="{spell} — needs breaking. I'm rooting for them. Not Entangling Roots. Emotionally." },
         },
         UNCOMMON = {
-            { id="dru_cca_u01", weight=1, line="{dispeller}, {victim} has a {spell} and you have a dispel. The forest expects you to use it." },
-            { id="dru_cca_u02", weight=1, line="{victim} is CC'd and {dispeller} is watching like a tree in a windstorm. Motionless. Unhelpful." },
-            { id="dru_cca_u03", weight=1, line="I can Remove Curse and Abolish Poison. {victim}'s {spell} is neither. {dispeller}, that's you." },
-            { id="dru_cca_u04", weight=1, line="Nature gave {dispeller} the gift of dispel. Nature is watching. Nature is disappointed." },
+            { id="dru_cca_u01", weight=1, line="{spell} still up. I can Remove Curse and Abolish Poison. This is neither." },
+            { id="dru_cca_u02", weight=1, line="{spell} needs breaking. I shifted into five forms looking for one that helps. None do." },
+            { id="dru_cca_u03", weight=1, line="{spell} sitting there. The trees are whispering. What they're saying isn't kind." },
         },
         RARE = {
-            { id="dru_cca_r01", weight=1, line="I shifted into five forms looking for one that could help {victim}. None of them have dispel. {dispeller} DOES." },
-            { id="dru_cca_r02", weight=1, line="The trees are whispering about {dispeller}'s dispel reflexes. What they're saying isn't kind." },
+            { id="dru_cca_r01", weight=1, line="{spell} up. Nature gave someone the gift of dispel. Nature is watching. Nature is disappointed." },
+            { id="dru_cca_r02", weight=1, line="{spell} still active. I'm the wrong form. Someone has the right spell. Use it." },
         },
         MYTHIC = {
-            { id="dru_cca_m01", weight=1, line="{victim} is {spell}'d. I'm the wrong form. {dispeller} has the right spell. Nature, society, and I all agree: DISPEL." },
+            { id="dru_cca_m01", weight=1, line="{spell} up. Nobody moving. Nature, society, and I all agree: DISPEL." },
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            { id="dru_pk_c01", weight=1, line="{killed} is down. Nature is... harsh sometimes." },
+            { id="dru_pk_c02", weight=1, line="{killed} met all four of my forms today. Only one of them is friendly." },
+            { id="dru_pk_c03", weight=1, line="{killed} attacked a bear. The bear won. Shocking, I know." },
+            { id="dru_pk_c04", weight=1, line="Sorry, {killed}. I was the wrong kind of tree today." },
+            { id="dru_pk_c05", weight=1, line="{killed} went down. Was I cat or bear? Honestly not sure. It was fast." },
+            { id="dru_pk_c06", weight=1, line="{killed} is dead. I'll plant something nice over the body. Maybe." },
+            { id="dru_pk_c07", weight=1, line="Nature claims another. {killed} is returning to the ecosystem." },
+            { id="dru_pk_c08", weight=1, line="Shifted into cat, shredded {killed}, shifted back. Still have my drink buff." },
+            { id="dru_pk_c09", weight=1, line="{killed} flagged up near a druid. Brave and foolish." },
+            { id="dru_pk_c10", weight=1, line="{killed} thought druids were peaceful. Common misconception." },
+        },
+        UNCOMMON = {
+            { id="dru_pk_u01", weight=1, line="{killed} chased me in travel form for 40 seconds. Then I stopped and went bear. Then they died. It was a whole journey." },
+            { id="dru_pk_u02", weight=1, line="Rooted {killed}, Moonfire'd, went cat, Raked, went bear, Mauled. {killed} experienced the entire class fantasy. Briefly." },
+            { id="dru_pk_u03", weight=1, line="{killed} tried to focus the druid. The druid was three forms away from being concerned." },
+            { id="dru_pk_u04", weight=1, line="I feel bad about {killed}. Genuinely. Okay moment passed. Who's next?" },
+            { id="dru_pk_u05", weight=1, line="{killed} couldn't figure out which form to attack. I changed six times. They hit zero of them." },
+        },
+        RARE = {
+            { id="dru_pk_r01", weight=1, line="{killed} jumped me while I was herbing. Went bear, survived the opener, went cat, killed them, went caster, looted the herb. The plant lived. They didn't." },
+            { id="dru_pk_r02", weight=1, line="I soloed {killed} as resto spec. Took four minutes. They landed every hit. I just never died. Eventually they did." },
+            { id="dru_pk_r03", weight=1, line="{killed} camped my body. I rezzed in stealth. They're looking at a corpse that isn't there anymore. I'm behind them." },
+        },
+        MYTHIC = {
+            { id="dru_pk_m01", weight=1, line="{killed} wanted to fight a druid. A class that heals, tanks, goes stealth, AND runs faster than a mount. Bless their heart." },
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            { id="dru_cr_c01", weight=1, line="{death_count} deaths. Nature is... keeping score." },
+            { id="dru_cr_c02", weight=1, line="{most_deaths} dying the most. I'd Innervate their survival instinct if I could." },
+            { id="dru_cr_c03", weight=1, line="{top_dps} leads damage. I was busy being four classes at once." },
+            { id="dru_cr_c04", weight=1, line="{fire_king} stood in it. I shifted to heal them. Then shifted back. Then shifted again." },
+            { id="dru_cr_c05", weight=1, line="{interrupter} got the kick. I was in the wrong form. As usual." },
+            { id="dru_cr_c06", weight=1, line="That pull went... well, we lived. Nature finds a way." },
+            { id="dru_cr_c07", weight=1, line="{puller} pulled before I could even pick a form. Bear? Cat? Caster? ALL OF THEM?" },
+            { id="dru_cr_c08", weight=1, line="{death_count} deaths so far. The circle of life has some rough edges." },
+            { id="dru_cr_c09", weight=1, line="{cc_breaker} broke the CC. Nature taught us patience. Some people skipped that lesson." },
+            { id="dru_cr_c10", weight=1, line="I healed, I tanked, I DPS'd. Not well. But I did all three." },
+        },
+        UNCOMMON = {
+            { id="dru_cr_u01", weight=1, line="{most_deaths} has died more than any creature in this forest. And some of these creatures are VERY dead." },
+            { id="dru_cr_u02", weight=1, line="{fire_king} soaking damage like a sponge. Nature makes sponges. Nature also makes them disposable." },
+            { id="dru_cr_u03", weight=1, line="I shifted forms eight times that pull. Bear to cat to caster to bear to cat to... I lost track." },
+            { id="dru_cr_u04", weight=1, line="{top_dps} is pulling their weight. I'm pulling everyone's weight. In four different shapes." },
+            { id="dru_cr_u05", weight=1, line="{death_count} deaths. I Rebirth'd one. The rest were on their own. I only have ONE battle rez." },
+        },
+        RARE = {
+            { id="dru_cr_r01", weight=1, line="{most_deaths} leads deaths. {fire_king} leads damage taken. {cc_breaker} leads CC breaks. I lead form swaps. We all have our specialties." },
+            { id="dru_cr_r02", weight=1, line="Only {death_count} deaths. I had us pegged for more. Nature is generous. Or {top_dps} is just good." },
+            { id="dru_cr_r03", weight=1, line="I was bear, then cat, then caster, then tree-shaped regret. {most_deaths} was alive, then dead, then alive, then dead. We're both busy." },
+        },
+        MYTHIC = {
+            { id="dru_cr_m01", weight=1, line="{death_count} deaths. {most_deaths} dying. {fire_king} eating floor. {cc_breaker} hitting sheeped mobs. And me, shifting between four forms trying to fix everything. Nature gave me versatility. It didn't give me a competent group." },
         },
     },
 
@@ -639,14 +685,50 @@ responses = {
             "I could Abolish that if it were poison. Or a curse. But it's NOT.",
         },
         UNCOMMON = {
-            "I have Remove Curse, Abolish Poison, and NONE of the ones {victim} needs right now.",
-            "The forest is watching {dispeller}. The forest is unimpressed.",
+            "I have Remove Curse and Abolish Poison. Neither of which helps here.",
+            "The forest is watching. The forest is unimpressed.",
         },
         RARE = {
             "I shifted into cat, bear, travel, and moonkin looking for a form that dispels. There isn't one.",
         },
         MYTHIC = {
-            "Nature gave me twenty forms and ZERO of them fix {victim}'s problem. That's on nature. {dispeller}'s inaction? That's on THEM.",
+            "Nature gave me twenty forms and ZERO of them fix this. That's on nature. The missing dispel? That's on someone else.",
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            "Nature reclaims another.",
+            "Shifted and finished them. Not sure which form. It was fast.",
+            "The balance has been restored. By force.",
+        },
+        UNCOMMON = {
+            "Four forms, one victor. They couldn't keep up with the shapeshifts.",
+            "They attacked a bear. The bear won. Always bet on the bear.",
+        },
+        RARE = {
+            "I killed them as resto spec. Let that sink in.",
+        },
+        MYTHIC = {
+            "Healed myself, switched forms six times, and outlasted them. Druid PVP is not a fight, it's an endurance test. They failed.",
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            "Nature agrees. Reluctantly.",
+            "I shifted forms three times reading that. Instinct.",
+            "The balance is... off. But we're alive. So.",
+        },
+        UNCOMMON = {
+            "I was too busy being four classes at once to keep track. Thanks for the summary.",
+            "Nature keeps its own scoreboard. It's less forgiving than this one.",
+        },
+        RARE = {
+            "I Innervated, shifted, healed, tanked, and DPS'd this session. And that was ONE pull.",
+        },
+        MYTHIC = {
+            "Druids see the big picture. The big picture right now is a cat, a bear, a tree, and twenty forms of regret.",
         },
     },
 

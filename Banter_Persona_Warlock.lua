@@ -135,35 +135,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="wlk_int_c01", weight=1, line="Interrupted. If it was casting a shadow spell, I'm almost offended. That's MY thing." },
-            { id="wlk_int_c02", weight=1, line="Nice kick. I would've feared it but that causes different problems." },
-            { id="wlk_int_c03", weight=1, line="{source} interrupted the cast. Decisive. A little aggressive. I approve." },
-            { id="wlk_int_c04", weight=1, line="{interrupted} denied. That mob's casting career is over." },
-            { id="wlk_int_c05", weight=1, line="{source} shut that down. Even my demon nodded. He never nods." },
-            { id="wlk_int_c06", weight=1, line="Cast cancelled. The darkness approves of silence." },
-            { id="wlk_int_c07", weight=1, line="{source} kicked {interrupted}. Efficient. Almost demonic in its precision." },
-            { id="wlk_int_c08", weight=1, line="That mob tried to cast. How quaint. How futile." },
-            { id="wlk_int_c09", weight=1, line="{interrupted} locked out. One less spell in the world. I should be sad but I'm not." },
-            { id="wlk_int_c10", weight=1, line="Interrupted before the cast even finished. The mob felt what I feel every time someone dies." },
-            { id="wlk_int_c11", weight=1, line="{source} silenced the caster. My kind of party member." },
-            { id="wlk_int_c12", weight=1, line="{interrupted} never went off. Good. That spell was beneath this encounter." },
+            { id="wlk_int_c01", weight=1, line="{interrupted} denied. The darkness approves of silence." },
+            { id="wlk_int_c02", weight=1, line="{interrupted} interrupted. How quaint. How futile." },
+            { id="wlk_int_c03", weight=1, line="{interrupted} locked out. One less spell in the world." },
+            { id="wlk_int_c04", weight=1, line="{interrupted} cancelled. That spell was beneath this encounter." },
+            { id="wlk_int_c05", weight=1, line="{interrupted} shut down. Efficient. Almost demonic." },
+            { id="wlk_int_c06", weight=1, line="{interrupted} silenced. My Felhunter nodded. He never nods." },
         },
         UNCOMMON = {
-            { id="wlk_int_u01", weight=1, line="I have Spell Lock. Via my Felhunter. We interrupt as a team. A dark, creepy team." },
-            { id="wlk_int_u02", weight=1, line="{source} kicked {interrupted}. My Felhunter is jealous. He lives for that." },
-            { id="wlk_int_u03", weight=1, line="Spell Lock was ready but {source} got there first. I'll tell my demon it wasn't personal." },
-            { id="wlk_int_u04", weight=1, line="That {interrupted} would have been painful. For you. Not for me. I have Soul Link." },
-            { id="wlk_int_u05", weight=1, line="{source} interrupted casually. Like swatting a fly. I relate to this energy." },
-            { id="wlk_int_u06", weight=1, line="My demon wanted to Spell Lock it but it was already dead inside. Then outside. Then loot." },
+            { id="wlk_int_u01", weight=1, line="{interrupted} deleted. Spell Lock was ready but someone beat me to it." },
+            { id="wlk_int_u02", weight=1, line="{interrupted} erased. That would have been painful. For you. Not for me." },
+            { id="wlk_int_u03", weight=1, line="{interrupted} crushed. The mob died inside before it died outside." },
         },
         RARE = {
-            { id="wlk_int_r01", weight=1, line="My Felhunter did the interrupt. Good boy. He gets a soul snack later." },
-            { id="wlk_int_r02", weight=1, line="{source} denied {interrupted} and the mob's spirit broke. I could see it. It was beautiful." },
-            { id="wlk_int_r03", weight=1, line="Between Spell Lock and {source}'s kick, that caster got NO spells off. Poetic suffering." },
+            { id="wlk_int_r01", weight=1, line="{interrupted} annihilated. Zero casts went off that pull. Poetic suffering." },
+            { id="wlk_int_r02", weight=1, line="{interrupted} removed from existence. The void takes notes." },
         },
         MYTHIC = {
-            { id="wlk_int_m01", weight=1, line="Between my Spell Lock and their kick, that mob cast nothing. Die silent. That's poetic." },
-            { id="wlk_int_m02", weight=1, line="{source} just erased {interrupted} from existence. The void takes notes. And so do I." },
+            { id="wlk_int_m01", weight=1, line="{interrupted} obliterated. Die silent. That's poetic." },
         },
     },
 
@@ -243,27 +232,84 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="wlk_cca_c01", weight=1, line="{victim} just got hit with {spell}. of suffering. I'd sympathize but I deal in suffering." },
-            { id="wlk_cca_c02", weight=1, line="{victim} is CC'd! {spell}! Not the fun kind of CC. The involuntary kind." },
-            { id="wlk_cca_c03", weight=1, line="{spell} on {victim}. Someone should fix that. Not me. But someone." },
-            { id="wlk_cca_c04", weight=1, line="{victim} is locked down by {spell}. That's My DoTs are still ticking though." },
-            { id="wlk_cca_c05", weight=1, line="{victim} caught a {spell}. I'd Fear the mob back but that usually makes things worse." },
-            { id="wlk_cca_c06", weight=1, line="{victim} is disabled. {spell}. Tragic. Anyway, my DoTs need refreshing." },
-            { id="wlk_cca_c07", weight=1, line="Oh, {victim} got {spell}'d. The darkness takes another one. Temporarily." },
-            { id="wlk_cca_c08", weight=1, line="{spell} landed on {victim}. Just standing there. Very undignified." },
+            { id="wlk_cca_c01", weight=1, line="{spell} landed. Not the fun kind of CC. The involuntary kind." },
+            { id="wlk_cca_c02", weight=1, line="{spell} — someone should fix that. Not me. But someone." },
+            { id="wlk_cca_c03", weight=1, line="{spell} on our side. My DoTs are still ticking though." },
+            { id="wlk_cca_c04", weight=1, line="{spell} hit. Tragic. Anyway, my DoTs need refreshing." },
+            { id="wlk_cca_c05", weight=1, line="{spell} active. I'd Fear the mob back but that usually makes things worse." },
+            { id="wlk_cca_c06", weight=1, line="{spell} — needs dispel. The darkness takes another one. Temporarily." },
         },
         UNCOMMON = {
-            { id="wlk_cca_u01", weight=1, line="{dispeller}, {victim} has {spell} on them. Your literal job includes fixing this." },
-            { id="wlk_cca_u02", weight=1, line="{victim} is CC'd. {dispeller} is watching. My demon is also watching. At least MY minion has an excuse." },
-            { id="wlk_cca_u03", weight=1, line="{dispeller}, that {spell} on {victim} isn't going to dispel itself. Well, in But WHY WAIT." },
-            { id="wlk_cca_u04", weight=1, line="I sacrifice my OWN health to deal damage and {dispeller} can't even click dispel for {victim}." },
+            { id="wlk_cca_u01", weight=1, line="{spell} still up. I sacrifice my OWN health to deal damage and nobody can click dispel." },
+            { id="wlk_cca_u02", weight=1, line="{spell} needs breaking. My demon is watching. At least HE has an excuse." },
+            { id="wlk_cca_u03", weight=1, line="{spell} sitting there. Someone's literal job includes fixing this." },
         },
         RARE = {
-            { id="wlk_cca_r01", weight=1, line="My demons respond faster than {dispeller} does. And I have to SUMMON them first." },
-            { id="wlk_cca_r02", weight=1, line="{victim} is {spell}'d. I sold my soul for power. {dispeller} apparently sold their dispel button." },
+            { id="wlk_cca_r01", weight=1, line="{spell} up. My demons respond faster than the dispel. And I have to SUMMON them first." },
+            { id="wlk_cca_r02", weight=1, line="{spell} still active. A soul shard for every missed dispel and I'd have a full bag." },
         },
         MYTHIC = {
-            { id="wlk_cca_m01", weight=1, line="{victim} languishes in {spell}. {dispeller} does nothing. A soul shard for every missed dispel and I'd have a full bag." },
+            { id="wlk_cca_m01", weight=1, line="{spell} up. Nobody moving. The suffering is ours now. At least I'm used to it." },
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            { id="wlk_pk_c01", weight=1, line="{killed} has expired. My DoTs send their regards." },
+            { id="wlk_pk_c02", weight=1, line="{killed} died to ticking damage. The most undignified way to go. My favorite." },
+            { id="wlk_pk_c03", weight=1, line="Another soul for the collection. Thank you, {killed}." },
+            { id="wlk_pk_c04", weight=1, line="{killed} ran. They always run. The DoTs don't care." },
+            { id="wlk_pk_c05", weight=1, line="{killed} is dead. My demon barely blinked." },
+            { id="wlk_pk_c06", weight=1, line="Rest now, {killed}. Or don't. I'll farm you either way." },
+            { id="wlk_pk_c07", weight=1, line="{killed} challenged a warlock in the open world. Brave. Useless, but brave." },
+            { id="wlk_pk_c08", weight=1, line="{killed} just contributed to my soul shard economy. Everyone has a purpose." },
+            { id="wlk_pk_c09", weight=1, line="Fear, DoT, walk away. {killed} died while I was already looting something else." },
+            { id="wlk_pk_c10", weight=1, line="{killed} dropped faster than my last summoning stone pug." },
+        },
+        UNCOMMON = {
+            { id="wlk_pk_u01", weight=1, line="{killed} used their PVP trinket to break Fear. I Feared them again. They did not have a second trinket." },
+            { id="wlk_pk_u02", weight=1, line="{killed} tried to burst me down. Through Soul Link. Through Healthstone. Through Drain Life. Good luck." },
+            { id="wlk_pk_u03", weight=1, line="My Felhunter ate {killed}'s buffs. Then I ate {killed}. Circle of life. Dark circle." },
+            { id="wlk_pk_u04", weight=1, line="{killed} thought they won when I hit 20%%. Then I Drain Life'd back to full. Surprise." },
+            { id="wlk_pk_u05", weight=1, line="Killed {killed} and my Felhunter still had full mana. We didn't even try." },
+        },
+        RARE = {
+            { id="wlk_pk_r01", weight=1, line="{killed} showed up uninvited, interrupted my farming, and died for it. Tax for wasting my time." },
+            { id="wlk_pk_r02", weight=1, line="Put five DoTs on {killed} and went AFK. Came back. They were dead. Efficient." },
+            { id="wlk_pk_r03", weight=1, line="{killed} picked a fight at the summoning stone. In front of my group. Outnumbered and outmatched. They lasted four seconds." },
+        },
+        MYTHIC = {
+            { id="wlk_pk_m01", weight=1, line="{killed} fought valiantly. Against Fear. Against DoTs. Against Death Coil. Against hope. Hope lost." },
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            { id="wlk_cr_c01", weight=1, line="{death_count} deaths. Each one is a soul I didn't collect. Wasteful." },
+            { id="wlk_cr_c02", weight=1, line="{most_deaths} dying again. Their suffering sustains me. Slightly." },
+            { id="wlk_cr_c03", weight=1, line="{top_dps} leads damage. DoTs are rarely appreciated in the moment." },
+            { id="wlk_cr_c04", weight=1, line="{fire_king} stood in it. Again. At this point it's a lifestyle choice." },
+            { id="wlk_cr_c05", weight=1, line="{interrupter} got the kick. My demon was going to. Eventually." },
+            { id="wlk_cr_c06", weight=1, line="Another pull survived. My health bar remained... managed." },
+            { id="wlk_cr_c07", weight=1, line="{puller} pulled. The demons and I follow. Reluctantly." },
+            { id="wlk_cr_c08", weight=1, line="{death_count} deaths total. The underworld sends its regards." },
+            { id="wlk_cr_c09", weight=1, line="That pull wasn't terrible. By our standards. Which are low." },
+            { id="wlk_cr_c10", weight=1, line="{cc_breaker} broke the CC. My Felhunter would never." },
+        },
+        UNCOMMON = {
+            { id="wlk_cr_u01", weight=1, line="{most_deaths} has died the most. I'd feel bad but empathy costs soul shards I don't have." },
+            { id="wlk_cr_u02", weight=1, line="{top_dps} is doing actual damage. The rest of you are providing... moral support. Darkly." },
+            { id="wlk_cr_u03", weight=1, line="{fire_king} has soaked more floor damage than my Voidwalker. My Voidwalker is designed for that." },
+            { id="wlk_cr_u04", weight=1, line="I've been Drain Life'ing between pulls to stay topped. Nobody notices. Nobody ever notices." },
+            { id="wlk_cr_u05", weight=1, line="{cc_breaker} keeps hitting the sheeped target. My demon does this too but he has the excuse of being literal evil." },
+        },
+        RARE = {
+            { id="wlk_cr_r01", weight=1, line="{most_deaths} is single-handedly keeping the Spirit Healer employed. {death_count} deaths and we're barely halfway. I admire the commitment to failure." },
+            { id="wlk_cr_r02", weight=1, line="Pull analysis: {top_dps} did the damage, {interrupter} did the kicks, {fire_king} did the dying. Everyone has a role." },
+            { id="wlk_cr_r03", weight=1, line="Only {death_count} deaths. I had the over. My demon had the under. The demon wins. As usual." },
+        },
+        MYTHIC = {
+            { id="wlk_cr_m01", weight=1, line="{death_count} total deaths. {most_deaths} leads the charge into the afterlife. {fire_king} just stands in things. {cc_breaker} hits CC'd mobs. {top_dps} carries. I observe. Darkly." },
         },
     },
 
@@ -633,7 +679,7 @@ responses = {
 
     CC_CALLOUT = {
         COMMON = {
-            "Amusing. {victim} is learning what my Fear targets feel.",
+            "CC is very educational. My Fear targets agree.",
             "CC'd? My demon is watching. He's entertained.",
             "Oh no. Anyway. Where was I? Shards.",
         },
@@ -642,10 +688,46 @@ responses = {
             "My succubus says she could Seduce the mob. Into letting go. It's a method.",
         },
         RARE = {
-            "I've been feared, banished, and soul-drained. Being CC'd builds character. Enjoy it, {victim}.",
+            "I've been feared, banished, and soul-drained. Being CC'd builds character.",
         },
         MYTHIC = {
-            "{victim} suffers. {dispeller} watches. This is essentially what I do for a living but with MORE steps.",
+            "Suffering observed. Dispel ignored. This is essentially what I do for a living but with MORE steps.",
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            "Another soul. They add up.",
+            "They died. My DoTs lived. Circle of life.",
+            "This is why I have a pet. Cleanup.",
+        },
+        UNCOMMON = {
+            "Fear, DoT, loot. The holy trinity. The unholy trinity. Whatever.",
+            "Drain Life'd them dry. I feel refreshed. They feel dead.",
+        },
+        RARE = {
+            "I don't PVP. I harvest. Souls don't farm themselves.",
+        },
+        MYTHIC = {
+            "Every corpse is a potential soul shard, and I am ALWAYS low on shards.",
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            "The suffering continues. As expected.",
+            "Darkness keeps score too.",
+            "That tracks with what my demon saw.",
+        },
+        UNCOMMON = {
+            "My Felhunter could run this debrief. He's seen worse. Barely.",
+            "I observe. I record. I judge. Silently. Mostly.",
+        },
+        RARE = {
+            "Every session is a case study in controlled chaos. This one is less controlled.",
+        },
+        MYTHIC = {
+            "I've seen demons organize better than this group. Literal demons. From the Twisting Nether.",
         },
     },
 

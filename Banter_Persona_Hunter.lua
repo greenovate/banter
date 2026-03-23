@@ -137,35 +137,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="hun_int_c01", weight=1, line="Nice interrupt. I had a Scatter Shot ready but you got there first." },
-            { id="hun_int_c02", weight=1, line="{source} interrupted. My pet barked in approval." },
-            { id="hun_int_c03", weight=1, line="Good kick. I'm a ranged class. My interrupts involve bouncing things off skulls at 40 yards." },
-            { id="hun_int_c04", weight=1, line="{source} stopped {interrupted}! My pet approves. He barked." },
-            { id="hun_int_c05", weight=1, line="{interrupted} cancelled! I was aiming Scatter Shot but {source} handled it." },
-            { id="hun_int_c06", weight=1, line="Kicked mid-cast! My pet thinks he could've done it. He couldn't." },
-            { id="hun_int_c07", weight=1, line="{source} interrupted {interrupted}. My pet is giving them the 'good boy' look." },
-            { id="hun_int_c08", weight=1, line="That cast bar vanished. My pet celebrates by chewing on something." },
-            { id="hun_int_c09", weight=1, line="{interrupted} denied! My pet tried to take credit. He was eating." },
-            { id="hun_int_c10", weight=1, line="Cast stopped! Even from 40 yards I could tell that was a good kick." },
-            { id="hun_int_c11", weight=1, line="{source} shut down {interrupted}. My Arcane Shot was plan B. This was better." },
-            { id="hun_int_c12", weight=1, line="Interrupt confirmed! My pet wagged. He doesn't understand spells but he understands winning." },
+            { id="hun_int_c01", weight=1, line="{interrupted} kicked. My pet barked in approval." },
+            { id="hun_int_c02", weight=1, line="{interrupted} interrupted. Even from 40 yards I could tell that was clean." },
+            { id="hun_int_c03", weight=1, line="{interrupted} cancelled. My pet tried to take credit." },
+            { id="hun_int_c04", weight=1, line="{interrupted} denied. No casting near my pet." },
+            { id="hun_int_c05", weight=1, line="{interrupted} locked out. My pet is celebrating by chewing on something." },
+            { id="hun_int_c06", weight=1, line="{interrupted} shut down. My pet approves. He barked." },
         },
         UNCOMMON = {
-            { id="hun_int_u01", weight=1, line="I was going to Scatter Shot it. From max range. Dramatically. But {source} handled it." },
-            { id="hun_int_u02", weight=1, line="{source} kicked {interrupted}. My pet is studying their technique. He's very studious." },
-            { id="hun_int_u03", weight=1, line="My pet's Intimidation was ready. But {source} got the kick. My pet is sulking." },
-            { id="hun_int_u04", weight=1, line="That {interrupted} would've hit someone. My pet was ready to Intervene. He can't Intervene. He just stands there." },
-            { id="hun_int_u05", weight=1, line="{source} stopped {interrupted}. My contribution: Auto Shot. From safety." },
-            { id="hun_int_u06", weight=1, line="Scatter Shot has a cooldown. {source}'s kick doesn't. I'm jealous, just saying." },
+            { id="hun_int_u01", weight=1, line="{interrupted} off the table. Scatter Shot was plan B. Didn't need it." },
+            { id="hun_int_u02", weight=1, line="{interrupted} deleted. My pet tried to Intimidate it too. Overkill but heart's in the right place." },
+            { id="hun_int_u03", weight=1, line="{interrupted} denied. My pet is studying that technique. Very studious." },
         },
         RARE = {
-            { id="hun_int_r01", weight=1, line="My pet intimidated the caster. Technically an interrupt. He's very talented." },
-            { id="hun_int_r02", weight=1, line="{source} denied {interrupted} and my pet gave the most enthusiastic bark I've ever heard." },
-            { id="hun_int_r03", weight=1, line="Between Scatter Shot, my pet, and {source}'s kick, that caster is having the worst day." },
+            { id="hun_int_r01", weight=1, line="{interrupted} erased. My pet gave the most enthusiastic bark I've ever heard." },
+            { id="hun_int_r02", weight=1, line="{interrupted} crushed. Between Scatter Shot and kicks, that caster had no chance." },
         },
         MYTHIC = {
-            { id="hun_int_m01", weight=1, line="Between Scatter Shot, traps, and my pet's Intimidation, I am a one-person CC department." },
-            { id="hun_int_m02", weight=1, line="{source} stopped {interrupted} and my pet is LOSING IT. Full zoomies. He lives for interrupts. We all do." },
+            { id="hun_int_m01", weight=1, line="{interrupted} obliterated. My pet is doing full zoomies. He lives for this." },
         },
     },
 
@@ -245,27 +234,84 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="hun_cca_c01", weight=1, line="{victim} just got {spell}'d! My pet wants to help but he'd probably make it worse." },
-            { id="hun_cca_c02", weight=1, line="{victim} is CC'd! {spell}! I could Scatter Shot the mob but... wrong target." },
-            { id="hun_cca_c03", weight=1, line="{spell} on {victim}! My pet is staring at them. He's concerned." },
-            { id="hun_cca_c04", weight=1, line="{victim} is locked down by {spell}. My pet just tilted his head. He does that when he's worried." },
-            { id="hun_cca_c05", weight=1, line="{victim} caught a {spell}! Someone who isn't me should fix that!" },
-            { id="hun_cca_c06", weight=1, line="{victim} is disabled! {spell}! I'd help but I only know how to CC mobs, not un-CC friends." },
-            { id="hun_cca_c07", weight=1, line="{spell} hit {victim}! My pet looked at me like I should do something. I looked back. Standoff." },
-            { id="hun_cca_c08", weight=1, line="{victim} just ate a {spell}. My pet is offering emotional support by sitting nearby." },
+            { id="hun_cca_c01", weight=1, line="{spell} landed. My pet wants to help but he'd probably make it worse." },
+            { id="hun_cca_c02", weight=1, line="{spell} — someone with a dispel should handle this. Not my pet." },
+            { id="hun_cca_c03", weight=1, line="{spell} on our side. My pet is concerned. He tilted his head." },
+            { id="hun_cca_c04", weight=1, line="{spell} hit. I only know how to CC mobs, not un-CC friends." },
+            { id="hun_cca_c05", weight=1, line="{spell} active. My pet is offering emotional support by sitting nearby." },
+            { id="hun_cca_c06", weight=1, line="{spell} — needs a dispel. My pet stared at me. I stared back. Standoff." },
         },
         UNCOMMON = {
-            { id="hun_cca_u01", weight=1, line="{dispeller}, {victim} is in a {spell}! You have a dispel! My pet doesn't! USE YOURS!" },
-            { id="hun_cca_u02", weight=1, line="{victim} is CC'd and {dispeller} is just... standing there? Even my pet has faster reaction time." },
-            { id="hun_cca_u03", weight=1, line="{dispeller} could dispel {victim}'s {spell} but apparently that's too much effort. My PET tries harder." },
-            { id="hun_cca_u04", weight=1, line="I trained my pet to sit, stay, and attack. {dispeller} can't even train themselves to click dispel." },
+            { id="hun_cca_u01", weight=1, line="{spell} still up. Even my pet has faster reaction time. And he chases his tail." },
+            { id="hun_cca_u02", weight=1, line="{spell} needs breaking. If my pet could dispel I'd send him. But he can't." },
+            { id="hun_cca_u03", weight=1, line="{spell} sitting there. My pet tries harder than this. Just saying." },
         },
         RARE = {
-            { id="hun_cca_r01", weight=1, line="My pet once broke my own Freezing Trap mid-pull. Even HE has better reflexes than {dispeller}'s dispel timing." },
-            { id="hun_cca_r02", weight=1, line="If my pet could dispel I'd send him to {victim} right now. But he can't. So {dispeller}... just saying." },
+            { id="hun_cca_r01", weight=1, line="{spell} up. My pet once broke my own Freezing Trap mid-pull. Even HE has better reflexes than this." },
+            { id="hun_cca_r02", weight=1, line="{spell} still active. My pet is looking at the group. Then at me. Even he gets it." },
         },
         MYTHIC = {
-            { id="hun_cca_m01", weight=1, line="My pet is looking at {dispeller}. Then at {victim}. Then back at {dispeller}. I think even HE gets it. Dispel." },
+            { id="hun_cca_m01", weight=1, line="{spell} up. Nobody moving. My pet is judging everyone. And he eats garbage off the ground." },
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            { id="hun_pk_c01", weight=1, line="{killed} is down! Good boy helped. Didn't you, buddy? Yes you did." },
+            { id="hun_pk_c02", weight=1, line="{killed} tried to close distance. That's a 41-yard problem they didn't solve." },
+            { id="hun_pk_c03", weight=1, line="RIP {killed}. My pet says you tasted terrible." },
+            { id="hun_pk_c04", weight=1, line="{killed} is dead. My pet is already looking for the next one. He's ambitious." },
+            { id="hun_pk_c05", weight=1, line="{killed} went down to an Aimed Shot. From way over here. Didn't even need to move." },
+            { id="hun_pk_c06", weight=1, line="My pet tanked {killed} while I shot them. Teamwork." },
+            { id="hun_pk_c07", weight=1, line="{killed} attacked us. My pet took it personally." },
+            { id="hun_pk_c08", weight=1, line="{killed} is down and my pet wants a treat. Fair enough." },
+            { id="hun_pk_c09", weight=1, line="Nature doesn't pick favorites. But if it did, it wouldn't pick {killed}." },
+            { id="hun_pk_c10", weight=1, line="That was a clean kill. My pet did most of the work. Just saying." },
+        },
+        UNCOMMON = {
+            { id="hun_pk_u01", weight=1, line="{killed} ran straight at me. Through a Freezing Trap. Past my pet. Into an Aimed Shot. I respect the commitment." },
+            { id="hun_pk_u02", weight=1, line="{killed} killed my pet. So I killed them. Nobody hurts my pet. NOBODY." },
+            { id="hun_pk_u03", weight=1, line="Kited {killed} across three zones. They never gave up. Admirable strategy if the goal was dying tired." },
+            { id="hun_pk_u04", weight=1, line="{killed} tried to Feign Death. Wait, that's MY thing. Theirs was real though." },
+            { id="hun_pk_u05", weight=1, line="I Multi-Shot'd into a group and {killed} was the one who died. Natural selection." },
+        },
+        RARE = {
+            { id="hun_pk_r01", weight=1, line="{killed} jumped me while I was feeding my pet. My pet was cranky. He ate them instead. I mean not literally. Mostly." },
+            { id="hun_pk_r02", weight=1, line="{killed} thought they'd gank the hunter. I Feign Death'd, they turned around, I got back up and killed them. Classic." },
+            { id="hun_pk_r03", weight=1, line="{killed} ganked me at the flight path. I rezzed. They were still there. I won round two. And three. They left." },
+        },
+        MYTHIC = {
+            { id="hun_pk_m01", weight=1, line="{killed} was dead the moment they entered range. They just didn't know it yet. My pet knew. I knew. The Aimed Shot knew." },
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            { id="hun_cr_c01", weight=1, line="{death_count} deaths so far. My pet is alive though. Just saying." },
+            { id="hun_cr_c02", weight=1, line="{top_dps} is doing the most damage! ...is it me? It should be me." },
+            { id="hun_cr_c03", weight=1, line="{most_deaths} keeps dying. My pet has more survival instincts." },
+            { id="hun_cr_c04", weight=1, line="{interrupter} got the interrupt! Good job! My pet could also do that probably." },
+            { id="hun_cr_c05", weight=1, line="{fire_king} stood in the bad thing. My pet moved out of it. Just saying." },
+            { id="hun_cr_c06", weight=1, line="That last pull went okay. My pet thought so too. He's wagging." },
+            { id="hun_cr_c07", weight=1, line="{puller} keeps pulling. My pet is excited. I'm less excited." },
+            { id="hun_cr_c08", weight=1, line="{death_count} deaths and my pet hasn't died once. Priorities." },
+            { id="hun_cr_c09", weight=1, line="{cc_breaker} broke the CC. Was it my pet? It wasn't my pet THIS time." },
+            { id="hun_cr_c10", weight=1, line="Everyone lived! My pet is proud. He contributed. Emotionally." },
+        },
+        UNCOMMON = {
+            { id="hun_cr_u01", weight=1, line="{most_deaths} has died more than my pet this entire session. My pet walks into cleaves on PURPOSE." },
+            { id="hun_cr_u02", weight=1, line="{top_dps} is carrying damage. My pet and I are helping. Well, my pet is helping. I'm shooting." },
+            { id="hun_cr_u03", weight=1, line="{fire_king} has eaten so much ground damage my pet offered them a treat. Out of sympathy." },
+            { id="hun_cr_u04", weight=1, line="I sent my pet in. It lived. {most_deaths} went in. They didn't. Just an observation." },
+            { id="hun_cr_u05", weight=1, line="{death_count} deaths. None of them me. Feign Death isn't dying. It's a tactical nap." },
+        },
+        RARE = {
+            { id="hun_cr_r01", weight=1, line="{most_deaths} dying the most. {fire_king} standing in the most. {top_dps} killing the most. My pet doing the most important job of all: being there." },
+            { id="hun_cr_r02", weight=1, line="Only {death_count} deaths? I had us down for more. My pet had us down for way more. He's pessimistic." },
+            { id="hun_cr_r03", weight=1, line="{cc_breaker} broke the trap. MY trap. I stood there in the back placing it perfectly and they just HIT it. My pet is judging them." },
+        },
+        MYTHIC = {
+            { id="hun_cr_m01", weight=1, line="Session recap: {death_count} deaths. {most_deaths} led that chart. {top_dps} did the damage. {fire_king} tanked the floor. My pet tanked everything else. I just shot things from far away. Best job in the group honestly." },
         },
     },
 
@@ -635,19 +681,55 @@ responses = {
 
     CC_CALLOUT = {
         COMMON = {
-            "Ooh! {victim} is stuck! My pet wants to help. I said no. He's sulking.",
+            "Someone's stuck! My pet wants to help. I said no. He's sulking.",
             "That looks rough! My pet is doing the concerned-head-tilt thing.",
             "Yikes. I'd Scatter Shot the mob but that only works on enemies.",
         },
         UNCOMMON = {
-            "My pet once broke my own Freezing Trap. But at least he TRIES. Unlike {dispeller}.",
+            "My pet once broke my own Freezing Trap. But at least he TRIES.",
             "If my pet had a dispel button he'd mash it. He mashes EVERYTHING.",
         },
         RARE = {
             "I asked my pet if he could dispel. He bit me. That's a no, I think.",
         },
         MYTHIC = {
-            "My pet is staring at {dispeller}. Judging. He does that. It's very effective. DISPEL.",
+            "My pet is judging the whole group right now. And he eats garbage off the ground.",
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            "My pet helped! Good boy!",
+            "They went down. From over here. Way over here.",
+            "Another one! My pet is wagging. I think.",
+        },
+        UNCOMMON = {
+            "They never got within melee range. That's the dream.",
+            "My pet tanked them while I shot. Teamwork makes the dream work.",
+        },
+        RARE = {
+            "They killed my pet first. So I killed them second. Nobody hurts my pet.",
+        },
+        MYTHIC = {
+            "Feign Death'd, they walked away, I got up and killed them. The oldest trick in the book. Still works.",
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            "My pet agrees. He's nodding. Probably.",
+            "Yeah that sounds about right. My pet thinks so too.",
+            "Numbers! I love numbers! ...my pet doesn't understand numbers.",
+        },
+        UNCOMMON = {
+            "My pet has been keeping track of all this. In his head. He's very smart.",
+            "I didn't die yet! Neither did my pet! Group goals!",
+        },
+        RARE = {
+            "My pet and I have survived everything so far. The secret? We stay in the back. And Feign Death.",
+        },
+        MYTHIC = {
+            "Group recap? My pet knew all of this already. He's been judging from the back. Silently. With his eyes.",
         },
     },
 

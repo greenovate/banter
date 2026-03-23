@@ -143,35 +143,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="pri_int_c01", weight=1, line="Nice interrupt. Less incoming damage means more mana for ME." },
-            { id="pri_int_c02", weight=1, line="Interrupted! That's less healing I have to do. I love efficiency." },
-            { id="pri_int_c03", weight=1, line="{source} interrupted. Thank you. Genuinely. From my mana bar." },
-            { id="pri_int_c04", weight=1, line="{interrupted} cancelled! One less thing trying to kill my group." },
-            { id="pri_int_c05", weight=1, line="{source} kicked {interrupted}. That just saved me a Flash Heal." },
-            { id="pri_int_c06", weight=1, line="Cast denied! My mana bar sends its regards." },
-            { id="pri_int_c07", weight=1, line="Interrupted! Every spell that doesn't go off is a heal I don't have to cast." },
-            { id="pri_int_c08", weight=1, line="{source} shut down {interrupted}. I noticed. I ALWAYS notice." },
-            { id="pri_int_c09", weight=1, line="That cast bar disappeared. So did my stress. Momentarily." },
-            { id="pri_int_c10", weight=1, line="{interrupted} denied. My healing throughput thanks you." },
-            { id="pri_int_c11", weight=1, line="Kicked mid-cast. That's the kind of DPS contribution I actually APPRECIATE." },
-            { id="pri_int_c12", weight=1, line="{source} interrupted the thing that was about to ruin my life. Noted. Appreciated." },
+            { id="pri_int_c01", weight=1, line="{interrupted} kicked. Less incoming damage. Less healing. Thank you." },
+            { id="pri_int_c02", weight=1, line="{interrupted} interrupted. My mana bar sends its regards." },
+            { id="pri_int_c03", weight=1, line="{interrupted} cancelled. One less thing trying to kill my group." },
+            { id="pri_int_c04", weight=1, line="{interrupted} denied. That just saved me a Flash Heal." },
+            { id="pri_int_c05", weight=1, line="{interrupted} locked out. My stress dropped by exactly one notch." },
+            { id="pri_int_c06", weight=1, line="{interrupted} shut down. Finally, HELPFUL DPS." },
         },
         UNCOMMON = {
-            { id="pri_int_u01", weight=1, line="Every interrupt saves me a heal. Every heal saves me mana. Every mana saved is a tiny victory." },
-            { id="pri_int_u02", weight=1, line="{source} kicked {interrupted}. I was already precasting Greater Heal. Now I can cancel it. What a luxury." },
-            { id="pri_int_u03", weight=1, line="That {interrupted} would have chunked someone for 40%. I know because it HIT me last pull." },
-            { id="pri_int_u04", weight=1, line="Interrupt meta: {source} kicks, I don't panic-heal, we all go home happy." },
-            { id="pri_int_u05", weight=1, line="I keep a mental scoreboard of who interrupts. {source} is in the lead. KEEP IT UP." },
-            { id="pri_int_u06", weight=1, line="{interrupted} denied. That's one less person at 30% HP. My blood pressure thanks you." },
+            { id="pri_int_u01", weight=1, line="{interrupted} off the table. Every interrupt saves me a heal. Every heal saves mana. Math." },
+            { id="pri_int_u02", weight=1, line="{interrupted} denied. I was already precasting Greater Heal. Now I can cancel. Luxury." },
+            { id="pri_int_u03", weight=1, line="{interrupted} would've chunked someone for 40%%. I KNOW because it hit me last pull." },
         },
         RARE = {
-            { id="pri_int_r01", weight=1, line="If all of you interrupted like that, I'd actually finish a fight with mana left." },
-            { id="pri_int_r02", weight=1, line="{source} interrupted {interrupted} and I shed a single tear of joy. Then went back to healing." },
-            { id="pri_int_r03", weight=1, line="That mob tried to cast {interrupted}. {source} said no. I said thank the Light." },
+            { id="pri_int_r01", weight=1, line="{interrupted} erased. If every pull had interrupts like that, I'd finish with mana left." },
+            { id="pri_int_r02", weight=1, line="{interrupted} deleted. For one beautiful second I wasn't stressed. Then the tank pulled again." },
         },
         MYTHIC = {
-            { id="pri_int_m01", weight=1, line="That interrupt alone saved me 500 mana. I'm not crying. My eyes are casting." },
-            { id="pri_int_m02", weight=1, line="{source} denied {interrupted} and for one beautiful second I wasn't stressed. Then the tank pulled. But that second was MINE." },
+            { id="pri_int_m01", weight=1, line="{interrupted} annihilated. That alone saved 500 mana. I'm not crying. My eyes are casting." },
         },
     },
 
@@ -251,27 +240,84 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="pri_cca_c01", weight=1, line="{victim} just ate a {spell}! I'm already stressed enough!" },
-            { id="pri_cca_c02", weight=1, line="{victim} is CC'd! {spell}! I CANNOT HEAL THROUGH CC, PEOPLE." },
-            { id="pri_cca_c03", weight=1, line="{spell} on {victim}! Does anyone else see this or is it just ME?" },
-            { id="pri_cca_c04", weight=1, line="{victim} is locked down by {spell}. One more thing on MY plate. Great." },
-            { id="pri_cca_c05", weight=1, line="{victim} caught a {spell}! That's they're not helping with damage!" },
-            { id="pri_cca_c06", weight=1, line="{victim} is out of action! {spell}! It's fine. I'll just heal everyone ELSE harder." },
-            { id="pri_cca_c07", weight=1, line="{spell} hit {victim}. Add it to the list of things I have to worry about." },
-            { id="pri_cca_c08", weight=1, line="{victim} just got {spell}'d! I saw it! I always see it! NOBODY ELSE DOES!" },
+            { id="pri_cca_c01", weight=1, line="{spell} landed. Needs a dispel. I'm BUSY." },
+            { id="pri_cca_c02", weight=1, line="{spell} — I can't heal through CC, people." },
+            { id="pri_cca_c03", weight=1, line="{spell} on a group member. Add it to my list of problems." },
+            { id="pri_cca_c04", weight=1, line="{spell} hit. One more thing on MY plate. Great." },
+            { id="pri_cca_c05", weight=1, line="{spell} — that's lost damage until it's cleared." },
+            { id="pri_cca_c06", weight=1, line="{spell} active. Does anyone else see this or is it just ME?" },
         },
         UNCOMMON = {
-            { id="pri_cca_u01", weight=1, line="I can dispel {victim}'s {spell} myself but I'm BUSY. {dispeller}, you could help." },
-            { id="pri_cca_u02", weight=1, line="{dispeller}, {victim} has been sitting in {spell} for DISPEL EXISTS. USE IT." },
-            { id="pri_cca_u03", weight=1, line="{victim} is CC'd and now I choose: dispel or keep the tank alive. WHY IS THIS MY LIFE." },
-            { id="pri_cca_u04", weight=1, line="I keep track of every undispelled CC. The spreadsheet is DAMNING, {dispeller}." },
+            { id="pri_cca_u01", weight=1, line="{spell} still up. I could dispel it myself but I'm keeping the tank alive. Priorities." },
+            { id="pri_cca_u02", weight=1, line="{spell} needs breaking. Now I choose: dispel or keep someone alive. WHY IS THIS MY LIFE." },
+            { id="pri_cca_u03", weight=1, line="{spell} sitting there. Dispel exists. The button works. I promise." },
         },
         RARE = {
-            { id="pri_cca_r01", weight=1, line="{victim} is {spell}'d. I have Dispel Magic, everything. But I'm HEALING. {dispeller} has ONE JOB." },
-            { id="pri_cca_r02", weight=1, line="My dispel has a cooldown. My patience doesn't. Wait yes it does. {dispeller}, CLICK THE BUTTON." },
+            { id="pri_cca_r01", weight=1, line="{spell} up. I have Dispel Magic and everything. But I'm HEALING." },
+            { id="pri_cca_r02", weight=1, line="{spell} still active. I threaten to go Shadow ONCE and suddenly everyone pays attention." },
         },
         MYTHIC = {
-            { id="pri_cca_m01", weight=1, line="{victim} CC'd. {dispeller} asleep. Tank dropping. I threaten to go Shadow ONCE and suddenly everyone pays attention." },
+            { id="pri_cca_m01", weight=1, line="{spell} up. Nobody dispelling. Tank dropping. This is FINE." },
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            { id="pri_pk_c01", weight=1, line="{killed} is down. Holy fire is technically still holy." },
+            { id="pri_pk_c02", weight=1, line="Smite'd {killed} into the ground. The Light provides." },
+            { id="pri_pk_c03", weight=1, line="{killed} thought Shadow Word: Pain was just a debuff. It's also a lifestyle." },
+            { id="pri_pk_c04", weight=1, line="{killed} just learned that healers can hurt too. Lesson complete." },
+            { id="pri_pk_c05", weight=1, line="{killed} is dead and I STILL have mana for healing. Multitasking." },
+            { id="pri_pk_c06", weight=1, line="Rest in peace, {killed}. Or in pieces. Whichever." },
+            { id="pri_pk_c07", weight=1, line="I healed AND killed {killed}. Nobody else can say that." },
+            { id="pri_pk_c08", weight=1, line="{killed} underestimated the priest. Everyone underestimates the priest." },
+            { id="pri_pk_c09", weight=1, line="{killed} attacked our group. I had to stop healing to deal with it. PERSONALLY." },
+            { id="pri_pk_c10", weight=1, line="The Light giveth, and the Light taketh away. {killed} just got the second part." },
+        },
+        UNCOMMON = {
+            { id="pri_pk_u01", weight=1, line="{killed} tried to kill the healer first. Standard strategy. Still died. Standard result." },
+            { id="pri_pk_u02", weight=1, line="Psychic Scream'd {killed} into two mobs. They handled the rest. I went back to healing." },
+            { id="pri_pk_u03", weight=1, line="{killed} burned every cooldown trying to drop me. I pressed one Renew and outlasted them." },
+            { id="pri_pk_u04", weight=1, line="Shadow Word: Death finished {killed}. I love when the shadow does the paperwork." },
+            { id="pri_pk_u05", weight=1, line="{killed} focused me for 30 seconds. My health bar didn't move. Theirs did. Downward." },
+        },
+        RARE = {
+            { id="pri_pk_r01", weight=1, line="{killed} ganked me mid-heal. I popped shield, feared them, DoT'd them, and finished my cast. They died. Patient was fine." },
+            { id="pri_pk_r02", weight=1, line="I solo'd {killed} in full healing spec. Let me repeat: HEALING SPEC. And they lost." },
+            { id="pri_pk_r03", weight=1, line="{killed} jumped me while I was drinking. I Psychic Scream'd, bubbled, healed to full, and killed them with Smite. Rude." },
+        },
+        MYTHIC = {
+            { id="pri_pk_m01", weight=1, line="{killed} came at me. A healer. Who keeps everyone ELSE alive for a living. And thought this would go differently." },
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            { id="pri_cr_c01", weight=1, line="{death_count} deaths. I kept MOST of you alive. That's MY job. Dying is YOUR failure." },
+            { id="pri_cr_c02", weight=1, line="{most_deaths} keeps dying. I can only heal so fast." },
+            { id="pri_cr_c03", weight=1, line="{top_dps} does the DPS. I do the healing. The rest of you do WHAT exactly?" },
+            { id="pri_cr_c04", weight=1, line="{fire_king} stood in the bad stuff again. I healed through it. AGAIN." },
+            { id="pri_cr_c05", weight=1, line="{interrupter} kicked it. Thank you. Sincerely. From the healer." },
+            { id="pri_cr_c06", weight=1, line="That pull cost me half my mana bar. The things I do for this group." },
+            { id="pri_cr_c07", weight=1, line="{puller} pulled before I was ready. As ALWAYS." },
+            { id="pri_cr_c08", weight=1, line="{death_count} deaths so far. Each one ages me a year." },
+            { id="pri_cr_c09", weight=1, line="Everyone's alive. You're WELCOME." },
+            { id="pri_cr_c10", weight=1, line="{cc_breaker} broke CC and caused more healing for ME. Thanks for THAT." },
+        },
+        UNCOMMON = {
+            { id="pri_cr_u01", weight=1, line="{most_deaths} has died the most. I've healed them the most. Correlation is not coincidence." },
+            { id="pri_cr_u02", weight=1, line="{top_dps} is doing great DPS. Probably because I'm keeping them ALIVE. You're welcome." },
+            { id="pri_cr_u03", weight=1, line="{fire_king} has eaten more floor damage than I've healed in total. HOW." },
+            { id="pri_cr_u04", weight=1, line="I've cast more emergency heals this session than planned heals. That's a BAD ratio." },
+            { id="pri_cr_u05", weight=1, line="The healing meters say I'm working. The death count says nobody else is." },
+        },
+        RARE = {
+            { id="pri_cr_r01", weight=1, line="{death_count} deaths. {most_deaths} leads the death counter. {fire_king} leads the damage-taken counter. I lead the stress counter. NOBODY leads the gratitude counter." },
+            { id="pri_cr_r02", weight=1, line="I had us down for {death_count} deaths by this point. I was right. I'm ALWAYS right. Nobody listens." },
+            { id="pri_cr_r03", weight=1, line="Between healing {most_deaths}, dispelling {fire_king}, and buffing everyone else, I have done the work of THREE priests tonight." },
+        },
+        MYTHIC = {
+            { id="pri_cr_m01", weight=1, line="{death_count} deaths. {most_deaths} dying. {fire_king} standing in things. {cc_breaker} breaking CC. {puller} pulling early. And me. Just me. ONE healer. With FINITE MANA. Keeping ALL of you alive. DO BETTER." },
         },
     },
 
@@ -656,6 +702,42 @@ responses = {
         },
         MYTHIC = {
             "You want fast dispels? Bring two priests. Oh wait, nobody wants TWO healers. So you get ME. At MY speed. With MY attitude.",
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            "Healer kills hit different.",
+            "They went after the wrong priest today.",
+            "Smite says hello. Shadow Word says goodbye.",
+        },
+        UNCOMMON = {
+            "I have time for PVP kills between heals. That says a lot about my efficiency.",
+            "Killed them AND kept the group alive. Nobody thank me or anything.",
+        },
+        RARE = {
+            "Priests don't get enough credit for PVP kills. We get zero credit. I'm changing that.",
+        },
+        MYTHIC = {
+            "Healed the group, shielded the tank, AND killed a player. Multitasking isn't a skill, it's a LIFESTYLE.",
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            "I noticed. I always notice. I'm the HEALER.",
+            "The healing meters say everything. So does the death count.",
+            "More dying, more healing. The circle never ends.",
+        },
+        UNCOMMON = {
+            "I've been keeping track. Spoiler: nobody else has.",
+            "My mana bar tells the story better than words ever could.",
+        },
+        RARE = {
+            "The ONLY reason anyone is still alive is because I'm here. That's not ego. That's the healing log.",
+        },
+        MYTHIC = {
+            "Healing through this session has aged me ten years. I started as Disc. I'm now Shadow. Emotionally.",
         },
     },
 

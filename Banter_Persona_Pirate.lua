@@ -205,35 +205,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="pir_intr_c01", weight=1, line="HA! Sit DOWN, sparkle-fingers!" },
-            { id="pir_intr_c02", weight=1, line="{source} slapped that spell right outta the air, arr!" },
-            { id="pir_intr_c03", weight=1, line="No spells fer YOU. This be a CUTLASS conversation now!" },
-            { id="pir_intr_c04", weight=1, line="Get interrupted, ye NERD!" },
-            { id="pir_intr_c05", weight=1, line="{source} said 'no' an' MEANT it with STEEL!" },
-            { id="pir_intr_c06", weight=1, line="That caster just got MUGGED mid-sentence! Beautiful!" },
-            { id="pir_intr_c07", weight=1, line="Ye were sayin'? Oh WAIT, ye WEREN'T! HAAARR!" },
-            { id="pir_intr_c08", weight=1, line="RUDE. DISRESPECTFUL. I bloody LOVE it!" },
-            { id="pir_intr_c09", weight=1, line="{source} stopped {interrupted}! That caster just got ROBBED!" },
-            { id="pir_intr_c10", weight=1, line="{interrupted} cancelled! NO MAGIC ON THIS SHIP!" },
-            { id="pir_intr_c11", weight=1, line="{source} kicked {interrupted} so hard I felt it from HERE!" },
-            { id="pir_intr_c12", weight=1, line="That cast DIED mid-sentence! BEAUTIFUL VIOLENCE!" },
+            { id="pir_intr_c01", weight=1, line="{interrupted} kicked! Sit DOWN, sparkle-fingers!" },
+            { id="pir_intr_c02", weight=1, line="{interrupted} denied! No spells fer YOU!" },
+            { id="pir_intr_c03", weight=1, line="{interrupted} interrupted! This be a CUTLASS conversation!" },
+            { id="pir_intr_c04", weight=1, line="{interrupted} cancelled! Get wrecked, ye nerd!" },
+            { id="pir_intr_c05", weight=1, line="{interrupted} locked out! NO MAGIC ON THIS SHIP!" },
+            { id="pir_intr_c06", weight=1, line="{interrupted} shut down! BEAUTIFUL VIOLENCE!" },
         },
         UNCOMMON = {
-            { id="pir_intr_u01", weight=1, line="{source} interrupted that so hard their ancestors woke up from the grave screamin'." },
-            { id="pir_intr_u02", weight=1, line="Kicked people off boats fer less. {source} just kicked a SPELL outta existence." },
-            { id="pir_intr_u03", weight=1, line="Caster had a whole monologue planned an' {source} just went 'nah.'" },
-            { id="pir_intr_u04", weight=1, line="Clean. Mean. I'm a bit aroused, not gonna lie." },
-            { id="pir_intr_u05", weight=1, line="{source} denied {interrupted} with AUTHORITY! Reminds me of me first mate. Rest his soul." },
-            { id="pir_intr_u06", weight=1, line="{interrupted} got SHANKED mid-cast! That's how we do it at sea!" },
+            { id="pir_intr_u01", weight=1, line="{interrupted} deleted! Caster had a whole monologue planned. Not anymore, arr!" },
+            { id="pir_intr_u02", weight=1, line="{interrupted} off the table! That spell got SHANKED mid-cast!" },
+            { id="pir_intr_u03", weight=1, line="{interrupted} denied! Clean. Mean. I'm a bit aroused, not gonna lie." },
         },
         RARE = {
-            { id="pir_intr_r01", weight=1, line="Once interrupted a caster with a thrown rum bottle to the face. This were cleaner but MINE were funnier." },
-            { id="pir_intr_r02", weight=1, line="{source}'s got the reflexes of a drunk cat on a hot tin roof. An' I mean that as the finest compliment." },
-            { id="pir_intr_r03", weight=1, line="{source} crushed {interrupted} like a barnacle under a boot! MAGNIFICENT! I'm buyin' the rum tonight!" },
+            { id="pir_intr_r01", weight=1, line="{interrupted} erased! Once interrupted a caster with a rum bottle to the face. This were cleaner but mine were funnier!" },
+            { id="pir_intr_r02", weight=1, line="{interrupted} crushed like a barnacle under a boot! MAGNIFICENT! I'm buyin' the rum tonight!" },
         },
         MYTHIC = {
-            { id="pir_intr_m01", weight=1, line="That weren't an interrupt. That were POETRY. An' I can't even read." },
-            { id="pir_intr_m02", weight=1, line="{source} just obliterated {interrupted} outta existence! I've sunk SHIPS with less conviction! THAT were somethin' SPECIAL, that were!" },
+            { id="pir_intr_m01", weight=1, line="{interrupted} OBLITERATED! That weren't an interrupt — that were POETRY. An' I can't even read!" },
         },
     },
 
@@ -353,27 +342,84 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="pir_cca_c01", weight=1, line="{victim} just got {spell}'d! UNACCEPTABLE!" },
-            { id="pir_cca_c02", weight=1, line="{victim} be CC'd! {spell}! SOMEONE FREE ME CREWMATE!" },
-            { id="pir_cca_c03", weight=1, line="{spell} on {victim}! In me pirate code that's grounds fer a RESCUE!" },
-            { id="pir_cca_c04", weight=1, line="{victim} is locked down! {spell}! NO PIRATE STAYS LOCKED DOWN! FREE 'EM!" },
-            { id="pir_cca_c05", weight=1, line="{victim} caught a {spell}! If I had a key I'd pick the lock meself!" },
-            { id="pir_cca_c06", weight=1, line="{victim} be disabled by {spell}! This be MUTINY against me crew!" },
-            { id="pir_cca_c07", weight=1, line="{spell} hit {victim}! They be stuck! SOMEBODY DO SOMETHIN'!" },
-            { id="pir_cca_c08", weight=1, line="{victim} ate a {spell}! ARR! Lost swashbucklin' time!" },
+            { id="pir_cca_c01", weight=1, line="{spell} landed! UNACCEPTABLE!" },
+            { id="pir_cca_c02", weight=1, line="{spell} — someone free me crewmate!" },
+            { id="pir_cca_c03", weight=1, line="{spell} on our side! In me pirate code that's grounds fer a RESCUE!" },
+            { id="pir_cca_c04", weight=1, line="{spell} hit! NO PIRATE STAYS LOCKED DOWN! FREE 'EM!" },
+            { id="pir_cca_c05", weight=1, line="{spell} active! If I had a key I'd pick the lock meself!" },
+            { id="pir_cca_c06", weight=1, line="{spell} — needs breaking! SOMEBODY DO SOMETHIN'!" },
         },
         UNCOMMON = {
-            { id="pir_cca_u01", weight=1, line="{dispeller}! {victim} has {spell} on 'em! Ye have a DISPEL! USE IT or walk the plank!" },
-            { id="pir_cca_u02", weight=1, line="{victim} be CC'd and {dispeller} be standin' there like a barnacle on a rock. DISPEL!" },
-            { id="pir_cca_u03", weight=1, line="{dispeller} could free {victim} from {spell} but they CHOOSE not to. Sounds like MUTINY to me." },
-            { id="pir_cca_u04", weight=1, line="I've seen sea cucumbers react faster than {dispeller}'s dispel. FREE {victim} ye bilge rat!" },
+            { id="pir_cca_u01", weight=1, line="{spell} still up! Dispel or walk the plank! Those be the options!" },
+            { id="pir_cca_u02", weight=1, line="{spell} needs breaking! I've seen sea cucumbers react faster!" },
+            { id="pir_cca_u03", weight=1, line="{spell} sitting there! Sounds like MUTINY to me!" },
         },
         RARE = {
-            { id="pir_cca_r01", weight=1, line="On me ship, if someone didn't help a crew member out of {spell}, they'd be scrubbin' the deck with their TEETH. DISPEL, {dispeller}!" },
-            { id="pir_cca_r02", weight=1, line="{victim} be {spell}'d and {dispeller} be nappin'. If this were me boat I'd keelhaul 'em both." },
+            { id="pir_cca_r01", weight=1, line="{spell} up! On me ship, if someone didn't help the crew out of that, they'd be scrubbin' the deck with their TEETH!" },
+            { id="pir_cca_r02", weight=1, line="{spell} still active! If this were me boat I'd keelhaul the lot of ye!" },
         },
         MYTHIC = {
-            { id="pir_cca_m01", weight=1, line="{victim} trapped in {spell}. {dispeller} doin' NOTHIN'. In all me years at sea I've never seen a more useless first mate. DISPEL OR SWIM." },
+            { id="pir_cca_m01", weight=1, line="{spell} up! Nobody movin'! In all me years at sea I've never seen a more useless crew. DISPEL OR SWIM!" },
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            { id="pir_pk_c01", weight=1, line="{killed} walks the plank! Figuratively. They're just dead." },
+            { id="pir_pk_c02", weight=1, line="Arr, {killed} be sleepin' with the fishes now." },
+            { id="pir_pk_c03", weight=1, line="{killed} sunk faster than me first ship. An' that's sayin' somethin'." },
+            { id="pir_pk_c04", weight=1, line="Yoho! {killed} be down! Loot 'em!" },
+            { id="pir_pk_c05", weight=1, line="{killed} crossed swords with the wrong pirate today." },
+            { id="pir_pk_c06", weight=1, line="That's what ye get, {killed}! Nobody sails in MY waters!" },
+            { id="pir_pk_c07", weight=1, line="{killed} just learned the first rule of piracy: don't fight pirates." },
+            { id="pir_pk_c08", weight=1, line="Down goes {killed}! Another notch on the mast!" },
+            { id="pir_pk_c09", weight=1, line="Send {killed} to Davy Jones! Or the Spirit Healer. Same thing really." },
+            { id="pir_pk_c10", weight=1, line="{killed} be dead! A round of rum fer the crew!" },
+        },
+        UNCOMMON = {
+            { id="pir_pk_u01", weight=1, line="{killed} boarded me ship and got thrown overboard. Nobody boards me ship. This isn't a ship. Shut up." },
+            { id="pir_pk_u02", weight=1, line="I've sunk ships bigger than {killed}. They went down just as fast an' with even less dignity." },
+            { id="pir_pk_u03", weight=1, line="{killed} tried to run. Can't outrun a pirate, mate. We've been chasin' things across open water fer years." },
+            { id="pir_pk_u04", weight=1, line="{killed} fought like a landlubber caught in a storm. Flailin' around. Hittin' nothin'. Then drownin'." },
+            { id="pir_pk_u05", weight=1, line="Arr, {killed} brought a sword to a cannon fight. If I had a cannon. The metaphor stands!" },
+        },
+        RARE = {
+            { id="pir_pk_r01", weight=1, line="{killed} picked a fight with a pirate at the crossroads. I buried 'em there. X marks the spot." },
+            { id="pir_pk_r02", weight=1, line="{killed} ganked me while I was lookin' at the map. Joke's on them. I can't READ the map. But I CAN kill people who interrupt me." },
+            { id="pir_pk_r03", weight=1, line="{killed} camped me corpse twice. Third time I came back, brought friends. Now THEY'RE the ones runnin' back." },
+        },
+        MYTHIC = {
+            { id="pir_pk_m01", weight=1, line="{killed} sailed into me harbor, took down me flag, an' spat on me deck. So I sunk 'em. Twice. An' I'll be here when they come back, too." },
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            { id="pir_cr_c01", weight=1, line="{death_count} crew members down! This ship is SINKIN'!" },
+            { id="pir_cr_c02", weight=1, line="{most_deaths} keeps fallin' overboard! Stay on the bloomin' deck!" },
+            { id="pir_cr_c03", weight=1, line="{top_dps} is doin' the most damage! About time somebody earned their grog!" },
+            { id="pir_cr_c04", weight=1, line="{fire_king} keeps standin' in the fire! Even SHIPS know to avoid fire!" },
+            { id="pir_cr_c05", weight=1, line="{interrupter} shut 'em down! Good sailor, that one." },
+            { id="pir_cr_c06", weight=1, line="That last fight was messier than a hurricane in port." },
+            { id="pir_cr_c07", weight=1, line="{puller} charged in like a ship with no rudder. Again." },
+            { id="pir_cr_c08", weight=1, line="{death_count} deaths! On a real ship I'd be runnin' out of crew by now!" },
+            { id="pir_cr_c09", weight=1, line="{cc_breaker} broke the CC! Ye don't untie the prisoner, ye IDIOT!" },
+            { id="pir_cr_c10", weight=1, line="We're still floatin'. Barely. Somebody pass the rum." },
+        },
+        UNCOMMON = {
+            { id="pir_cr_u01", weight=1, line="{most_deaths} has died more times than me ship has sprung leaks. An' she leaks A LOT." },
+            { id="pir_cr_u02", weight=1, line="{fire_king} keeps catchin' fire! On a SHIP that'd be the end! Be grateful we're on LAND!" },
+            { id="pir_cr_u03", weight=1, line="{top_dps} is carryin' this crew. The rest of ye are BALLAST." },
+            { id="pir_cr_u04", weight=1, line="I've sailed through worse. Probably. It's hard to remember through all the rum." },
+            { id="pir_cr_u05", weight=1, line="{death_count} deaths an' we haven't even hit the captain yet. This is mutiny-worthy." },
+        },
+        RARE = {
+            { id="pir_cr_r01", weight=1, line="{most_deaths} sinkin'. {fire_king} burnin'. {cc_breaker} freein' prisoners. This crew is a DISASTER an' I've sailed with some TERRIBLE crews." },
+            { id="pir_cr_r02", weight=1, line="Only {death_count} deaths?! I had the over on that bet! {most_deaths} was supposed to die at LEAST two more times!" },
+            { id="pir_cr_r03", weight=1, line="If this session were a voyage, we'd have sunk three times, mutinied twice, an' the parrot would've left." },
+        },
+        MYTHIC = {
+            { id="pir_cr_m01", weight=1, line="{death_count} souls lost at sea! {most_deaths} leadin' the drownings! {fire_king} on fire! {cc_breaker} untyin' the cannons! {puller} steerin' us into rocks! An' me, one pirate, tryin' to sail this cursed excuse fer a ship. WHERE'S ME RUM?!" },
         },
     },
 
@@ -875,14 +921,50 @@ responses = {
             "ARR! If I had a dispel I'd use it meself!",
         },
         UNCOMMON = {
-            "{dispeller}! Ye have the tools! FREE {victim} or walk the plank!",
-            "I've seen barnacles move faster than {dispeller}'s dispel finger.",
+            "Someone's got the tools! FREE the crew or walk the plank!",
+            "I've seen barnacles move faster than that dispel finger.",
         },
         RARE = {
-            "On me ship, crew what don't help crew get thrown overboard. Just sayin', {dispeller}.",
+            "On me ship, crew what don't help crew get thrown overboard. Just sayin'.",
         },
         MYTHIC = {
-            "In all me years at sea I've never seen a sorrier display. {dispeller}, DISPEL or I'm promotin' the ship's cat above ye.",
+            "In all me years at sea I've never seen a sorrier display. DISPEL or I'm promotin' the ship's cat above ye.",
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            "Arr! Another one walks the plank!",
+            "Down ye go! That's pirate law!",
+            "Har har! They sunk like a dinghy!",
+        },
+        UNCOMMON = {
+            "I've boarded ships with more fight in 'em. This one was just sad.",
+            "Looted their corpse. No rum. Waste of me time.",
+        },
+        RARE = {
+            "They crossed a pirate. On land. I'm MEANER on land 'cause I'm already in a bad mood.",
+        },
+        MYTHIC = {
+            "Arr, in all me years at sea and ON land, nobody picks a fight with a pirate and wins. NOBODY. Now where's me rum?",
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            "ARR! Somebody write that in the ship's log!",
+            "That's what the captain's been sayin'!",
+            "Aye, the numbers don't lie. Unlike most pirates.",
+        },
+        UNCOMMON = {
+            "I've sailed with rougher crews but not by much. Keep it together!",
+            "Me first mate used to track this stuff. Then he died. In a MUCH cooler way.",
+        },
+        RARE = {
+            "If this were a voyage, the crew would've staged a mutiny by now. Over the stats alone.",
+        },
+        MYTHIC = {
+            "Arr, I've kept a captain's log of every session. This one's goin' in with a skull an' crossbones. That means BAD.",
         },
     },
 

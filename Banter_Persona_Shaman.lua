@@ -137,35 +137,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="sha_int_c01", weight=1, line="Earth Shock interrupt! Shamans have the best interrupt in the game. Instant. No cooldown drama." },
-            { id="sha_int_c02", weight=1, line="Kicked it with Earth Shock. Wind element wanted to do it but earth called dibs." },
-            { id="sha_int_c03", weight=1, line="{source} got the interrupt. I had Earth Shock ready. Quick draw shaman." },
-            { id="sha_int_c04", weight=1, line="{source} denied {interrupted}! Earth element wanted that one. Too slow." },
-            { id="sha_int_c05", weight=1, line="{interrupted} cancelled! Earth Shock was my backup. {source} made it unnecessary." },
-            { id="sha_int_c06", weight=1, line="Cast stopped! The elements are clapping. Mostly Earth. Fire doesn't care." },
-            { id="sha_int_c07", weight=1, line="{source} kicked {interrupted}. My totems rattled in approval." },
-            { id="sha_int_c08", weight=1, line="That mob tried to cast. Wrong group to cast in." },
-            { id="sha_int_c09", weight=1, line="{interrupted} denied. Earth Shock was cocked and ready but {source} beat me." },
-            { id="sha_int_c10", weight=1, line="Interrupt confirmed! Earth is satisfied. Wind is indifferent. Fire wants to know if it's dead yet." },
-            { id="sha_int_c11", weight=1, line="{source} stopped {interrupted}. The elements noticed. Earth gave a thumbs up. Figuratively." },
-            { id="sha_int_c12", weight=1, line="Kicked mid-cast! My Earth Shock doesn't have a cooldown problem but {source} still got there first." },
+            { id="sha_int_c01", weight=1, line="{interrupted} kicked. Earth Shock was cocked and ready." },
+            { id="sha_int_c02", weight=1, line="{interrupted} interrupted. The elements are clapping. Mostly Earth." },
+            { id="sha_int_c03", weight=1, line="{interrupted} denied. Wrong group to cast in." },
+            { id="sha_int_c04", weight=1, line="{interrupted} cancelled. Earth is satisfied. Fire wants to know if it's dead yet." },
+            { id="sha_int_c05", weight=1, line="{interrupted} locked out. My totems rattled in approval." },
+            { id="sha_int_c06", weight=1, line="{interrupted} shut down. Earth Shock doesn't have cooldown drama." },
         },
         UNCOMMON = {
-            { id="sha_int_u01", weight=1, line="Earth Shock: my answer to casting. Also my answer to everything. Earth doesn't negotiate." },
-            { id="sha_int_u02", weight=1, line="{source} kicked {interrupted}. Earth element is jealous. It LIVES for interrupting." },
-            { id="sha_int_u03", weight=1, line="Earth Shock is an instant cast interrupt. No cooldown drama. Why doesn't everyone have one?" },
-            { id="sha_int_u04", weight=1, line="That {interrupted} would've hit hard. Wind told me. Wind gossips about everything." },
-            { id="sha_int_u05", weight=1, line="{source} stopped {interrupted}. The elements held a quick vote on whether to congratulate them. 3-1. Wind abstained." },
-            { id="sha_int_u06", weight=1, line="My totems don't interrupt but they WANT to. Grounding Totem tried once. It was a whole thing." },
+            { id="sha_int_u01", weight=1, line="{interrupted} off the table. Earth doesn't negotiate." },
+            { id="sha_int_u02", weight=1, line="{interrupted} denied. Wind told me that would've hit hard. Wind gossips about everything." },
+            { id="sha_int_u03", weight=1, line="{interrupted} deleted. The elements held a vote on congratulations. 3-1. Wind abstained." },
         },
         RARE = {
-            { id="sha_int_r01", weight=1, line="I interrupted with Earth Shock, then followed with Frost Shock. Elements one-two punch." },
-            { id="sha_int_r02", weight=1, line="{source} denied {interrupted} and all four elements cheered. Even Wind. That NEVER happens." },
-            { id="sha_int_r03", weight=1, line="Between Earth Shock and {source}'s kick, that caster got zero spells off. Elemental dominance." },
+            { id="sha_int_r01", weight=1, line="{interrupted} erased. All four elements cheered. Even Wind. That NEVER happens." },
+            { id="sha_int_r02", weight=1, line="{interrupted} crushed. Zero casts that pull. Elemental dominance." },
         },
         MYTHIC = {
-            { id="sha_int_m01", weight=1, line="Some classes have kick cooldowns. I have Earth Shock. Available whenever. The elements are efficient." },
-            { id="sha_int_m02", weight=1, line="{source} obliterated {interrupted} and Earth, Water, Fire, and Wind all stood up and applauded. First time they've agreed on ANYTHING." },
+            { id="sha_int_m01", weight=1, line="{interrupted} annihilated. Earth, Water, Fire, Wind — all stood up and applauded. First time they've agreed on ANYTHING." },
         },
     },
 
@@ -245,27 +234,84 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="sha_cca_c01", weight=1, line="{victim} just got {spell}'d! The elements are... they're yelling at me about it." },
-            { id="sha_cca_c02", weight=1, line="{victim} is CC'd! {spell}! My Tremor Totem is pulsing but I don't think that covers this one!" },
-            { id="sha_cca_c03", weight=1, line="{spell} on {victim}! Earth says 'help them.' Wind says 'not my problem.'" },
-            { id="sha_cca_c04", weight=1, line="{victim} is locked down by {spell}. I asked the elements to help. They're deliberating." },
-            { id="sha_cca_c05", weight=1, line="{victim} caught a {spell}! Someone with a REAL dispel should handle this!" },
-            { id="sha_cca_c06", weight=1, line="{victim} is disabled! {spell}! I can Purge enemies but not free allies. The irony. THE IRONY." },
-            { id="sha_cca_c07", weight=1, line="{spell} hit {victim}. The elements are taking a vote on whether to care. It's not looking good." },
-            { id="sha_cca_c08", weight=1, line="{victim} ate a {spell}. If this were a poison or disease I'd Cure it. But it's not. Nature is cruel." },
+            { id="sha_cca_c01", weight=1, line="{spell} landed. The elements are yelling at me about it." },
+            { id="sha_cca_c02", weight=1, line="{spell} — needs a dispel. Tremor Totem doesn't cover this one." },
+            { id="sha_cca_c03", weight=1, line="{spell} on our side. Earth says 'help.' Wind says 'not my problem.'" },
+            { id="sha_cca_c04", weight=1, line="{spell} hit. I can Purge enemies but not free allies. THE IRONY." },
+            { id="sha_cca_c05", weight=1, line="{spell} active. The elements are taking a vote. Not looking good." },
+            { id="sha_cca_c06", weight=1, line="{spell} — if this were poison or disease I'd Cure it. It's not." },
         },
         UNCOMMON = {
-            { id="sha_cca_u01", weight=1, line="{dispeller}, {victim} has {spell} on them. Even Water agrees you should dispel. And Water agrees with NOTHING." },
-            { id="sha_cca_u02", weight=1, line="{victim} is CC'd. {dispeller} has dispel. The elements and I are both staring at you, {dispeller}." },
-            { id="sha_cca_u03", weight=1, line="I placed Tremor Totem, Grounding Totem, and a prayer. {dispeller} could just click one button." },
-            { id="sha_cca_u04", weight=1, line="Fire says burn the mob. Earth says stomp it. {dispeller} says nothing. DISPEL {victim}'s {spell}." },
+            { id="sha_cca_u01", weight=1, line="{spell} still up. Even Water agrees someone should dispel. And Water agrees with NOTHING." },
+            { id="sha_cca_u02", weight=1, line="{spell} needs breaking. I placed Tremor Totem and a prayer. Someone could just click one button." },
+            { id="sha_cca_u03", weight=1, line="{spell} sitting there. Fire says burn the mob. Earth says stomp it. I say DISPEL." },
         },
         RARE = {
-            { id="sha_cca_r01", weight=1, line="I communed with all four elements about {dispeller}'s dispel speed. They're all embarrassed. ALL FOUR." },
-            { id="sha_cca_r02", weight=1, line="My totems have shorter reaction times than {dispeller}. And my totems are STICKS IN THE GROUND." },
+            { id="sha_cca_r01", weight=1, line="{spell} up. I communed with all four elements about the dispel speed. They're all embarrassed." },
+            { id="sha_cca_r02", weight=1, line="{spell} still active. My totems have shorter reaction times. And my totems are STICKS IN THE GROUND." },
         },
         MYTHIC = {
-            { id="sha_cca_m01", weight=1, line="{victim} is {spell}'d. {dispeller} idle. Fire wants to rage. Earth wants to quake. I want someone to CLICK DISPEL." },
+            { id="sha_cca_m01", weight=1, line="{spell} up. Nobody moving. Fire wants to rage. Earth wants to quake. I want someone to CLICK DISPEL." },
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            { id="sha_pk_c01", weight=1, line="{killed} has been grounded. Permanently." },
+            { id="sha_pk_c02", weight=1, line="The elements struck down {killed}. Fire didn't even complain this time." },
+            { id="sha_pk_c03", weight=1, line="{killed} met a Lightning Bolt at full speed. Quick meeting." },
+            { id="sha_pk_c04", weight=1, line="{killed} is dead. Earth sends its condolences. The other elements don't care." },
+            { id="sha_pk_c05", weight=1, line="Windfury chose violence today. {killed} was on the receiving end." },
+            { id="sha_pk_c06", weight=1, line="{killed} dropped my totem. I dropped {killed}. Fair trade." },
+            { id="sha_pk_c07", weight=1, line="{killed} fought a shaman. All four elements say hello. And goodbye." },
+            { id="sha_pk_c08", weight=1, line="Another one for the elements. {killed} contributed to the cycle." },
+            { id="sha_pk_c09", weight=1, line="{killed} is down. Ankh says I have a spare life. They don't." },
+            { id="sha_pk_c10", weight=1, line="{killed} underestimated totems. Everyone underestimates totems." },
+        },
+        UNCOMMON = {
+            { id="sha_pk_u01", weight=1, line="{killed} destroyed my totems. So I dropped four more. Then I killed them. My totem budget is unlimited." },
+            { id="sha_pk_u02", weight=1, line="Windfury proc'd three times on {killed}. Even I felt bad. Fire disagreed. Fire rarely feels bad." },
+            { id="sha_pk_u03", weight=1, line="{killed} interrupted my heal. So Earth Shock interrupted their life. We can both play that game." },
+            { id="sha_pk_u04", weight=1, line="Frost Shock'd {killed}, kited them through four totems, Lightning Bolt'd them to death. They never got close." },
+            { id="sha_pk_u05", weight=1, line="{killed} focused the shaman. The shaman self-healed. Twice. Then killed them. Hybrid class privileges." },
+        },
+        RARE = {
+            { id="sha_pk_r01", weight=1, line="{killed} killed me first. Then I Ankh'd. The look on their face when I stood back up was worth the reagent." },
+            { id="sha_pk_r02", weight=1, line="{killed} tried to gank me while I was placing totems. I had Windfury, Grounding, Earthbind, and Searing down. They ran into a fortress." },
+            { id="sha_pk_r03", weight=1, line="{killed} fought well. Even Earth acknowledged it. Then Earth Shock finished the job because sentiment doesn't win fights." },
+        },
+        MYTHIC = {
+            { id="sha_pk_m01", weight=1, line="{killed} picked a fight with a class that has four elements, self-healing, Ankh, and totems for every occasion. The elements held a vote. It was unanimous." },
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            { id="sha_cr_c01", weight=1, line="{death_count} deaths. The elements noted each one. Fire laughed." },
+            { id="sha_cr_c02", weight=1, line="{most_deaths} dying the most. Earth offered to hold them. Underground." },
+            { id="sha_cr_c03", weight=1, line="{top_dps} leads damage. Wind is impressed. Wind is easily impressed." },
+            { id="sha_cr_c04", weight=1, line="{fire_king} stood in it. Fire says hi. Fire thinks they're funny." },
+            { id="sha_cr_c05", weight=1, line="{interrupter} got the interrupt. Earth approves. Earth rarely approves." },
+            { id="sha_cr_c06", weight=1, line="That pull cost four totems. I have more. Always more." },
+            { id="sha_cr_c07", weight=1, line="{puller} pulled fast. Water couldn't keep up with the healing. Water is slow." },
+            { id="sha_cr_c08", weight=1, line="{death_count} deaths. Ankh count: still one. I'm saving it. For me." },
+            { id="sha_cr_c09", weight=1, line="{cc_breaker} broke the CC. The elements sighed collectively." },
+            { id="sha_cr_c10", weight=1, line="Everyone lived. All four elements are confused but pleased." },
+        },
+        UNCOMMON = {
+            { id="sha_cr_u01", weight=1, line="{most_deaths} has died the most. Fire suggested we stop resurrecting them. Earth seconded. I overruled." },
+            { id="sha_cr_u02", weight=1, line="{fire_king} eats ground damage like totems eat mana. Which is to say: constantly and without gratitude." },
+            { id="sha_cr_u03", weight=1, line="{top_dps} is doing the work. My totems are doing the supporting. The other three are doing the dying." },
+            { id="sha_cr_u04", weight=1, line="I placed four totems. They destroyed two. The mobs destroyed one. {cc_breaker} ran over the last one." },
+            { id="sha_cr_u05", weight=1, line="{death_count} deaths. I have one Ankh. One. For a five-person group. The math hurts." },
+        },
+        RARE = {
+            { id="sha_cr_r01", weight=1, line="{most_deaths} dying, {fire_king} standing in fire (Fire approves), {cc_breaker} breaking CC (Earth disapproves). Session verdict: elements are divided." },
+            { id="sha_cr_r02", weight=1, line="Only {death_count} deaths. I had Water betting higher. Earth bet lower. Fire didn't care. Wind wasn't listening." },
+            { id="sha_cr_r03", weight=1, line="I've dropped more totems this session than {most_deaths} has stayed alive. That's not a joke. That's a statistic." },
+        },
+        MYTHIC = {
+            { id="sha_cr_m01", weight=1, line="{death_count} deaths. {most_deaths} leading. {fire_king} burning. {cc_breaker} breaking. {puller} rushing. Four elements, four totems, and one shaman trying to hold it together. Fire says burn it all down. I'm starting to agree." },
         },
     },
 
@@ -640,14 +686,50 @@ responses = {
             "Earth says help. Wind says run. I'm going with Earth on this one.",
         },
         UNCOMMON = {
-            "I can Cure Disease and Cure Poison. That's NEITHER. {dispeller}, you're up.",
-            "My totems have a faster response time than {dispeller}. And they're STICKS.",
+            "I can Cure Disease and Cure Poison. That's NEITHER. Somebody else is up.",
+            "My totems have a faster response time than this. And they're STICKS.",
         },
         RARE = {
-            "All four elements agree: {dispeller} should dispel. That NEVER happens. Take the hint.",
+            "All four elements agree: someone should dispel. That NEVER happens. Take the hint.",
         },
         MYTHIC = {
-            "Fire is angry. Earth is disappointed. Water is crying. Wind left. {dispeller}, CLICK THE BUTTON.",
+            "Fire is angry. Earth is disappointed. Water is crying. Wind left. CLICK THE BUTTON.",
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            "The elements send their regards.",
+            "Windfury chose violence. Wise choice.",
+            "Another one grounded. Permanently.",
+        },
+        UNCOMMON = {
+            "They destroyed my totems. I put more down. Then I put them down.",
+            "Ankh ready. They don't have one. Advantage: shaman.",
+        },
+        RARE = {
+            "Windfury proc'd three times and they evaporated. Even Fire was impressed.",
+        },
+        MYTHIC = {
+            "Four elements. Self-healing. Ankh. Totems everywhere. And they STILL thought they could win. The elements held a vote. It was quick.",
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            "The elements heard that. Fire agrees. Earth abstains.",
+            "Totems report the same findings.",
+            "Wind carried that information to all four corners. Fast.",
+        },
+        UNCOMMON = {
+            "Fire wants to comment but I told it to wait. Water is processing.",
+            "The elements have been tracking this since pull one. Their notes match.",
+        },
+        RARE = {
+            "Earth keeps records. Literal geological records. This session is now preserved in stone.",
+        },
+        MYTHIC = {
+            "All four elements reached the same conclusion independently. That's called consensus. The consensus is: yikes.",
         },
     },
 

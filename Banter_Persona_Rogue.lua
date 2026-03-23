@@ -136,35 +136,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="rog_int_c01", weight=1, line="Kicked. That's MY specialty. 10 second lockout. Sit down." },
-            { id="rog_int_c02", weight=1, line="{source} with the interrupt. Precise. Efficient. I approve." },
-            { id="rog_int_c03", weight=1, line="Kick landed. Nothing gets past rogue reflexes." },
-            { id="rog_int_c04", weight=1, line="{source} denied {interrupted}. Clean extraction of that cast bar." },
-            { id="rog_int_c05", weight=1, line="{interrupted} cancelled. Target is locked out. Next." },
-            { id="rog_int_c06", weight=1, line="Cast denied. Silence protocol engaged." },
-            { id="rog_int_c07", weight=1, line="{source} kicked {interrupted}. Professional. No wasted motion." },
-            { id="rog_int_c08", weight=1, line="Interrupted. That caster's ops are compromised." },
-            { id="rog_int_c09", weight=1, line="{interrupted} neutralized. Moving on." },
-            { id="rog_int_c10", weight=1, line="{source} shut it down. Tactical awareness confirmed." },
-            { id="rog_int_c11", weight=1, line="Locked out. No casting on our watch." },
-            { id="rog_int_c12", weight=1, line="That mob's {interrupted} never finished. Good. Intel says it hurts." },
+            { id="rog_int_c01", weight=1, line="{interrupted} kicked. Locked out. Next." },
+            { id="rog_int_c02", weight=1, line="{interrupted} denied. Clean." },
+            { id="rog_int_c03", weight=1, line="{interrupted} neutralized. Moving on." },
+            { id="rog_int_c04", weight=1, line="{interrupted} cancelled. Silence protocol engaged." },
+            { id="rog_int_c05", weight=1, line="{interrupted} interrupted. Target is locked out." },
+            { id="rog_int_c06", weight=1, line="{interrupted} shut down. No casting on our watch." },
         },
         UNCOMMON = {
-            { id="rog_int_u01", weight=1, line="My Kick is on a 10-second cooldown. The mob's castbar is on a 2-second cooldown. I see the problem." },
-            { id="rog_int_u02", weight=1, line="{source} kicked {interrupted}. Execution was acceptable. Not perfect. Acceptable." },
-            { id="rog_int_u03", weight=1, line="I timed that Kick at exactly 70% cast completion. Maximum lockout. Minimum risk." },
-            { id="rog_int_u04", weight=1, line="{interrupted} denied. The mob's casting rotation is now compromised for the next 8 seconds." },
-            { id="rog_int_u05", weight=1, line="That interrupt was textbook. I should know. I wrote the textbook. Classified, obviously." },
-            { id="rog_int_u06", weight=1, line="{source} removed {interrupted} from the combat timeline. Efficient fieldwork." },
+            { id="rog_int_u01", weight=1, line="{interrupted} removed from the combat timeline. Efficient fieldwork." },
+            { id="rog_int_u02", weight=1, line="{interrupted} denied. Caster's ops are compromised for the next 8 seconds." },
+            { id="rog_int_u03", weight=1, line="{interrupted} off the table. Textbook execution." },
         },
         RARE = {
-            { id="rog_int_r01", weight=1, line="I interrupted mid-Eviscerate. Cost me a finisher. Worth it. Barely." },
-            { id="rog_int_r02", weight=1, line="{source} denied {interrupted} and the mob didn't even know what happened. That's the goal." },
-            { id="rog_int_r03", weight=1, line="Two interrupts in one pull. We're running a tight operation here." },
+            { id="rog_int_r01", weight=1, line="{interrupted} erased. If this were an op report, it'd be marked flawless." },
+            { id="rog_int_r02", weight=1, line="{interrupted} deleted with surgical precision. Two interrupts one pull." },
         },
         MYTHIC = {
-            { id="rog_int_m01", weight=1, line="That Kick was frame-perfect. I've been training for moments like this my entire rogue career." },
-            { id="rog_int_m02", weight=1, line="{source} eliminated {interrupted} with surgical precision. If this were an op report, it'd be marked 'flawless.'" },
+            { id="rog_int_m01", weight=1, line="{interrupted} eliminated. Frame-perfect. This is what we trained for." },
         },
     },
 
@@ -244,27 +233,84 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="rog_cca_c01", weight=1, line="{victim} just took a {spell}. Asset compromised." },
-            { id="rog_cca_c02", weight=1, line="{victim} is CC'd. {spell}. That's an operational liability." },
-            { id="rog_cca_c03", weight=1, line="{spell} on {victim}. of downtime. Unacceptable in the field." },
-            { id="rog_cca_c04", weight=1, line="{victim} is locked down. {spell}. Someone with clearance should fix that." },
-            { id="rog_cca_c05", weight=1, line="{victim} neutralized by {spell}. We're exposed." },
-            { id="rog_cca_c06", weight=1, line="{victim} hit with {spell}. Clean CC. I'd respect it if it weren't on OUR side." },
-            { id="rog_cca_c07", weight=1, line="{victim} is disabled. {spell}. I'd Kick it off them if that's how Kick worked." },
-            { id="rog_cca_c08", weight=1, line="{spell} landed on {victim}. That's Time is a resource we're wasting." },
+            { id="rog_cca_c01", weight=1, line="{spell} landed. Asset compromised. Needs a dispel." },
+            { id="rog_cca_c02", weight=1, line="{spell} — operational liability. Break it." },
+            { id="rog_cca_c03", weight=1, line="{spell} on our side. We're exposed." },
+            { id="rog_cca_c04", weight=1, line="{spell} hit. Someone with clearance should fix that." },
+            { id="rog_cca_c05", weight=1, line="{spell} active. Time is a resource we're wasting." },
+            { id="rog_cca_c06", weight=1, line="{spell} — I'd Kick it off but that's not how Kick works." },
         },
         UNCOMMON = {
-            { id="rog_cca_u01", weight=1, line="{dispeller}. {victim}. {spell}. Dispel. Now. That's the briefing." },
-            { id="rog_cca_u02", weight=1, line="{dispeller} has dispel capability. {victim} has a {spell}. The connection should be obvious." },
-            { id="rog_cca_u03", weight=1, line="{victim} is CC'd. {dispeller} is right there. In my line of work we call that negligence." },
-            { id="rog_cca_u04", weight=1, line="I've timed {dispeller}'s dispel response. It's slower than my Sap. And Sap is a MELEE ability." },
+            { id="rog_cca_u01", weight=1, line="{spell} still up. In my line of work we call that negligence." },
+            { id="rog_cca_u02", weight=1, line="{spell} needs breaking. Dispel capability exists. The connection should be obvious." },
+            { id="rog_cca_u03", weight=1, line="{spell} sitting there. Dispel response slower than my Sap. And Sap is melee range." },
         },
         RARE = {
-            { id="rog_cca_r01", weight=1, line="In my debriefing report, {dispeller}'s failure to dispel {victim}'s {spell} will be noted. With timestamps." },
-            { id="rog_cca_r02", weight=1, line="{victim} spent in {spell}. {dispeller} spent doing nothing. Mission efficiency: catastrophic." },
+            { id="rog_cca_r01", weight=1, line="{spell} up. Mission efficiency: catastrophic. Someone click the button." },
+            { id="rog_cca_r02", weight=1, line="{spell} still active. In my debriefing report this will be noted. With timestamps." },
         },
         MYTHIC = {
-            { id="rog_cca_m01", weight=1, line="I could have re-stealthed, crossed the room, and Sapped a new target in the time {dispeller} took to NOT dispel {victim}." },
+            { id="rog_cca_m01", weight=1, line="{spell} up. Nobody moving. I could've re-stealthed and Sapped a new target in this time." },
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            { id="rog_pk_c01", weight=1, line="{killed} eliminated. Clean extraction." },
+            { id="rog_pk_c02", weight=1, line="{killed} never saw it coming. That's the point." },
+            { id="rog_pk_c03", weight=1, line="Target down. {killed} is no longer a factor." },
+            { id="rog_pk_c04", weight=1, line="{killed} is dead. Moving to next objective." },
+            { id="rog_pk_c05", weight=1, line="{killed} dropped before the stun wore off. Textbook." },
+            { id="rog_pk_c06", weight=1, line="Sap. Cheap Shot. Eviscerate. {killed} never had a turn." },
+            { id="rog_pk_c07", weight=1, line="{killed} was flagged. Bad intel on their part." },
+            { id="rog_pk_c08", weight=1, line="One less hostile in the area. {killed} has been handled." },
+            { id="rog_pk_c09", weight=1, line="{killed} went loud. I stayed quiet. Guess who won." },
+            { id="rog_pk_c10", weight=1, line="{killed} neutralized. Resuming standard operations." },
+        },
+        UNCOMMON = {
+            { id="rog_pk_u01", weight=1, line="{killed} popped their trinket after the Cheap Shot. So I Kidney Shot'd them. Always have a backup." },
+            { id="rog_pk_u02", weight=1, line="{killed} walked past me three times before I opened. Patience is a weapon." },
+            { id="rog_pk_u03", weight=1, line="5-point Eviscerate on {killed}. They were at 60%% when I opened. Overkill is just thoroughness." },
+            { id="rog_pk_u04", weight=1, line="{killed} tried to AoE me out of stealth. I was behind them. Amateurs." },
+            { id="rog_pk_u05", weight=1, line="{killed} used their PVP trinket to break stun. I Vanished and did it again. Second verse, same as the first." },
+        },
+        RARE = {
+            { id="rog_pk_r01", weight=1, line="{killed} had every advantage. Better gear, full health, mount speed. I had stealth. Stealth won." },
+            { id="rog_pk_r02", weight=1, line="Shadowed {killed} for two minutes waiting for the right moment. They stopped to loot a mob. Mistake." },
+            { id="rog_pk_r03", weight=1, line="{killed} fought back. Trinket'd, popped cooldowns, landed a hit. Almost impressive. Almost alive." },
+        },
+        MYTHIC = {
+            { id="rog_pk_m01", weight=1, line="{killed} died confused. Opened from stealth, stunlocked to zero. Total operation time: four seconds. They'll spend longer running back." },
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            { id="rog_cr_c01", weight=1, line="{death_count} casualties. Operational losses within acceptable parameters." },
+            { id="rog_cr_c02", weight=1, line="{top_dps} leads damage output. Noted." },
+            { id="rog_cr_c03", weight=1, line="{most_deaths} keeps going down. Compromised asset." },
+            { id="rog_cr_c04", weight=1, line="{interrupter} handled the kicks. Clean work." },
+            { id="rog_cr_c05", weight=1, line="Last engagement was sloppy. Too much unnecessary exposure." },
+            { id="rog_cr_c06", weight=1, line="{puller} initiated. Could have been smoother." },
+            { id="rog_cr_c07", weight=1, line="{fire_king} took avoidable damage. Spatial awareness: lacking." },
+            { id="rog_cr_c08", weight=1, line="{death_count} deaths on record. Each one was preventable." },
+            { id="rog_cr_c09", weight=1, line="{cc_breaker} broke containment. Sloppy." },
+            { id="rog_cr_c10", weight=1, line="Status check: alive. For now. Moving on." },
+        },
+        UNCOMMON = {
+            { id="rog_cr_u01", weight=1, line="{most_deaths} has the highest casualty rate. In my unit, that's a transfer." },
+            { id="rog_cr_u02", weight=1, line="{top_dps} is doing real damage. The rest are doing the combat equivalent of paperwork." },
+            { id="rog_cr_u03", weight=1, line="{fire_king} has eaten more environmental damage than the entire group combined. Impressive in the wrong way." },
+            { id="rog_cr_u04", weight=1, line="Last pull: three hostiles, one CC break, two near-deaths. Efficiency rating: poor." },
+            { id="rog_cr_u05", weight=1, line="{death_count} total losses. My personal count: zero. Do with that information what you will." },
+        },
+        RARE = {
+            { id="rog_cr_r01", weight=1, line="After-action report: {most_deaths} down the most, {top_dps} pulling weight, {interrupter} on kicks. {fire_king} on the floor. Standard group dynamics." },
+            { id="rog_cr_r02", weight=1, line="{death_count} deaths. I've survived every engagement. Because I plan. And Vanish. Mostly Vanish." },
+            { id="rog_cr_r03", weight=1, line="{cc_breaker} has compromised every CC target. In intelligence work, that's called 'burning an asset.' In this group, it's called 'Tuesday.'" },
+        },
+        MYTHIC = {
+            { id="rog_cr_m01", weight=1, line="Debrief: {death_count} losses. {most_deaths} led casualties. {top_dps} led damage. {fire_king} led floor time. I led nothing. Because leaders get targeted first." },
         },
     },
 
@@ -640,13 +686,49 @@ responses = {
         },
         UNCOMMON = {
             "I disable enemies. I don't enable allies. Talk to the healer.",
-            "{dispeller} has the tools. I have knives. We are not the same.",
+            "Dispel capability exists in this group. Knives are not dispels.",
         },
         RARE = {
             "If Cloak of Shadows worked on other people I'd already be done. It doesn't. So here we are.",
         },
         MYTHIC = {
-            "In my line of work, when someone's locked down, you either extract them or leave them. {dispeller} is choosing option three: nothing.",
+            "When someone's locked down, you either extract them or leave them. Looks like we're going with option three: nothing.",
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            "Clean kill. Next target.",
+            "Hostile eliminated. Resuming operations.",
+            "That one didn't even see me. Perfect.",
+        },
+        UNCOMMON = {
+            "Opened, stunned, finished. Under five seconds. That's a personal best.",
+            "They popped every cooldown. I just needed one: Vanish. Then I did it again.",
+        },
+        RARE = {
+            "Stealth is not a mechanic. It's a philosophy. And that philosophy just killed someone.",
+        },
+        MYTHIC = {
+            "In the field, there are predators and prey. They entered my zone and found out which one I am.",
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            "Confirmed. Situational awareness noted.",
+            "Acknowledged. Adjusting strategy accordingly.",
+            "Copy. The data matches my field observations.",
+        },
+        UNCOMMON = {
+            "I've been tracking the same metrics. From stealth. Where it's safe.",
+            "Mission assessment: ongoing. Survival probability: fluctuating.",
+        },
+        RARE = {
+            "After-action review: we survived. That's the minimum acceptable outcome.",
+        },
+        MYTHIC = {
+            "In covert operations, we'd call this a 'hot extraction.' In this group, we call it 'every pull.'",
         },
     },
 

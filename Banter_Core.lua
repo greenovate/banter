@@ -109,6 +109,21 @@ function core.ReplaceTokens(line, ctx)
     r = r:gsub("{dispeller}", ctx.dispeller or "someone")
     r = r:gsub("{interrupted}", ctx.interrupted or "a spell")
 
+    -- PVP kill tokens
+    r = r:gsub("{killed}", ctx.killed or "someone")
+    if ctx.killed_class then
+        r = r:gsub("{killed_class}", ctx.killed_class)
+    else
+        r = r:gsub("%s*{killed_class}%s*", " ")
+        r = r:gsub("{killed_class}", "")
+    end
+    if ctx.killed_level then
+        r = r:gsub("{killed_level}", ctx.killed_level)
+    else
+        r = r:gsub("%s*{killed_level}%s*", " ")
+        r = r:gsub("{killed_level}", "")
+    end
+
     -- Player class tokens
     r = r:gsub("{myclass}", ns.playerClass or "adventurer")
     r = r:gsub("{resource}", CLASS_RESOURCE[ns.playerClassKey or "WARRIOR"] or "mana")
@@ -121,8 +136,9 @@ function core.ReplaceTokens(line, ctx)
         r = r:gsub("{class}", "adventurer")
     end
 
-    -- Stat tokens  (only if roastMode is on and we have stats)
-    if ns.db and ns.db.roastMode and ns.stats and ns.stats.GetTokens then
+    -- Stat tokens  (roastMode OR narrative style)
+    local useStats = ns.db and (ns.db.roastMode or ns.db.banterStyle == "NARRATIVE")
+    if useStats and ns.stats and ns.stats.GetTokens then
         local st = ns.stats.GetTokens()
         for token, value in pairs(st) do
             r = r:gsub("{" .. token .. "}", value)
@@ -258,7 +274,13 @@ end
 function core.StartScene(trigger, ctx)
     ctx = ctx or {}
 
-    local isUtilityCallout = (trigger == "CC_CALLOUT" or trigger == "INTERRUPT")
+    local isUtilityCallout = (trigger == "CC_CALLOUT" or trigger == "INTERRUPT" or trigger == "PLAYER_KILL")
+
+    -- CALLOUTS style: suppress everything except utility callouts
+    if ns.db.banterStyle == "CALLOUTS" and not isUtilityCallout then
+        ns.Debug("Scene suppressed — CALLOUTS style (utility only)")
+        return
+    end
 
     -- PvP instance suppression (BGs / arenas — not yet supported)
     -- Utility callouts (CC / interrupts) are allowed everywhere
@@ -336,6 +358,12 @@ function core.StartScene(trigger, ctx)
     ---------------------------------------------------------------------------
     -- GROUP / RAID PATH — existing scene orchestration
     ---------------------------------------------------------------------------
+
+    -- Narrative mode: swap AMBIENT for COMBAT_RECAP (stat-based commentary)
+    if trigger == "AMBIENT" and ns.db.banterStyle == "NARRATIVE" then
+        trigger = "COMBAT_RECAP"
+    end
+
     local statement = ns.scenes.PickStatement(persona, trigger)
     if not statement then
         ns.Debug("No statement for " .. trigger .. " (persona: " .. persona .. ")")

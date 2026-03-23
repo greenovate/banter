@@ -142,35 +142,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="mag_int_c01", weight=1, line="Nice interrupt. Counterspell is superior, of course, but adequate job." },
-            { id="mag_int_c02", weight=1, line="{source} shut that down. How delightfully barbaric." },
-            { id="mag_int_c03", weight=1, line="Interrupted. One caster silencing another. There's a poetry to it." },
-            { id="mag_int_c04", weight=1, line="{source} stopped {interrupted}. Adequate reflexes." },
-            { id="mag_int_c05", weight=1, line="{interrupted} denied! Not all spells deserve to exist." },
-            { id="mag_int_c06", weight=1, line="That cast bar evaporated. Satisfying from a purely academic standpoint." },
-            { id="mag_int_c07", weight=1, line="{source} interrupted {interrupted}. I could have done it faster. But this was fine." },
-            { id="mag_int_c08", weight=1, line="Locked out! The mob will have time to reflect on its poor spell selection." },
-            { id="mag_int_c09", weight=1, line="{interrupted} cancelled mid-cast. Embarrassing for the caster. I would know." },
-            { id="mag_int_c10", weight=1, line="One does not simply CAST when {source} is paying attention. Noted." },
-            { id="mag_int_c11", weight=1, line="That mob's {interrupted} never stood a chance. Neither did its dignity." },
-            { id="mag_int_c12", weight=1, line="Interrupt confirmed. The arcane implications of that failed cast are... delicious." },
+            { id="mag_int_c01", weight=1, line="{interrupted} countered. Adequate." },
+            { id="mag_int_c02", weight=1, line="{interrupted} interrupted. Not all spells deserve to exist." },
+            { id="mag_int_c03", weight=1, line="{interrupted} locked out. Embarrassing for the caster." },
+            { id="mag_int_c04", weight=1, line="{interrupted} denied. Academically satisfying." },
+            { id="mag_int_c05", weight=1, line="{interrupted} cancelled. Poor spell selection." },
+            { id="mag_int_c06", weight=1, line="{interrupted} shut down. One caster silencing another — poetic." },
         },
         UNCOMMON = {
-            { id="mag_int_u01", weight=1, line="I WOULD have Counterspelled but I was busy casting Frostbolt. Multitasking isn't easy when you're this brilliant." },
-            { id="mag_int_u02", weight=1, line="{source} kicked {interrupted}. I calculated the damage it would have done. You're welcome for the math." },
-            { id="mag_int_u03", weight=1, line="That {interrupted} had a 3-second cast time. {source} waited until 2.8. Dramatic but effective." },
-            { id="mag_int_u04", weight=1, line="My Counterspell has a 24-second cooldown. {source}'s kick does not. Life is unfair." },
-            { id="mag_int_u05", weight=1, line="{interrupted} is a spell I studied for three semesters. {source} just deleted it in 0.1 seconds." },
-            { id="mag_int_u06", weight=1, line="As a fellow caster I feel a twinge of sympathy for that mob. A very small twinge. Gone now." },
+            { id="mag_int_u01", weight=1, line="{interrupted} deleted mid-cast. I calculated the damage it would've done. You're welcome." },
+            { id="mag_int_u02", weight=1, line="{interrupted} off the table. I feel a twinge of sympathy for that caster. Gone now." },
+            { id="mag_int_u03", weight=1, line="{interrupted} denied. The arcane implications of that failed cast are... delicious." },
         },
         RARE = {
-            { id="mag_int_r01", weight=1, line="That mob was about to cast something terrible. I know this because I can read arcane signatures. And also the cast bar." },
-            { id="mag_int_r02", weight=1, line="{source} interrupted {interrupted} and I didn't even have to Ice Block. Best day ever." },
-            { id="mag_int_r03", weight=1, line="I wrote a thesis on interrupt timing. {source} just proved my hypothesis. I'll cite them." },
+            { id="mag_int_r01", weight=1, line="{interrupted} erased. I studied that spell for three semesters. Deleted in 0.1 seconds." },
+            { id="mag_int_r02", weight=1, line="{interrupted} crushed so hard the school of magic it belongs to filed a complaint." },
         },
         MYTHIC = {
-            { id="mag_int_m01", weight=1, line="Perfect Counterspell. And people say physical classes handle interrupts better. Laughable." },
-            { id="mag_int_m02", weight=1, line="{source} denied {interrupted} so hard the school of magic it belongs to sent a formal complaint. Brilliant work." },
+            { id="mag_int_m01", weight=1, line="{interrupted} annihilated. Nobody had to Ice Block. Best pull so far." },
         },
     },
 
@@ -250,27 +239,84 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="mag_cca_c01", weight=1, line="{victim} just caught a {spell}. Reduced group DPS. I calculated it." },
-            { id="mag_cca_c02", weight=1, line="{victim} is CC'd! {spell}! Someone with a dispel, this is YOUR moment." },
-            { id="mag_cca_c03", weight=1, line="{spell} on {victim}. The math isn't mathing here, people." },
-            { id="mag_cca_c04", weight=1, line="{victim} is incapacitated via {spell}. Fascinating spell. Less fascinating when it's on US." },
-            { id="mag_cca_c05", weight=1, line="{victim} just got {spell}'d. I'd Remove Curse but that's... not what that is." },
-            { id="mag_cca_c06", weight=1, line="{victim} is locked in {spell}! Such lost potential!" },
-            { id="mag_cca_c07", weight=1, line="Oh look, {victim} is CC'd. {spell}. Classic mob strategy. Predictable, yet effective." },
-            { id="mag_cca_c08", weight=1, line="{victim} ate a {spell}. Someone handle that. I'm busy being the DPS." },
+            { id="mag_cca_c01", weight=1, line="{spell} landed. Reduced group DPS. Dispel needed." },
+            { id="mag_cca_c02", weight=1, line="{spell} — someone with a dispel, this is your moment." },
+            { id="mag_cca_c03", weight=1, line="{spell} on our side. The math isn't mathing." },
+            { id="mag_cca_c04", weight=1, line="{spell} hit. I'd Remove Curse but that's not what this is." },
+            { id="mag_cca_c05", weight=1, line="{spell} active. Predictable mob strategy, yet effective." },
+            { id="mag_cca_c06", weight=1, line="{spell} — needs breaking. I'm busy being the DPS." },
         },
         UNCOMMON = {
-            { id="mag_cca_u01", weight=1, line="{dispeller}, {victim} has been sitting in {spell} for Your dispel key works, right?" },
-            { id="mag_cca_u02", weight=1, line="{victim} is CC'd and {dispeller} appears to be AFK at the dispel button. Noted." },
-            { id="mag_cca_u03", weight=1, line="I can Polymorph mobs but I can't un-Polymorph friends. {dispeller}, that's YOUR job." },
-            { id="mag_cca_u04", weight=1, line="{victim} under {spell}. {dispeller} doing nothing. Worst dispel response time I've recorded." },
+            { id="mag_cca_u01", weight=1, line="{spell} still up. Worst dispel response time I've recorded." },
+            { id="mag_cca_u02", weight=1, line="{spell} needs a dispel. I can Polymorph mobs but I can't un-Polymorph friends." },
+            { id="mag_cca_u03", weight=1, line="{spell} sitting there. Fascinating spell. Less fascinating when it's on US." },
         },
         RARE = {
-            { id="mag_cca_r01", weight=1, line="In my academic analysis: {victim} has been {spell}'d, {dispeller} can fix it, and yet here we are." },
-            { id="mag_cca_r02", weight=1, line="I once wrote a thesis on CC duration optimization. {dispeller} hasn't read it." },
+            { id="mag_cca_r01", weight=1, line="{spell} up. Academic analysis: someone can fix it. And yet here we are." },
+            { id="mag_cca_r02", weight=1, line="{spell} still active. I wrote a thesis on CC duration optimization. Nobody read it." },
         },
         MYTHIC = {
-            { id="mag_cca_m01", weight=1, line="{victim} is CC'd. {dispeller} is ignoring it. I'm the smartest one here and even I can't fix this level of negligence." },
+            { id="mag_cca_m01", weight=1, line="{spell} up. Dispel available. Nobody moving. Even I can't fix this level of negligence." },
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            { id="mag_pk_c01", weight=1, line="{killed} has been removed from the equation. Cleanly." },
+            { id="mag_pk_c02", weight=1, line="{killed} didn't even get a cast off. Hate when that happens. To THEM." },
+            { id="mag_pk_c03", weight=1, line="{killed} thought they could out-DPS a mage. The audacity." },
+            { id="mag_pk_c04", weight=1, line="{killed} is down. I'd feel bad but I'm already drinking." },
+            { id="mag_pk_c05", weight=1, line="Another kill. {killed} joins a very long list." },
+            { id="mag_pk_c06", weight=1, line="{killed} experienced the full Frostbolt curriculum. Final exam was fatal." },
+            { id="mag_pk_c07", weight=1, line="{killed} is dead. Moving on. I have things to calculate." },
+            { id="mag_pk_c08", weight=1, line="That was barely a warmup. {killed} should try again when they're serious." },
+            { id="mag_pk_c09", weight=1, line="{killed} learned the hard way that kiting isn't just for hunters." },
+            { id="mag_pk_c10", weight=1, line="One Pyroblast worth of bad decisions led {killed} to this moment." },
+        },
+        UNCOMMON = {
+            { id="mag_pk_u01", weight=1, line="{killed} tried to close distance. Through a Frost Nova. Inside a Blizzard. Questionable tactics." },
+            { id="mag_pk_u02", weight=1, line="I Polymorphed {killed}, sat down, drank water, stood up, and finished them. Efficient." },
+            { id="mag_pk_u03", weight=1, line="{killed} popped their trinket at 80%% HP. I killed them at 0%%. The math was never in their favor." },
+            { id="mag_pk_u04", weight=1, line="The mana-to-kill ratio on {killed} was exceptional. Very economical PVP." },
+            { id="mag_pk_u05", weight=1, line="{killed} had exactly one chance to interrupt my Pyroblast. They chose to eat it." },
+        },
+        RARE = {
+            { id="mag_pk_r01", weight=1, line="{killed} was standing still. Mid-cast. In the open. I don't even count those anymore." },
+            { id="mag_pk_r02", weight=1, line="Solo'd {killed} and didn't drop below 90%%. I'd call it a fight but that implies two participants." },
+            { id="mag_pk_r03", weight=1, line="{killed} attacked me while I was drinking. Ballsy. Stupid, but ballsy. They're dead now." },
+        },
+        MYTHIC = {
+            { id="mag_pk_m01", weight=1, line="{killed} never had a chance. I knew it. They knew it. The Frost Nova knew it. We all knew it." },
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            { id="mag_cr_c01", weight=1, line="{death_count} deaths so far. The math isn't pretty." },
+            { id="mag_cr_c02", weight=1, line="{top_dps} leads DPS. Respectable. For someone who isn't a mage." },
+            { id="mag_cr_c03", weight=1, line="{most_deaths} keeps dying. Statistically significant at this point." },
+            { id="mag_cr_c04", weight=1, line="{interrupter} handled the interrupts. Adequate." },
+            { id="mag_cr_c05", weight=1, line="That last pull: survivable. This group: debatable." },
+            { id="mag_cr_c06", weight=1, line="{puller} pulled again. The calculations say we'll survive. Probably." },
+            { id="mag_cr_c07", weight=1, line="{fire_king} took the most avoidable damage. I'd explain the mechanic but they won't listen." },
+            { id="mag_cr_c08", weight=1, line="{death_count} deaths. I predicted {death_count}. I'm always right." },
+            { id="mag_cr_c09", weight=1, line="DPS check: {top_dps} passes. The rest of you... see me after class." },
+            { id="mag_cr_c10", weight=1, line="Everyone's still alive. For now. That's the best I can say." },
+        },
+        UNCOMMON = {
+            { id="mag_cr_u01", weight=1, line="{most_deaths} has died {death_count} times total this session. Source: me. I keep count." },
+            { id="mag_cr_u02", weight=1, line="{cc_breaker} broke CC. The tactical brilliance of hitting the Polymorphed target. Again." },
+            { id="mag_cr_u03", weight=1, line="{top_dps} is doing the work. Everyone else is doing the equivalent of watching." },
+            { id="mag_cr_u04", weight=1, line="The damage-to-death ratio this session is fascinating. In the same way a trainwreck is fascinating." },
+            { id="mag_cr_u05", weight=1, line="{fire_king} has stood in every single thing on the ground. My thesis committee would love this data." },
+        },
+        RARE = {
+            { id="mag_cr_r01", weight=1, line="Analysis: {most_deaths} dying the most, {top_dps} doing the most damage, {interrupter} actually interrupting. The rest of you are statistical noise." },
+            { id="mag_cr_r02", weight=1, line="I ran the numbers on our survival rate. The constants are fine. The variable is {most_deaths}." },
+            { id="mag_cr_r03", weight=1, line="If {death_count} deaths were a grade, this session would be an F. I grade on a curve. You're still failing." },
+        },
+        MYTHIC = {
+            { id="mag_cr_m01", weight=1, line="Session report: {top_dps} carried DPS. {most_deaths} led deaths at {death_count}. {fire_king} discovered every ground effect. {cc_breaker} broke every CC. I documented everything. For science." },
         },
     },
 
@@ -647,13 +693,49 @@ responses = {
         },
         UNCOMMON = {
             "The probability of that dispel happening decreases with each passing second.",
-            "I've written papers shorter than {dispeller}'s reaction time.",
+            "Dispel response time is... not ideal. Noted for my records.",
         },
         RARE = {
-            "In my professional opinion, {victim} is going to be there for a while. Source: I CC people for a living.",
+            "That CC is going to be there a while. Source: I CC people for a living.",
         },
         MYTHIC = {
-            "I could Polymorph {victim} to BREAK the CC. No, I won't. But I COULD. The genius is in the option.",
+            "I could Polymorph the target to BREAK the CC. No, I won't. But I COULD. The genius is in the option.",
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            "Efficient. Very efficient.",
+            "They should have studied harder.",
+            "Another data point for my PVP thesis.",
+        },
+        UNCOMMON = {
+            "I barely used any mana on that. Cost-effective killing.",
+            "Add that to the statistics. My win rate remains flawless.",
+        },
+        RARE = {
+            "I'd Polymorph them and walk away but I don't leave witnesses.",
+        },
+        MYTHIC = {
+            "Some people fight. Some people calculate. I calculate fights. The result is always the same.",
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            "The data supports this observation.",
+            "Noted. For the report.",
+            "Academically fascinating. Tactically concerning.",
+        },
+        UNCOMMON = {
+            "I've been tracking these metrics. The trend is not encouraging.",
+            "My calculations predicted this exact outcome. Nobody asked me though.",
+        },
+        RARE = {
+            "If I published this session's data, no journal would accept it. Too tragic.",
+        },
+        MYTHIC = {
+            "Statistical analysis complete. Conclusion: we need better data. And by data I mean players.",
         },
     },
 

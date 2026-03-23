@@ -160,35 +160,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="war_int_c01", weight=1, line="Nice kick, {source}. Can't let casters have all the fun." },
-            { id="war_int_c02", weight=1, line="Interrupted. That's basically a melee spell and I approve." },
-            { id="war_int_c03", weight=1, line="{source} said 'no' with their weapon. Respect." },
-            { id="war_int_c04", weight=1, line="Good. I hate it when mobs try to cast. Just stand there and let me hit you." },
-            { id="war_int_c05", weight=1, line="{source} shut down {interrupted}. No casting allowed in MELEE RANGE." },
-            { id="war_int_c06", weight=1, line="{interrupted} cancelled! Good. More hitting, less spell nonsense." },
-            { id="war_int_c07", weight=1, line="Kicked mid-cast! The only spell I want to see is the one that makes things DEAD FASTER." },
-            { id="war_int_c08", weight=1, line="{source} interrupted {interrupted}. That's the kind of violence I RESPECT." },
-            { id="war_int_c09", weight=1, line="That cast never finished. GOOD. I hate waiting." },
-            { id="war_int_c10", weight=1, line="{interrupted} denied! If it ain't melee, I don't wanna see it." },
-            { id="war_int_c11", weight=1, line="Interrupt landed! That mob just learned what 'locked out' means." },
-            { id="war_int_c12", weight=1, line="NO CASTING. This is a HITTING zone. {source} enforced the rules." },
+            { id="war_int_c01", weight=1, line="{interrupted} kicked. No casting in melee range." },
+            { id="war_int_c02", weight=1, line="{interrupted} interrupted. Good. More hitting, less magic." },
+            { id="war_int_c03", weight=1, line="{interrupted} locked out. That's how it's done." },
+            { id="war_int_c04", weight=1, line="{interrupted} denied. Casters don't get to have fun here." },
+            { id="war_int_c05", weight=1, line="{interrupted} cancelled. Sit down." },
+            { id="war_int_c06", weight=1, line="{interrupted} shut down. NO CASTING ZONE." },
         },
         UNCOMMON = {
-            { id="war_int_u01", weight=1, line="I would've interrupted it myself but I was busy doing damage. You know how it is." },
-            { id="war_int_u02", weight=1, line="Imagine trying to cast a spell when {source} is standing right there. Bad life decisions." },
-            { id="war_int_u03", weight=1, line="{source} kicked {interrupted} so hard the caster forgot what school of magic it was." },
-            { id="war_int_u04", weight=1, line="I counted. That's the third interrupt this fight. We're a well-oiled violence machine." },
-            { id="war_int_u05", weight=1, line="{interrupted} cancelled. I don't know what it does but I know I HATE it." },
-            { id="war_int_u06", weight=1, line="If that {interrupted} had gone off someone was eating a repair bill. Good kick." },
+            { id="war_int_u01", weight=1, line="{interrupted} never went off. That's one less thing trying to kill us." },
+            { id="war_int_u02", weight=1, line="{interrupted} kicked mid-cast. Clean. Violent. Approved." },
+            { id="war_int_u03", weight=1, line="{interrupted} off the table. That would've been a repair bill." },
         },
         RARE = {
-            { id="war_int_r01", weight=1, line="I have a Shield Bash and I'm not afraid to use it. Oh wait, {source} already handled it. Overachievers." },
-            { id="war_int_r02", weight=1, line="{source} just interrupted {interrupted} and I felt personally validated. Melee superiority." },
-            { id="war_int_r03", weight=1, line="That mob tried to cast {interrupted}. It was cute. It was also the last thing it tried." },
+            { id="war_int_r01", weight=1, line="{interrupted} deleted. That mob's casting career is OVER." },
+            { id="war_int_r02", weight=1, line="{interrupted} crushed. Melee solves everything." },
         },
         MYTHIC = {
-            { id="war_int_m01", weight=1, line="That interrupt was so clean it made me feel feelings. And I specifically avoid those." },
-            { id="war_int_m02", weight=1, line="{source} just denied {interrupted} so hard the mob questioned its entire spell book. THAT'S how you fight." },
+            { id="war_int_m01", weight=1, line="{interrupted} erased from existence. THAT'S how you fight." },
         },
     },
 
@@ -276,27 +265,84 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="war_cca_c01", weight=1, line="{victim} just got hit with {spell}! That means LESS HITTING THINGS!" },
-            { id="war_cca_c02", weight=1, line="{victim} is CC'd! {spell} for SOMEONE DO SOMETHING." },
-            { id="war_cca_c03", weight=1, line="{victim} is locked down! {spell}! I'd break it myself but I only know how to break FACES." },
-            { id="war_cca_c04", weight=1, line="{victim} caught a {spell}! of standing there like a statue!" },
-            { id="war_cca_c05", weight=1, line="{victim} is stunned! If I could Intercept the CC off them I would!" },
-            { id="war_cca_c06", weight=1, line="{spell} on {victim}! That's they're not contributing. UNACCEPTABLE." },
-            { id="war_cca_c07", weight=1, line="{victim} just ate a {spell}. Get them out of that. NOW." },
-            { id="war_cca_c08", weight=1, line="{victim} is disabled! {spell}! This is why I hate magic!" },
+            { id="war_cca_c01", weight=1, line="{spell} landed. Needs a dispel." },
+            { id="war_cca_c02", weight=1, line="{spell} — someone break that." },
+            { id="war_cca_c03", weight=1, line="{spell} on a group member. Less damage until it's gone." },
+            { id="war_cca_c04", weight=1, line="{spell} hit. That's lost DPS. Fix it." },
+            { id="war_cca_c05", weight=1, line="{spell} — we're down a body until that's cleared." },
+            { id="war_cca_c06", weight=1, line="{spell} — dispel needed." },
         },
         UNCOMMON = {
-            { id="war_cca_u01", weight=1, line="{victim} got {spell}'d for {dispeller}, you gonna dispel that or just WATCH?" },
-            { id="war_cca_u02", weight=1, line="{victim} is CC'd and {dispeller} is over there doing NOTHING about it. Typical." },
-            { id="war_cca_u03", weight=1, line="Every second {victim} spends in {spell} is a second the mob isn't dying. DO THE MATH." },
-            { id="war_cca_u04", weight=1, line="{dispeller}! {victim} is eating a {spell} right now! DISPEL! BUTTONS! USE THEM!" },
+            { id="war_cca_u01", weight=1, line="{spell} is sitting there. Every second it's up is a second the mob isn't dying." },
+            { id="war_cca_u02", weight=1, line="{spell} needs breaking. I'd do it myself but I only know how to break FACES." },
+            { id="war_cca_u03", weight=1, line="{spell} on our side. This is why I hate magic." },
         },
         RARE = {
-            { id="war_cca_r01", weight=1, line="{victim} got {spell}'d. {dispeller} is apparently on break. Must be nice having a DISPEL and choosing not to use it." },
-            { id="war_cca_r02", weight=1, line="I've been screaming about {victim}'s {spell} for and nobody moved. I'm surrounded by people who DON'T HIT THEIR BUTTONS." },
+            { id="war_cca_r01", weight=1, line="{spell} up and nobody's moving. I'm surrounded by people who don't press their buttons." },
+            { id="war_cca_r02", weight=1, line="{spell} still active. Would be nice to have a full group again." },
         },
         MYTHIC = {
-            { id="war_cca_m01", weight=1, line="{victim} is CC'd. {dispeller} is doing nothing. The mob is winning. I'm the only one who cares. AS USUAL." },
+            { id="war_cca_m01", weight=1, line="{spell} up. Mob still alive. Nobody dispelling. AS USUAL." },
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            { id="war_pk_c01", weight=1, line="{killed} is down. Should've rolled a class with armor." },
+            { id="war_pk_c02", weight=1, line="{killed} just found out why warriors are top of the food chain." },
+            { id="war_pk_c03", weight=1, line="Another one. {killed} didn't even put up a fight." },
+            { id="war_pk_c04", weight=1, line="{killed} went down swinging. Respect. Still dead though." },
+            { id="war_pk_c05", weight=1, line="{killed} thought they could outrun a Charge. Adorable." },
+            { id="war_pk_c06", weight=1, line="{killed} met the business end of my weapon. Brief meeting." },
+            { id="war_pk_c07", weight=1, line="Rest in peace, {killed}. Or don't. I don't care." },
+            { id="war_pk_c08", weight=1, line="{killed} made the classic mistake of existing near me." },
+            { id="war_pk_c09", weight=1, line="Get up, {killed}. I wasn't finished." },
+            { id="war_pk_c10", weight=1, line="The only thing {killed} needed was more health. And better decisions." },
+        },
+        UNCOMMON = {
+            { id="war_pk_u01", weight=1, line="{killed} tried to kite me. A warrior. In melee range. Bold strategy." },
+            { id="war_pk_u02", weight=1, line="Charge. Mortal Strike. {killed} died. Three steps. Clean." },
+            { id="war_pk_u03", weight=1, line="{killed} popped everything and still ate pavement. Love to see it." },
+            { id="war_pk_u04", weight=1, line="{killed} had a real 'stand in front of the warrior' energy about them." },
+            { id="war_pk_u05", weight=1, line="That's what {killed} gets for picking a fight on MY road." },
+        },
+        RARE = {
+            { id="war_pk_r01", weight=1, line="{killed} thought this was a duel. It was not a duel. It was a lesson." },
+            { id="war_pk_r02", weight=1, line="I don't gank. I provide involuntary PVP experiences. {killed} just graduated." },
+            { id="war_pk_r03", weight=1, line="{killed} is gonna have a great view of the sky while they wait on that rez timer." },
+        },
+        MYTHIC = {
+            { id="war_pk_m01", weight=1, line="{killed} logged in today thinking they'd have a nice time. I had other plans." },
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            { id="war_cr_c01", weight=1, line="{death_count} deaths and counting. PULL HARDER." },
+            { id="war_cr_c02", weight=1, line="{top_dps} is topping damage. That better be me." },
+            { id="war_cr_c03", weight=1, line="{puller} keeps pulling. Good. More things to hit." },
+            { id="war_cr_c04", weight=1, line="Who's dying the most? {most_deaths}? Figures." },
+            { id="war_cr_c05", weight=1, line="{death_count} deaths so far. FASTER." },
+            { id="war_cr_c06", weight=1, line="{interrupter} actually kicked something. I am mildly less furious." },
+            { id="war_cr_c07", weight=1, line="That last pull was sloppy. I know because I was IN it." },
+            { id="war_cr_c08", weight=1, line="{fire_king} keeps standing in garbage. MOVE YOUR FEET." },
+            { id="war_cr_c09", weight=1, line="We're still alive. Barely. Pull again." },
+            { id="war_cr_c10", weight=1, line="If DPS was a competition, {top_dps} would actually be winning." },
+        },
+        UNCOMMON = {
+            { id="war_cr_u01", weight=1, line="{most_deaths} has died the most. I'm not surprised. I'm just disappointed." },
+            { id="war_cr_u02", weight=1, line="{cc_breaker} keeps breaking CC. There's a special place in the graveyard for people like that." },
+            { id="war_cr_u03", weight=1, line="{death_count} deaths and we haven't even hit the boss yet. Real inspiring stuff." },
+            { id="war_cr_u04", weight=1, line="{top_dps} is carrying DPS. The rest of you are carrying feelings apparently." },
+            { id="war_cr_u05", weight=1, line="Last pull had more bodies on the floor than mobs. That's backwards." },
+        },
+        RARE = {
+            { id="war_cr_r01", weight=1, line="{most_deaths} is personally funding the Spirit Healer's retirement. {death_count} deaths and the night is young." },
+            { id="war_cr_r02", weight=1, line="I had us down for more deaths honestly. Only {death_count}. Almost competent." },
+            { id="war_cr_r03", weight=1, line="{fire_king} has eaten more floor damage than I've done in melee. New strat: let them tank with their face." },
+        },
+        MYTHIC = {
+            { id="war_cr_m01", weight=1, line="{death_count} deaths. {most_deaths} leading the scoreboard in a category nobody wants to win. {top_dps} carrying DPS. {puller} pulling. Me? I'm just trying not to snap my keyboard." },
         },
     },
 
@@ -702,6 +748,42 @@ responses = {
         },
         MYTHIC = {
             "Back in my day we just hit CC'd people until the CC broke. It worked. EVERYTHING WORKS IF YOU HIT IT HARD ENOUGH.",
+        },
+    },
+
+    PLAYER_KILL = {
+        COMMON = {
+            "HA! That's what happens!",
+            "Another one bites the dirt.",
+            "STAY DOWN!",
+        },
+        UNCOMMON = {
+            "They didn't even scratch my plate. Pathetic.",
+            "That kill gave me enough rage for the next one.",
+        },
+        RARE = {
+            "This is the only content I care about. PVP is the real endgame.",
+        },
+        MYTHIC = {
+            "I came here to chew food and kill players. And I ate everything at the last camp.",
+        },
+    },
+
+    COMBAT_RECAP = {
+        COMMON = {
+            "LESS DYING. MORE HITTING.",
+            "Numbers don't lie. Hit harder.",
+            "Pull faster. Die less. Simple.",
+        },
+        UNCOMMON = {
+            "If I had a gold for every death, I'd buy better teammates.",
+            "The scoreboard looks like a group of level 20s. And we're NOT.",
+        },
+        RARE = {
+            "We're alive. That's the only stat that matters. But barely.",
+        },
+        MYTHIC = {
+            "I don't need stats to know we're a mess. I FEEL it. In my RAGE BAR.",
         },
     },
 
