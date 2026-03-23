@@ -164,16 +164,31 @@ statements = {
             { id="war_int_c02", weight=1, line="Interrupted. That's basically a melee spell and I approve." },
             { id="war_int_c03", weight=1, line="{source} said 'no' with their weapon. Respect." },
             { id="war_int_c04", weight=1, line="Good. I hate it when mobs try to cast. Just stand there and let me hit you." },
+            { id="war_int_c05", weight=1, line="{source} shut down {interrupted}. No casting allowed in MELEE RANGE." },
+            { id="war_int_c06", weight=1, line="{interrupted} cancelled! Good. More hitting, less spell nonsense." },
+            { id="war_int_c07", weight=1, line="Kicked mid-cast! The only spell I want to see is the one that makes things DEAD FASTER." },
+            { id="war_int_c08", weight=1, line="{source} interrupted {interrupted}. That's the kind of violence I RESPECT." },
+            { id="war_int_c09", weight=1, line="That cast never finished. GOOD. I hate waiting." },
+            { id="war_int_c10", weight=1, line="{interrupted} denied! If it ain't melee, I don't wanna see it." },
+            { id="war_int_c11", weight=1, line="Interrupt landed! That mob just learned what 'locked out' means." },
+            { id="war_int_c12", weight=1, line="NO CASTING. This is a HITTING zone. {source} enforced the rules." },
         },
         UNCOMMON = {
             { id="war_int_u01", weight=1, line="I would've interrupted it myself but I was busy doing damage. You know how it is." },
             { id="war_int_u02", weight=1, line="Imagine trying to cast a spell when {source} is standing right there. Bad life decisions." },
+            { id="war_int_u03", weight=1, line="{source} kicked {interrupted} so hard the caster forgot what school of magic it was." },
+            { id="war_int_u04", weight=1, line="I counted. That's the third interrupt this fight. We're a well-oiled violence machine." },
+            { id="war_int_u05", weight=1, line="{interrupted} cancelled. I don't know what it does but I know I HATE it." },
+            { id="war_int_u06", weight=1, line="If that {interrupted} had gone off someone was eating a repair bill. Good kick." },
         },
         RARE = {
             { id="war_int_r01", weight=1, line="I have a Shield Bash and I'm not afraid to use it. Oh wait, {source} already handled it. Overachievers." },
+            { id="war_int_r02", weight=1, line="{source} just interrupted {interrupted} and I felt personally validated. Melee superiority." },
+            { id="war_int_r03", weight=1, line="That mob tried to cast {interrupted}. It was cute. It was also the last thing it tried." },
         },
         MYTHIC = {
             { id="war_int_m01", weight=1, line="That interrupt was so clean it made me feel feelings. And I specifically avoid those." },
+            { id="war_int_m02", weight=1, line="{source} just denied {interrupted} so hard the mob questioned its entire spell book. THAT'S how you fight." },
         },
     },
 
@@ -261,24 +276,24 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="war_cca_c01", weight=1, line="{victim} just got hit with {spell}! That's {duration} of not hitting things!" },
-            { id="war_cca_c02", weight=1, line="{victim} is CC'd! {spell} for {duration}. SOMEONE DO SOMETHING." },
+            { id="war_cca_c01", weight=1, line="{victim} just got hit with {spell}! That means LESS HITTING THINGS!" },
+            { id="war_cca_c02", weight=1, line="{victim} is CC'd! {spell} for SOMEONE DO SOMETHING." },
             { id="war_cca_c03", weight=1, line="{victim} is locked down! {spell}! I'd break it myself but I only know how to break FACES." },
-            { id="war_cca_c04", weight=1, line="{victim} caught a {spell}! {duration} of standing there like a statue!" },
+            { id="war_cca_c04", weight=1, line="{victim} caught a {spell}! of standing there like a statue!" },
             { id="war_cca_c05", weight=1, line="{victim} is stunned! If I could Intercept the CC off them I would!" },
-            { id="war_cca_c06", weight=1, line="{spell} on {victim}! That's {duration} they're not contributing. UNACCEPTABLE." },
+            { id="war_cca_c06", weight=1, line="{spell} on {victim}! That's they're not contributing. UNACCEPTABLE." },
             { id="war_cca_c07", weight=1, line="{victim} just ate a {spell}. Get them out of that. NOW." },
             { id="war_cca_c08", weight=1, line="{victim} is disabled! {spell}! This is why I hate magic!" },
         },
         UNCOMMON = {
-            { id="war_cca_u01", weight=1, line="{victim} got {spell}'d for {duration}. {dispeller}, you gonna dispel that or just WATCH?" },
+            { id="war_cca_u01", weight=1, line="{victim} got {spell}'d for {dispeller}, you gonna dispel that or just WATCH?" },
             { id="war_cca_u02", weight=1, line="{victim} is CC'd and {dispeller} is over there doing NOTHING about it. Typical." },
             { id="war_cca_u03", weight=1, line="Every second {victim} spends in {spell} is a second the mob isn't dying. DO THE MATH." },
             { id="war_cca_u04", weight=1, line="{dispeller}! {victim} is eating a {spell} right now! DISPEL! BUTTONS! USE THEM!" },
         },
         RARE = {
             { id="war_cca_r01", weight=1, line="{victim} got {spell}'d. {dispeller} is apparently on break. Must be nice having a DISPEL and choosing not to use it." },
-            { id="war_cca_r02", weight=1, line="I've been screaming about {victim}'s {spell} for {duration} and nobody moved. I'm surrounded by people who DON'T HIT THEIR BUTTONS." },
+            { id="war_cca_r02", weight=1, line="I've been screaming about {victim}'s {spell} for and nobody moved. I'm surrounded by people who DON'T HIT THEIR BUTTONS." },
         },
         MYTHIC = {
             { id="war_cca_m01", weight=1, line="{victim} is CC'd. {dispeller} is doing nothing. The mob is winning. I'm the only one who cares. AS USUAL." },
@@ -680,7 +695,7 @@ responses = {
         },
         UNCOMMON = {
             "If I could dispel I would. Aggressively. With an axe.",
-            "That's {duration} of lost DPS. I'm counting.",
+            "That's of lost DPS. I'm counting.",
         },
         RARE = {
             "I don't have a dispel button. I have a RAGE button. They are the same button.",

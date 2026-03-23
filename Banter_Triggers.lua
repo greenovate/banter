@@ -426,17 +426,24 @@ function triggers.OnCombatLog()
     -- SPELL_INTERRUPT
     if subEvent == "SPELL_INTERRUPT" then
         if triggers.IsPlayerOrGroup(srcGUID) then
-            -- Interrupt callouts use their own gate (independent of main enabled)
             if not ns.db or not ns.db.interruptCallouts then return end
             if not ns.initialized then return end
-            if (GetTime() - lastSceneAt) < nextSceneDelay then return end
-            local spellName     = select(13, CombatLogGetCurrentEventInfo())
+            -- Per-trigger cooldown only (no global scene gate)
+            local cd   = TRIGGER_COOLDOWN["INTERRUPT"] or 5
+            local last = triggerCooldowns["INTERRUPT"] or 0
+            if (GetTime() - last) < cd then return end
+            -- Leader-only: if other Banter users are present, only leader calls out
+            if ns.comm.GetPeerCount() > 0 and not ns.comm.AmLeader() then return end
+            local spellName      = select(13, CombatLogGetCurrentEventInfo())
             local extraSpellName = select(16, CombatLogGetCurrentEventInfo())
+            -- Determine if WE interrupted or a group member did
+            local isSelf = (srcGUID == UnitGUID("player"))
             ns.core.StartScene("INTERRUPT", {
                 source      = srcName,
                 target      = dstName,
                 spell       = spellName,
                 interrupted = extraSpellName,
+                isSelf      = isSelf,
             })
         end
         return
@@ -450,8 +457,9 @@ function triggers.OnCombatLog()
         if auraType == "DEBUFF" then
             if dstGUID == UnitGUID("player") then
                 triggers.OnCrowdControl(srcName, spellName)
-            elseif triggers.IsPlayerOrGroup(dstGUID) and not triggers.IsPlayerOrGroup(srcGUID) then
-                -- A mob CC'd a group member — fire CC_CALLOUT
+            end
+            -- CC_CALLOUT fires for ANY group member (including self) CC'd by a non-group source
+            if triggers.IsPlayerOrGroup(dstGUID) and not triggers.IsPlayerOrGroup(srcGUID) then
                 triggers.OnCCCallout(dstGUID, dstName, srcName, spellName, spellId)
             end
         end
@@ -489,10 +497,15 @@ end
 -- CC detection — only fire for meaningful CCs (fear, poly, stun, etc.)
 ---------------------------------------------------------------------------
 local CC_KEYWORDS = {
-    "fear", "polymorph", "sheep", "stun", "charm", "sleep", "horror",
-    "gouge", "sap", "blind", "freeze", "frost nova", "entangling",
+    -- Hard CC
+    "fear", "polymorph", "sheep", "stun", "stunned", "charm", "sleep", "horror",
+    "gouge", "sap", "blind", "freeze", "frozen", "frost nova", "entangling", "root",
     "hammer of justice", "psychic scream", "howl of terror", "intimidating shout",
-    "death coil", "repentance", "banish",
+    "death coil", "repentance", "banish", "incapacitat", "disorient", "seduc",
+    -- Mob abilities
+    "war stomp", "ground slam", "knock", "net", "web", "silence", "hex",
+    "kidney shot", "cheap shot", "bash", "charge stun", "intercept stun",
+    "scatter shot", "wyvern sting", "freezing trap",
 }
 
 function triggers.OnCrowdControl(srcName, spellName)
@@ -650,7 +663,12 @@ function triggers.OnCCCallout(dstGUID, dstName, srcName, spellName, spellId)
     -- CC callouts have their own toggle — independent of main enabled
     if not ns.db or not ns.db.ccCallouts then return end
     if not ns.initialized then return end
-    if (GetTime() - lastSceneAt) < nextSceneDelay then return end
+    -- Per-trigger cooldown only (no global scene gate)
+    local cd   = TRIGGER_COOLDOWN["CC_CALLOUT"] or 5
+    local last = triggerCooldowns["CC_CALLOUT"] or 0
+    if (GetTime() - last) < cd then return end
+    -- Leader-only: if other Banter users are present, only leader calls out
+    if ns.comm.GetPeerCount() > 0 and not ns.comm.AmLeader() then return end
 
     -- Gather context
     local duration = GetCCDuration(spellName, dstName)

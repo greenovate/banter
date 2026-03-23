@@ -140,15 +140,32 @@ statements = {
             { id="sha_int_c01", weight=1, line="Earth Shock interrupt! Shamans have the best interrupt in the game. Instant. No cooldown drama." },
             { id="sha_int_c02", weight=1, line="Kicked it with Earth Shock. Wind element wanted to do it but earth called dibs." },
             { id="sha_int_c03", weight=1, line="{source} got the interrupt. I had Earth Shock ready. Quick draw shaman." },
+            { id="sha_int_c04", weight=1, line="{source} denied {interrupted}! Earth element wanted that one. Too slow." },
+            { id="sha_int_c05", weight=1, line="{interrupted} cancelled! Earth Shock was my backup. {source} made it unnecessary." },
+            { id="sha_int_c06", weight=1, line="Cast stopped! The elements are clapping. Mostly Earth. Fire doesn't care." },
+            { id="sha_int_c07", weight=1, line="{source} kicked {interrupted}. My totems rattled in approval." },
+            { id="sha_int_c08", weight=1, line="That mob tried to cast. Wrong group to cast in." },
+            { id="sha_int_c09", weight=1, line="{interrupted} denied. Earth Shock was cocked and ready but {source} beat me." },
+            { id="sha_int_c10", weight=1, line="Interrupt confirmed! Earth is satisfied. Wind is indifferent. Fire wants to know if it's dead yet." },
+            { id="sha_int_c11", weight=1, line="{source} stopped {interrupted}. The elements noticed. Earth gave a thumbs up. Figuratively." },
+            { id="sha_int_c12", weight=1, line="Kicked mid-cast! My Earth Shock doesn't have a cooldown problem but {source} still got there first." },
         },
         UNCOMMON = {
             { id="sha_int_u01", weight=1, line="Earth Shock: my answer to casting. Also my answer to everything. Earth doesn't negotiate." },
+            { id="sha_int_u02", weight=1, line="{source} kicked {interrupted}. Earth element is jealous. It LIVES for interrupting." },
+            { id="sha_int_u03", weight=1, line="Earth Shock is an instant cast interrupt. No cooldown drama. Why doesn't everyone have one?" },
+            { id="sha_int_u04", weight=1, line="That {interrupted} would've hit hard. Wind told me. Wind gossips about everything." },
+            { id="sha_int_u05", weight=1, line="{source} stopped {interrupted}. The elements held a quick vote on whether to congratulate them. 3-1. Wind abstained." },
+            { id="sha_int_u06", weight=1, line="My totems don't interrupt but they WANT to. Grounding Totem tried once. It was a whole thing." },
         },
         RARE = {
             { id="sha_int_r01", weight=1, line="I interrupted with Earth Shock, then followed with Frost Shock. Elements one-two punch." },
+            { id="sha_int_r02", weight=1, line="{source} denied {interrupted} and all four elements cheered. Even Wind. That NEVER happens." },
+            { id="sha_int_r03", weight=1, line="Between Earth Shock and {source}'s kick, that caster got zero spells off. Elemental dominance." },
         },
         MYTHIC = {
             { id="sha_int_m01", weight=1, line="Some classes have kick cooldowns. I have Earth Shock. Available whenever. The elements are efficient." },
+            { id="sha_int_m02", weight=1, line="{source} obliterated {interrupted} and Earth, Water, Fire, and Wind all stood up and applauded. First time they've agreed on ANYTHING." },
         },
     },
 
@@ -228,13 +245,13 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="sha_cca_c01", weight=1, line="{victim} just got {spell}'d! {duration}! The elements are... they're yelling at me about it." },
+            { id="sha_cca_c01", weight=1, line="{victim} just got {spell}'d! The elements are... they're yelling at me about it." },
             { id="sha_cca_c02", weight=1, line="{victim} is CC'd! {spell}! My Tremor Totem is pulsing but I don't think that covers this one!" },
-            { id="sha_cca_c03", weight=1, line="{spell} on {victim}! {duration}! Earth says 'help them.' Wind says 'not my problem.'" },
+            { id="sha_cca_c03", weight=1, line="{spell} on {victim}! Earth says 'help them.' Wind says 'not my problem.'" },
             { id="sha_cca_c04", weight=1, line="{victim} is locked down by {spell}. I asked the elements to help. They're deliberating." },
-            { id="sha_cca_c05", weight=1, line="{victim} caught a {spell}! {duration}! Someone with a REAL dispel should handle this!" },
+            { id="sha_cca_c05", weight=1, line="{victim} caught a {spell}! Someone with a REAL dispel should handle this!" },
             { id="sha_cca_c06", weight=1, line="{victim} is disabled! {spell}! I can Purge enemies but not free allies. The irony. THE IRONY." },
-            { id="sha_cca_c07", weight=1, line="{spell} hit {victim}. {duration}. The elements are taking a vote on whether to care. It's not looking good." },
+            { id="sha_cca_c07", weight=1, line="{spell} hit {victim}. The elements are taking a vote on whether to care. It's not looking good." },
             { id="sha_cca_c08", weight=1, line="{victim} ate a {spell}. If this were a poison or disease I'd Cure it. But it's not. Nature is cruel." },
         },
         UNCOMMON = {

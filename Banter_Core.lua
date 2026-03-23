@@ -280,7 +280,7 @@ function core.StartScene(trigger, ctx)
         return
     end
 
-    -- Utility callouts: cooldown-only, no RNG
+    -- Utility callouts: per-trigger cooldown only, no RNG, no global scene gate
     -- Regular banter: full RNG + cooldown check (skip for manual button presses)
     if isUtilityCallout then
         local cd   = ns.triggers.GetTriggerCooldown(trigger)
@@ -342,8 +342,10 @@ function core.StartScene(trigger, ctx)
         return
     end
 
-    -- Mark gates
-    ns.triggers.MarkSceneStarted()
+    -- Mark gates (utility callouts skip the global scene gate — they use per-trigger only)
+    if not isUtilityCallout then
+        ns.triggers.MarkSceneStarted()
+    end
     ns.triggers.MarkTriggerFired(trigger)
 
     -- Build & send the line

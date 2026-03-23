@@ -139,15 +139,32 @@ statements = {
             { id="rog_int_c01", weight=1, line="Kicked. That's MY specialty. 10 second lockout. Sit down." },
             { id="rog_int_c02", weight=1, line="{source} with the interrupt. Precise. Efficient. I approve." },
             { id="rog_int_c03", weight=1, line="Kick landed. Nothing gets past rogue reflexes." },
+            { id="rog_int_c04", weight=1, line="{source} denied {interrupted}. Clean extraction of that cast bar." },
+            { id="rog_int_c05", weight=1, line="{interrupted} cancelled. Target is locked out. Next." },
+            { id="rog_int_c06", weight=1, line="Cast denied. Silence protocol engaged." },
+            { id="rog_int_c07", weight=1, line="{source} kicked {interrupted}. Professional. No wasted motion." },
+            { id="rog_int_c08", weight=1, line="Interrupted. That caster's ops are compromised." },
+            { id="rog_int_c09", weight=1, line="{interrupted} neutralized. Moving on." },
+            { id="rog_int_c10", weight=1, line="{source} shut it down. Tactical awareness confirmed." },
+            { id="rog_int_c11", weight=1, line="Locked out. No casting on our watch." },
+            { id="rog_int_c12", weight=1, line="That mob's {interrupted} never finished. Good. Intel says it hurts." },
         },
         UNCOMMON = {
             { id="rog_int_u01", weight=1, line="My Kick is on a 10-second cooldown. The mob's castbar is on a 2-second cooldown. I see the problem." },
+            { id="rog_int_u02", weight=1, line="{source} kicked {interrupted}. Execution was acceptable. Not perfect. Acceptable." },
+            { id="rog_int_u03", weight=1, line="I timed that Kick at exactly 70% cast completion. Maximum lockout. Minimum risk." },
+            { id="rog_int_u04", weight=1, line="{interrupted} denied. The mob's casting rotation is now compromised for the next 8 seconds." },
+            { id="rog_int_u05", weight=1, line="That interrupt was textbook. I should know. I wrote the textbook. Classified, obviously." },
+            { id="rog_int_u06", weight=1, line="{source} removed {interrupted} from the combat timeline. Efficient fieldwork." },
         },
         RARE = {
             { id="rog_int_r01", weight=1, line="I interrupted mid-Eviscerate. Cost me a finisher. Worth it. Barely." },
+            { id="rog_int_r02", weight=1, line="{source} denied {interrupted} and the mob didn't even know what happened. That's the goal." },
+            { id="rog_int_r03", weight=1, line="Two interrupts in one pull. We're running a tight operation here." },
         },
         MYTHIC = {
             { id="rog_int_m01", weight=1, line="That Kick was frame-perfect. I've been training for moments like this my entire rogue career." },
+            { id="rog_int_m02", weight=1, line="{source} eliminated {interrupted} with surgical precision. If this were an op report, it'd be marked 'flawless.'" },
         },
     },
 
@@ -227,24 +244,24 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="rog_cca_c01", weight=1, line="{victim} just took a {spell}. {duration}. Asset compromised." },
+            { id="rog_cca_c01", weight=1, line="{victim} just took a {spell}. Asset compromised." },
             { id="rog_cca_c02", weight=1, line="{victim} is CC'd. {spell}. That's an operational liability." },
-            { id="rog_cca_c03", weight=1, line="{spell} on {victim}. {duration} of downtime. Unacceptable in the field." },
+            { id="rog_cca_c03", weight=1, line="{spell} on {victim}. of downtime. Unacceptable in the field." },
             { id="rog_cca_c04", weight=1, line="{victim} is locked down. {spell}. Someone with clearance should fix that." },
-            { id="rog_cca_c05", weight=1, line="{victim} neutralized by {spell}. {duration}. We're exposed." },
+            { id="rog_cca_c05", weight=1, line="{victim} neutralized by {spell}. We're exposed." },
             { id="rog_cca_c06", weight=1, line="{victim} hit with {spell}. Clean CC. I'd respect it if it weren't on OUR side." },
             { id="rog_cca_c07", weight=1, line="{victim} is disabled. {spell}. I'd Kick it off them if that's how Kick worked." },
-            { id="rog_cca_c08", weight=1, line="{spell} landed on {victim}. That's {duration}. Time is a resource we're wasting." },
+            { id="rog_cca_c08", weight=1, line="{spell} landed on {victim}. That's Time is a resource we're wasting." },
         },
         UNCOMMON = {
-            { id="rog_cca_u01", weight=1, line="{dispeller}. {victim}. {spell}. {duration}. Dispel. Now. That's the briefing." },
+            { id="rog_cca_u01", weight=1, line="{dispeller}. {victim}. {spell}. Dispel. Now. That's the briefing." },
             { id="rog_cca_u02", weight=1, line="{dispeller} has dispel capability. {victim} has a {spell}. The connection should be obvious." },
             { id="rog_cca_u03", weight=1, line="{victim} is CC'd. {dispeller} is right there. In my line of work we call that negligence." },
             { id="rog_cca_u04", weight=1, line="I've timed {dispeller}'s dispel response. It's slower than my Sap. And Sap is a MELEE ability." },
         },
         RARE = {
             { id="rog_cca_r01", weight=1, line="In my debriefing report, {dispeller}'s failure to dispel {victim}'s {spell} will be noted. With timestamps." },
-            { id="rog_cca_r02", weight=1, line="{victim} spent {duration} in {spell}. {dispeller} spent {duration} doing nothing. Mission efficiency: catastrophic." },
+            { id="rog_cca_r02", weight=1, line="{victim} spent in {spell}. {dispeller} spent doing nothing. Mission efficiency: catastrophic." },
         },
         MYTHIC = {
             { id="rog_cca_m01", weight=1, line="I could have re-stealthed, crossed the room, and Sapped a new target in the time {dispeller} took to NOT dispel {victim}." },

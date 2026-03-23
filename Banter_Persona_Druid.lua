@@ -139,15 +139,32 @@ statements = {
             { id="dru_int_c01", weight=1, line="Nice interrupt. I was in bear form. Bash was ready. Theoretically." },
             { id="dru_int_c02", weight=1, line="Interrupted. Good. I don't have a reliable kick. I have a stun. In bear form. Sometimes." },
             { id="dru_int_c03", weight=1, line="{source} with the kick. I had... Feral Charge. If I was in bear. Which I wasn't." },
+            { id="dru_int_c04", weight=1, line="{source} stopped {interrupted}! I would've Bashed but... wrong form. Again." },
+            { id="dru_int_c05", weight=1, line="{interrupted} denied! I was mid-shift. I'm always mid-shift." },
+            { id="dru_int_c06", weight=1, line="Cast cancelled! I had Feral Charge ready. In theory. In practice... cat form." },
+            { id="dru_int_c07", weight=1, line="{source} kicked {interrupted}. Nature approves. I approve. My mana bar weeps." },
+            { id="dru_int_c08", weight=1, line="That mob tried to cast. {source} disagreed. Violently. Druids respect that." },
+            { id="dru_int_c09", weight=1, line="{interrupted} cancelled. I was going to shift to bear and Bash but... it's handled." },
+            { id="dru_int_c10", weight=1, line="Kicked! If only I could interrupt without form-shifting. Three times." },
+            { id="dru_int_c11", weight=1, line="{source} stopped {interrupted}. I contributed by being in the wrong form nearby." },
+            { id="dru_int_c12", weight=1, line="Interrupt landed! My Bash was on standby. In another form. In another universe." },
         },
         UNCOMMON = {
             { id="dru_int_u01", weight=1, line="I could have interrupted with Bash. But I would've had to shift to bear. Then back to cat. It's a whole process." },
+            { id="dru_int_u02", weight=1, line="{source} kicked {interrupted}. Cost them nothing. Would've cost me 3 GCDs and my entire identity." },
+            { id="dru_int_u03", weight=1, line="That {interrupted} almost went off. I Feral Charged once to interrupt. Hit a wall. Nature remembers." },
+            { id="dru_int_u04", weight=1, line="Bear → Bash → Cat. That's how I interrupt. {source} just... pressed one button. Must be nice." },
+            { id="dru_int_u05", weight=1, line="{source} stopped {interrupted}. I was emotionally prepared to shift. Physically too slow." },
+            { id="dru_int_u06", weight=1, line="My interrupt requires a form shift, a stun, and a prayer. {source}'s requires one button. Balance? Not for druids." },
         },
         RARE = {
             { id="dru_int_r01", weight=1, line="I Feral Charged the caster, Bashed it, shifted to cat, and continued DPS. Druid multitasking at its finest." },
+            { id="dru_int_r02", weight=1, line="{source} denied {interrupted} in one button press. I need three form shifts for that. The JEALOUSY." },
+            { id="dru_int_r03", weight=1, line="Once I shifted bear mid-air to Bash a caster. Missed. Shifted back. Nobody saw. Until now." },
         },
         MYTHIC = {
             { id="dru_int_m01", weight=1, line="Between Bash and Feral Charge, I CAN interrupt. It just requires 2 form shifts and perfect timing." },
+            { id="dru_int_m02", weight=1, line="{source} annihilated {interrupted} with one kick. I would've needed: bear shift, Bash, cat shift, resuming DPS, and therapy." },
         },
     },
 
@@ -227,13 +244,13 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="dru_cca_c01", weight=1, line="{victim} just got {spell}'d! {duration}! I could shift out of that but... they can't." },
+            { id="dru_cca_c01", weight=1, line="{victim} just got {spell}'d! I could shift out of that but... they can't." },
             { id="dru_cca_c02", weight=1, line="{victim} is CC'd! {spell}! Nature does NOT approve of this!" },
-            { id="dru_cca_c03", weight=1, line="{spell} on {victim}! {duration}! If it were poison or a curse I'd handle it but... it's not." },
+            { id="dru_cca_c03", weight=1, line="{spell} on {victim}! If it were poison or a curse I'd handle it but... it's not." },
             { id="dru_cca_c04", weight=1, line="{victim} is locked down by {spell}. The natural order is disrupted. Very un-druidic." },
-            { id="dru_cca_c05", weight=1, line="{victim} caught a {spell}! {duration}! I shifted forms three times in sympathy." },
+            { id="dru_cca_c05", weight=1, line="{victim} caught a {spell}! I shifted forms three times in sympathy." },
             { id="dru_cca_c06", weight=1, line="{victim} is disabled! {spell}! I want to help but I'm currently... a bear? No wait, cat. No..." },
-            { id="dru_cca_c07", weight=1, line="{spell} hit {victim}. {duration}. I'm rooting for them. Not Entangling Roots. Emotionally." },
+            { id="dru_cca_c07", weight=1, line="{spell} hit {victim}. I'm rooting for them. Not Entangling Roots. Emotionally." },
             { id="dru_cca_c08", weight=1, line="{victim} ate a {spell}! If I could Abolish THAT I would but nature has limits apparently." },
         },
         UNCOMMON = {

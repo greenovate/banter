@@ -138,15 +138,32 @@ statements = {
             { id="wlk_int_c01", weight=1, line="Interrupted. If it was casting a shadow spell, I'm almost offended. That's MY thing." },
             { id="wlk_int_c02", weight=1, line="Nice kick. I would've feared it but that causes different problems." },
             { id="wlk_int_c03", weight=1, line="{source} interrupted the cast. Decisive. A little aggressive. I approve." },
+            { id="wlk_int_c04", weight=1, line="{interrupted} denied. That mob's casting career is over." },
+            { id="wlk_int_c05", weight=1, line="{source} shut that down. Even my demon nodded. He never nods." },
+            { id="wlk_int_c06", weight=1, line="Cast cancelled. The darkness approves of silence." },
+            { id="wlk_int_c07", weight=1, line="{source} kicked {interrupted}. Efficient. Almost demonic in its precision." },
+            { id="wlk_int_c08", weight=1, line="That mob tried to cast. How quaint. How futile." },
+            { id="wlk_int_c09", weight=1, line="{interrupted} locked out. One less spell in the world. I should be sad but I'm not." },
+            { id="wlk_int_c10", weight=1, line="Interrupted before the cast even finished. The mob felt what I feel every time someone dies." },
+            { id="wlk_int_c11", weight=1, line="{source} silenced the caster. My kind of party member." },
+            { id="wlk_int_c12", weight=1, line="{interrupted} never went off. Good. That spell was beneath this encounter." },
         },
         UNCOMMON = {
             { id="wlk_int_u01", weight=1, line="I have Spell Lock. Via my Felhunter. We interrupt as a team. A dark, creepy team." },
+            { id="wlk_int_u02", weight=1, line="{source} kicked {interrupted}. My Felhunter is jealous. He lives for that." },
+            { id="wlk_int_u03", weight=1, line="Spell Lock was ready but {source} got there first. I'll tell my demon it wasn't personal." },
+            { id="wlk_int_u04", weight=1, line="That {interrupted} would have been painful. For you. Not for me. I have Soul Link." },
+            { id="wlk_int_u05", weight=1, line="{source} interrupted casually. Like swatting a fly. I relate to this energy." },
+            { id="wlk_int_u06", weight=1, line="My demon wanted to Spell Lock it but it was already dead inside. Then outside. Then loot." },
         },
         RARE = {
             { id="wlk_int_r01", weight=1, line="My Felhunter did the interrupt. Good boy. He gets a soul snack later." },
+            { id="wlk_int_r02", weight=1, line="{source} denied {interrupted} and the mob's spirit broke. I could see it. It was beautiful." },
+            { id="wlk_int_r03", weight=1, line="Between Spell Lock and {source}'s kick, that caster got NO spells off. Poetic suffering." },
         },
         MYTHIC = {
             { id="wlk_int_m01", weight=1, line="Between my Spell Lock and their kick, that mob cast nothing. Die silent. That's poetic." },
+            { id="wlk_int_m02", weight=1, line="{source} just erased {interrupted} from existence. The void takes notes. And so do I." },
         },
     },
 
@@ -226,19 +243,19 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="wlk_cca_c01", weight=1, line="{victim} just got hit with {spell}. {duration} of suffering. I'd sympathize but I deal in suffering." },
+            { id="wlk_cca_c01", weight=1, line="{victim} just got hit with {spell}. of suffering. I'd sympathize but I deal in suffering." },
             { id="wlk_cca_c02", weight=1, line="{victim} is CC'd! {spell}! Not the fun kind of CC. The involuntary kind." },
             { id="wlk_cca_c03", weight=1, line="{spell} on {victim}. Someone should fix that. Not me. But someone." },
-            { id="wlk_cca_c04", weight=1, line="{victim} is locked down by {spell}. That's {duration}. My DoTs are still ticking though." },
+            { id="wlk_cca_c04", weight=1, line="{victim} is locked down by {spell}. That's My DoTs are still ticking though." },
             { id="wlk_cca_c05", weight=1, line="{victim} caught a {spell}. I'd Fear the mob back but that usually makes things worse." },
             { id="wlk_cca_c06", weight=1, line="{victim} is disabled. {spell}. Tragic. Anyway, my DoTs need refreshing." },
-            { id="wlk_cca_c07", weight=1, line="Oh, {victim} got {spell}'d. {duration}. The darkness takes another one. Temporarily." },
-            { id="wlk_cca_c08", weight=1, line="{spell} landed on {victim}. That's {duration} of standing there. Very undignified." },
+            { id="wlk_cca_c07", weight=1, line="Oh, {victim} got {spell}'d. The darkness takes another one. Temporarily." },
+            { id="wlk_cca_c08", weight=1, line="{spell} landed on {victim}. Just standing there. Very undignified." },
         },
         UNCOMMON = {
             { id="wlk_cca_u01", weight=1, line="{dispeller}, {victim} has {spell} on them. Your literal job includes fixing this." },
             { id="wlk_cca_u02", weight=1, line="{victim} is CC'd. {dispeller} is watching. My demon is also watching. At least MY minion has an excuse." },
-            { id="wlk_cca_u03", weight=1, line="{dispeller}, that {spell} on {victim} isn't going to dispel itself. Well, in {duration}. But WHY WAIT." },
+            { id="wlk_cca_u03", weight=1, line="{dispeller}, that {spell} on {victim} isn't going to dispel itself. Well, in But WHY WAIT." },
             { id="wlk_cca_u04", weight=1, line="I sacrifice my OWN health to deal damage and {dispeller} can't even click dispel for {victim}." },
         },
         RARE = {

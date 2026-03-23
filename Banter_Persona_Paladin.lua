@@ -140,15 +140,32 @@ statements = {
             { id="pal_int_c01", weight=1, line="Nice interrupt. I have... um. Hammer of Justice. On a one-minute cooldown. We're basically covered." },
             { id="pal_int_c02", weight=1, line="{source} kicked it. I would have Hammer of Justice'd but it stuns, not interrupts. Close enough." },
             { id="pal_int_c03", weight=1, line="Good interrupt. My contribution is standing here, glowing, providing an aura." },
+            { id="pal_int_c04", weight=1, line="{source} stopped {interrupted}! The Light is pleased. Probably." },
+            { id="pal_int_c05", weight=1, line="{interrupted} cancelled! I had Hammer of Justice ready. In 45 seconds." },
+            { id="pal_int_c06", weight=1, line="Cast denied! My one-minute stun was... not ready. But my FAITH was." },
+            { id="pal_int_c07", weight=1, line="{source} kicked {interrupted}. Meanwhile I provide auras. We all contribute differently." },
+            { id="pal_int_c08", weight=1, line="That mob's cast failed. Righteous." },
+            { id="pal_int_c09", weight=1, line="{interrupted} denied. By {source}. Not by me. I was buffing." },
+            { id="pal_int_c10", weight=1, line="Interrupt confirmed! The Light shines on those who kick on time." },
+            { id="pal_int_c11", weight=1, line="{source} shut down {interrupted}. My Hammer was on cooldown. It's ALWAYS on cooldown." },
+            { id="pal_int_c12", weight=1, line="That caster just learned that {source} doesn't negotiate. Inspiring." },
         },
         UNCOMMON = {
             { id="pal_int_u01", weight=1, line="Paladins don't have a true interrupt. We have a stun. On a 1 minute CD. We do our best." },
+            { id="pal_int_u02", weight=1, line="{source} kicked {interrupted}. I blessed them beforehand. That counts as a team effort." },
+            { id="pal_int_u03", weight=1, line="The Light gives paladins many gifts. A short-cooldown interrupt is not one of them." },
+            { id="pal_int_u04", weight=1, line="Hammer of Justice was 40 seconds from ready. {source} didn't wait. Wise choice." },
+            { id="pal_int_u05", weight=1, line="{source} stopped {interrupted}. I contributed by keeping them alive long enough TO kick." },
+            { id="pal_int_u06", weight=1, line="That {interrupted} almost went off. Almost. Then {source} happened. The Light provides." },
         },
         RARE = {
             { id="pal_int_r01", weight=1, line="Hammer of Justice: technically an interrupt, spiritually a panic button, functionally on cooldown." },
+            { id="pal_int_r02", weight=1, line="{source} denied {interrupted} and I felt the Light smile. Or that was Concentration Aura. Either way." },
+            { id="pal_int_r03", weight=1, line="Once I Hammer of Justice'd a caster to interrupt. Then it wore off. Then it finished casting. Then I Bubbled." },
         },
         MYTHIC = {
             { id="pal_int_m01", weight=1, line="My interrupt tool kit: one stun, one minute cooldown, and righteous indignation." },
+            { id="pal_int_m02", weight=1, line="{source} destroyed {interrupted} in a heartbeat. I would write a hymn about it but I'm too busy being on cooldown." },
         },
     },
 
@@ -228,13 +245,13 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="pal_cca_c01", weight=1, line="{victim} just got {spell}'d! {duration}! The Light shines on those who DISPEL, by the way." },
+            { id="pal_cca_c01", weight=1, line="{victim} just got {spell}'d! The Light shines on those who DISPEL, by the way." },
             { id="pal_cca_c02", weight=1, line="{victim} is CC'd! {spell}! I'd Cleanse it but I need to check if the Light covers that." },
-            { id="pal_cca_c03", weight=1, line="{spell} on {victim}! {duration}! This is a righteous outrage!" },
+            { id="pal_cca_c03", weight=1, line="{spell} on {victim}! This is a righteous outrage!" },
             { id="pal_cca_c04", weight=1, line="{victim} is locked down by {spell}. The Light weeps. Actually I'm weeping. Same thing." },
-            { id="pal_cca_c05", weight=1, line="{victim} caught a {spell}! {duration}! I'd Bubble them if I could! But I can't! I can only Bubble ME!" },
+            { id="pal_cca_c05", weight=1, line="{victim} caught a {spell}! I'd Bubble them if I could! But I can't! I can only Bubble ME!" },
             { id="pal_cca_c06", weight=1, line="{victim} is disabled! {spell}! Where's the justice? The DIVINE justice specifically?" },
-            { id="pal_cca_c07", weight=1, line="{spell} hit {victim}. {duration}. I'm composing a prayer for their swift liberation." },
+            { id="pal_cca_c07", weight=1, line="{spell} hit {victim}. I'm composing a prayer for their swift liberation." },
             { id="pal_cca_c08", weight=1, line="{victim} ate a {spell}. The Light protects... well, not right NOW apparently." },
         },
         UNCOMMON = {

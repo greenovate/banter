@@ -140,15 +140,32 @@ statements = {
             { id="hun_int_c01", weight=1, line="Nice interrupt. I had a Scatter Shot ready but you got there first." },
             { id="hun_int_c02", weight=1, line="{source} interrupted. My pet barked in approval." },
             { id="hun_int_c03", weight=1, line="Good kick. I'm a ranged class. My interrupts involve bouncing things off skulls at 40 yards." },
+            { id="hun_int_c04", weight=1, line="{source} stopped {interrupted}! My pet approves. He barked." },
+            { id="hun_int_c05", weight=1, line="{interrupted} cancelled! I was aiming Scatter Shot but {source} handled it." },
+            { id="hun_int_c06", weight=1, line="Kicked mid-cast! My pet thinks he could've done it. He couldn't." },
+            { id="hun_int_c07", weight=1, line="{source} interrupted {interrupted}. My pet is giving them the 'good boy' look." },
+            { id="hun_int_c08", weight=1, line="That cast bar vanished. My pet celebrates by chewing on something." },
+            { id="hun_int_c09", weight=1, line="{interrupted} denied! My pet tried to take credit. He was eating." },
+            { id="hun_int_c10", weight=1, line="Cast stopped! Even from 40 yards I could tell that was a good kick." },
+            { id="hun_int_c11", weight=1, line="{source} shut down {interrupted}. My Arcane Shot was plan B. This was better." },
+            { id="hun_int_c12", weight=1, line="Interrupt confirmed! My pet wagged. He doesn't understand spells but he understands winning." },
         },
         UNCOMMON = {
             { id="hun_int_u01", weight=1, line="I was going to Scatter Shot it. From max range. Dramatically. But {source} handled it." },
+            { id="hun_int_u02", weight=1, line="{source} kicked {interrupted}. My pet is studying their technique. He's very studious." },
+            { id="hun_int_u03", weight=1, line="My pet's Intimidation was ready. But {source} got the kick. My pet is sulking." },
+            { id="hun_int_u04", weight=1, line="That {interrupted} would've hit someone. My pet was ready to Intervene. He can't Intervene. He just stands there." },
+            { id="hun_int_u05", weight=1, line="{source} stopped {interrupted}. My contribution: Auto Shot. From safety." },
+            { id="hun_int_u06", weight=1, line="Scatter Shot has a cooldown. {source}'s kick doesn't. I'm jealous, just saying." },
         },
         RARE = {
             { id="hun_int_r01", weight=1, line="My pet intimidated the caster. Technically an interrupt. He's very talented." },
+            { id="hun_int_r02", weight=1, line="{source} denied {interrupted} and my pet gave the most enthusiastic bark I've ever heard." },
+            { id="hun_int_r03", weight=1, line="Between Scatter Shot, my pet, and {source}'s kick, that caster is having the worst day." },
         },
         MYTHIC = {
             { id="hun_int_m01", weight=1, line="Between Scatter Shot, traps, and my pet's Intimidation, I am a one-person CC department." },
+            { id="hun_int_m02", weight=1, line="{source} stopped {interrupted} and my pet is LOSING IT. Full zoomies. He lives for interrupts. We all do." },
         },
     },
 
@@ -228,14 +245,14 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="hun_cca_c01", weight=1, line="{victim} just got {spell}'d! {duration}! My pet wants to help but he'd probably make it worse." },
+            { id="hun_cca_c01", weight=1, line="{victim} just got {spell}'d! My pet wants to help but he'd probably make it worse." },
             { id="hun_cca_c02", weight=1, line="{victim} is CC'd! {spell}! I could Scatter Shot the mob but... wrong target." },
-            { id="hun_cca_c03", weight=1, line="{spell} on {victim}! That's {duration}! My pet is staring at them. He's concerned." },
+            { id="hun_cca_c03", weight=1, line="{spell} on {victim}! My pet is staring at them. He's concerned." },
             { id="hun_cca_c04", weight=1, line="{victim} is locked down by {spell}. My pet just tilted his head. He does that when he's worried." },
-            { id="hun_cca_c05", weight=1, line="{victim} caught a {spell}! {duration}! Someone who isn't me should fix that!" },
+            { id="hun_cca_c05", weight=1, line="{victim} caught a {spell}! Someone who isn't me should fix that!" },
             { id="hun_cca_c06", weight=1, line="{victim} is disabled! {spell}! I'd help but I only know how to CC mobs, not un-CC friends." },
             { id="hun_cca_c07", weight=1, line="{spell} hit {victim}! My pet looked at me like I should do something. I looked back. Standoff." },
-            { id="hun_cca_c08", weight=1, line="{victim} just ate a {spell}. {duration}. My pet is offering emotional support by sitting nearby." },
+            { id="hun_cca_c08", weight=1, line="{victim} just ate a {spell}. My pet is offering emotional support by sitting nearby." },
         },
         UNCOMMON = {
             { id="hun_cca_u01", weight=1, line="{dispeller}, {victim} is in a {spell}! You have a dispel! My pet doesn't! USE YOURS!" },
