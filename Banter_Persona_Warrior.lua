@@ -160,24 +160,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="war_int_c01", weight=1, line="{interrupted} kicked. No casting in melee range." },
-            { id="war_int_c02", weight=1, line="{interrupted} interrupted. Good. More hitting, less magic." },
-            { id="war_int_c03", weight=1, line="{interrupted} locked out. That's how it's done." },
-            { id="war_int_c04", weight=1, line="{interrupted} denied. Casters don't get to have fun here." },
-            { id="war_int_c05", weight=1, line="{interrupted} cancelled. Sit down." },
-            { id="war_int_c06", weight=1, line="{interrupted} shut down. NO CASTING ZONE." },
+            { id="war_int_c01", weight=1, line="{source} kicked {interrupted}. Good." },
+            { id="war_int_c02", weight=1, line="{source} interrupted {interrupted}. No casting in melee range." },
+            { id="war_int_c03", weight=1, line="{interrupted} shut down by {source}. That's how it's done." },
+            { id="war_int_c04", weight=1, line="{source} locked out {interrupted}. SIT DOWN." },
+            { id="war_int_c05", weight=1, line="{interrupted} denied. Nice kick, {source}." },
+            { id="war_int_c06", weight=1, line="{source} crushed {interrupted}. NO CASTING ZONE." },
         },
         UNCOMMON = {
-            { id="war_int_u01", weight=1, line="{interrupted} never went off. That's one less thing trying to kill us." },
-            { id="war_int_u02", weight=1, line="{interrupted} kicked mid-cast. Clean. Violent. Approved." },
-            { id="war_int_u03", weight=1, line="{interrupted} off the table. That would've been a repair bill." },
+            { id="war_int_u01", weight=1, line="{source} killed {interrupted} mid-cast. Clean. Violent. Approved." },
+            { id="war_int_u02", weight=1, line="{interrupted} never went off thanks to {source}. One less thing trying to kill us." },
+            { id="war_int_u03", weight=1, line="{source} smashed {interrupted} off the table. That would've been a repair bill." },
         },
         RARE = {
-            { id="war_int_r01", weight=1, line="{interrupted} deleted. That mob's casting career is OVER." },
-            { id="war_int_r02", weight=1, line="{interrupted} crushed. Melee solves everything." },
+            { id="war_int_r01", weight=1, line="{source} deleted {interrupted}. That mob's casting career is OVER." },
+            { id="war_int_r02", weight=1, line="{interrupted} erased by {source}. THAT'S how warriors solve problems." },
         },
         MYTHIC = {
-            { id="war_int_m01", weight=1, line="{interrupted} erased from existence. THAT'S how you fight." },
+            { id="war_int_m01", weight=1, line="{source} annihilated {interrupted}. Perfect kick. I'd salute but my hands are full of axe." },
         },
     },
 
@@ -265,24 +265,24 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="war_cca_c01", weight=1, line="{spell} landed. Needs a dispel." },
-            { id="war_cca_c02", weight=1, line="{spell} — someone break that." },
-            { id="war_cca_c03", weight=1, line="{spell} on a group member. Less damage until it's gone." },
-            { id="war_cca_c04", weight=1, line="{spell} hit. That's lost DPS. Fix it." },
-            { id="war_cca_c05", weight=1, line="{spell} — we're down a body until that's cleared." },
-            { id="war_cca_c06", weight=1, line="{spell} — dispel needed." },
+            { id="war_cca_c01", weight=1, line="{spell} on {victim}. Needs a dispel." },
+            { id="war_cca_c02", weight=1, line="{victim} got hit by {spell} — someone break that." },
+            { id="war_cca_c03", weight=1, line="{spell} on {victim}. Less damage until it's gone." },
+            { id="war_cca_c04", weight=1, line="{victim} hit with {spell}. That's lost DPS. Fix it." },
+            { id="war_cca_c05", weight=1, line="{spell} on {victim} — we're down a body until that's cleared." },
+            { id="war_cca_c06", weight=1, line="{victim} caught {spell} — dispel needed." },
         },
         UNCOMMON = {
-            { id="war_cca_u01", weight=1, line="{spell} is sitting there. Every second it's up is a second the mob isn't dying." },
-            { id="war_cca_u02", weight=1, line="{spell} needs breaking. I'd do it myself but I only know how to break FACES." },
-            { id="war_cca_u03", weight=1, line="{spell} on our side. This is why I hate magic." },
+            { id="war_cca_u01", weight=1, line="{spell} on {victim}. Every second it's up is a second the mob isn't dying." },
+            { id="war_cca_u02", weight=1, line="{victim} got {spell}. I'd break it myself but I only know how to break FACES." },
+            { id="war_cca_u03", weight=1, line="{spell} on {victim}. This is why I hate magic." },
         },
         RARE = {
-            { id="war_cca_r01", weight=1, line="{spell} up and nobody's moving. I'm surrounded by people who don't press their buttons." },
-            { id="war_cca_r02", weight=1, line="{spell} still active. Would be nice to have a full group again." },
+            { id="war_cca_r01", weight=1, line="{spell} on {victim} and nobody's moving. I'm surrounded by people who don't press their buttons." },
+            { id="war_cca_r02", weight=1, line="{victim} still has {spell}. Would be nice to have a full group again." },
         },
         MYTHIC = {
-            { id="war_cca_m01", weight=1, line="{spell} up. Mob still alive. Nobody dispelling. AS USUAL." },
+            { id="war_cca_m01", weight=1, line="{spell} on {victim}. Mob still alive. Nobody dispelling. AS USUAL." },
         },
     },
 

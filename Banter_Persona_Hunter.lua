@@ -137,24 +137,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="hun_int_c01", weight=1, line="{interrupted} kicked. My pet barked in approval." },
-            { id="hun_int_c02", weight=1, line="{interrupted} interrupted. Even from 40 yards I could tell that was clean." },
-            { id="hun_int_c03", weight=1, line="{interrupted} cancelled. My pet tried to take credit." },
-            { id="hun_int_c04", weight=1, line="{interrupted} denied. No casting near my pet." },
-            { id="hun_int_c05", weight=1, line="{interrupted} locked out. My pet is celebrating by chewing on something." },
-            { id="hun_int_c06", weight=1, line="{interrupted} shut down. My pet approves. He barked." },
+            { id="hun_int_c01", weight=1, line="{source} kicked {interrupted}. My pet barked in approval." },
+            { id="hun_int_c02", weight=1, line="{source} interrupted {interrupted}. Clean shot from 40 yards." },
+            { id="hun_int_c03", weight=1, line="{interrupted} cancelled by {source}. My pet tried to take credit." },
+            { id="hun_int_c04", weight=1, line="{source} denied {interrupted}. No casting near my pet." },
+            { id="hun_int_c05", weight=1, line="{interrupted} locked out by {source}. My pet is celebrating." },
+            { id="hun_int_c06", weight=1, line="{source} shut down {interrupted}. My pet approves. He barked." },
         },
         UNCOMMON = {
-            { id="hun_int_u01", weight=1, line="{interrupted} off the table. Scatter Shot was plan B. Didn't need it." },
-            { id="hun_int_u02", weight=1, line="{interrupted} deleted. My pet tried to Intimidate it too. Overkill but heart's in the right place." },
-            { id="hun_int_u03", weight=1, line="{interrupted} denied. My pet is studying that technique. Very studious." },
+            { id="hun_int_u01", weight=1, line="{source} killed {interrupted}. Scatter Shot was plan B. Didn't need it." },
+            { id="hun_int_u02", weight=1, line="{interrupted} deleted by {source}. My pet tried to Intimidate too. Overkill but heart's in the right place." },
+            { id="hun_int_u03", weight=1, line="{source} denied {interrupted}. My pet is studying the technique. Very studious." },
         },
         RARE = {
-            { id="hun_int_r01", weight=1, line="{interrupted} erased. My pet gave the most enthusiastic bark I've ever heard." },
-            { id="hun_int_r02", weight=1, line="{interrupted} crushed. Between Scatter Shot and kicks, that caster had no chance." },
+            { id="hun_int_r01", weight=1, line="{source} erased {interrupted}. My pet gave the most enthusiastic bark I've ever heard." },
+            { id="hun_int_r02", weight=1, line="{interrupted} crushed by {source}. Between Scatter Shot and kicks, that caster had no chance." },
         },
         MYTHIC = {
-            { id="hun_int_m01", weight=1, line="{interrupted} obliterated. My pet is doing full zoomies. He lives for this." },
+            { id="hun_int_m01", weight=1, line="{source} obliterated {interrupted}. My pet is doing full zoomies. He lives for this." },
         },
     },
 
@@ -234,24 +234,24 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="hun_cca_c01", weight=1, line="{spell} landed. My pet wants to help but he'd probably make it worse." },
-            { id="hun_cca_c02", weight=1, line="{spell} — someone with a dispel should handle this. Not my pet." },
-            { id="hun_cca_c03", weight=1, line="{spell} on our side. My pet is concerned. He tilted his head." },
-            { id="hun_cca_c04", weight=1, line="{spell} hit. I only know how to CC mobs, not un-CC friends." },
-            { id="hun_cca_c05", weight=1, line="{spell} active. My pet is offering emotional support by sitting nearby." },
-            { id="hun_cca_c06", weight=1, line="{spell} — needs a dispel. My pet stared at me. I stared back. Standoff." },
+            { id="hun_cca_c01", weight=1, line="{spell} on {victim}. My pet wants to help but he'd probably make it worse." },
+            { id="hun_cca_c02", weight=1, line="{victim} got {spell} — someone with a dispel should handle this. Not my pet." },
+            { id="hun_cca_c03", weight=1, line="{spell} on {victim}. My pet is concerned. He tilted his head." },
+            { id="hun_cca_c04", weight=1, line="{victim} hit with {spell}. I only know how to CC mobs, not un-CC friends." },
+            { id="hun_cca_c05", weight=1, line="{spell} on {victim}. My pet is offering emotional support by sitting nearby." },
+            { id="hun_cca_c06", weight=1, line="{victim} caught {spell} — needs a dispel. My pet stared at me. We had a moment." },
         },
         UNCOMMON = {
-            { id="hun_cca_u01", weight=1, line="{spell} still up. Even my pet has faster reaction time. And he chases his tail." },
-            { id="hun_cca_u02", weight=1, line="{spell} needs breaking. If my pet could dispel I'd send him. But he can't." },
-            { id="hun_cca_u03", weight=1, line="{spell} sitting there. My pet tries harder than this. Just saying." },
+            { id="hun_cca_u01", weight=1, line="{spell} still on {victim}. Even my pet has faster reflexes. And he chases his tail." },
+            { id="hun_cca_u02", weight=1, line="{victim} has {spell}. If my pet could dispel I'd send him. But he can't." },
+            { id="hun_cca_u03", weight=1, line="{spell} on {victim}. My pet tries harder than this. Just saying." },
         },
         RARE = {
-            { id="hun_cca_r01", weight=1, line="{spell} up. My pet once broke my own Freezing Trap mid-pull. Even HE has better reflexes than this." },
-            { id="hun_cca_r02", weight=1, line="{spell} still active. My pet is looking at the group. Then at me. Even he gets it." },
+            { id="hun_cca_r01", weight=1, line="{spell} on {victim}. My pet once broke my Freezing Trap mid-pull. Even HE has better reflexes than this." },
+            { id="hun_cca_r02", weight=1, line="{victim} still has {spell}. My pet is looking at the group. Then at me. Even he gets it." },
         },
         MYTHIC = {
-            { id="hun_cca_m01", weight=1, line="{spell} up. Nobody moving. My pet is judging everyone. And he eats garbage off the ground." },
+            { id="hun_cca_m01", weight=1, line="{spell} on {victim}. Nobody moving. My pet is judging everyone. And he eats garbage off the ground." },
         },
     },
 

@@ -69,6 +69,28 @@ local WIPE_WINDOW    = 8
 local WIPE_THRESHOLD = 3
 
 ---------------------------------------------------------------------------
+-- Group-join grace period for callout dedup
+-- Suppresses callouts for 5s after joining a group so peer discovery
+-- can complete and only the leader fires.
+---------------------------------------------------------------------------
+local groupJoinTime = 0
+local DEDUP_GRACE   = 5   -- seconds to wait for peer discovery
+
+local function IsInDedupGrace()
+    return (GetTime() - groupJoinTime) < DEDUP_GRACE
+end
+
+local function ShouldSuppressCallout()
+    -- Solo: never suppress (caller already gates solo separately)
+    if (GetNumGroupMembers() or 0) <= 1 then return false end
+    -- Grace period: suppress all callouts while peers are still being discovered
+    if IsInDedupGrace() then return true end
+    -- After grace: normal leader dedup
+    if ns.comm.GetPeerCount() > 0 and not ns.comm.AmLeader() then return true end
+    return false
+end
+
+---------------------------------------------------------------------------
 -- Disconnect tracking
 ---------------------------------------------------------------------------
 local connectionState = {}   -- { ["Name"] = true/false (connected) }
@@ -448,8 +470,8 @@ function triggers.OnCombatLog()
             local cd   = TRIGGER_COOLDOWN["INTERRUPT"] or 5
             local last = triggerCooldowns["INTERRUPT"] or 0
             if (GetTime() - last) < cd then return end
-            -- Leader-only: if other Banter users are present, only leader calls out
-            if ns.comm.GetPeerCount() > 0 and not ns.comm.AmLeader() then return end
+            -- Dedup: only one Banter user fires per event
+            if ShouldSuppressCallout() then return end
             local spellName      = select(13, CombatLogGetCurrentEventInfo())
             local extraSpellName = select(16, CombatLogGetCurrentEventInfo())
             -- Determine if WE interrupted or a group member did
@@ -687,8 +709,8 @@ function triggers.OnCCCallout(dstGUID, dstName, srcName, spellName, spellId)
     local cd   = TRIGGER_COOLDOWN["CC_CALLOUT"] or 5
     local last = triggerCooldowns["CC_CALLOUT"] or 0
     if (GetTime() - last) < cd then return end
-    -- Leader-only: if other Banter users are present, only leader calls out
-    if ns.comm.GetPeerCount() > 0 and not ns.comm.AmLeader() then return end
+    -- Dedup: only one Banter user fires per event
+    if ShouldSuppressCallout() then return end
 
     -- Gather context
     local duration = GetCCDuration(spellName, dstName)
@@ -721,8 +743,8 @@ function triggers.OnPlayerKill(dstGUID, dstName)
     local last = triggerCooldowns["PLAYER_KILL"] or 0
     if (GetTime() - last) < cd then return end
 
-    -- Leader-only dedup
-    if ns.comm.GetPeerCount() > 0 and not ns.comm.AmLeader() then return end
+    -- Dedup: only one Banter user fires per event
+    if ShouldSuppressCallout() then return end
 
     -- Try to get victim class/level if they're our current target
     local killedClass, killedLevel
@@ -843,7 +865,13 @@ end
 function triggers.OnRosterUpdate()
     if not IsInGroup() then
         connectionState = {}
+        groupJoinTime = 0
         return
+    end
+
+    -- Track group join for dedup grace period
+    if groupJoinTime == 0 then
+        groupJoinTime = GetTime()
     end
 
     local prefix = IsInRaid() and "raid" or "party"

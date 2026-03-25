@@ -135,24 +135,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="wlk_int_c01", weight=1, line="{interrupted} denied. The darkness approves of silence." },
-            { id="wlk_int_c02", weight=1, line="{interrupted} interrupted. How quaint. How futile." },
-            { id="wlk_int_c03", weight=1, line="{interrupted} locked out. One less spell in the world." },
-            { id="wlk_int_c04", weight=1, line="{interrupted} cancelled. That spell was beneath this encounter." },
-            { id="wlk_int_c05", weight=1, line="{interrupted} shut down. Efficient. Almost demonic." },
-            { id="wlk_int_c06", weight=1, line="{interrupted} silenced. My Felhunter nodded. He never nods." },
+            { id="wlk_int_c01", weight=1, line="{source} denied {interrupted}. The darkness approves." },
+            { id="wlk_int_c02", weight=1, line="{source} interrupted {interrupted}. Efficient. Almost demonic." },
+            { id="wlk_int_c03", weight=1, line="{interrupted} locked out by {source}. One less spell in the world." },
+            { id="wlk_int_c04", weight=1, line="{source} cancelled {interrupted}. My Felhunter nodded." },
+            { id="wlk_int_c05", weight=1, line="{interrupted} shut down by {source}. Silence suits them." },
+            { id="wlk_int_c06", weight=1, line="{source} killed {interrupted}. That spell died quietly. As it should." },
         },
         UNCOMMON = {
-            { id="wlk_int_u01", weight=1, line="{interrupted} deleted. Spell Lock was ready but someone beat me to it." },
-            { id="wlk_int_u02", weight=1, line="{interrupted} erased. That would have been painful. For you. Not for me." },
-            { id="wlk_int_u03", weight=1, line="{interrupted} crushed. The mob died inside before it died outside." },
+            { id="wlk_int_u01", weight=1, line="{source} deleted {interrupted}. Spell Lock was ready but they beat me to it." },
+            { id="wlk_int_u02", weight=1, line="{interrupted} erased by {source}. That would have been painful. For you. Not for me." },
+            { id="wlk_int_u03", weight=1, line="{source} crushed {interrupted}. The mob died inside before it died outside." },
         },
         RARE = {
-            { id="wlk_int_r01", weight=1, line="{interrupted} annihilated. Zero casts went off that pull. Poetic suffering." },
-            { id="wlk_int_r02", weight=1, line="{interrupted} removed from existence. The void takes notes." },
+            { id="wlk_int_r01", weight=1, line="{source} annihilated {interrupted}. Zero casts went off that pull. Poetic suffering." },
+            { id="wlk_int_r02", weight=1, line="{interrupted} removed from existence by {source}. The void takes notes." },
         },
         MYTHIC = {
-            { id="wlk_int_m01", weight=1, line="{interrupted} obliterated. Die silent. That's poetic." },
+            { id="wlk_int_m01", weight=1, line="{source} obliterated {interrupted}. Die silent. That's poetic." },
         },
     },
 
@@ -232,24 +232,24 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="wlk_cca_c01", weight=1, line="{spell} landed. Not the fun kind of CC. The involuntary kind." },
-            { id="wlk_cca_c02", weight=1, line="{spell} — someone should fix that. Not me. But someone." },
-            { id="wlk_cca_c03", weight=1, line="{spell} on our side. My DoTs are still ticking though." },
-            { id="wlk_cca_c04", weight=1, line="{spell} hit. Tragic. Anyway, my DoTs need refreshing." },
-            { id="wlk_cca_c05", weight=1, line="{spell} active. I'd Fear the mob back but that usually makes things worse." },
-            { id="wlk_cca_c06", weight=1, line="{spell} — needs dispel. The darkness takes another one. Temporarily." },
+            { id="wlk_cca_c01", weight=1, line="{spell} on {victim}. Inconvenient. Not for me." },
+            { id="wlk_cca_c02", weight=1, line="{victim} caught {spell}. Someone should fix that." },
+            { id="wlk_cca_c03", weight=1, line="{spell} on {victim}. My demons don't dispel. Not in their contract." },
+            { id="wlk_cca_c04", weight=1, line="{victim} hit with {spell}. Dispel before it runs out on its own." },
+            { id="wlk_cca_c05", weight=1, line="{spell} on {victim}. This is normally something I do to OTHER people." },
+            { id="wlk_cca_c06", weight=1, line="{victim} got {spell} — dispel it. I only know how to ADD curses." },
         },
         UNCOMMON = {
-            { id="wlk_cca_u01", weight=1, line="{spell} still up. I sacrifice my OWN health to deal damage and nobody can click dispel." },
-            { id="wlk_cca_u02", weight=1, line="{spell} needs breaking. My demon is watching. At least HE has an excuse." },
-            { id="wlk_cca_u03", weight=1, line="{spell} sitting there. Someone's literal job includes fixing this." },
+            { id="wlk_cca_u01", weight=1, line="{spell} on {victim}. My Felhunter can dispel magic. He won't. He's petty." },
+            { id="wlk_cca_u02", weight=1, line="{victim} has {spell}. I know what CC feels like. I cast Fear professionally." },
+            { id="wlk_cca_u03", weight=1, line="{spell} on {victim}. If it were Curse of Agony I'd know exactly when it wears off." },
         },
         RARE = {
-            { id="wlk_cca_r01", weight=1, line="{spell} up. My demons respond faster than the dispel. And I have to SUMMON them first." },
-            { id="wlk_cca_r02", weight=1, line="{spell} still active. A soul shard for every missed dispel and I'd have a full bag." },
+            { id="wlk_cca_r01", weight=1, line="{spell} on {victim}. The irony of a warlock asking for a dispel is not lost on me." },
+            { id="wlk_cca_r02", weight=1, line="{victim} still has {spell}. I offered to Fear the mob instead. Nobody appreciated my alternative." },
         },
         MYTHIC = {
-            { id="wlk_cca_m01", weight=1, line="{spell} up. Nobody moving. The suffering is ours now. At least I'm used to it." },
+            { id="wlk_cca_m01", weight=1, line="{spell} on {victim}. Mob, healer, dispeller — everyone just watching. This is normally MY brand of cruelty." },
         },
     },
 

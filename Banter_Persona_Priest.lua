@@ -143,24 +143,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="pri_int_c01", weight=1, line="{interrupted} kicked. Less incoming damage. Less healing. Thank you." },
-            { id="pri_int_c02", weight=1, line="{interrupted} interrupted. My mana bar sends its regards." },
-            { id="pri_int_c03", weight=1, line="{interrupted} cancelled. One less thing trying to kill my group." },
-            { id="pri_int_c04", weight=1, line="{interrupted} denied. That just saved me a Flash Heal." },
-            { id="pri_int_c05", weight=1, line="{interrupted} locked out. My stress dropped by exactly one notch." },
-            { id="pri_int_c06", weight=1, line="{interrupted} shut down. Finally, HELPFUL DPS." },
+            { id="pri_int_c01", weight=1, line="{source} kicked {interrupted}. Less incoming damage for me. Thank you." },
+            { id="pri_int_c02", weight=1, line="{source} interrupted {interrupted}. My mana bar sends its regards." },
+            { id="pri_int_c03", weight=1, line="{interrupted} cancelled by {source}. One less thing trying to kill my group." },
+            { id="pri_int_c04", weight=1, line="{source} denied {interrupted}. That just saved me a Flash Heal." },
+            { id="pri_int_c05", weight=1, line="{interrupted} locked out by {source}. My stress dropped one notch." },
+            { id="pri_int_c06", weight=1, line="{source} shut down {interrupted}. Finally, HELPFUL DPS." },
         },
         UNCOMMON = {
-            { id="pri_int_u01", weight=1, line="{interrupted} off the table. Every interrupt saves me a heal. Every heal saves mana. Math." },
-            { id="pri_int_u02", weight=1, line="{interrupted} denied. I was already precasting Greater Heal. Now I can cancel. Luxury." },
-            { id="pri_int_u03", weight=1, line="{interrupted} would've chunked someone for 40%%. I KNOW because it hit me last pull." },
+            { id="pri_int_u01", weight=1, line="{source} killed {interrupted}. Every interrupt saves me a heal. Every heal saves mana. Math." },
+            { id="pri_int_u02", weight=1, line="{interrupted} denied by {source}. I was precasting Greater Heal. Now I can cancel. Luxury." },
+            { id="pri_int_u03", weight=1, line="{source} stopped {interrupted}. That would've chunked someone for 40%%. I KNOW because it hit me last pull." },
         },
         RARE = {
-            { id="pri_int_r01", weight=1, line="{interrupted} erased. If every pull had interrupts like that, I'd finish with mana left." },
-            { id="pri_int_r02", weight=1, line="{interrupted} deleted. For one beautiful second I wasn't stressed. Then the tank pulled again." },
+            { id="pri_int_r01", weight=1, line="{source} erased {interrupted}. If every pull had kicks like that, I'd finish with mana left." },
+            { id="pri_int_r02", weight=1, line="{interrupted} deleted by {source}. For one beautiful second I wasn't stressed. Then the tank pulled again." },
         },
         MYTHIC = {
-            { id="pri_int_m01", weight=1, line="{interrupted} annihilated. That alone saved 500 mana. I'm not crying. My eyes are casting." },
+            { id="pri_int_m01", weight=1, line="{source} annihilated {interrupted}. That alone saved 500 mana. I'm not crying. My eyes are casting." },
         },
     },
 
@@ -240,24 +240,24 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="pri_cca_c01", weight=1, line="{spell} landed. Needs a dispel. I'm BUSY." },
-            { id="pri_cca_c02", weight=1, line="{spell} — I can't heal through CC, people." },
-            { id="pri_cca_c03", weight=1, line="{spell} on a group member. Add it to my list of problems." },
-            { id="pri_cca_c04", weight=1, line="{spell} hit. One more thing on MY plate. Great." },
-            { id="pri_cca_c05", weight=1, line="{spell} — that's lost damage until it's cleared." },
-            { id="pri_cca_c06", weight=1, line="{spell} active. Does anyone else see this or is it just ME?" },
+            { id="pri_cca_c01", weight=1, line="{spell} on {victim}. I'm ON it. Give me a second." },
+            { id="pri_cca_c02", weight=1, line="{victim} caught {spell}. Dispelling AFTER this heal." },
+            { id="pri_cca_c03", weight=1, line="{spell} on {victim}. More work for ME. As always." },
+            { id="pri_cca_c04", weight=1, line="{victim} hit with {spell}. I saw it. I'm already casting." },
+            { id="pri_cca_c05", weight=1, line="{spell} on {victim} — dispel queued. Behind three heals." },
+            { id="pri_cca_c06", weight=1, line="{victim} got {spell}. I'll handle it. I handle EVERYTHING." },
         },
         UNCOMMON = {
-            { id="pri_cca_u01", weight=1, line="{spell} still up. I could dispel it myself but I'm keeping the tank alive. Priorities." },
-            { id="pri_cca_u02", weight=1, line="{spell} needs breaking. Now I choose: dispel or keep someone alive. WHY IS THIS MY LIFE." },
-            { id="pri_cca_u03", weight=1, line="{spell} sitting there. Dispel exists. The button works. I promise." },
+            { id="pri_cca_u01", weight=1, line="{spell} on {victim}. Another GCD not spent on healing. Thanks, mob." },
+            { id="pri_cca_u02", weight=1, line="{victim} has {spell}. Dispelling costs mana I don't HAVE. But fine. FINE." },
+            { id="pri_cca_u03", weight=1, line="{spell} on {victim}. Could the mob CC someone NOT taking damage? Just once?" },
         },
         RARE = {
-            { id="pri_cca_r01", weight=1, line="{spell} up. I have Dispel Magic and everything. But I'm HEALING." },
-            { id="pri_cca_r02", weight=1, line="{spell} still active. I threaten to go Shadow ONCE and suddenly everyone pays attention." },
+            { id="pri_cca_r01", weight=1, line="{spell} on {victim}. I dispel, I heal, I buff, I shield. What do the DPS do? Stand in things." },
+            { id="pri_cca_r02", weight=1, line="{victim} still has {spell}. Is there another healer? No? Just me? GREAT." },
         },
         MYTHIC = {
-            { id="pri_cca_m01", weight=1, line="{spell} up. Nobody dispelling. Tank dropping. This is FINE." },
+            { id="pri_cca_m01", weight=1, line="{spell} on {victim}. Healing, dispelling, shielding, buffing — all me. ONE priest. FINITE MANA." },
         },
     },
 

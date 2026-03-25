@@ -94,23 +94,31 @@ end
 function core.ReplaceTokens(line, ctx)
     if not ctx then return line end
     local r = line
+    local myName = UnitName("player")
+
+    -- Self-aware substitution: if a name token is the player, use "I" instead
+    local function selfAware(value, fallback)
+        if not value then return fallback or "someone" end
+        if value == myName then return "I" end
+        return value
+    end
 
     -- Basic context tokens
-    r = r:gsub("{dead}",   ctx.dead   or "someone")
-    r = r:gsub("{looter}", ctx.looter or "someone")
-    r = r:gsub("{target}", ctx.target or "someone")
-    r = r:gsub("{source}", ctx.source or "someone")
+    r = r:gsub("{dead}",   selfAware(ctx.dead))
+    r = r:gsub("{looter}", selfAware(ctx.looter))
+    r = r:gsub("{target}", selfAware(ctx.target))
+    r = r:gsub("{source}", selfAware(ctx.source))
     r = r:gsub("{zone}",   ctx.zone   or GetRealZoneText() or "here")
     r = r:gsub("{spell}",  ctx.spell  or "something")
 
     -- CC Callout tokens
-    r = r:gsub("{victim}",    ctx.victim    or ctx.target or "someone")
+    r = r:gsub("{victim}",    selfAware(ctx.victim or ctx.target))
     r = r:gsub("{duration}",  ctx.duration  or "a few seconds")
-    r = r:gsub("{dispeller}", ctx.dispeller or "someone")
+    r = r:gsub("{dispeller}", selfAware(ctx.dispeller))
     r = r:gsub("{interrupted}", ctx.interrupted or "a spell")
 
     -- PVP kill tokens
-    r = r:gsub("{killed}", ctx.killed or "someone")
+    r = r:gsub("{killed}", selfAware(ctx.killed))
     if ctx.killed_class then
         r = r:gsub("{killed_class}", ctx.killed_class)
     else
@@ -154,6 +162,23 @@ function core.ReplaceTokens(line, ctx)
         r = r:gsub("{cc_breaker}",  "someone")
         r = r:gsub("{fire_king}",   "someone")
         r = r:gsub("{interrupter}", "someone")
+    end
+
+    -- Grammar fixup when "I" replaced a name (third-person → first-person)
+    if r:find("I ") then
+        r = r:gsub("I is ",    "I am ")
+        r = r:gsub("I has ",   "I have ")
+        r = r:gsub("I was ",   "I was ")   -- already correct
+        r = r:gsub("I keeps ", "I keep ")
+        r = r:gsub("I dies",   "I die")
+        r = r:gsub("I does",   "I do")
+        r = r:gsub("I leads",  "I lead")
+        r = r:gsub("I takes",  "I take")
+        r = r:gsub("I stands", "I stand")
+        r = r:gsub("I eats",   "I eat")
+        r = r:gsub("I gets",   "I get")
+        r = r:gsub("I needs",  "I need")
+        r = r:gsub("I goes",   "I go")
     end
 
     return r

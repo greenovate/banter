@@ -142,24 +142,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="mag_int_c01", weight=1, line="{interrupted} countered. Adequate." },
-            { id="mag_int_c02", weight=1, line="{interrupted} interrupted. Not all spells deserve to exist." },
-            { id="mag_int_c03", weight=1, line="{interrupted} locked out. Embarrassing for the caster." },
-            { id="mag_int_c04", weight=1, line="{interrupted} denied. Academically satisfying." },
-            { id="mag_int_c05", weight=1, line="{interrupted} cancelled. Poor spell selection." },
-            { id="mag_int_c06", weight=1, line="{interrupted} shut down. One caster silencing another — poetic." },
+            { id="mag_int_c01", weight=1, line="{source} countered {interrupted}. Adequate." },
+            { id="mag_int_c02", weight=1, line="{source} interrupted {interrupted}. Not all spells deserve to finish." },
+            { id="mag_int_c03", weight=1, line="{interrupted} locked out by {source}. Embarrassing for the caster." },
+            { id="mag_int_c04", weight=1, line="{source} denied {interrupted}. Academically satisfying." },
+            { id="mag_int_c05", weight=1, line="{interrupted} cancelled by {source}. Poor spell selection." },
+            { id="mag_int_c06", weight=1, line="{source} shut down {interrupted}. One caster silencing another — poetic." },
         },
         UNCOMMON = {
-            { id="mag_int_u01", weight=1, line="{interrupted} deleted mid-cast. I calculated the damage it would've done. You're welcome." },
-            { id="mag_int_u02", weight=1, line="{interrupted} off the table. I feel a twinge of sympathy for that caster. Gone now." },
-            { id="mag_int_u03", weight=1, line="{interrupted} denied. The arcane implications of that failed cast are... delicious." },
+            { id="mag_int_u01", weight=1, line="{source} deleted {interrupted} mid-cast. I calculated the damage. You're welcome." },
+            { id="mag_int_u02", weight=1, line="{interrupted} denied by {source}. The arcane implications are delicious." },
+            { id="mag_int_u03", weight=1, line="{source} erased {interrupted}. I feel a twinge of sympathy for that caster. Gone now." },
         },
         RARE = {
-            { id="mag_int_r01", weight=1, line="{interrupted} erased. I studied that spell for three semesters. Deleted in 0.1 seconds." },
-            { id="mag_int_r02", weight=1, line="{interrupted} crushed so hard the school of magic it belongs to filed a complaint." },
+            { id="mag_int_r01", weight=1, line="{source} erased {interrupted}. I studied that spell for three semesters. Deleted in 0.1 seconds." },
+            { id="mag_int_r02", weight=1, line="{interrupted} crushed by {source} so hard the school of magic filed a complaint." },
         },
         MYTHIC = {
-            { id="mag_int_m01", weight=1, line="{interrupted} annihilated. Nobody had to Ice Block. Best pull so far." },
+            { id="mag_int_m01", weight=1, line="{source} annihilated {interrupted}. Nobody had to Ice Block. Best pull so far." },
         },
     },
 
@@ -239,24 +239,24 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="mag_cca_c01", weight=1, line="{spell} landed. Reduced group DPS. Dispel needed." },
-            { id="mag_cca_c02", weight=1, line="{spell} — someone with a dispel, this is your moment." },
-            { id="mag_cca_c03", weight=1, line="{spell} on our side. The math isn't mathing." },
-            { id="mag_cca_c04", weight=1, line="{spell} hit. I'd Remove Curse but that's not what this is." },
-            { id="mag_cca_c05", weight=1, line="{spell} active. Predictable mob strategy, yet effective." },
-            { id="mag_cca_c06", weight=1, line="{spell} — needs breaking. I'm busy being the DPS." },
+            { id="mag_cca_c01", weight=1, line="{spell} on {victim}. Dispel needed." },
+            { id="mag_cca_c02", weight=1, line="{victim} got {spell} — someone with a dispel, this is your moment." },
+            { id="mag_cca_c03", weight=1, line="{spell} on {victim}. The math isn't mathing." },
+            { id="mag_cca_c04", weight=1, line="{victim} hit with {spell}. I'd Remove Curse but that's not what this is." },
+            { id="mag_cca_c05", weight=1, line="{spell} on {victim}. Predictable mob strategy, yet effective." },
+            { id="mag_cca_c06", weight=1, line="{victim} caught {spell} — needs breaking. I'm busy being the DPS." },
         },
         UNCOMMON = {
-            { id="mag_cca_u01", weight=1, line="{spell} still up. Worst dispel response time I've recorded." },
-            { id="mag_cca_u02", weight=1, line="{spell} needs a dispel. I can Polymorph mobs but I can't un-Polymorph friends." },
-            { id="mag_cca_u03", weight=1, line="{spell} sitting there. Fascinating spell. Less fascinating when it's on US." },
+            { id="mag_cca_u01", weight=1, line="{spell} still on {victim}. Worst dispel response time I've recorded." },
+            { id="mag_cca_u02", weight=1, line="{victim} has {spell}. I can Polymorph mobs but I can't un-Polymorph friends." },
+            { id="mag_cca_u03", weight=1, line="{spell} on {victim}. Fascinating spell. Less fascinating when it's on US." },
         },
         RARE = {
-            { id="mag_cca_r01", weight=1, line="{spell} up. Academic analysis: someone can fix it. And yet here we are." },
-            { id="mag_cca_r02", weight=1, line="{spell} still active. I wrote a thesis on CC duration optimization. Nobody read it." },
+            { id="mag_cca_r01", weight=1, line="{spell} on {victim}. Academic analysis: someone can fix it. And yet here we are." },
+            { id="mag_cca_r02", weight=1, line="{victim} still has {spell}. I wrote a thesis on CC duration optimization. Nobody read it." },
         },
         MYTHIC = {
-            { id="mag_cca_m01", weight=1, line="{spell} up. Dispel available. Nobody moving. Even I can't fix this level of negligence." },
+            { id="mag_cca_m01", weight=1, line="{spell} on {victim}. Dispel available. Nobody moving. Even I can't fix this negligence." },
         },
     },
 

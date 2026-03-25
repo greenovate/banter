@@ -136,24 +136,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="dru_int_c01", weight=1, line="{interrupted} interrupted. I had Bash ready. In another form. As usual." },
-            { id="dru_int_c02", weight=1, line="{interrupted} kicked. Nature approves." },
-            { id="dru_int_c03", weight=1, line="{interrupted} cancelled. I was mid-shift. Always mid-shift." },
-            { id="dru_int_c04", weight=1, line="{interrupted} locked out. If only I could interrupt without form-shifting." },
-            { id="dru_int_c05", weight=1, line="{interrupted} denied. Feral Charge was ready... in theory." },
-            { id="dru_int_c06", weight=1, line="{interrupted} shut down. My Bash was on standby. In another universe." },
+            { id="dru_int_c01", weight=1, line="{source} interrupted {interrupted}. I had Bash ready. In another form. As usual." },
+            { id="dru_int_c02", weight=1, line="{source} kicked {interrupted}. Nature approves." },
+            { id="dru_int_c03", weight=1, line="{interrupted} cancelled by {source}. I was mid-shift. Always mid-shift." },
+            { id="dru_int_c04", weight=1, line="{source} locked out {interrupted}. If only I could interrupt without form-shifting." },
+            { id="dru_int_c05", weight=1, line="{source} denied {interrupted}. Feral Charge was ready... in theory." },
+            { id="dru_int_c06", weight=1, line="{interrupted} shut down by {source}. My Bash was on standby. In another universe." },
         },
         UNCOMMON = {
-            { id="dru_int_u01", weight=1, line="{interrupted} deleted. Would've cost me 3 GCDs to Bash that. One button for everyone else." },
-            { id="dru_int_u02", weight=1, line="{interrupted} off the table. Bear shift, Bash, cat shift. That's how I interrupt. This was easier." },
-            { id="dru_int_u03", weight=1, line="{interrupted} denied. I was emotionally prepared to shift. Physically too slow." },
+            { id="dru_int_u01", weight=1, line="{source} deleted {interrupted}. Would've cost me 3 GCDs to Bash that." },
+            { id="dru_int_u02", weight=1, line="{interrupted} killed by {source}. Bear shift, Bash, cat shift. That's how I interrupt. This was easier." },
+            { id="dru_int_u03", weight=1, line="{source} denied {interrupted}. I was emotionally prepared to shift. Physically too slow." },
         },
         RARE = {
-            { id="dru_int_r01", weight=1, line="{interrupted} erased. Once I Feral Charged mid-air to interrupt. Missed. Nobody saw. Until now." },
-            { id="dru_int_r02", weight=1, line="{interrupted} crushed. Between Bash and Feral Charge, I CAN interrupt. It just requires two form shifts and therapy." },
+            { id="dru_int_r01", weight=1, line="{source} erased {interrupted}. Once I Feral Charged mid-air to interrupt. Missed. Nobody saw. Until now." },
+            { id="dru_int_r02", weight=1, line="{interrupted} crushed by {source}. Between Bash and Feral Charge I CAN interrupt. It just requires two form shifts and therapy." },
         },
         MYTHIC = {
-            { id="dru_int_m01", weight=1, line="{interrupted} annihilated. One button for them. Three forms for me. The jealousy is REAL." },
+            { id="dru_int_m01", weight=1, line="{source} annihilated {interrupted}. One button for them. Three forms for me. The jealousy is REAL." },
         },
     },
 
@@ -233,24 +233,24 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="dru_cca_c01", weight=1, line="{spell} landed. I could shift out of that but... they can't." },
-            { id="dru_cca_c02", weight=1, line="{spell} — needs a dispel. Nature does NOT approve." },
-            { id="dru_cca_c03", weight=1, line="{spell} on our side. If it were poison or curse I'd handle it." },
-            { id="dru_cca_c04", weight=1, line="{spell} hit. The natural order is disrupted." },
-            { id="dru_cca_c05", weight=1, line="{spell} active. I shifted forms three times in sympathy." },
-            { id="dru_cca_c06", weight=1, line="{spell} — needs breaking. I'm rooting for them. Not Entangling Roots. Emotionally." },
+            { id="dru_cca_c01", weight=1, line="{spell} on {victim}. I could shift out of that but... they can't." },
+            { id="dru_cca_c02", weight=1, line="{victim} got {spell} — needs a dispel. Nature does NOT approve." },
+            { id="dru_cca_c03", weight=1, line="{spell} on {victim}. If it were poison or curse I'd handle it." },
+            { id="dru_cca_c04", weight=1, line="{victim} hit with {spell}. The natural order is disrupted." },
+            { id="dru_cca_c05", weight=1, line="{spell} on {victim}. I shifted forms three times in sympathy." },
+            { id="dru_cca_c06", weight=1, line="{victim} caught {spell} — needs breaking. I'm rooting for them. Emotionally. Not Entangling Roots." },
         },
         UNCOMMON = {
-            { id="dru_cca_u01", weight=1, line="{spell} still up. I can Remove Curse and Abolish Poison. This is neither." },
-            { id="dru_cca_u02", weight=1, line="{spell} needs breaking. I shifted into five forms looking for one that helps. None do." },
-            { id="dru_cca_u03", weight=1, line="{spell} sitting there. The trees are whispering. What they're saying isn't kind." },
+            { id="dru_cca_u01", weight=1, line="{spell} still on {victim}. I can Remove Curse and Abolish Poison. This is neither." },
+            { id="dru_cca_u02", weight=1, line="{victim} has {spell}. I shifted into five forms looking for one that helps. None do." },
+            { id="dru_cca_u03", weight=1, line="{spell} on {victim}. The trees are whispering about it. What they're saying isn't kind." },
         },
         RARE = {
-            { id="dru_cca_r01", weight=1, line="{spell} up. Nature gave someone the gift of dispel. Nature is watching. Nature is disappointed." },
-            { id="dru_cca_r02", weight=1, line="{spell} still active. I'm the wrong form. Someone has the right spell. Use it." },
+            { id="dru_cca_r01", weight=1, line="{spell} on {victim}. Nature gave someone the gift of dispel. Nature is watching. Nature is disappointed." },
+            { id="dru_cca_r02", weight=1, line="{victim} still has {spell}. I'm the wrong form. Someone has the right spell. Use it." },
         },
         MYTHIC = {
-            { id="dru_cca_m01", weight=1, line="{spell} up. Nobody moving. Nature, society, and I all agree: DISPEL." },
+            { id="dru_cca_m01", weight=1, line="{spell} on {victim}. Nobody moving. Nature, society, and I all agree: DISPEL." },
         },
     },
 

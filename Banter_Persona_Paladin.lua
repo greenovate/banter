@@ -137,24 +137,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="pal_int_c01", weight=1, line="{interrupted} interrupted. The Light provides. Slowly. On a one-minute cooldown." },
-            { id="pal_int_c02", weight=1, line="{interrupted} denied. Righteous." },
-            { id="pal_int_c03", weight=1, line="{interrupted} cancelled. My Hammer of Justice was... not ready. But my faith was." },
-            { id="pal_int_c04", weight=1, line="{interrupted} locked out. The Light shines on those who kick on time." },
-            { id="pal_int_c05", weight=1, line="{interrupted} shut down. We all contribute differently. Some with auras." },
-            { id="pal_int_c06", weight=1, line="{interrupted} kicked. My Hammer was on cooldown. It's ALWAYS on cooldown." },
+            { id="pal_int_c01", weight=1, line="{source} interrupted {interrupted}. The Light provides. Slowly. On a one-minute cooldown." },
+            { id="pal_int_c02", weight=1, line="{source} denied {interrupted}. Righteous." },
+            { id="pal_int_c03", weight=1, line="{interrupted} cancelled by {source}. My Hammer of Justice was... not ready. But my faith was." },
+            { id="pal_int_c04", weight=1, line="{source} locked out {interrupted}. The Light shines on those who kick on time." },
+            { id="pal_int_c05", weight=1, line="{source} shut down {interrupted}. We all contribute differently. Some with auras." },
+            { id="pal_int_c06", weight=1, line="{source} kicked {interrupted}. My Hammer was on cooldown. It's ALWAYS on cooldown." },
         },
         UNCOMMON = {
-            { id="pal_int_u01", weight=1, line="{interrupted} off the table. Paladins don't have a real interrupt. We have a stun. On a 1 min CD." },
-            { id="pal_int_u02", weight=1, line="{interrupted} denied. The Light gives many gifts. A short-cooldown interrupt is not one." },
-            { id="pal_int_u03", weight=1, line="{interrupted} deleted. Hammer of Justice was 40 seconds from ready. Wise not to wait." },
+            { id="pal_int_u01", weight=1, line="{source} killed {interrupted}. Paladins don't have a real interrupt. We have a stun. On a 1 min CD." },
+            { id="pal_int_u02", weight=1, line="{interrupted} denied by {source}. The Light gives many gifts. A short-cooldown interrupt is not one." },
+            { id="pal_int_u03", weight=1, line="{source} deleted {interrupted}. Hammer of Justice was 40 seconds from ready. Wise not to wait." },
         },
         RARE = {
-            { id="pal_int_r01", weight=1, line="{interrupted} erased. Hammer of Justice: technically an interrupt, functionally on cooldown, spiritually a panic button." },
-            { id="pal_int_r02", weight=1, line="{interrupted} crushed. Once I HoJ'd a caster to interrupt. Then it wore off. Then it finished casting. Then I Bubbled." },
+            { id="pal_int_r01", weight=1, line="{source} erased {interrupted}. Hammer of Justice: technically an interrupt. Functionally on cooldown. Spiritually a panic button." },
+            { id="pal_int_r02", weight=1, line="{interrupted} crushed by {source}. Once I HoJ'd a caster to interrupt. Then it wore off. Then it finished casting. Then I Bubbled." },
         },
         MYTHIC = {
-            { id="pal_int_m01", weight=1, line="{interrupted} annihilated. My tool kit is one stun, one minute cooldown, and righteous indignation." },
+            { id="pal_int_m01", weight=1, line="{source} annihilated {interrupted}. My tool kit is one stun, one minute cooldown, and righteous indignation." },
         },
     },
 
@@ -234,24 +234,24 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="pal_cca_c01", weight=1, line="{spell} landed. The Light shines on those who DISPEL." },
-            { id="pal_cca_c02", weight=1, line="{spell} — needs a dispel. Righteous outrage." },
-            { id="pal_cca_c03", weight=1, line="{spell} on our side. I'd Bubble them if I could. I can only Bubble ME." },
-            { id="pal_cca_c04", weight=1, line="{spell} hit. Where's the justice? The DIVINE justice specifically?" },
-            { id="pal_cca_c05", weight=1, line="{spell} active. The Light protects... well, not right NOW apparently." },
-            { id="pal_cca_c06", weight=1, line="{spell} — someone break that. I'm composing a prayer for swift liberation." },
+            { id="pal_cca_c01", weight=1, line="{spell} on {victim}. The Light shines on those who DISPEL." },
+            { id="pal_cca_c02", weight=1, line="{victim} got {spell} — needs a dispel. Righteous outrage." },
+            { id="pal_cca_c03", weight=1, line="{spell} on {victim}. I'd Bubble them if I could. I can only Bubble ME." },
+            { id="pal_cca_c04", weight=1, line="{victim} caught {spell}. Where's the justice? The DIVINE justice specifically?" },
+            { id="pal_cca_c05", weight=1, line="{spell} on {victim}. The Light protects... well, not right NOW apparently." },
+            { id="pal_cca_c06", weight=1, line="{spell} on {victim} — someone break that. I'm composing a prayer for swift liberation." },
         },
         UNCOMMON = {
-            { id="pal_cca_u01", weight=1, line="{spell} still up. The Light gave someone a dispel for moments EXACTLY like this." },
-            { id="pal_cca_u02", weight=1, line="{spell} needs breaking. The Light keeps a ledger. DISPEL." },
-            { id="pal_cca_u03", weight=1, line="{spell} sitting there. Paladins have a saying: 'He who does not dispel, tanks the next pull.'" },
+            { id="pal_cca_u01", weight=1, line="{spell} still on {victim}. The Light gave someone a dispel for moments EXACTLY like this." },
+            { id="pal_cca_u02", weight=1, line="{victim} has {spell}. The Light keeps a ledger. DISPEL." },
+            { id="pal_cca_u03", weight=1, line="{spell} on {victim}. Paladins have a saying: 'He who does not dispel, tanks the next pull.'" },
         },
         RARE = {
-            { id="pal_cca_r01", weight=1, line="{spell} up. I have Blessing of Protection and Divine Shield. Someone else has a dispel. USE IT." },
-            { id="pal_cca_r02", weight=1, line="{spell} still active. When I write my memoirs, this chapter is titled 'The Light Giveth, And They Ignoreth.'" },
+            { id="pal_cca_r01", weight=1, line="{spell} on {victim}. I have Blessing of Protection and Divine Shield. Someone else has a dispel. USE IT." },
+            { id="pal_cca_r02", weight=1, line="{victim} still has {spell}. When I write my memoirs, this chapter is titled 'The Light Giveth, And They Ignoreth.'" },
         },
         MYTHIC = {
-            { id="pal_cca_m01", weight=1, line="{spell} up. Nobody dispelling. The Light judges us all but TODAY it judges the dispellers hardest." },
+            { id="pal_cca_m01", weight=1, line="{spell} on {victim}. Nobody dispelling. The Light judges us all but TODAY it judges the dispellers hardest." },
         },
     },
 

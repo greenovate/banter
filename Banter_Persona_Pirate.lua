@@ -205,24 +205,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="pir_intr_c01", weight=1, line="{interrupted} kicked! Sit DOWN, sparkle-fingers!" },
-            { id="pir_intr_c02", weight=1, line="{interrupted} denied! No spells fer YOU!" },
-            { id="pir_intr_c03", weight=1, line="{interrupted} interrupted! This be a CUTLASS conversation!" },
-            { id="pir_intr_c04", weight=1, line="{interrupted} cancelled! Get wrecked, ye nerd!" },
-            { id="pir_intr_c05", weight=1, line="{interrupted} locked out! NO MAGIC ON THIS SHIP!" },
-            { id="pir_intr_c06", weight=1, line="{interrupted} shut down! BEAUTIFUL VIOLENCE!" },
+            { id="pir_intr_c01", weight=1, line="{source} kicked {interrupted}! Sit DOWN, sparkle-fingers!" },
+            { id="pir_intr_c02", weight=1, line="{source} denied {interrupted}! No spells fer YOU!" },
+            { id="pir_intr_c03", weight=1, line="{source} interrupted {interrupted}! This be a CUTLASS conversation!" },
+            { id="pir_intr_c04", weight=1, line="{interrupted} cancelled by {source}! Get wrecked, ye nerd!" },
+            { id="pir_intr_c05", weight=1, line="{source} locked out {interrupted}! NO MAGIC ON THIS SHIP!" },
+            { id="pir_intr_c06", weight=1, line="{source} shut down {interrupted}! BEAUTIFUL VIOLENCE!" },
         },
         UNCOMMON = {
-            { id="pir_intr_u01", weight=1, line="{interrupted} deleted! Caster had a whole monologue planned. Not anymore, arr!" },
-            { id="pir_intr_u02", weight=1, line="{interrupted} off the table! That spell got SHANKED mid-cast!" },
-            { id="pir_intr_u03", weight=1, line="{interrupted} denied! Clean. Mean. I'm a bit aroused, not gonna lie." },
+            { id="pir_intr_u01", weight=1, line="{source} deleted {interrupted}! Caster had a monologue planned. Not anymore, arr!" },
+            { id="pir_intr_u02", weight=1, line="{interrupted} shanked mid-cast by {source}! LOVE IT!" },
+            { id="pir_intr_u03", weight=1, line="{source} denied {interrupted}! Clean. Mean. I'm a bit aroused, not gonna lie." },
         },
         RARE = {
-            { id="pir_intr_r01", weight=1, line="{interrupted} erased! Once interrupted a caster with a rum bottle to the face. This were cleaner but mine were funnier!" },
-            { id="pir_intr_r02", weight=1, line="{interrupted} crushed like a barnacle under a boot! MAGNIFICENT! I'm buyin' the rum tonight!" },
+            { id="pir_intr_r01", weight=1, line="{source} erased {interrupted}! Once interrupted a caster with a rum bottle. This were cleaner but mine were funnier!" },
+            { id="pir_intr_r02", weight=1, line="{interrupted} crushed by {source} like a barnacle under a boot! MAGNIFICENT! I'm buyin' the rum tonight!" },
         },
         MYTHIC = {
-            { id="pir_intr_m01", weight=1, line="{interrupted} OBLITERATED! That weren't an interrupt — that were POETRY. An' I can't even read!" },
+            { id="pir_intr_m01", weight=1, line="{source} OBLITERATED {interrupted}! That weren't an interrupt — that were POETRY. An' I can't even read!" },
         },
     },
 
@@ -342,24 +342,24 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="pir_cca_c01", weight=1, line="{spell} landed! UNACCEPTABLE!" },
-            { id="pir_cca_c02", weight=1, line="{spell} — someone free me crewmate!" },
-            { id="pir_cca_c03", weight=1, line="{spell} on our side! In me pirate code that's grounds fer a RESCUE!" },
-            { id="pir_cca_c04", weight=1, line="{spell} hit! NO PIRATE STAYS LOCKED DOWN! FREE 'EM!" },
-            { id="pir_cca_c05", weight=1, line="{spell} active! If I had a key I'd pick the lock meself!" },
-            { id="pir_cca_c06", weight=1, line="{spell} — needs breaking! SOMEBODY DO SOMETHIN'!" },
+            { id="pir_cca_c01", weight=1, line="{spell} on {victim}! UNACCEPTABLE!" },
+            { id="pir_cca_c02", weight=1, line="{victim} caught {spell} — someone free 'em!" },
+            { id="pir_cca_c03", weight=1, line="{spell} on {victim}! In me pirate code that's grounds fer a RESCUE!" },
+            { id="pir_cca_c04", weight=1, line="{spell} hit {victim}! NO PIRATE STAYS LOCKED DOWN! FREE 'EM!" },
+            { id="pir_cca_c05", weight=1, line="{spell} on {victim}! If I had a key I'd pick the lock meself!" },
+            { id="pir_cca_c06", weight=1, line="{victim} got {spell} — needs breaking! SOMEBODY DO SOMETHIN'!" },
         },
         UNCOMMON = {
-            { id="pir_cca_u01", weight=1, line="{spell} still up! Dispel or walk the plank! Those be the options!" },
-            { id="pir_cca_u02", weight=1, line="{spell} needs breaking! I've seen sea cucumbers react faster!" },
-            { id="pir_cca_u03", weight=1, line="{spell} sitting there! Sounds like MUTINY to me!" },
+            { id="pir_cca_u01", weight=1, line="{spell} still on {victim}! Dispel or walk the plank! Those be the options!" },
+            { id="pir_cca_u02", weight=1, line="{victim} has {spell}! I've seen sea cucumbers react faster!" },
+            { id="pir_cca_u03", weight=1, line="{spell} on {victim}! Sounds like MUTINY to me!" },
         },
         RARE = {
-            { id="pir_cca_r01", weight=1, line="{spell} up! On me ship, if someone didn't help the crew out of that, they'd be scrubbin' the deck with their TEETH!" },
-            { id="pir_cca_r02", weight=1, line="{spell} still active! If this were me boat I'd keelhaul the lot of ye!" },
+            { id="pir_cca_r01", weight=1, line="{spell} on {victim}! On me ship, if someone didn't help the crew out of that, they'd be scrubbin' the deck with their TEETH!" },
+            { id="pir_cca_r02", weight=1, line="{victim} still has {spell}! If this were me boat I'd keelhaul the lot of ye!" },
         },
         MYTHIC = {
-            { id="pir_cca_m01", weight=1, line="{spell} up! Nobody movin'! In all me years at sea I've never seen a more useless crew. DISPEL OR SWIM!" },
+            { id="pir_cca_m01", weight=1, line="{spell} on {victim}! Nobody movin'! In all me years at sea I've never seen a more useless crew. DISPEL OR SWIM!" },
         },
     },
 

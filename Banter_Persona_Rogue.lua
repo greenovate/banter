@@ -136,24 +136,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="rog_int_c01", weight=1, line="{interrupted} kicked. Locked out. Next." },
-            { id="rog_int_c02", weight=1, line="{interrupted} denied. Clean." },
-            { id="rog_int_c03", weight=1, line="{interrupted} neutralized. Moving on." },
-            { id="rog_int_c04", weight=1, line="{interrupted} cancelled. Silence protocol engaged." },
-            { id="rog_int_c05", weight=1, line="{interrupted} interrupted. Target is locked out." },
-            { id="rog_int_c06", weight=1, line="{interrupted} shut down. No casting on our watch." },
+            { id="rog_int_c01", weight=1, line="{source} kicked {interrupted}. Locked out. Next." },
+            { id="rog_int_c02", weight=1, line="{source} denied {interrupted}. Clean." },
+            { id="rog_int_c03", weight=1, line="{interrupted} neutralized by {source}. Moving on." },
+            { id="rog_int_c04", weight=1, line="{source} cancelled {interrupted}. Target is locked out." },
+            { id="rog_int_c05", weight=1, line="{source} interrupted {interrupted}. No casting on our watch." },
+            { id="rog_int_c06", weight=1, line="{interrupted} shut down by {source}. Silent ops." },
         },
         UNCOMMON = {
-            { id="rog_int_u01", weight=1, line="{interrupted} removed from the combat timeline. Efficient fieldwork." },
-            { id="rog_int_u02", weight=1, line="{interrupted} denied. Caster's ops are compromised for the next 8 seconds." },
-            { id="rog_int_u03", weight=1, line="{interrupted} off the table. Textbook execution." },
+            { id="rog_int_u01", weight=1, line="{source} removed {interrupted} from the timeline. Efficient fieldwork." },
+            { id="rog_int_u02", weight=1, line="{interrupted} denied by {source}. Caster's ops compromised for 8 seconds." },
+            { id="rog_int_u03", weight=1, line="{source} killed {interrupted}. Textbook execution." },
         },
         RARE = {
-            { id="rog_int_r01", weight=1, line="{interrupted} erased. If this were an op report, it'd be marked flawless." },
-            { id="rog_int_r02", weight=1, line="{interrupted} deleted with surgical precision. Two interrupts one pull." },
+            { id="rog_int_r01", weight=1, line="{source} erased {interrupted}. Op report: flawless." },
+            { id="rog_int_r02", weight=1, line="{interrupted} deleted by {source} with surgical precision." },
         },
         MYTHIC = {
-            { id="rog_int_m01", weight=1, line="{interrupted} eliminated. Frame-perfect. This is what we trained for." },
+            { id="rog_int_m01", weight=1, line="{source} eliminated {interrupted}. Frame-perfect. This is what we trained for." },
         },
     },
 
@@ -233,24 +233,24 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="rog_cca_c01", weight=1, line="{spell} landed. Asset compromised. Needs a dispel." },
-            { id="rog_cca_c02", weight=1, line="{spell} — operational liability. Break it." },
-            { id="rog_cca_c03", weight=1, line="{spell} on our side. We're exposed." },
-            { id="rog_cca_c04", weight=1, line="{spell} hit. Someone with clearance should fix that." },
-            { id="rog_cca_c05", weight=1, line="{spell} active. Time is a resource we're wasting." },
-            { id="rog_cca_c06", weight=1, line="{spell} — I'd Kick it off but that's not how Kick works." },
+            { id="rog_cca_c01", weight=1, line="{spell} on {victim}. Asset compromised. Needs a dispel." },
+            { id="rog_cca_c02", weight=1, line="{victim} hit with {spell} — operational liability. Break it." },
+            { id="rog_cca_c03", weight=1, line="{spell} on {victim}. We're exposed." },
+            { id="rog_cca_c04", weight=1, line="{victim} caught {spell}. Someone with clearance should fix that." },
+            { id="rog_cca_c05", weight=1, line="{spell} on {victim}. Time is a resource we're wasting." },
+            { id="rog_cca_c06", weight=1, line="{victim} got {spell} — I'd Kick it off but that's not how Kick works." },
         },
         UNCOMMON = {
-            { id="rog_cca_u01", weight=1, line="{spell} still up. In my line of work we call that negligence." },
-            { id="rog_cca_u02", weight=1, line="{spell} needs breaking. Dispel capability exists. The connection should be obvious." },
-            { id="rog_cca_u03", weight=1, line="{spell} sitting there. Dispel response slower than my Sap. And Sap is melee range." },
+            { id="rog_cca_u01", weight=1, line="{spell} still on {victim}. In my line of work we call that negligence." },
+            { id="rog_cca_u02", weight=1, line="{victim} has {spell}. Dispel capability exists. The connection should be obvious." },
+            { id="rog_cca_u03", weight=1, line="{spell} on {victim}. Dispel response slower than my Sap. And Sap is melee range." },
         },
         RARE = {
-            { id="rog_cca_r01", weight=1, line="{spell} up. Mission efficiency: catastrophic. Someone click the button." },
-            { id="rog_cca_r02", weight=1, line="{spell} still active. In my debriefing report this will be noted. With timestamps." },
+            { id="rog_cca_r01", weight=1, line="{spell} on {victim}. Mission efficiency: catastrophic. Someone click the button." },
+            { id="rog_cca_r02", weight=1, line="{victim} still has {spell}. In my debriefing report this will be noted. With timestamps." },
         },
         MYTHIC = {
-            { id="rog_cca_m01", weight=1, line="{spell} up. Nobody moving. I could've re-stealthed and Sapped a new target in this time." },
+            { id="rog_cca_m01", weight=1, line="{spell} on {victim}. Nobody moving. I could've re-stealthed and Sapped a new target by now." },
         },
     },
 

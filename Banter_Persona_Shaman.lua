@@ -137,24 +137,24 @@ statements = {
 
     INTERRUPT = {
         COMMON = {
-            { id="sha_int_c01", weight=1, line="{interrupted} kicked. Earth Shock was cocked and ready." },
-            { id="sha_int_c02", weight=1, line="{interrupted} interrupted. The elements are clapping. Mostly Earth." },
-            { id="sha_int_c03", weight=1, line="{interrupted} denied. Wrong group to cast in." },
-            { id="sha_int_c04", weight=1, line="{interrupted} cancelled. Earth is satisfied. Fire wants to know if it's dead yet." },
-            { id="sha_int_c05", weight=1, line="{interrupted} locked out. My totems rattled in approval." },
-            { id="sha_int_c06", weight=1, line="{interrupted} shut down. Earth Shock doesn't have cooldown drama." },
+            { id="sha_int_c01", weight=1, line="{source} kicked {interrupted}. Earth Shock was cocked and ready." },
+            { id="sha_int_c02", weight=1, line="{source} interrupted {interrupted}. The elements are clapping. Mostly Earth." },
+            { id="sha_int_c03", weight=1, line="{source} denied {interrupted}. Wrong group to cast in." },
+            { id="sha_int_c04", weight=1, line="{interrupted} cancelled by {source}. Earth is satisfied." },
+            { id="sha_int_c05", weight=1, line="{source} locked out {interrupted}. My totems rattled in approval." },
+            { id="sha_int_c06", weight=1, line="{source} shut down {interrupted}. Earth Shock doesn't have cooldown drama." },
         },
         UNCOMMON = {
-            { id="sha_int_u01", weight=1, line="{interrupted} off the table. Earth doesn't negotiate." },
-            { id="sha_int_u02", weight=1, line="{interrupted} denied. Wind told me that would've hit hard. Wind gossips about everything." },
-            { id="sha_int_u03", weight=1, line="{interrupted} deleted. The elements held a vote on congratulations. 3-1. Wind abstained." },
+            { id="sha_int_u01", weight=1, line="{source} killed {interrupted}. Earth doesn't negotiate." },
+            { id="sha_int_u02", weight=1, line="{interrupted} denied by {source}. Wind told me that would've hit hard. Wind gossips." },
+            { id="sha_int_u03", weight=1, line="{source} deleted {interrupted}. The elements held a vote on congratulations. 3-1. Wind abstained." },
         },
         RARE = {
-            { id="sha_int_r01", weight=1, line="{interrupted} erased. All four elements cheered. Even Wind. That NEVER happens." },
-            { id="sha_int_r02", weight=1, line="{interrupted} crushed. Zero casts that pull. Elemental dominance." },
+            { id="sha_int_r01", weight=1, line="{source} erased {interrupted}. All four elements cheered. Even Wind. That NEVER happens." },
+            { id="sha_int_r02", weight=1, line="{interrupted} crushed by {source}. Zero casts that pull. Elemental dominance." },
         },
         MYTHIC = {
-            { id="sha_int_m01", weight=1, line="{interrupted} annihilated. Earth, Water, Fire, Wind — all stood up and applauded. First time they've agreed on ANYTHING." },
+            { id="sha_int_m01", weight=1, line="{source} annihilated {interrupted}. Earth, Water, Fire, Wind — all stood up and applauded. First time they've agreed on ANYTHING." },
         },
     },
 
@@ -234,24 +234,24 @@ statements = {
 
     CC_CALLOUT = {
         COMMON = {
-            { id="sha_cca_c01", weight=1, line="{spell} landed. The elements are yelling at me about it." },
-            { id="sha_cca_c02", weight=1, line="{spell} — needs a dispel. Tremor Totem doesn't cover this one." },
-            { id="sha_cca_c03", weight=1, line="{spell} on our side. Earth says 'help.' Wind says 'not my problem.'" },
-            { id="sha_cca_c04", weight=1, line="{spell} hit. I can Purge enemies but not free allies. THE IRONY." },
-            { id="sha_cca_c05", weight=1, line="{spell} active. The elements are taking a vote. Not looking good." },
-            { id="sha_cca_c06", weight=1, line="{spell} — if this were poison or disease I'd Cure it. It's not." },
+            { id="sha_cca_c01", weight=1, line="{spell} on {victim}. The elements are yelling at me about it." },
+            { id="sha_cca_c02", weight=1, line="{victim} got {spell} — needs a dispel. Tremor Totem doesn't cover this one." },
+            { id="sha_cca_c03", weight=1, line="{spell} on {victim}. Earth says 'help.' Wind says 'not my problem.'" },
+            { id="sha_cca_c04", weight=1, line="{victim} caught {spell}. I can Purge enemies but not free allies. THE IRONY." },
+            { id="sha_cca_c05", weight=1, line="{spell} on {victim}. The elements are taking a vote. Not looking good." },
+            { id="sha_cca_c06", weight=1, line="{victim} has {spell} — if this were poison or disease I'd Cure it. It's not." },
         },
         UNCOMMON = {
-            { id="sha_cca_u01", weight=1, line="{spell} still up. Even Water agrees someone should dispel. And Water agrees with NOTHING." },
-            { id="sha_cca_u02", weight=1, line="{spell} needs breaking. I placed Tremor Totem and a prayer. Someone could just click one button." },
-            { id="sha_cca_u03", weight=1, line="{spell} sitting there. Fire says burn the mob. Earth says stomp it. I say DISPEL." },
+            { id="sha_cca_u01", weight=1, line="{spell} still on {victim}. Even Water agrees someone should dispel. And Water agrees with NOTHING." },
+            { id="sha_cca_u02", weight=1, line="{victim} has {spell}. I placed Tremor Totem and a prayer. Someone could just click one button." },
+            { id="sha_cca_u03", weight=1, line="{spell} on {victim}. Fire says burn the mob. Earth says stomp it. I say DISPEL." },
         },
         RARE = {
-            { id="sha_cca_r01", weight=1, line="{spell} up. I communed with all four elements about the dispel speed. They're all embarrassed." },
-            { id="sha_cca_r02", weight=1, line="{spell} still active. My totems have shorter reaction times. And my totems are STICKS IN THE GROUND." },
+            { id="sha_cca_r01", weight=1, line="{spell} on {victim}. I communed with all four elements about the dispel speed. They're all embarrassed." },
+            { id="sha_cca_r02", weight=1, line="{victim} still has {spell}. My totems have shorter reaction times. And my totems are STICKS IN THE GROUND." },
         },
         MYTHIC = {
-            { id="sha_cca_m01", weight=1, line="{spell} up. Nobody moving. Fire wants to rage. Earth wants to quake. I want someone to CLICK DISPEL." },
+            { id="sha_cca_m01", weight=1, line="{spell} on {victim}. Nobody moving. Fire wants to rage. Earth wants to quake. I want someone to CLICK DISPEL." },
         },
     },
 
