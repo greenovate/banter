@@ -328,6 +328,9 @@ function comm.HandleEngageStart(sender, threadKey, targetName)
     local myName = UnitName("player")
     if targetName ~= myName then return end  -- not for us
 
+    -- Engagements are social chatter — suppress in CALLOUTS and NARRATIVE
+    if ns.db and (ns.db.banterStyle == "CALLOUTS" or ns.db.banterStyle == "NARRATIVE") then return end
+
     -- We're the target. Look up our response line.
     if not ns.engagements or not ns.engagements.GetThread then return end
     local thread = ns.engagements.GetThread(threadKey)

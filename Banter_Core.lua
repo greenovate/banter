@@ -415,6 +415,11 @@ end
 ---------------------------------------------------------------------------
 function core.EmitResponse(trigger, ctx, sourcePersona)
     ctx = ctx or {}
+
+    -- CALLOUTS style: only respond to utility callout triggers
+    local isUtility = (trigger == "CC_CALLOUT" or trigger == "INTERRUPT" or trigger == "PLAYER_KILL")
+    if ns.db and ns.db.banterStyle == "CALLOUTS" and not isUtility then return end
+
     local persona = ns.ResolvePersona()
     local line    = ns.scenes.PickResponse(persona, trigger, sourcePersona)
     if not line then
@@ -441,6 +446,9 @@ local nextEngagementAt   = 0
 function core.TryEngagement()
     if not ns.db or not ns.db.enabled then return end
     if not ns.engagements or not ns.engagements.PickEngagement then return end
+
+    -- Engagements are social chatter — suppress in CALLOUTS and NARRATIVE
+    if ns.db.banterStyle == "CALLOUTS" or ns.db.banterStyle == "NARRATIVE" then return end
 
     -- Only the leader initiates engagements to prevent duplicates
     if not ns.comm.AmLeader() then return end
