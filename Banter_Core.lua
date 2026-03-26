@@ -165,7 +165,25 @@ function core.ReplaceTokens(line, ctx)
     end
 
     -- Grammar fixup when "I" replaced a name (third-person → first-person)
-    if r:find("I ") then
+    if r:find("I ") or r:find("I%.") or r:find("I,") then
+        -- Object pronoun: "by I" → "by me", "than I" → "than me", etc.
+        r = r:gsub(" by I([%s%p])",    " by me%1")
+        r = r:gsub(" by I$",          " by me")
+        r = r:gsub(" than I([%s%p])",  " than me%1")
+        r = r:gsub(" than I$",        " than me")
+        r = r:gsub(" from I([%s%p])", " from me%1")
+        r = r:gsub(" from I$",       " from me")
+        r = r:gsub(" with I([%s%p])", " with me%1")
+        r = r:gsub(" with I$",       " with me")
+        r = r:gsub(" on I([%s%p])",   " on me%1")
+        r = r:gsub(" on I$",         " on me")
+        r = r:gsub(" for I([%s%p])",  " for me%1")
+        r = r:gsub(" for I$",        " for me")
+        r = r:gsub(" to I([%s%p])",   " to me%1")
+        r = r:gsub(" to I$",         " to me")
+        r = r:gsub(" at I([%s%p])",   " at me%1")
+        r = r:gsub(" at I$",         " at me")
+        -- Subject-verb agreement
         r = r:gsub("I is ",    "I am ")
         r = r:gsub("I has ",   "I have ")
         r = r:gsub("I was ",   "I was ")   -- already correct

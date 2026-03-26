@@ -467,7 +467,10 @@ function triggers.OnCombatLog()
 
     -- SPELL_INTERRUPT
     if subEvent == "SPELL_INTERRUPT" then
-        if (GetNumGroupMembers() or 0) == 0 then return end  -- solo = no callouts
+        -- Solo: only fire for player's own interrupts when soloMode is on
+        if (GetNumGroupMembers() or 0) == 0 then
+            if not ns.db.soloMode or srcGUID ~= UnitGUID("player") then return end
+        end
         if triggers.IsPlayerOrGroup(srcGUID) then
             if not ns.db then return end
             if not ns.db.interruptCallouts and ns.db.banterStyle ~= "CALLOUTS" then return end
@@ -697,7 +700,10 @@ end
 
 function triggers.OnCCCallout(dstGUID, dstName, srcName, spellName, spellId)
     if not spellName then return end
-    if (GetNumGroupMembers() or 0) == 0 then return end  -- solo = no callouts
+    -- Solo: only fire for CC on the player when soloMode is on
+    if (GetNumGroupMembers() or 0) == 0 then
+        if not ns.db.soloMode or dstGUID ~= UnitGUID("player") then return end
+    end
 
     -- Only fire for meaningful CCs
     local lowerSpell = spellName:lower()
@@ -742,7 +748,10 @@ function triggers.OnPlayerKill(dstGUID, dstName)
     if not ns.db then return end
     if not ns.db.pvpCallouts and ns.db.banterStyle ~= "CALLOUTS" then return end
     if not ns.initialized then return end
-    if (GetNumGroupMembers() or 0) == 0 then return end  -- solo = no callouts
+    -- Solo: only fire for player's own kills when soloMode is on
+    if (GetNumGroupMembers() or 0) == 0 then
+        if not ns.db.soloMode then return end
+    end
 
     -- Per-trigger cooldown only (utility callout pattern)
     local cd   = TRIGGER_COOLDOWN["PLAYER_KILL"] or 8
