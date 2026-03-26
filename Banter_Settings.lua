@@ -480,7 +480,17 @@ local function CreateSettingsFrame()
 
         local STYLE_LIST = { "SOCIAL", "NARRATIVE", "CALLOUTS" }
         local styleDD = MakeDropdown(p, LEFT, y, "Banter Style", STYLE_LIST, ns.db, "banterStyle")
+        ns._styleDropdown = styleDD   -- expose for StylePicker sync
         y = y - 60
+
+        local stylePickerCB = MakeCheckbox(p, "BanterCB_StylePickerLaunch", LEFT, y,
+                     "Show Style Picker on every login",
+                     ns.db, "showStylePickerAlways")
+        stylePickerCB:HookScript("OnClick", function()
+            local pickerCB = _G["BanterStylePickerAlwaysCB"]
+            if pickerCB then pickerCB:SetChecked(ns.db.showStylePickerAlways) end
+        end)
+        y = y - 28
 
         MakeCheckbox(p, "BanterCB_Promo", LEFT, y,
                      "Self-promo — respond to \"what addon?\" questions",
@@ -621,7 +631,7 @@ local function CreateSettingsFrame()
     local credit = frame:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
     credit:SetPoint("BOTTOM", 0, 22)
     credit:SetTextColor(0.6, 0.6, 0.6)
-    credit:SetText("Made by evild \"Iowke\" on Dreamweaver  |  curseforge.com/wow/addons/banter")
+    credit:SetText("Made by Evildz on Nightslayer  |  curseforge.com/wow/addons/banter")
 
     local footer = frame:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
     footer:SetPoint("BOTTOM", 0, 10)

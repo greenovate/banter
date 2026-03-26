@@ -84,7 +84,13 @@ end
 function comm.SendHello()
     local persona = ns.ResolvePersona and ns.ResolvePersona() or (ns.db and ns.db.persona or "WARRIOR")
     local actualClass = ns.playerClassKey or "WARRIOR"
-    Send("HELLO", persona .. SEP .. actualClass)
+    local style = ns.db and ns.db.banterStyle or "SOCIAL"
+    Send("HELLO", persona .. SEP .. actualClass .. SEP .. style)
+end
+
+function comm.GetPeerStyle(name)
+    local peer = comm.peers[name]
+    return peer and peer.style or "SOCIAL"
 end
 
 function comm.SendSceneStart(sceneId, trigger, sourcePersona, contextStr)
@@ -120,6 +126,31 @@ function comm.SendZone(zoneName)
     Send("ZONE", zoneName)
 end
 
+--- Send style ribbing notification to quiet peer
+function comm.SendStyleRib()
+    Send("STYLE_RIB", "")
+end
+
+---------------------------------------------------------------------------
+-- Style Ribbing — SOCIAL peer teases CALLOUTS peer about being quiet
+---------------------------------------------------------------------------
+function comm.HandleStyleRib(sender)
+    -- Only respond if we're in CALLOUTS mode (we're the quiet one)
+    if not ns.db or ns.db.banterStyle ~= "CALLOUTS" then return end
+    if not ns.core or not ns.core.PickStyleComeback then return end
+
+    local comeback = ns.core.PickStyleComeback()
+    if not comeback then return end
+
+    local delay = ns.RandBetween(3, 6)
+    C_Timer.After(delay, function()
+        local line = comeback:gsub("{name}", sender)
+        local channel = ns.core.GetOutputChannel()
+        ns.core.SafeSend(line, channel)
+        ns.Debug("STYLE_RIB COMEBACK -> " .. sender .. ": " .. line)
+    end)
+end
+
 ---------------------------------------------------------------------------
 -- Incoming message router
 ---------------------------------------------------------------------------
@@ -135,15 +166,16 @@ function comm.OnMessage(prefix, text, distribution, sender)
     ns.Debug("RECV [" .. senderName .. "]: " .. text)
 
     if msgType == "HELLO" then
-        comm.peers[senderName] = { persona = parts[2] or "UNKNOWN", actualClass = parts[3] or "UNKNOWN", lastSeen = GetTime() }
+        comm.peers[senderName] = { persona = parts[2] or "UNKNOWN", actualClass = parts[3] or "UNKNOWN", style = parts[4] or "SOCIAL", lastSeen = GetTime() }
         local persona = ns.ResolvePersona and ns.ResolvePersona() or (ns.db and ns.db.persona or "WARRIOR")
         local actualClass = ns.playerClassKey or "WARRIOR"
-        Send("HERE", persona .. SEP .. actualClass)
-        ns.Debug("Discovered peer: " .. senderName .. " (" .. (parts[2] or "?") .. "/" .. (parts[3] or "?") .. ")")
+        local style = ns.db and ns.db.banterStyle or "SOCIAL"
+        Send("HERE", persona .. SEP .. actualClass .. SEP .. style)
+        ns.Debug("Discovered peer: " .. senderName .. " (" .. (parts[2] or "?") .. "/" .. (parts[3] or "?") .. "/" .. (parts[4] or "?") .. ")")
 
     elseif msgType == "HERE" then
-        comm.peers[senderName] = { persona = parts[2] or "UNKNOWN", actualClass = parts[3] or "UNKNOWN", lastSeen = GetTime() }
-        ns.Debug("Confirmed peer: " .. senderName .. " (" .. (parts[2] or "?") .. "/" .. (parts[3] or "?") .. ")")
+        comm.peers[senderName] = { persona = parts[2] or "UNKNOWN", actualClass = parts[3] or "UNKNOWN", style = parts[4] or "SOCIAL", lastSeen = GetTime() }
+        ns.Debug("Confirmed peer: " .. senderName .. " (" .. (parts[2] or "?") .. "/" .. (parts[3] or "?") .. "/" .. (parts[4] or "?") .. ")")
 
     elseif msgType == "SCENE_START" then
         comm.HandleSceneStart(senderName, parts[2], parts[3], parts[4], parts[5])
@@ -166,6 +198,9 @@ function comm.OnMessage(prefix, text, distribution, sender)
     elseif msgType == "ZONE" then
         comm.groupZones[senderName] = parts[2] or ""
         ns.Debug("Peer zone: " .. senderName .. " -> " .. (parts[2] or "?"))
+
+    elseif msgType == "STYLE_RIB" then
+        comm.HandleStyleRib(senderName)
     end
 end
 
@@ -209,17 +244,23 @@ function comm.HandleSceneStart(sender, sceneId, trigger, sourcePersona, contextS
 
     -- Should we claim a response slot?
     if ns.triggers.CanRespond() then
-        local my   = responseHistory[UnitName("player")] or 0
-        local avg  = 0
-        local cnt  = 0
-        for _, c in pairs(responseHistory) do avg = avg + c; cnt = cnt + 1 end
-        avg = cnt > 0 and (avg / cnt) or 0
-
-        if my <= avg + 1 or math.random() < 0.4 then
-            comm.SendClaim(sceneId)
-            ns.Debug("Sent CLAIM for " .. sceneId)
+        -- CALLOUTS mode: only claim utility triggers
+        local isUtil = (trigger == "CC_CALLOUT" or trigger == "INTERRUPT" or trigger == "PLAYER_KILL")
+        if ns.db and ns.db.banterStyle == "CALLOUTS" and not isUtil then
+            ns.Debug("Skipping claim — CALLOUTS mode, non-utility trigger: " .. (trigger or "?"))
         else
-            ns.Debug("Skipping claim (fairness: my=" .. my .. " avg=" .. string.format("%.1f", avg) .. ")")
+            local my   = responseHistory[UnitName("player")] or 0
+            local avg  = 0
+            local cnt  = 0
+            for _, c in pairs(responseHistory) do avg = avg + c; cnt = cnt + 1 end
+            avg = cnt > 0 and (avg / cnt) or 0
+
+            if my <= avg + 1 or math.random() < 0.4 then
+                comm.SendClaim(sceneId)
+                ns.Debug("Sent CLAIM for " .. sceneId)
+            else
+                ns.Debug("Skipping claim (fairness: my=" .. my .. " avg=" .. string.format("%.1f", avg) .. ")")
+            end
         end
     end
 end

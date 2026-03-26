@@ -303,7 +303,8 @@ frame:SetScript("OnEvent", function(self, event, ...)
     -----------------------------------------------------------------------
     if event == "PLAYER_ENTERING_WORLD" then
         triggers.OnEnterWorld()
-        -- Show changelog popup ONCE on initial login only (not on every zone change)
+        -- Show style picker FIRST (only on first-ever run or after update)
+        -- Then show changelog popup ONCE on initial login only
         if not ns._changelogShown then
             ns._changelogShown = true
             local timer = CreateFrame("Frame")
@@ -312,7 +313,12 @@ frame:SetScript("OnEvent", function(self, event, ...)
                 elapsed = elapsed + dt
                 if elapsed >= 2 then
                     self:SetScript("OnUpdate", nil)
-                    if ns.ShowChangelog then ns.ShowChangelog() end
+                    -- Style picker takes priority  (skips if already chosen)
+                    if ns.ShowStylePicker then ns.ShowStylePicker() end
+                    -- Changelog shows after (skips if style picker is up)
+                    if ns.db and ns.db.styleChosen then
+                        if ns.ShowChangelog then ns.ShowChangelog() end
+                    end
                 end
             end)
         end
