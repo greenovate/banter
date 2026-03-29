@@ -181,6 +181,28 @@ statements = {
         },
     },
 
+    INTERRUPT_SELF = {
+        COMMON = {
+            { id="war_ints_c01", weight=1, line="Kicked {interrupted}. Shut up and fight." },
+            { id="war_ints_c02", weight=1, line="Interrupted {interrupted}. No casting on MY watch." },
+            { id="war_ints_c03", weight=1, line="{interrupted} denied. That's the WARRIOR way." },
+            { id="war_ints_c04", weight=1, line="Pummel'd {interrupted}. Try again. Please." },
+            { id="war_ints_c05", weight=1, line="{interrupted} cancelled. Casters hate me. GOOD." },
+            { id="war_ints_c06", weight=1, line="Got the kick on {interrupted}. Rage well spent." },
+        },
+        UNCOMMON = {
+            { id="war_ints_u01", weight=1, line="{interrupted} is dead in the water. That's what Pummel is FOR." },
+            { id="war_ints_u02", weight=1, line="Kicked {interrupted} so hard the mob forgot its spell book." },
+            { id="war_ints_u03", weight=1, line="{interrupted} interrupted. I solve every problem by hitting it. This was no different." },
+        },
+        RARE = {
+            { id="war_ints_r01", weight=1, line="{interrupted} never had a chance. My Pummel has a 100% success rate. Because I only use it when I'm angry. Which is ALWAYS." },
+        },
+        MYTHIC = {
+            { id="war_ints_m01", weight=1, line="{interrupted} obliterated. Perfect timing, maximum violence, zero casting. My autobiography writes itself." },
+        },
+    },
+
     PERIODIC_DAMAGE = {
         COMMON = {
             { id="war_fire_c01", weight=1, line="THE FLOOR IS DOING DAMAGE AGAIN. I hate magic floors." },
@@ -283,6 +305,29 @@ statements = {
         },
         MYTHIC = {
             { id="war_cca_m01", weight=1, line="{spell} on {victim}. Mob still alive. Nobody dispelling. AS USUAL." },
+        },
+    },
+
+    CC_CALLOUT_NODISPEL = {
+        COMMON = {
+            { id="war_ccn_c01", weight=1, line="{victim} stunned by {spell}. Gotta wait it out." },
+            { id="war_ccn_c02", weight=1, line="{spell} on {victim} — they're locked down." },
+            { id="war_ccn_c03", weight=1, line="{victim} got hit with {spell}. Nothing we can do but wait." },
+            { id="war_ccn_c04", weight=1, line="{spell} on {victim}. Watch the mob, it's gonna turn." },
+            { id="war_ccn_c05", weight=1, line="{victim} is locked up by {spell}. Peel if it goes bad." },
+            { id="war_ccn_c06", weight=1, line="{spell} got {victim}. Just gotta ride it out." },
+        },
+        UNCOMMON = {
+            { id="war_ccn_u01", weight=1, line="{spell} on {victim}. Can't break it, can't dispel it. Hate that." },
+            { id="war_ccn_u02", weight=1, line="{victim} eating {spell}. Nothing to do but keep hitting things harder." },
+            { id="war_ccn_u03", weight=1, line="{spell} on {victim}. No fix for this one. Just time." },
+        },
+        RARE = {
+            { id="war_ccn_r01", weight=1, line="{victim} locked down by {spell}. If I could break stuns by yelling I would." },
+            { id="war_ccn_r02", weight=1, line="{spell} on {victim}. Can't swing at that problem. And that's the only tool I have." },
+        },
+        MYTHIC = {
+            { id="war_ccn_m01", weight=1, line="{spell} on {victim}. Can't cleanse it, can't hit it, can't even YELL at it. This is warrior hell." },
         },
     },
 

@@ -157,6 +157,28 @@ statements = {
         },
     },
 
+    INTERRUPT_SELF = {
+        COMMON = {
+            { id="dru_ints_c01", weight=1, line="Interrupted {interrupted}. Caught it mid-shift." },
+            { id="dru_ints_c02", weight=1, line="{interrupted} denied. Was in the right form for once." },
+            { id="dru_ints_c03", weight=1, line="Got the kick on {interrupted}. Nature prevails." },
+            { id="dru_ints_c04", weight=1, line="{interrupted} cancelled. Bash'd it. Bear form has its moments." },
+            { id="dru_ints_c05", weight=1, line="Kicked {interrupted}. Shifted, interrupted, shifted back. Three GCDs. Worth it." },
+            { id="dru_ints_c06", weight=1, line="{interrupted} shut down. The forest wins this round." },
+        },
+        UNCOMMON = {
+            { id="dru_ints_u01", weight=1, line="{interrupted} neutralized. Only cost me two form shifts and mild panic." },
+            { id="dru_ints_u02", weight=1, line="Interrupted {interrupted}. Feral Charge into Bash. Looked cool. Felt cooler." },
+            { id="dru_ints_u03", weight=1, line="{interrupted} erased. I was in the wrong form but I MADE it the right form." },
+        },
+        RARE = {
+            { id="dru_ints_r01", weight=1, line="{interrupted} obliterated. Three forms, two shifts, one perfect interrupt. The jealousy is REAL." },
+        },
+        MYTHIC = {
+            { id="dru_ints_m01", weight=1, line="{interrupted} annihilated. Bear form. Bash. Cat form. Back to work. Nobody even noticed. I noticed." },
+        },
+    },
+
     PERIODIC_DAMAGE = {
         COMMON = {
             { id="dru_fire_c01", weight=1, line="Fire on the ground. This is VERY anti-nature. I'm offended." },
@@ -251,6 +273,29 @@ statements = {
         },
         MYTHIC = {
             { id="dru_cca_m01", weight=1, line="{spell} on {victim}. Nobody moving. Nature, society, and I all agree: DISPEL." },
+        },
+    },
+
+    CC_CALLOUT_NODISPEL = {
+        COMMON = {
+            { id="dru_ccn_c01", weight=1, line="{spell} on {victim}. Can't shift that off. Just gotta wait." },
+            { id="dru_ccn_c02", weight=1, line="{victim} stunned by {spell}. No form helps with this." },
+            { id="dru_ccn_c03", weight=1, line="{spell} hit {victim}. Not removable. Nature has limits." },
+            { id="dru_ccn_c04", weight=1, line="{victim} locked down by {spell}. Standing by in... whatever form I'm in." },
+            { id="dru_ccn_c05", weight=1, line="{spell} on {victim}. Can't Remove Curse it. Can't Abolish Poison it. Can't anything it." },
+            { id="dru_ccn_c06", weight=1, line="{victim} caught {spell}. Short duration. Heal incoming when it breaks." },
+        },
+        UNCOMMON = {
+            { id="dru_ccn_u01", weight=1, line="{spell} on {victim}. Shifted through four forms looking for a solution. Zero of them work." },
+            { id="dru_ccn_u02", weight=1, line="{victim} has {spell}. If it were a curse or poison I'd handle it instantly. But no." },
+            { id="dru_ccn_u03", weight=1, line="{spell} on {victim}. Nature gave me many tools. Breaking stuns isn't one. Nature is imperfect." },
+        },
+        RARE = {
+            { id="dru_ccn_r01", weight=1, line="{spell} on {victim}. No dispel. I'm in Bear Form for emotional protection." },
+            { id="dru_ccn_r02", weight=1, line="{victim} locked in {spell}. The forest has no answer. The forest says 'wait.' Thanks, forest." },
+        },
+        MYTHIC = {
+            { id="dru_ccn_m01", weight=1, line="{spell} on {victim}. Four forms. Zero solutions. I'm literally a shapeshifter and I can't fix a STUN." },
         },
     },
 

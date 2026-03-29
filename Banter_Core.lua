@@ -97,8 +97,11 @@ function core.ReplaceTokens(line, ctx)
     local myName = UnitName("player")
 
     -- Self-aware substitution: if a name token is the player, use "I" instead
+    -- ONLY for social banter — utility callouts use actual names for clarity
+    local isCallout = ctx._isCallout
     local function selfAware(value, fallback)
         if not value then return fallback or "someone" end
+        if isCallout then return value end  -- callouts keep real names
         if value == myName then return "I" end
         return value
     end
@@ -317,10 +320,10 @@ end
 function core.StartScene(trigger, ctx)
     ctx = ctx or {}
 
-    local isUtilityCallout = (trigger == "CC_CALLOUT" or trigger == "INTERRUPT" or trigger == "PLAYER_KILL")
+    local isUtilityCallout = (trigger == "CC_CALLOUT" or trigger == "CC_CALLOUT_NODISPEL" or trigger == "INTERRUPT" or trigger == "INTERRUPT_SELF" or trigger == "PLAYER_KILL")
 
-    -- CALLOUTS style: suppress everything except utility callouts
-    if ns.db.banterStyle == "CALLOUTS" and not isUtilityCallout then
+    -- CALLOUTS style: suppress everything except utility callouts (manual button bypasses)
+    if ns.db.banterStyle == "CALLOUTS" and not isUtilityCallout and not (ctx and ctx.manualTrigger) then
         ns.Debug("Scene suppressed — CALLOUTS style (utility only)")
         return
     end
@@ -460,7 +463,7 @@ function core.EmitResponse(trigger, ctx, sourcePersona)
     ctx = ctx or {}
 
     -- CALLOUTS style: only respond to utility callout triggers
-    local isUtility = (trigger == "CC_CALLOUT" or trigger == "INTERRUPT" or trigger == "PLAYER_KILL")
+    local isUtility = (trigger == "CC_CALLOUT" or trigger == "CC_CALLOUT_NODISPEL" or trigger == "INTERRUPT" or trigger == "PLAYER_KILL")
     if ns.db and ns.db.banterStyle == "CALLOUTS" and not isUtility then return end
 
     local persona = ns.ResolvePersona()
@@ -868,10 +871,219 @@ local LOUD_COMEBACK = {
     },
 }
 
+-- Lines the CALLOUTS user says about the chatty SOCIAL peer
+local LOUD_TEASE = {
+    WARRIOR = {
+        "Does {name} EVER stop talking? I'm trying to FIGHT here.",
+        "{name} has said more words today than I've thrown swings. And I swing a LOT.",
+        "I swear {name}'s mouth does more damage than their weapon.",
+        "{name}, you gonna fight or commentate? Pick ONE.",
+        "Every time {name} talks I lose focus. And rage. MOSTLY RAGE.",
+        "{name} talks like there's a boss mechanic for it. There ISN'T.",
+        "I'm counting {name}'s words per minute. It's higher than my DPS.",
+        "{name} could solo content with their mouth. It never stops.",
+        "{name}'s running a podcast over here. I didn't subscribe.",
+        "If {name} put as much effort into DPS as talking we'd be done by now.",
+        "Five minutes. {name} hasn't shut up for FIVE MINUTES.",
+        "{name} just talked through an entire pull. I'm impressed and furious.",
+    },
+    MAGE = {
+        "{name} is generating more hot air than a Fire mage. Impressive, actually.",
+        "I've calculated {name}'s words-per-minute. It exceeds safe thresholds.",
+        "{name}, quantity is not quality. Your output proves this.",
+        "If {name}'s chatter scaled with intellect we'd all be geniuses by proximity.",
+        "{name} has talked through three pulls. My Counterspell doesn't work on allies.",
+        "I could Polymorph {name} for eight seconds of peace. Considering it.",
+        "{name}'s vocal output is consuming more resources than my Arcane Missiles.",
+        "The ambient noise from {name} is interfering with my calculations.",
+        "I've written shorter dissertations than {name}'s last monologue.",
+        "{name}, brevity is the soul of wit. Your soul appears... expansive.",
+        "If silence were mana, {name} would be OOM permanently.",
+        "{name} talks more than my Mirror Images. And there's THREE of them.",
+    },
+    WARLOCK = {
+        "{name}'s mouth runs on pure chaos energy. Infinite resource, zero benefit.",
+        "My demons are quieter than {name}. And they're always complaining.",
+        "{name}, even the void has quiet moments. You should try it.",
+        "I could Banish {name}'s voice for ten seconds. The temptation is real.",
+        "{name} hasn't stopped. Even Fear has a duration. This doesn't.",
+        "My Imp says {name} is louder than him. My Imp is OFFENDED.",
+        "If I could drain {name}'s talking like I drain mana, I'd have infinite resources.",
+        "{name} is what happens when there's no cooldown on speaking.",
+        "The void whispers. {name} screams. Both are unsettling.",
+        "{name}'s chatter is a DoT on my patience. No dispel available.",
+        "Even my Succubus couldn't silence {name}. And she tries.",
+        "{name} has said more than my demon's entire contract stipulates.",
+    },
+    PRIEST = {
+        "{name}'s talking is doing more damage to my sanity than the boss.",
+        "I'm healing fifteen people AND listening to {name}. One of these is optional.",
+        "{name}, I have Power Word: Shield. I need Power Word: Silence for you.",
+        "Every word {name} says costs me concentration, which costs mana, which costs YOUR health.",
+        "I'd pray for {name}'s silence but the Light has limits.",
+        "{name} is louder than my Psychic Scream. Which is literally a SCREAM.",
+        "Could {name} channel their energy into DPS instead of dialogue?",
+        "I've been healing through {name}'s monologue for three pulls. My mana bar weeps.",
+        "{name}'s voice should proc a debuff. 'Distracted Healer' — reduces healing by 50%.",
+        "If {name} were a spell I'd interrupt them. Oh wait. That's not how this works.",
+        "{name} talks more than my inner monologue. My inner monologue is CONSTANT.",
+        "Shadow Word: Pain lasts 18 seconds. {name}'s talking lasts forever.",
+    },
+    ROGUE = {
+        "{name} is a security risk. Too much noise. Too much intel leaked.",
+        "Silence is operational. {name} is the opposite of operational.",
+        "{name}'s mouth is the loudest thing in this dungeon. Including the bosses.",
+        "I could Sap {name} but they'd talk through it somehow.",
+        "{name}, operational silence means EVERYONE. Including you. ESPECIALLY you.",
+        "My Stealth breaks at 10 yards. {name}'s voice carries for 40.",
+        "{name} is broadcasting our position to every mob in the instance.",
+        "In my line of work, {name} would have been reassigned. To a desk.",
+        "{name} is generating more noise than a failed Stealth check.",
+        "If talking were combo points, {name} would have a six-point Eviscerate ready.",
+        "{name}'s operational output: 90% chatter, 10% results.",
+        "I've been on quieter operations in COMBAT than in this group with {name}.",
+    },
+    HUNTER = {
+        "{name} is so loud my pet can't hear my commands. He's confused.",
+        "My pet looks at {name} every time they talk. It's a lot of looking.",
+        "{name} talks more than my pet eats. And my pet eats CONSTANTLY.",
+        "Even my pet knows when to be quiet. {name} does not.",
+        "{name}'s voice is scaring the mobs before we pull. Not helpful.",
+        "My pet just put his paws over his ears. Didn't know he could do that.",
+        "If {name} were a beast I'd use Scatter Shot. For the quiet.",
+        "{name} has out-talked my pet, me, AND the mobs. Combined.",
+        "I Feign Death to avoid conversations with {name}. It's working.",
+        "My pet whispered to me. He said 'make {name} stop.' Pets don't whisper.",
+        "{name}'s talking is a constant threat on my pet's anxiety levels.",
+        "If {name} were a mob I'd kite them. For distance. And peace.",
+    },
+    DRUID = {
+        "{name} is disrupting the natural order. The natural order is QUIET.",
+        "Even in Bear Form I can't growl louder than {name} talks.",
+        "I shifted to Cat Form for stealth. {name} won't let stealth happen.",
+        "Nature doesn't narrate itself. {name} should take notes.",
+        "{name} is louder than a Moonfire crit. And less useful.",
+        "The forest is patient. I am patient. {name} is testing BOTH.",
+        "I shifted forms three times trying to find one that blocks sound. None do.",
+        "Mushrooms communicate through spores. Silently. {name}, consider mushrooms.",
+        "If {name} were a druid they'd be stuck in Loudmouth Form. Permanently.",
+        "{name}'s chatter is anti-nature. I'm filing a complaint with the Cenarion Circle.",
+        "Even Thorns damage is quieter than {name}.",
+        "I could Entangling Roots {name}'s feet but it won't root their mouth.",
+    },
+    PALADIN = {
+        "The Light teaches patience. {name} is the final exam.",
+        "{name} is louder than Consecration. Consecration is HOLY FIRE.",
+        "I'd Hammer of Justice {name} but friendly fire is against the code.",
+        "The scripture says 'blessed are the peacemakers.' {name} is making NO peace.",
+        "{name}'s volume exceeds my Devotion Aura. That shouldn't be possible.",
+        "If {name} were a cooldown I'd have them on a 5-minute timer. At least.",
+        "I used Blessing of Wisdom on {name}. Still talking. Wisdom failed.",
+        "My bubble protects from all damage. Not from {name}'s dialogue.",
+        "{name} has talked more than every sermon I've sat through. Combined.",
+        "The Light judges all. Today it judges {name}'s volume control.",
+        "I tried Lay on Hands. {name} didn't stop talking. That costs a 60-minute cooldown.",
+        "Even my shield can't block {name}'s conversational DPS.",
+    },
+    SHAMAN = {
+        "{name} is louder than all four elements. That's hard to do.",
+        "Wind carries sound. {name} is giving Wind overtime.",
+        "My totems vibrate when {name} talks. That's not how totems work.",
+        "Earth says {name} needs grounding. I have a Grounding Totem. Different thing.",
+        "Fire is loud. Water is loud. {name} is louder. The elements are offended.",
+        "I dropped Tremor Totem. Not for fear. For {name}.",
+        "{name} could out-talk a thunderstorm. Lightning agrees.",
+        "All four elements filed a noise complaint against {name}.",
+        "My Healing Stream Totem doesn't cure {name}'s talking. Tested.",
+        "If {name}'s voice were an element it'd be the fifth one. The annoying one.",
+        "I asked Wind to carry {name}'s words away. Wind said 'too many.'",
+        "{name} has disrupted more communion sessions than enemy casters.",
+    },
+    PIRATE = {
+        "ARR, does {name} EVER shut their gob?!",
+        "{name} talks more than a drunk first mate. And I've HAD drunk first mates!",
+        "Me ears be bleedin' from {name}'s yammerin'! GIVE IT A REST!",
+        "{name} could sink a ship with jaw power alone!",
+        "If {name} were a cannon they'd never stop firin'. EVER.",
+        "I've sailed through hurricanes quieter than {name}!",
+        "Me parrot said he wants off the ship because of {name}. ME PARROT!",
+        "{name}'s mouth be runnin' like a loose sail in a storm!",
+        "Arr, even Davy Jones would tell {name} to shut up!",
+        "I've met SIRENS less chatty than {name}! At least sirens SOUND nice!",
+        "{name} be the reason pirates drink. Specifically ME.",
+        "If {name} put as much wind in the sails as in their words we'd be there by now!",
+    },
+}
+
+-- Lines the SOCIAL user fires back when teased about being loud
+local QUIET_COMEBACK = {
+    WARRIOR = {
+        "I talk because SOMEONE has to keep morale up. You're welcome, stone face.",
+        "Silent warrior is just AFK with extra steps.",
+        "I've never met a problem that couldn't be improved with yelling.",
+        "The group needs energy. I AM the energy.",
+    },
+    MAGE = {
+        "I'm not talking too much. You're listening too little.",
+        "My commentary is more valuable than your silence. Statistically proven.",
+        "Knowledge shared is knowledge multiplied. You're welcome for the multiplication.",
+        "At least when I talk, it's INTERESTING.",
+    },
+    WARLOCK = {
+        "My words fill the void. Literally. The void asked for content.",
+        "You're confusing 'too much talking' with 'adequate evil monologuing.'",
+        "Every word I say makes my demons more powerful. That's not true but it SOUNDS true.",
+        "The quiet ones are always the first to die. I'm surviving through VOLUME.",
+    },
+    PRIEST = {
+        "I talk so you know I'm still healing. You WANT me talking. Trust me.",
+        "My commentary is free. My heals are not. Be grateful for both.",
+        "Last healer who went quiet was AFK. You WANT me loud.",
+        "I narrate so you know someone's paying attention to your health bar.",
+    },
+    ROGUE = {
+        "Stealth doesn't mean mute. I'm a rogue, not a monk.",
+        "I talk between kills. There's a lot of between.",
+        "My commentary is tactical. You just don't understand the strategy.",
+        "Even assassins need to decompress. This is my decompression.",
+    },
+    HUNTER = {
+        "My pet likes the sound of my voice. And his opinion matters more.",
+        "Talking keeps my pet calm. You want a calm pet. Trust the process.",
+        "I'm not loud. My pet is just a good listener and you're not.",
+        "Someone has to narrate what the pet's thinking. He can't talk.",
+    },
+    DRUID = {
+        "Nature speaks through me. You want nature to be quiet? That's deforestation.",
+        "Four forms, four opinions. I'm just giving them all a voice.",
+        "The trees told me to be chatty today. I listen to the trees.",
+        "I'm loudest in Moonkin form. You're getting the quiet version.",
+    },
+    PALADIN = {
+        "The Light commands me to share. I'm SHARING. It's holy.",
+        "My words are righteous. Your silence is suspicious.",
+        "I talk because the alternative is judging you silently. You prefer this.",
+        "Even the scripture has thousands of pages. Brevity isn't divine.",
+    },
+    SHAMAN = {
+        "The elements speak through me. Blame them, not me.",
+        "Wind carries my words. I didn't choose to be a vessel. I'm honored though.",
+        "Four elements, all chatty. I'm the translator. You need me.",
+        "If the elements wanted me quiet they'd stop giving me things to say.",
+    },
+    PIRATE = {
+        "A quiet pirate is a DEAD pirate! Ye want me dead?!",
+        "I'll talk when I want, where I want, HOW LOUD I want! That's the PIRATE CODE!",
+        "Arr, me mouth is me second best weapon! First is the SWORD!",
+        "Ye don't like the talkin'? Wait'll I start SINGIN'!",
+    },
+}
+
 function core.TryStyleRibbing()
     if not ns.db or not ns.db.enabled then return end
-    -- Only SOCIAL users initiate ribbing (they're the chatty ones)
-    if ns.db.banterStyle ~= "SOCIAL" then return end
+    local myStyle = ns.db.banterStyle
+    -- Only SOCIAL and CALLOUTS users participate in ribbing
+    if myStyle ~= "SOCIAL" and myStyle ~= "CALLOUTS" then return end
     -- Cooldown
     if (GetTime() - lastStyleRib) < STYLE_RIB_COOLDOWN then return end
     -- PvP suppression
@@ -882,28 +1094,29 @@ function core.TryStyleRibbing()
     if ns.comm.activeScene and (GetTime() - (ns.comm.activeScene.startTime or 0)) < 20 then return end
     if ns.comm.activeEngagement and (GetTime() - (ns.comm.activeEngagement.startTime or 0)) < 20 then return end
 
-    -- Find a CALLOUTS peer to tease
-    local quietPeer = nil
+    -- Find a peer with the opposite style to tease
+    local targetPeer = nil
+    local targetStyle = (myStyle == "SOCIAL") and "CALLOUTS" or "SOCIAL"
     for name, data in pairs(ns.comm.peers) do
-        if data.style == "CALLOUTS" then
-            quietPeer = name
+        if data.style == targetStyle then
+            targetPeer = name
             break
         end
     end
-    if not quietPeer then return end
+    if not targetPeer then return end
 
     -- Pick a tease line for our persona
     local persona = ns.ResolvePersona()
-    local pool = QUIET_TEASE[persona]
+    local pool = (myStyle == "SOCIAL") and QUIET_TEASE[persona] or LOUD_TEASE[persona]
     if not pool or #pool == 0 then return end
-    local line = pool[math.random(#pool)]:gsub("{name}", quietPeer)
+    local line = pool[math.random(#pool)]:gsub("{name}", targetPeer)
 
     -- Send tease to chat
     local channel = core.GetOutputChannel()
     core.SafeSend(line, channel)
-    ns.Debug("STYLE_RIB TEASE [" .. persona .. " -> " .. quietPeer .. "]: " .. line)
+    ns.Debug("STYLE_RIB TEASE [" .. persona .. "/" .. myStyle .. " -> " .. targetPeer .. "]: " .. line)
 
-    -- Notify the quiet peer to fire back
+    -- Notify the peer to fire back
     ns.comm.SendStyleRib()
 
     lastStyleRib = GetTime()
@@ -911,7 +1124,9 @@ end
 
 function core.PickStyleComeback()
     local persona = ns.ResolvePersona()
-    local pool = LOUD_COMEBACK[persona]
+    -- If we're SOCIAL, we got teased by a CALLOUTS user — fire a "I'm fun" comeback
+    -- If we're CALLOUTS, we got teased by a SOCIAL user — fire a "shut up" comeback
+    local pool = (ns.db.banterStyle == "SOCIAL") and QUIET_COMEBACK[persona] or LOUD_COMEBACK[persona]
     if not pool or #pool == 0 then return nil end
     return pool[math.random(#pool)]
 end

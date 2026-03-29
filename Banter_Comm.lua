@@ -132,11 +132,13 @@ function comm.SendStyleRib()
 end
 
 ---------------------------------------------------------------------------
--- Style Ribbing — SOCIAL peer teases CALLOUTS peer about being quiet
+-- Style Ribbing — peers tease each other about their banter style
 ---------------------------------------------------------------------------
 function comm.HandleStyleRib(sender)
-    -- Only respond if we're in CALLOUTS mode (we're the quiet one)
-    if not ns.db or ns.db.banterStyle ~= "CALLOUTS" then return end
+    -- Respond if we're CALLOUTS (teased by SOCIAL) or SOCIAL (teased by CALLOUTS)
+    if not ns.db then return end
+    local myStyle = ns.db.banterStyle
+    if myStyle ~= "CALLOUTS" and myStyle ~= "SOCIAL" then return end
     if not ns.core or not ns.core.PickStyleComeback then return end
 
     local comeback = ns.core.PickStyleComeback()

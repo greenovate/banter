@@ -163,6 +163,28 @@ statements = {
         },
     },
 
+    INTERRUPT_SELF = {
+        COMMON = {
+            { id="mag_ints_c01", weight=1, line="Counterspelled {interrupted}. Amateur hour." },
+            { id="mag_ints_c02", weight=1, line="{interrupted} countered. Arcane reflexes." },
+            { id="mag_ints_c03", weight=1, line="Interrupted {interrupted}. You're welcome." },
+            { id="mag_ints_c04", weight=1, line="{interrupted} denied. I didn't even have to think about it. Instinct." },
+            { id="mag_ints_c05", weight=1, line="Kicked {interrupted}. Counterspell is elegant. Like me." },
+            { id="mag_ints_c06", weight=1, line="{interrupted} shut down. Competence rewarded." },
+        },
+        UNCOMMON = {
+            { id="mag_ints_u01", weight=1, line="{interrupted} neutralized. My Counterspell timing is peer-reviewed and published." },
+            { id="mag_ints_u02", weight=1, line="Interrupted {interrupted}. The mob's spellbook just got an F." },
+            { id="mag_ints_u03", weight=1, line="{interrupted} cancelled by someone who actually READS cast bars." },
+        },
+        RARE = {
+            { id="mag_ints_r01", weight=1, line="{interrupted} erased. I would explain the timing but you'd need a degree in Arcane Theory to appreciate it." },
+        },
+        MYTHIC = {
+            { id="mag_ints_m01", weight=1, line="{interrupted} obliterated. Perfect Counterspell. Nobody had to Ice Block. Nobody had to die. Because I exist." },
+        },
+    },
+
     PERIODIC_DAMAGE = {
         COMMON = {
             { id="mag_fire_c01", weight=1, line="That fire on the ground? I didn't cast it, so I don't respect it." },
@@ -257,6 +279,29 @@ statements = {
         },
         MYTHIC = {
             { id="mag_cca_m01", weight=1, line="{spell} on {victim}. Dispel available. Nobody moving. Even I can't fix this negligence." },
+        },
+    },
+
+    CC_CALLOUT_NODISPEL = {
+        COMMON = {
+            { id="mag_ccn_c01", weight=1, line="{spell} on {victim}. No dispel for this one. Unfortunate." },
+            { id="mag_ccn_c02", weight=1, line="{victim} locked down by {spell}. Patience required." },
+            { id="mag_ccn_c03", weight=1, line="{spell} hit {victim}. We wait. Time is the only remedy." },
+            { id="mag_ccn_c04", weight=1, line="{victim} stunned by {spell}. Adjust accordingly." },
+            { id="mag_ccn_c05", weight=1, line="{spell} on {victim}. Not dispellable. I checked." },
+            { id="mag_ccn_c06", weight=1, line="{victim} caught {spell}. Short duration. Theoretically survivable." },
+        },
+        UNCOMMON = {
+            { id="mag_ccn_u01", weight=1, line="{spell} on {victim}. No magical solution exists. Believe me, I looked." },
+            { id="mag_ccn_u02", weight=1, line="{victim} has {spell}. Can't Counterspell a stun. Physics." },
+            { id="mag_ccn_u03", weight=1, line="{spell} on {victim}. File under 'problems intelligence cannot solve.' A short file." },
+        },
+        RARE = {
+            { id="mag_ccn_r01", weight=1, line="{spell} on {victim}. No dispel, no remove, no clever workaround. Just waiting. Like a COMMONER." },
+            { id="mag_ccn_r02", weight=1, line="{victim} locked in {spell}. I could Polymorph the mob that did it but that feels petty. Considering it." },
+        },
+        MYTHIC = {
+            { id="mag_ccn_m01", weight=1, line="{spell} on {victim}. No counter. No dispel. Just a mage standing here. Watching. CALCULATING." },
         },
     },
 

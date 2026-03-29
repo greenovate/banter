@@ -158,6 +158,28 @@ statements = {
         },
     },
 
+    INTERRUPT_SELF = {
+        COMMON = {
+            { id="sha_ints_c01", weight=1, line="Interrupted {interrupted}. Wind Shear does its job." },
+            { id="sha_ints_c02", weight=1, line="{interrupted} denied. The elements concur." },
+            { id="sha_ints_c03", weight=1, line="Got the Wind Shear on {interrupted}. Quick and clean." },
+            { id="sha_ints_c04", weight=1, line="{interrupted} cancelled. Wind says you're welcome." },
+            { id="sha_ints_c05", weight=1, line="Kicked {interrupted}. Wind Shear, 6 second cooldown. I'll be ready for the next one." },
+            { id="sha_ints_c06", weight=1, line="{interrupted} shut down. The elements are efficient today." },
+        },
+        UNCOMMON = {
+            { id="sha_ints_u01", weight=1, line="{interrupted} neutralized. Wind Shear: ranged, fast, reliable. Unlike some group members." },
+            { id="sha_ints_u02", weight=1, line="Interrupted {interrupted}. Six second cooldown. I can do this all day." },
+            { id="sha_ints_u03", weight=1, line="{interrupted} erased. Earth, Water, Fire approved. Wind did the actual work." },
+        },
+        RARE = {
+            { id="sha_ints_r01", weight=1, line="{interrupted} obliterated. All four elements stood up and applauded. First time they've agreed on ANYTHING." },
+        },
+        MYTHIC = {
+            { id="sha_ints_m01", weight=1, line="{interrupted} annihilated. Wind Shear, 6 seconds, ranged, instant. Best interrupt in the game. I'm not biased. The elements are." },
+        },
+    },
+
     PERIODIC_DAMAGE = {
         COMMON = {
             { id="sha_fire_c01", weight=1, line="Fire on the ground! Fire is MY element. I should be immune. I'm not. That seems unfair." },
@@ -252,6 +274,29 @@ statements = {
         },
         MYTHIC = {
             { id="sha_cca_m01", weight=1, line="{spell} on {victim}. Nobody moving. Fire wants to rage. Earth wants to quake. I want someone to CLICK DISPEL." },
+        },
+    },
+
+    CC_CALLOUT_NODISPEL = {
+        COMMON = {
+            { id="sha_ccn_c01", weight=1, line="{spell} on {victim}. Not removable. The elements shrug." },
+            { id="sha_ccn_c02", weight=1, line="{victim} stunned by {spell}. No totem for this one." },
+            { id="sha_ccn_c03", weight=1, line="{spell} hit {victim}. Can't Purge it off an ally. Can't cure it either." },
+            { id="sha_ccn_c04", weight=1, line="{victim} locked down by {spell}. Wind says wait. Earth agrees." },
+            { id="sha_ccn_c05", weight=1, line="{spell} on {victim}. Tremor Totem won't help here. Different problem." },
+            { id="sha_ccn_c06", weight=1, line="{victim} caught {spell}. Riding it out. Elements standing by." },
+        },
+        UNCOMMON = {
+            { id="sha_ccn_u01", weight=1, line="{spell} on {victim}. Asked all four elements. None of them handle stuns. Disappointed." },
+            { id="sha_ccn_u02", weight=1, line="{victim} has {spell}. Earth says 'endure.' Water says 'flow around it.' Neither HELPS." },
+            { id="sha_ccn_u03", weight=1, line="{spell} on {victim}. My totems solve many problems. This is not one of those problems." },
+        },
+        RARE = {
+            { id="sha_ccn_r01", weight=1, line="{spell} on {victim}. No counter. I have Reincarnation but that only fixes MY problems. After death." },
+            { id="sha_ccn_r02", weight=1, line="{victim} locked in {spell}. Fire says 'burn the mob.' That's Fire's answer to everything." },
+        },
+        MYTHIC = {
+            { id="sha_ccn_m01", weight=1, line="{spell} on {victim}. Four elements, twelve totems, zero solutions. The elements are filing a complaint." },
         },
     },
 

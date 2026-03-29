@@ -164,6 +164,28 @@ statements = {
         },
     },
 
+    INTERRUPT_SELF = {
+        COMMON = {
+            { id="pri_ints_c01", weight=1, line="Interrupted {interrupted}. Less damage for me to heal." },
+            { id="pri_ints_c02", weight=1, line="{interrupted} denied. You're WELCOME." },
+            { id="pri_ints_c03", weight=1, line="Kicked {interrupted}. One less problem for the healer. I'm the healer." },
+            { id="pri_ints_c04", weight=1, line="{interrupted} shut down. My mana bar thanks me." },
+            { id="pri_ints_c05", weight=1, line="Got the kick on {interrupted}. Healers can interrupt too." },
+            { id="pri_ints_c06", weight=1, line="{interrupted} cancelled. Don't say I never do anything besides heal." },
+        },
+        UNCOMMON = {
+            { id="pri_ints_u01", weight=1, line="{interrupted} neutralized. That's mana saved. Mana that keeps YOU alive." },
+            { id="pri_ints_u02", weight=1, line="Interrupted {interrupted}. Healing AND interrupting. I do both. Nobody notices." },
+            { id="pri_ints_u03", weight=1, line="{interrupted} erased. I interrupted, healed, and shielded in the same GCD window. Approximately." },
+        },
+        RARE = {
+            { id="pri_ints_r01", weight=1, line="{interrupted} obliterated. For one beautiful second I wasn't stressed. Then the tank pulled again." },
+        },
+        MYTHIC = {
+            { id="pri_ints_m01", weight=1, line="{interrupted} annihilated. That alone saved 500 mana. I'm not crying. My eyes are casting." },
+        },
+    },
+
     PERIODIC_DAMAGE = {
         COMMON = {
             { id="pri_fire_c01", weight=1, line="Fire on the ground. Which means someone is going to stand in it. Which means I'm healing." },
@@ -258,6 +280,29 @@ statements = {
         },
         MYTHIC = {
             { id="pri_cca_m01", weight=1, line="{spell} on {victim}. Healing, dispelling, shielding, buffing — all me. ONE priest. FINITE MANA." },
+        },
+    },
+
+    CC_CALLOUT_NODISPEL = {
+        COMMON = {
+            { id="pri_ccn_c01", weight=1, line="{spell} on {victim}. Can't dispel that. Just gotta heal through it." },
+            { id="pri_ccn_c02", weight=1, line="{victim} stunned by {spell}. No dispel. Keeping heals ready." },
+            { id="pri_ccn_c03", weight=1, line="{spell} hit {victim}. Not removable. Checked my spellbook." },
+            { id="pri_ccn_c04", weight=1, line="{victim} locked down by {spell}. Standing by to heal when it breaks." },
+            { id="pri_ccn_c05", weight=1, line="{spell} on {victim}. Nothing I can do. And I CAN do a lot." },
+            { id="pri_ccn_c06", weight=1, line="{victim} caught {spell}. Riding it out. Pre-casting a heal." },
+        },
+        UNCOMMON = {
+            { id="pri_ccn_u01", weight=1, line="{spell} on {victim}. Not in my remove list. I WISH stuns were." },
+            { id="pri_ccn_u02", weight=1, line="{victim} has {spell}. Can't Abolish, can't Dispel. Shield and pray." },
+            { id="pri_ccn_u03", weight=1, line="{spell} on {victim}. My entire identity is removing problems. This one doesn't remove." },
+        },
+        RARE = {
+            { id="pri_ccn_r01", weight=1, line="{spell} on {victim}. No dispel. Just me staring at a stunned health bar, holding a heal, questioning my life." },
+            { id="pri_ccn_r02", weight=1, line="{victim} locked in {spell}. If the Light could break stuns I'd file a request. Might anyway." },
+        },
+        MYTHIC = {
+            { id="pri_ccn_m01", weight=1, line="{spell} on {victim}. Can't dispel. Can't remove. Can't abolish. I can HEAL though. Watch me HEAL the problem." },
         },
     },
 

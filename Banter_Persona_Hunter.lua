@@ -158,6 +158,28 @@ statements = {
         },
     },
 
+    INTERRUPT_SELF = {
+        COMMON = {
+            { id="hun_ints_c01", weight=1, line="Interrupted {interrupted}. My pet is proud. He wagged." },
+            { id="hun_ints_c02", weight=1, line="{interrupted} kicked. Got it from 40 yards. Easy." },
+            { id="hun_ints_c03", weight=1, line="Got the kick on {interrupted}. My pet helped. Emotionally." },
+            { id="hun_ints_c04", weight=1, line="{interrupted} denied. My pet barked in celebration." },
+            { id="hun_ints_c05", weight=1, line="Kicked {interrupted}. My pet and I high-fived. He doesn't have hands but we made it work." },
+            { id="hun_ints_c06", weight=1, line="{interrupted} cancelled. Ranged interrupt. From over here. Just saying." },
+        },
+        UNCOMMON = {
+            { id="hun_ints_u01", weight=1, line="{interrupted} neutralized. My pet is doing zoomies. The good kind." },
+            { id="hun_ints_u02", weight=1, line="Interrupted {interrupted} from max range. Didn't even have to move. Hunter privilege." },
+            { id="hun_ints_u03", weight=1, line="{interrupted} shut down. My pet looked at me. I looked at him. We get each other." },
+        },
+        RARE = {
+            { id="hun_ints_r01", weight=1, line="{interrupted} obliterated. Between the kick and my pet's moral support, that caster had zero chance." },
+        },
+        MYTHIC = {
+            { id="hun_ints_m01", weight=1, line="{interrupted} annihilated. My pet is doing FULL zoomies. He lives for this. Honestly so do I." },
+        },
+    },
+
     PERIODIC_DAMAGE = {
         COMMON = {
             { id="hun_fire_c01", weight=1, line="Fire on the ground. I'm 40 yards away. Good luck, melee." },
@@ -252,6 +274,29 @@ statements = {
         },
         MYTHIC = {
             { id="hun_cca_m01", weight=1, line="{spell} on {victim}. Nobody moving. My pet is judging everyone. And he eats garbage off the ground." },
+        },
+    },
+
+    CC_CALLOUT_NODISPEL = {
+        COMMON = {
+            { id="hun_ccn_c01", weight=1, line="{spell} on {victim}. Can't fix that one. My pet tried. He just stared at it." },
+            { id="hun_ccn_c02", weight=1, line="{victim} stunned by {spell}. Not removable. My pet is concerned." },
+            { id="hun_ccn_c03", weight=1, line="{spell} hit {victim}. Nothing we can do but wait. My pet is waiting too." },
+            { id="hun_ccn_c04", weight=1, line="{victim} locked down by {spell}. Peel the mob if needed." },
+            { id="hun_ccn_c05", weight=1, line="{spell} on {victim}. My pet wants to help but there's literally nothing to do." },
+            { id="hun_ccn_c06", weight=1, line="{victim} caught {spell}. Short stun. My pet just sat down. Even he knows." },
+        },
+        UNCOMMON = {
+            { id="hun_ccn_u01", weight=1, line="{spell} on {victim}. No dispel exists for stuns. My pet and I discussed it. We're sad." },
+            { id="hun_ccn_u02", weight=1, line="{victim} has {spell}. I can trap mobs, not un-stun friends. Different skill set." },
+            { id="hun_ccn_u03", weight=1, line="{spell} on {victim}. My pet looked at me like I should do something. I can't, buddy. I can't." },
+        },
+        RARE = {
+            { id="hun_ccn_r01", weight=1, line="{spell} on {victim}. No counter. My pet sat down next to them for moral support. He's a good boy." },
+            { id="hun_ccn_r02", weight=1, line="{victim} locked in {spell}. If my pet could lick them out of a stun he would. He would absolutely try." },
+        },
+        MYTHIC = {
+            { id="hun_ccn_m01", weight=1, line="{spell} on {victim}. Can't shoot it, can't trap it, can't send my pet at it. My entire skill set is useless. My pet agrees." },
         },
     },
 

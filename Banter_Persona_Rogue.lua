@@ -157,6 +157,28 @@ statements = {
         },
     },
 
+    INTERRUPT_SELF = {
+        COMMON = {
+            { id="rog_ints_c01", weight=1, line="Kicked {interrupted}. Clean." },
+            { id="rog_ints_c02", weight=1, line="{interrupted} silenced. Moving on." },
+            { id="rog_ints_c03", weight=1, line="Interrupted {interrupted}. Precision work." },
+            { id="rog_ints_c04", weight=1, line="{interrupted} denied. Textbook." },
+            { id="rog_ints_c05", weight=1, line="Got the kick on {interrupted}. Target never finished." },
+            { id="rog_ints_c06", weight=1, line="{interrupted} cancelled. One less variable." },
+        },
+        UNCOMMON = {
+            { id="rog_ints_u01", weight=1, line="{interrupted} eliminated. Frame-perfect execution." },
+            { id="rog_ints_u02", weight=1, line="Interrupted {interrupted}. Surgical. No wasted energy." },
+            { id="rog_ints_u03", weight=1, line="{interrupted} shut down. The mission proceeds." },
+        },
+        RARE = {
+            { id="rog_ints_r01", weight=1, line="{interrupted} erased. Perfect timing. Zero witnesses. Well, except the group." },
+        },
+        MYTHIC = {
+            { id="rog_ints_m01", weight=1, line="{interrupted} obliterated. Frame-perfect, zero hesitation. This is what the training was for." },
+        },
+    },
+
     PERIODIC_DAMAGE = {
         COMMON = {
             { id="rog_fire_c01", weight=1, line="Fire? On the ground? Where I STAND? Behind the boss? This is a personal attack." },
@@ -251,6 +273,29 @@ statements = {
         },
         MYTHIC = {
             { id="rog_cca_m01", weight=1, line="{spell} on {victim}. Nobody moving. I could've re-stealthed and Sapped a new target by now." },
+        },
+    },
+
+    CC_CALLOUT_NODISPEL = {
+        COMMON = {
+            { id="rog_ccn_c01", weight=1, line="{spell} on {victim}. Not removable. Adjust positioning." },
+            { id="rog_ccn_c02", weight=1, line="{victim} locked down by {spell}. No counter. Wait it out." },
+            { id="rog_ccn_c03", weight=1, line="{spell} hit {victim}. Short window. Stay focused." },
+            { id="rog_ccn_c04", weight=1, line="{victim} stunned by {spell}. Duration is brief. Maintain the op." },
+            { id="rog_ccn_c05", weight=1, line="{spell} on {victim}. No extraction available. Hold the line." },
+            { id="rog_ccn_c06", weight=1, line="{victim} caught {spell}. Ride it out. They'll be back." },
+        },
+        UNCOMMON = {
+            { id="rog_ccn_u01", weight=1, line="{spell} on {victim}. Not in anyone's toolkit. Tactical patience." },
+            { id="rog_ccn_u02", weight=1, line="{victim} has {spell}. If I could Kick a stun off an ally I would. But that's not how Kick works." },
+            { id="rog_ccn_u03", weight=1, line="{spell} on {victim}. No counter-play exists. Annoying but survivable." },
+        },
+        RARE = {
+            { id="rog_ccn_r01", weight=1, line="{spell} on {victim}. Can't remove, can't break, can't Vanish it. And those are my three solutions for everything." },
+            { id="rog_ccn_r02", weight=1, line="{victim} locked in {spell}. In the field this is called 'acceptable downtime.' Doesn't feel acceptable." },
+        },
+        MYTHIC = {
+            { id="rog_ccn_m01", weight=1, line="{spell} on {victim}. No dispel, no break, no counter-intel. Just watching. I don't WATCH. I ACT. This is excruciating." },
         },
     },
 

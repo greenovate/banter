@@ -158,6 +158,28 @@ statements = {
         },
     },
 
+    INTERRUPT_SELF = {
+        COMMON = {
+            { id="pal_ints_c01", weight=1, line="Interrupted {interrupted}. The Light provides." },
+            { id="pal_ints_c02", weight=1, line="{interrupted} denied. Righteous Hammer, righteous timing." },
+            { id="pal_ints_c03", weight=1, line="Got the kick on {interrupted}. Holy justice delivered." },
+            { id="pal_ints_c04", weight=1, line="{interrupted} cancelled. The Light said no." },
+            { id="pal_ints_c05", weight=1, line="Kicked {interrupted}. HoJ on cooldown but it was worth it." },
+            { id="pal_ints_c06", weight=1, line="{interrupted} shut down. Divine intervention of the practical kind." },
+        },
+        UNCOMMON = {
+            { id="pal_ints_u01", weight=1, line="{interrupted} neutralized. One stun, one minute cooldown, maximum value." },
+            { id="pal_ints_u02", weight=1, line="Interrupted {interrupted}. My Hammer of Justice has a 100% success rate. It just has a long cooldown." },
+            { id="pal_ints_u03", weight=1, line="{interrupted} erased. The Light guides my hammer to the cast bar." },
+        },
+        RARE = {
+            { id="pal_ints_r01", weight=1, line="{interrupted} obliterated. HoJ on cooldown now. For a full MINUTE. The sacrifice was righteous." },
+        },
+        MYTHIC = {
+            { id="pal_ints_m01", weight=1, line="{interrupted} annihilated. One stun. One minute cooldown. And I used it PERFECTLY. Write that in the scripture." },
+        },
+    },
+
     PERIODIC_DAMAGE = {
         COMMON = {
             { id="pal_fire_c01", weight=1, line="Fire! I'm in plate. With a shield. I'll be fine. Probably." },
@@ -252,6 +274,29 @@ statements = {
         },
         MYTHIC = {
             { id="pal_cca_m01", weight=1, line="{spell} on {victim}. Nobody dispelling. The Light judges us all but TODAY it judges the dispellers hardest." },
+        },
+    },
+
+    CC_CALLOUT_NODISPEL = {
+        COMMON = {
+            { id="pal_ccn_c01", weight=1, line="{spell} on {victim}. Not dispellable. The Light can't fix everything." },
+            { id="pal_ccn_c02", weight=1, line="{victim} stunned by {spell}. No Cleanse for this. Just patience." },
+            { id="pal_ccn_c03", weight=1, line="{spell} hit {victim}. Not removable. Even the Light has limits." },
+            { id="pal_ccn_c04", weight=1, line="{victim} locked down by {spell}. Standing by with heals." },
+            { id="pal_ccn_c05", weight=1, line="{spell} on {victim}. Can't Cleanse, can't Bubble them. Waiting." },
+            { id="pal_ccn_c06", weight=1, line="{victim} caught {spell}. Short duration. Righteous patience engaged." },
+        },
+        UNCOMMON = {
+            { id="pal_ccn_u01", weight=1, line="{spell} on {victim}. Not in the Cleanse family. The Light gave us Cleanse, not Cleanse-Everything." },
+            { id="pal_ccn_u02", weight=1, line="{victim} has {spell}. I could Bubble myself but that doesn't help THEM. Tempting though." },
+            { id="pal_ccn_u03", weight=1, line="{spell} on {victim}. Stuns don't cleanse. I've tested. The Light said 'no.'" },
+        },
+        RARE = {
+            { id="pal_ccn_r01", weight=1, line="{spell} on {victim}. No dispel. I once used Lay on Hands for less. The cooldown haunts me still." },
+            { id="pal_ccn_r02", weight=1, line="{victim} locked in {spell}. The Light giveth, but it doesn't giveth stun removal. Oversight." },
+        },
+        MYTHIC = {
+            { id="pal_ccn_m01", weight=1, line="{spell} on {victim}. Can't Cleanse, can't BoP, can't Hammer it off. I have SEVENTEEN abilities and NONE fix this." },
         },
     },
 

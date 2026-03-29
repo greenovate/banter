@@ -47,6 +47,8 @@ local TRIGGER_COOLDOWN = {
     MOB_KILL           = 12,
     CROWD_CONTROL      = 25,
     CC_CALLOUT         = 5,
+    CC_CALLOUT_NODISPEL = 5,
+    INTERRUPT_SELF     = 5,
     PLAYER_KILL        = 8,
     PLAYER_DISCONNECT  = 60,
     CONSUMABLE_USED    = 45,
@@ -483,14 +485,18 @@ function triggers.OnCombatLog()
             if ShouldSuppressCallout() then return end
             local spellName      = select(13, CombatLogGetCurrentEventInfo())
             local extraSpellName = select(16, CombatLogGetCurrentEventInfo())
-            -- Determine if WE interrupted or a group member did
             local isSelf = (srcGUID == UnitGUID("player"))
-            ns.core.StartScene("INTERRUPT", {
+
+            -- Self-interrupt: use INTERRUPT_SELF trigger (first-person lines)
+            -- Group member interrupt: use INTERRUPT trigger (third-person with {source})
+            local trigger = isSelf and "INTERRUPT_SELF" or "INTERRUPT"
+            ns.core.StartScene(trigger, {
                 source      = srcName,
                 target      = dstName,
                 spell       = spellName,
                 interrupted = extraSpellName,
                 isSelf      = isSelf,
+                _isCallout  = true,
             })
         end
         return
@@ -645,6 +651,34 @@ local function GuessDebuffType(spellName)
     return "magic"   -- default assumption for mob CCs
 end
 
+--- Returns true if a CC spell can potentially be dispelled/removed by a group member.
+--- Stuns, knockdowns, silences, and physical CC cannot be dispelled in TBC Classic.
+local function IsDispellableCC(spellName)
+    local lower = spellName:lower()
+    -- NON-DISPELLABLE: stuns, kidney shot, cheap shot, bash, charge, intercept, 
+    -- gouge, scatter shot, knockdowns, knock, ground slam, war stomp, silence
+    if lower:find("stun") or lower:find("kidney") or lower:find("cheap shot")
+       or lower:find("bash") or lower:find("charge") or lower:find("intercept")
+       or lower:find("gouge") or lower:find("scatter") or lower:find("knock")
+       or lower:find("ground slam") or lower:find("war stomp")
+       or lower:find("silence") or lower:find("blind")
+       or lower:find("sap") or lower:find("repentance")
+       or lower:find("hammer of justice") or lower:find("intimidating shout") then
+        return false
+    end
+    -- DISPELLABLE: fears, polymorphs, hexes, charms, sleeps, roots, webs, nets
+    if lower:find("fear") or lower:find("horror") or lower:find("polymorph")
+       or lower:find("sheep") or lower:find("hex") or lower:find("charm")
+       or lower:find("sleep") or lower:find("seduction") or lower:find("mind control")
+       or lower:find("banish") or lower:find("root") or lower:find("entangling")
+       or lower:find("frost nova") or lower:find("freeze") or lower:find("frozen")
+       or lower:find("web") or lower:find("net")
+       or lower:find("wyvern") or lower:find("freezing trap") then
+        return true
+    end
+    return false  -- unknown = assume not dispellable (safe default)
+end
+
 -- Scan group for a player who can dispel a specific debuff type
 local function FindDispeller(debuffType, excludeGUID)
     local n = GetNumGroupMembers() or 0
@@ -727,7 +761,9 @@ function triggers.OnCCCallout(dstGUID, dstName, srcName, spellName, spellId)
     -- Gather context
     local duration = GetCCDuration(spellName, dstName)
     local debuffType = GuessDebuffType(spellName)
-    local dispeller = FindDispeller(debuffType, dstGUID)
+    local canDispel = IsDispellableCC(spellName)
+    local dispeller = canDispel and FindDispeller(debuffType, dstGUID) or nil
+    local isSelf = (dstGUID == UnitGUID("player"))
 
     local ctx = {
         victim   = dstName or "someone",
@@ -736,9 +772,23 @@ function triggers.OnCCCallout(dstGUID, dstName, srcName, spellName, spellId)
         spell    = spellName,
         duration = duration and (tostring(math.floor(duration)) .. "s") or "???",
         dispeller = dispeller,
+        isDispellable = canDispel,
+        isSelf   = isSelf,
+        _isCallout = true,
     }
 
-    ns.core.StartScene("CC_CALLOUT", ctx)
+    -- Route to appropriate trigger based on context:
+    -- Self-CC = you already know, skip callout (nobody to tell yourself)
+    if isSelf and (GetNumGroupMembers() or 0) == 0 then return end
+    -- In group: self-CC uses a short "I'm CC'd" announcement
+    -- Non-dispellable CC uses CC_CALLOUT_NODISPEL (no "dispel" language)
+    -- Dispellable CC uses CC_CALLOUT (existing dispel-oriented content)
+    local trigger = "CC_CALLOUT"
+    if not canDispel then
+        trigger = "CC_CALLOUT_NODISPEL"
+    end
+
+    ns.core.StartScene(trigger, ctx)
 end
 
 ---------------------------------------------------------------------------
@@ -779,6 +829,7 @@ function triggers.OnPlayerKill(dstGUID, dstName)
         killed_class = killedClass and (killedClass:sub(1,1) .. killedClass:sub(2):lower()) or nil,
         killed_level = killedLevel and killedLevel > 0 and tostring(killedLevel) or nil,
         level_gap    = levelGap,
+        _isCallout   = true,
     })
 end
 

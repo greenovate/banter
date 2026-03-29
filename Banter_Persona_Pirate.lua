@@ -226,6 +226,28 @@ statements = {
         },
     },
 
+    INTERRUPT_SELF = {
+        COMMON = {
+            { id="pir_ints_c01", weight=1, line="Kicked {interrupted}! Arr, no castin' on me ship!" },
+            { id="pir_ints_c02", weight=1, line="{interrupted} denied! That's how a PIRATE handles it!" },
+            { id="pir_ints_c03", weight=1, line="Interrupted {interrupted}! Shut yer spell hole!" },
+            { id="pir_ints_c04", weight=1, line="{interrupted} cancelled! Nobody casts around THIS pirate!" },
+            { id="pir_ints_c05", weight=1, line="Got the kick on {interrupted}! Arr, sit DOWN!" },
+            { id="pir_ints_c06", weight=1, line="{interrupted} shut down! Like pluggin' a leak in the hull!" },
+        },
+        UNCOMMON = {
+            { id="pir_ints_u01", weight=1, line="{interrupted} silenced! Me blade's faster than yer spellbook, mate!" },
+            { id="pir_ints_u02", weight=1, line="Interrupted {interrupted}! Perfect timin'! Even me parrot's impressed!" },
+            { id="pir_ints_u03", weight=1, line="{interrupted} crushed! If that were a cannon shot it'd be a direct hit!" },
+        },
+        RARE = {
+            { id="pir_ints_r01", weight=1, line="{interrupted} obliterated! That weren't an interrupt — that were PIRACY! An' I'm the best pirate here!" },
+        },
+        MYTHIC = {
+            { id="pir_ints_m01", weight=1, line="{interrupted} ANNIHILATED! That were POETRY! An' I can't even read! But I FELT it!" },
+        },
+    },
+
     PERIODIC_DAMAGE = {
         COMMON = {
             { id="pir_fire_c01", weight=1, line="{target}'s ON FIRE an' seems FINE WITH IT?! The HELL?!" },
@@ -360,6 +382,29 @@ statements = {
         },
         MYTHIC = {
             { id="pir_cca_m01", weight=1, line="{spell} on {victim}! Nobody movin'! In all me years at sea I've never seen a more useless crew. DISPEL OR SWIM!" },
+        },
+    },
+
+    CC_CALLOUT_NODISPEL = {
+        COMMON = {
+            { id="pir_ccn_c01", weight=1, line="{spell} on {victim}! Can't break that one, just weather it!" },
+            { id="pir_ccn_c02", weight=1, line="{victim} stunned by {spell}! Hold fast, it'll pass!" },
+            { id="pir_ccn_c03", weight=1, line="{spell} hit {victim}! Nothin' we can do but hold the line!" },
+            { id="pir_ccn_c04", weight=1, line="{victim} locked down by {spell}! Peel the mob, watch their back!" },
+            { id="pir_ccn_c05", weight=1, line="{spell} on {victim}! Ride the wave, it'll break!" },
+            { id="pir_ccn_c06", weight=1, line="{victim} caught {spell}! No fix fer that one, mates!" },
+        },
+        UNCOMMON = {
+            { id="pir_ccn_u01", weight=1, line="{spell} on {victim}! Can't cure a stun with rum. Believe me, I've tried." },
+            { id="pir_ccn_u02", weight=1, line="{victim} has {spell}! In me sailing days we just waited out the storms. Same thing." },
+            { id="pir_ccn_u03", weight=1, line="{spell} on {victim}! Even Davy Jones can't break a stun. And he's DAVY JONES." },
+        },
+        RARE = {
+            { id="pir_ccn_r01", weight=1, line="{spell} on {victim}! Once I got stunned by a kraken fer three hours. This is NOTHING!" },
+            { id="pir_ccn_r02", weight=1, line="{victim} locked in {spell}! Back on me ship we'd just pour rum on 'em. Didn't help but it felt right." },
+        },
+        MYTHIC = {
+            { id="pir_ccn_m01", weight=1, line="{spell} on {victim}! No cure, no fix, no rum solution! In ALL me years at sea... actually this happens a lot at sea too." },
         },
     },
 

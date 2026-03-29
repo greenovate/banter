@@ -156,6 +156,28 @@ statements = {
         },
     },
 
+    INTERRUPT_SELF = {
+        COMMON = {
+            { id="wlk_ints_c01", weight=1, line="Shut down {interrupted}. Silence suits them." },
+            { id="wlk_ints_c02", weight=1, line="{interrupted} snuffed out. Professionally." },
+            { id="wlk_ints_c03", weight=1, line="Interrupted {interrupted}. The darkness provides." },
+            { id="wlk_ints_c04", weight=1, line="{interrupted} denied. My demons approve." },
+            { id="wlk_ints_c05", weight=1, line="Kicked {interrupted}. Nothing personal. Everything's personal." },
+            { id="wlk_ints_c06", weight=1, line="{interrupted} cancelled. Less noise, more suffering." },
+        },
+        UNCOMMON = {
+            { id="wlk_ints_u01", weight=1, line="{interrupted} silenced. The void appreciates the quiet. So do I." },
+            { id="wlk_ints_u02", weight=1, line="Interrupted {interrupted}. Their last spell. Poetic, really." },
+            { id="wlk_ints_u03", weight=1, line="{interrupted} erased. My demons didn't even flinch. Because they're used to excellence." },
+        },
+        RARE = {
+            { id="wlk_ints_r01", weight=1, line="{interrupted} obliterated. Cast bars are just Health bars for spells. And I kill EVERYTHING." },
+        },
+        MYTHIC = {
+            { id="wlk_ints_m01", weight=1, line="{interrupted} annihilated. Perfect timing. Total silence. My autobiography will have a chapter on this." },
+        },
+    },
+
     PERIODIC_DAMAGE = {
         COMMON = {
             { id="wlk_fire_c01", weight=1, line="Fire on the ground? Cute. I've been on fire since I specced Conflagrate." },
@@ -250,6 +272,29 @@ statements = {
         },
         MYTHIC = {
             { id="wlk_cca_m01", weight=1, line="{spell} on {victim}. Mob, healer, dispeller — everyone just watching. This is normally MY brand of cruelty." },
+        },
+    },
+
+    CC_CALLOUT_NODISPEL = {
+        COMMON = {
+            { id="wlk_ccn_c01", weight=1, line="{spell} on {victim}. Not dispellable. Welcome to suffering." },
+            { id="wlk_ccn_c02", weight=1, line="{victim} stunned by {spell}. Nothing to do. I relate to helplessness." },
+            { id="wlk_ccn_c03", weight=1, line="{spell} on {victim}. No fix. Just endurance." },
+            { id="wlk_ccn_c04", weight=1, line="{victim} locked down by {spell}. Even my demons can't help with this." },
+            { id="wlk_ccn_c05", weight=1, line="{spell} hit {victim}. Can't curse the stun away. Tried once." },
+            { id="wlk_ccn_c06", weight=1, line="{victim} caught {spell}. It'll pass. Everything passes. Except soul debt." },
+        },
+        UNCOMMON = {
+            { id="wlk_ccn_u01", weight=1, line="{spell} on {victim}. Not in my toolkit. My toolkit is mostly suffering and fire." },
+            { id="wlk_ccn_u02", weight=1, line="{victim} has {spell}. I could Fear the mob but that would make things worse. Tempting." },
+            { id="wlk_ccn_u03", weight=1, line="{spell} on {victim}. The void offers no solution for stuns. Just existential alternatives." },
+        },
+        RARE = {
+            { id="wlk_ccn_r01", weight=1, line="{spell} on {victim}. No dispel exists. Asked my demon. He laughed. Not helpful." },
+            { id="wlk_ccn_r02", weight=1, line="{victim} locked in {spell}. In the void this is 'a brief inconvenience.' Here it's 'panic.'" },
+        },
+        MYTHIC = {
+            { id="wlk_ccn_m01", weight=1, line="{spell} on {victim}. Can't dispel it, can't curse it, can't drain it. Watching someone suffer without profiting. Waste." },
         },
     },
 
