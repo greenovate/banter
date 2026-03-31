@@ -85,7 +85,8 @@ function comm.SendHello()
     local persona = ns.ResolvePersona and ns.ResolvePersona() or (ns.db and ns.db.persona or "WARRIOR")
     local actualClass = ns.playerClassKey or "WARRIOR"
     local style = ns.db and ns.db.banterStyle or "SOCIAL"
-    Send("HELLO", persona .. SEP .. actualClass .. SEP .. style)
+    local enabled = (ns.db and ns.db.enabled) and "1" or "0"
+    Send("HELLO", persona .. SEP .. actualClass .. SEP .. style .. SEP .. enabled)
 end
 
 function comm.GetPeerStyle(name)
@@ -168,16 +169,17 @@ function comm.OnMessage(prefix, text, distribution, sender)
     ns.Debug("RECV [" .. senderName .. "]: " .. text)
 
     if msgType == "HELLO" then
-        comm.peers[senderName] = { persona = parts[2] or "UNKNOWN", actualClass = parts[3] or "UNKNOWN", style = parts[4] or "SOCIAL", lastSeen = GetTime() }
+        comm.peers[senderName] = { persona = parts[2] or "UNKNOWN", actualClass = parts[3] or "UNKNOWN", style = parts[4] or "SOCIAL", enabled = (parts[5] ~= "0"), lastSeen = GetTime() }
         local persona = ns.ResolvePersona and ns.ResolvePersona() or (ns.db and ns.db.persona or "WARRIOR")
         local actualClass = ns.playerClassKey or "WARRIOR"
         local style = ns.db and ns.db.banterStyle or "SOCIAL"
-        Send("HERE", persona .. SEP .. actualClass .. SEP .. style)
-        ns.Debug("Discovered peer: " .. senderName .. " (" .. (parts[2] or "?") .. "/" .. (parts[3] or "?") .. "/" .. (parts[4] or "?") .. ")")
+        local enabled = (ns.db and ns.db.enabled) and "1" or "0"
+        Send("HERE", persona .. SEP .. actualClass .. SEP .. style .. SEP .. enabled)
+        ns.Debug("Discovered peer: " .. senderName .. " (" .. (parts[2] or "?") .. "/" .. (parts[3] or "?") .. "/" .. (parts[4] or "?") .. "/en=" .. (parts[5] or "?") .. ")")
 
     elseif msgType == "HERE" then
-        comm.peers[senderName] = { persona = parts[2] or "UNKNOWN", actualClass = parts[3] or "UNKNOWN", style = parts[4] or "SOCIAL", lastSeen = GetTime() }
-        ns.Debug("Confirmed peer: " .. senderName .. " (" .. (parts[2] or "?") .. "/" .. (parts[3] or "?") .. "/" .. (parts[4] or "?") .. ")")
+        comm.peers[senderName] = { persona = parts[2] or "UNKNOWN", actualClass = parts[3] or "UNKNOWN", style = parts[4] or "SOCIAL", enabled = (parts[5] ~= "0"), lastSeen = GetTime() }
+        ns.Debug("Confirmed peer: " .. senderName .. " (" .. (parts[2] or "?") .. "/" .. (parts[3] or "?") .. "/" .. (parts[4] or "?") .. "/en=" .. (parts[5] or "?") .. ")")
 
     elseif msgType == "SCENE_START" then
         comm.HandleSceneStart(senderName, parts[2], parts[3], parts[4], parts[5])

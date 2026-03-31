@@ -1082,8 +1082,8 @@ local QUIET_COMEBACK = {
 function core.TryStyleRibbing()
     if not ns.db or not ns.db.enabled then return end
     local myStyle = ns.db.banterStyle
-    -- Only SOCIAL and CALLOUTS users participate in ribbing
-    if myStyle ~= "SOCIAL" and myStyle ~= "CALLOUTS" then return end
+    -- Only SOCIAL and NARRATIVE users initiate ribbing — CALLOUTS only RESPONDS
+    if myStyle ~= "SOCIAL" and myStyle ~= "NARRATIVE" then return end
     -- Cooldown
     if (GetTime() - lastStyleRib) < STYLE_RIB_COOLDOWN then return end
     -- PvP suppression
@@ -1094,11 +1094,10 @@ function core.TryStyleRibbing()
     if ns.comm.activeScene and (GetTime() - (ns.comm.activeScene.startTime or 0)) < 20 then return end
     if ns.comm.activeEngagement and (GetTime() - (ns.comm.activeEngagement.startTime or 0)) < 20 then return end
 
-    -- Find a peer with the opposite style to tease
+    -- Find a CALLOUTS peer to tease (must be enabled)
     local targetPeer = nil
-    local targetStyle = (myStyle == "SOCIAL") and "CALLOUTS" or "SOCIAL"
     for name, data in pairs(ns.comm.peers) do
-        if data.style == targetStyle then
+        if data.style == "CALLOUTS" and data.enabled ~= false then
             targetPeer = name
             break
         end
@@ -1107,7 +1106,7 @@ function core.TryStyleRibbing()
 
     -- Pick a tease line for our persona
     local persona = ns.ResolvePersona()
-    local pool = (myStyle == "SOCIAL") and QUIET_TEASE[persona] or LOUD_TEASE[persona]
+    local pool = QUIET_TEASE[persona]
     if not pool or #pool == 0 then return end
     local line = pool[math.random(#pool)]:gsub("{name}", targetPeer)
 
@@ -1124,9 +1123,8 @@ end
 
 function core.PickStyleComeback()
     local persona = ns.ResolvePersona()
-    -- If we're SOCIAL, we got teased by a CALLOUTS user — fire a "I'm fun" comeback
-    -- If we're CALLOUTS, we got teased by a SOCIAL user — fire a "shut up" comeback
-    local pool = (ns.db.banterStyle == "SOCIAL") and QUIET_COMEBACK[persona] or LOUD_COMEBACK[persona]
+    -- CALLOUTS user got teased by a SOCIAL/NARRATIVE user — fire a "shut up" comeback
+    local pool = LOUD_COMEBACK[persona]
     if not pool or #pool == 0 then return nil end
     return pool[math.random(#pool)]
 end
