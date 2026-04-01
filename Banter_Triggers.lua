@@ -49,6 +49,7 @@ local TRIGGER_COOLDOWN = {
     CC_CALLOUT         = 5,
     CC_CALLOUT_NODISPEL = 5,
     INTERRUPT_SELF     = 5,
+    SHADOWFORM_DROP    = 30,
     PLAYER_KILL        = 8,
     PLAYER_DISCONNECT  = 60,
     CONSUMABLE_USED    = 45,
@@ -475,7 +476,7 @@ function triggers.OnCombatLog()
         end
         if triggers.IsPlayerOrGroup(srcGUID) then
             if not ns.db then return end
-            if not ns.db.interruptCallouts and ns.db.banterStyle ~= "CALLOUTS" then return end
+            if not ns.db.interruptCallouts then return end
             if not ns.initialized then return end
             -- Per-trigger cooldown only (no global scene gate)
             local cd   = TRIGGER_COOLDOWN["INTERRUPT"] or 5
@@ -519,9 +520,24 @@ function triggers.OnCombatLog()
         return
     end
 
+    -- SPELL_AURA_REMOVED — detect Shadowform drop (Priest only)
+    if subEvent == "SPELL_AURA_REMOVED" then
+        local spellId = select(12, CombatLogGetCurrentEventInfo())
+        -- Shadowform spell ID: 15473
+        if spellId == 15473 and srcGUID == UnitGUID("player") then
+            if ns.playerClassKey == "PRIEST" or (ns.db and ns.db.persona == "PRIEST") then
+                if triggers.CanStartScene() then
+                    ns.core.StartScene("SHADOWFORM_DROP", {})
+                end
+            end
+        end
+        return
+    end
+
     -- SPELL_PERIODIC_DAMAGE  (standing-in-fire proxy)
+    -- Only roasts OTHER group members — never the player (don't shame your own user)
     if subEvent == "SPELL_PERIODIC_DAMAGE" then
-        if triggers.IsPlayerOrGroup(dstGUID) then
+        if triggers.IsPlayerOrGroup(dstGUID) and dstGUID ~= UnitGUID("player") then
             local amount = select(15, CombatLogGetCurrentEventInfo())
             local maxHP  = UnitHealthMax(dstName or "") or 1
             if maxHP > 0 and amount and (amount / maxHP) > 0.15 then
@@ -749,7 +765,7 @@ function triggers.OnCCCallout(dstGUID, dstName, srcName, spellName, spellId)
 
     -- CC callouts have their own toggle — independent of main enabled
     if not ns.db then return end
-    if not ns.db.ccCallouts and ns.db.banterStyle ~= "CALLOUTS" then return end
+    if not ns.db.ccCallouts then return end
     if not ns.initialized then return end
     -- Per-trigger cooldown only (no global scene gate)
     local cd   = TRIGGER_COOLDOWN["CC_CALLOUT"] or 5
@@ -796,7 +812,7 @@ end
 ---------------------------------------------------------------------------
 function triggers.OnPlayerKill(dstGUID, dstName)
     if not ns.db then return end
-    if not ns.db.pvpCallouts and ns.db.banterStyle ~= "CALLOUTS" then return end
+    if not ns.db.pvpCallouts then return end
     if not ns.initialized then return end
     -- Solo: only fire for player's own kills when soloMode is on
     if (GetNumGroupMembers() or 0) == 0 then

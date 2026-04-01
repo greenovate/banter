@@ -186,6 +186,37 @@ statements = {
         },
     },
 
+    SHADOWFORM_DROP = {
+        COMMON = {
+            { id="pri_sf_c01", weight=1, line="I left Shadowform for this." },
+            { id="pri_sf_c02", weight=1, line="Back to healing. The darkness can wait." },
+            { id="pri_sf_c03", weight=1, line="Shadowform off. Someone better be dying." },
+            { id="pri_sf_c04", weight=1, line="Fine. FINE. I'll heal. But I'm not happy about it." },
+            { id="pri_sf_c05", weight=1, line="Dropped shadow. If nobody needed heals I'm going BACK." },
+            { id="pri_sf_c06", weight=1, line="I left Shadowform. This better be an emergency." },
+            { id="pri_sf_c07", weight=1, line="Shadow off. Holy on. The things I do for this group." },
+            { id="pri_sf_c08", weight=1, line="There goes my DPS. You're welcome." },
+            { id="pri_sf_c09", weight=1, line="Switching to heals. Nobody panic. That's MY job." },
+            { id="pri_sf_c10", weight=1, line="Shadowform cancelled. I hope everyone appreciates the sacrifice." },
+        },
+        UNCOMMON = {
+            { id="pri_sf_u01", weight=1, line="I was doing DAMAGE. Real damage. Shadow damage. And now I'm back to babysitting health bars." },
+            { id="pri_sf_u02", weight=1, line="Every time I drop Shadowform an angel gets its wings. A BORED angel." },
+            { id="pri_sf_u03", weight=1, line="Left Shadowform. My DPS screamed. My mana bar wept. But sure, heals." },
+            { id="pri_sf_u04", weight=1, line="Dropped from shadow to light. It's not a downgrade, it's a... lateral career move." },
+            { id="pri_sf_u05", weight=1, line="Shadowform off. Do you know how GOOD it felt? The power? The purple? Gone. For YOU." },
+        },
+        RARE = {
+            { id="pri_sf_r01", weight=1, line="I left Shadowform. I was top DPS for three seconds. THREE BEAUTIFUL SECONDS. Now I heal." },
+            { id="pri_sf_r02", weight=1, line="Shadow to Holy in one button. My entire identity, shifted. My therapist calls this 'flexibility.' I call it 'suffering.'" },
+            { id="pri_sf_r03", weight=1, line="Dropped Shadowform. My Shadow Word: Pain is still ticking though. That's MY damage. Mine. Even in Holy mode. MINE." },
+        },
+        MYTHIC = {
+            { id="pri_sf_m01", weight=1, line="I left Shadowform for this group. The darkness offered me power, respect, and competitive DPS. I chose HEALING. Again. The Light owes me." },
+            { id="pri_sf_m02", weight=1, line="Shadowform gone. Purple aura gone. Cool factor gone. But sure, Greater Heal. Renew. Shield. The glamorous life of a priest who specced Shadow and STILL has to heal." },
+        },
+    },
+
     PERIODIC_DAMAGE = {
         COMMON = {
             { id="pri_fire_c01", weight=1, line="Fire on the ground. Which means someone is going to stand in it. Which means I'm healing." },

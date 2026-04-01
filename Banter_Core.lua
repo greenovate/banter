@@ -580,8 +580,13 @@ end)
 -- The CALLOUTS user gets a special bypass to fire back a comeback.
 ---------------------------------------------------------------------------
 
-local STYLE_RIB_COOLDOWN = 300   -- 5 minutes between ribbing attempts
+local STYLE_RIB_COOLDOWN = 300   -- 5 minutes minimum between ribbing attempts
+local STYLE_RIB_CHANCE   = 0.30  -- 30% chance each check after cooldown expires
 local lastStyleRib       = 0
+
+-- Dedup tracking for ribbing lines — prevents repeats within a session
+local usedTeaseLines    = {}    -- { [line] = true }
+local usedComebackLines = {}    -- { [line] = true }
 
 -- Lines the SOCIAL user says about the quiet CALLOUTS peer
 local QUIET_TEASE = {
@@ -1086,6 +1091,8 @@ function core.TryStyleRibbing()
     if myStyle ~= "SOCIAL" and myStyle ~= "NARRATIVE" then return end
     -- Cooldown
     if (GetTime() - lastStyleRib) < STYLE_RIB_COOLDOWN then return end
+    -- RNG chance — not guaranteed every 5 min, just eligible
+    if math.random() > STYLE_RIB_CHANCE then return end
     -- PvP suppression
     if core.IsInPvPInstance() then return end
     -- Need peers
@@ -1104,29 +1111,61 @@ function core.TryStyleRibbing()
     end
     if not targetPeer then return end
 
-    -- Pick a tease line for our persona
+    -- Pick a tease line with dedup — never repeat within a session
     local persona = ns.ResolvePersona()
     local pool = QUIET_TEASE[persona]
     if not pool or #pool == 0 then return end
-    local line = pool[math.random(#pool)]:gsub("{name}", targetPeer)
+
+    -- Filter out already-used lines
+    local fresh = {}
+    for _, l in ipairs(pool) do
+        if not usedTeaseLines[l] then
+            table.insert(fresh, l)
+        end
+    end
+    -- If all used, reset pool
+    if #fresh == 0 then
+        usedTeaseLines = {}
+        fresh = pool
+    end
+
+    local picked = fresh[math.random(#fresh)]
+    usedTeaseLines[picked] = true
+    local line = picked:gsub("{name}", targetPeer)
 
     -- Send tease to chat
     local channel = core.GetOutputChannel()
     core.SafeSend(line, channel)
     ns.Debug("STYLE_RIB TEASE [" .. persona .. "/" .. myStyle .. " -> " .. targetPeer .. "]: " .. line)
 
-    -- Notify the peer to fire back
-    ns.comm.SendStyleRib()
+    -- Notify the specific peer to fire back
+    ns.comm.SendStyleRib(targetPeer)
 
     lastStyleRib = GetTime()
 end
 
 function core.PickStyleComeback()
     local persona = ns.ResolvePersona()
-    -- CALLOUTS user got teased by a SOCIAL/NARRATIVE user — fire a "shut up" comeback
+    -- CALLOUTS user got teased — fire a "shut up" comeback
     local pool = LOUD_COMEBACK[persona]
     if not pool or #pool == 0 then return nil end
-    return pool[math.random(#pool)]
+
+    -- Filter out already-used comebacks
+    local fresh = {}
+    for _, l in ipairs(pool) do
+        if not usedComebackLines[l] then
+            table.insert(fresh, l)
+        end
+    end
+    -- If all used, reset pool
+    if #fresh == 0 then
+        usedComebackLines = {}
+        fresh = pool
+    end
+
+    local picked = fresh[math.random(#fresh)]
+    usedComebackLines[picked] = true
+    return picked
 end
 
 ---------------------------------------------------------------------------

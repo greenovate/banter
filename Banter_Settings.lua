@@ -517,11 +517,9 @@ local function CreateSettingsFrame()
             _G["BanterCB_PVPCallouts"],
         }
         local function UpdateCalloutVisibility()
-            local hide = (ns.db.banterStyle == "CALLOUTS")
+            -- Callout checkboxes always visible — users control each type independently
             for _, cb in ipairs(calloutCBs) do
-                if cb then
-                    if hide then cb:Hide() else cb:Show() end
-                end
+                if cb then cb:Show() end
             end
         end
         -- Hook into dropdown selection changes

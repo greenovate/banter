@@ -127,15 +127,18 @@ function comm.SendZone(zoneName)
     Send("ZONE", zoneName)
 end
 
---- Send style ribbing notification to quiet peer
-function comm.SendStyleRib()
-    Send("STYLE_RIB", "")
+--- Send style ribbing notification to a specific peer
+function comm.SendStyleRib(targetName)
+    Send("STYLE_RIB", targetName or "")
 end
 
 ---------------------------------------------------------------------------
 -- Style Ribbing — peers tease each other about their banter style
 ---------------------------------------------------------------------------
-function comm.HandleStyleRib(sender)
+function comm.HandleStyleRib(sender, targetName)
+    -- Only respond if we're the targeted player
+    local myName = UnitName("player")
+    if targetName and targetName ~= "" and targetName ~= myName then return end
     -- Respond if we're CALLOUTS (teased by SOCIAL) or SOCIAL (teased by CALLOUTS)
     if not ns.db then return end
     local myStyle = ns.db.banterStyle
@@ -204,7 +207,7 @@ function comm.OnMessage(prefix, text, distribution, sender)
         ns.Debug("Peer zone: " .. senderName .. " -> " .. (parts[2] or "?"))
 
     elseif msgType == "STYLE_RIB" then
-        comm.HandleStyleRib(senderName)
+        comm.HandleStyleRib(senderName, parts[2])
     end
 end
 
